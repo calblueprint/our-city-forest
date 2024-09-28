@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "mobile-app-template",
+    "slug": "mobile-app-template",
+    "owner": "mobileapptemplate",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/bp-icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/bp-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/bp-adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/bp-favicon.png"
+    }
+  }
+}

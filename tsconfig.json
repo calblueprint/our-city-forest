@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "allowJs": false,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "jsx": "react-native",
+    "lib": ["ESNext", "DOM"],
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "~/*": ["./*"]
+    }
+  },
+  "extends": "expo/tsconfig.base",
+  "include": ["src/**/*.ts", "src/**/*.tsx", "App.tsx", "./graphics.d.ts"],
+  "exclude": ["node_modules"]
+}

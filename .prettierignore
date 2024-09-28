@@ -1,0 +1,3 @@
+# ignore formatting of the following markdown files
+README.md
+.github/pull_request_template.md

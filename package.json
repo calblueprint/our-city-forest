@@ -1,0 +1,39 @@
+{
+  "name": "mobile-app-template",
+  "version": "1.0.0",
+  "main": "expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "lint:check": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "prettier:check": "npx prettier --check .",
+    "prettier:fix": "npx prettier --write .",
+    "tsc": "npx tsc --noEmit",
+    "prepare": "husky",
+    "pre-commit": "(npm run tsc || true) && (npm run lint:check || true) && npm run prettier:check"
+  },
+  "dependencies": {
+    "expo": "~51.0.21",
+    "expo-status-bar": "~1.12.1",
+    "react": "18.2.0",
+    "react-native": "^0.74.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@eslint/js": "^9.9.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@types/react": "~18.2.45",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "eslint": "^8.57.0",
+    "eslint-config-expo": "^7.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.5",
+    "prettier": "^3.3.3",
+    "typescript": "~5.3.3",
+    "yarnhook": "^0.6.2"
+  },
+  "private": true
+}

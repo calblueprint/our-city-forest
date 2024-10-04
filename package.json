@@ -15,10 +15,28 @@
     "pre-commit": "(npm run tsc || true) && (npm run lint:check || true) && npm run prettier:check"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.0.0",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/native-stack": "^6.11.0",
+    "@supabase/supabase-js": "^2.45.4",
     "expo": "~51.0.21",
+    "expo-auth-session": "~5.5.2",
+    "expo-barcode-scanner": "~13.0.1",
+    "expo-camera": "~15.0.16",
+    "expo-constants": "~16.0.2",
+    "expo-device": "~6.0.2",
+    "expo-linking": "~6.3.1",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
-    "react-native": "^0.74.5"
+    "react-native": "^0.74.5",
+    "react-native-dotenv": "^3.4.11",
+    "react-native-gesture-handler": "^2.20.0",
+    "react-native-reanimated": "^3.15.4",
+    "react-native-svg": "^15.7.1",
+    "react-native-toast-message": "^2.2.1",
+    "react-native-url-polyfill": "^2.0.0",
+    "zod": "^3.23.8",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

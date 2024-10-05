@@ -7,7 +7,7 @@
     "orientation": "portrait",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
-     "plugins": [
+    "plugins": [
       [
         "expo-camera",
         {

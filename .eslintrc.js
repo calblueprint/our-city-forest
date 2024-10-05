@@ -3,6 +3,9 @@ module.exports = {
   extends: ['expo', 'prettier', 'eslint:recommended'],
   plugins: ['prettier', '@typescript-eslint'],
   parser: '@typescript-eslint/parser',
+  env: {
+    node: true,
+  },
   rules: {
     // add project-specific linting rules here
     'prettier/prettier': 'error',

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '@/app';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
 import TreeInfoPage from '@/components/TreeInfoPage/TreeInfoPage';
+import { RootStackParamList } from '@/types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

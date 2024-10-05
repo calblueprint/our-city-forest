@@ -6,6 +6,7 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types';
 import styles from './styles';
 
 type QRCodeScannerProps = NativeStackScreenProps<RootStackParamList, 'Scanner'>;
@@ -19,25 +20,28 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
     if (!permission?.granted) {
       requestPermission();
     }
-  }, [permission]);
+  }, [permission, requestPermission]);
 
   const onBarcodeScanned = (data: BarcodeScanningResult) => {
     // Disable scanning callback so we don't scan multiple times
     setDisableScanner(true);
 
     Alert.alert(
-      'YUHHHHH QR Code Scanned',
-      `Going to tree page with id: ${data.data}`,
+      'Found Tree QR Code!',
+      `Would you like to view more information about tree ${data.data}?`,
       [
         {
+          text: 'Cancel',
+          // Enable scanner after 2 seconds of pressing Cancel
+          onPress: () => setTimeout(() => setDisableScanner(false), 2000),
+          style: 'cancel',
+        },
+        {
           text: 'OK',
-          // Enable scanner after 2 seconds of pressing OK
           onPress: () => navigation.push('TreeInfoPage', { treeId: data.data }),
         },
       ],
     );
-
-    // setTimeout(() => setDisableScanner(false), 2000),
   };
 
   // Camera permissions are still loading.

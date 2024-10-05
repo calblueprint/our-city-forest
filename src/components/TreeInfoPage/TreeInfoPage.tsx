@@ -1,6 +1,7 @@
 import { Pressable, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/types';
 import styles from './styles';
 
 type TreeInfoPageProps = NativeStackScreenProps<

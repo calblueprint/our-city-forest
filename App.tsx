@@ -1,20 +1,11 @@
-// In App.js in a new project
-
 import * as React from 'react';
-import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from '@/app';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
+import TreeInfoPage from '@/components/TreeInfoPage/TreeInfoPage';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
@@ -31,8 +22,8 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Tree"
-          component={HomeScreen}
+          name="TreeInfoPage"
+          component={TreeInfoPage}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

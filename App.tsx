@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import Logo from '@/components/Logo';
+import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
 
-export default function App() {
+export default function StartPage() {
   return (
     <View style={styles.container}>
-      <Logo />
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <QRCodeScanner />
       <StatusBar style="auto" />
     </View>
   );

@@ -1,12 +1,20 @@
 {
   "expo": {
-    "name": "mobile-app-template",
-    "slug": "mobile-app-template",
-    "owner": "mobileapptemplate",
+    "name": "Our City Forest",
+    "slug": "Our City Forest",
+    "owner": "ourcityforest",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
+     "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Our City Forest to access your camera to scan QR codes."
+        }
+      ]
+    ],
     "splash": {
       "image": "./assets/bp-splash.png",
       "resizeMode": "contain",

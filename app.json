@@ -5,10 +5,10 @@
     "owner": "mobileapptemplate",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/bp-icon.png",
+    "icon": "./src/assets/bp-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/bp-splash.png",
+      "image": "./src/assets/bp-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

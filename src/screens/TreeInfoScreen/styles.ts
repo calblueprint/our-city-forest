@@ -1,10 +1,72 @@
 import { StyleSheet } from 'react-native';
+import colors from '@/colors';
 
 export default StyleSheet.create({
+  // Container
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  imageBg: {
+    flex: 1,
+    height: 292,
+  },
+
+  // Header
+  headerFlex: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    marginHorizontal: 30,
+    marginBottom: 23,
+    gap: 5,
+  },
+  idBadge: {
+    backgroundColor: colors.primary_green_2,
+    borderRadius: 5,
+  },
+  idText: {
+    flex: 0,
+    color: colors.white1,
+    fontSize: 14,
+    padding: 10,
+  },
+  treeName: {
+    fontSize: 32,
+    color: colors.off_white,
+    fontWeight: 900,
+  },
+  scientificName: {
+    fontSize: 20,
+    color: colors.off_white,
+  },
+
+  // Main body
+  body: {
+    gap: 25,
+    marginHorizontal: 44,
+    marginTop: 40,
+    flex: 1,
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: 700,
+    color: colors.gray3,
+    marginBottom: 14,
+  },
+  locationInputView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexGrow: 1,
+    gap: 15,
+  },
+  textInput: {
+    flex: 1,
+    color: colors.gray4,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: colors.gray4,
+    paddingVertical: 11,
+    paddingHorizontal: 18,
   },
 });

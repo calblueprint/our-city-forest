@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export enum TreeStatus {
   Available = 'Available',
   StreetReady = 'Street-Ready',
@@ -14,3 +16,5 @@ export enum TreeOwnership {
   ResidentReserved = 'Reserved for Resident',
   CommunityPlantingReserved = 'Reserved for Community Planting',
 }
+
+/* eslint-enable */

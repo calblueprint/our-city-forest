@@ -24,6 +24,7 @@
     "@react-navigation/native-stack": "^6.11.0",
     "@supabase/supabase-js": "^2.45.6",
     "@types/react-navigation": "^3.0.8",
+    "dotenv": "^16.4.5",
     "expo": "~51.0.21",
     "expo-auth-session": "~5.5.2",
     "expo-camera": "~15.0.16",
@@ -48,11 +49,15 @@
     "react-native-web": "~0.19.10",
     "zod": "^3.23.8",
     "zustand": "^5.0.0-rc.2",
+<<<<<<< HEAD
     "react-native-web": "~0.19.10",
     "react-dom": "18.2.0",
     "@expo/metro-runtime": "~3.2.3",
     "expo-dev-client": "~4.0.28",
     "expo-random": "~14.0.1"
+=======
+    "react-dom": "18.2.0"
+>>>>>>> 1b578f1 (draft user auth)
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

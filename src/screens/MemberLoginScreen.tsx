@@ -1,5 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import GoogleSignInButton from '@/components/GoogleSignInButton';
 import { styles } from '@/screens/styles';
 
 export default function MemberLoginScreen() {
@@ -11,9 +12,7 @@ export default function MemberLoginScreen() {
           <Circle cx="110" cy="110" r="110" fill="#D9D9D9" />
         </Svg>
       </View>
-      <TouchableOpacity style={styles.googleButton}>
-        <Text style={styles.buttonText}>Sign in with Google</Text>
-      </TouchableOpacity>
+      <GoogleSignInButton />
     </View>
   );
 }

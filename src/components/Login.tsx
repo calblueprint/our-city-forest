@@ -13,7 +13,6 @@ export default function Login({ navigation, route }: LoginProps) {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Guest</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('MemberLogin')}

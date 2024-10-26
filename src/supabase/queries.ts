@@ -10,11 +10,10 @@ export async function addTree(species: string) {
 }
 
 // Function to add multiple trees
-export async function addMultipleTrees(
-  trees: { species: string; quantity: number }[],
-) {
+export async function addMultipleTrees(species: string, quantity: number) {
   const { error } = await supabase.rpc('add_multiple_trees', {
-    trees: JSON.stringify(trees),
+    species: species,
+    quantity: quantity,
   });
 
   if (error) {
@@ -36,7 +35,7 @@ export async function removeTree(treeId: string) {
 // Function to remove multiple trees by a list of UUIDs
 export async function removeMultipleTrees(treeIds: string[]) {
   const { error } = await supabase.rpc('remove_multiple_trees', {
-    p_tree_ids: treeIds,
+    tree_uuids: treeIds,
   });
 
   if (error) {
@@ -44,10 +43,7 @@ export async function removeMultipleTrees(treeIds: string[]) {
   }
 }
 
-/**
- * Function to retrieve tree info by UUID
- *  Returns properties in JSON form: {"bank": null, "date": null, "health_status": null, ...}
- */
+// Retrieves tree info by UUID, returns properties as JSON: { "bank": null, "date": null, "health_status": null, ... }
 export async function getTreeInfo(treeId: string) {
   const { data, error } = await supabase.rpc('get_tree_by_uuid', {
     tree_uuid: treeId,

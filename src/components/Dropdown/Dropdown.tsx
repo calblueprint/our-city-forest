@@ -21,8 +21,8 @@ function Dropdown({ options, setValue, value }: DropdownProps) {
       <DropdownElement
         mode="default"
         style={styles.dropdown}
-        placeholderStyle={[styles.text]}
-        selectedTextStyle={styles.text}
+        placeholderStyle={styles.text}
+        selectedTextStyle={[styles.text, styles.black3]}
         inputSearchStyle={styles.text}
         itemTextStyle={[styles.text, styles.gray4]}
         containerStyle={styles.dropdownContainer}

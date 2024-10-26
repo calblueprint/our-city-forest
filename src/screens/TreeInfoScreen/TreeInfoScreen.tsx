@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ImageBackground,
   ScrollView,
@@ -40,6 +41,9 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
     treeOwnership: TreeOwnership.Planted,
   };
 
+  const [rowNumber, setRowNumber] = useState(treeInfo.rowNumber.toString());
+  const [bankNumber, setBankNumber] = useState(treeInfo.bankNumber.toString());
+
   return (
     <ScrollView style={styles.container}>
       <ImageBackground source={TreeBg} style={styles.imageBg}>
@@ -59,13 +63,15 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
               style={styles.textInput}
               placeholder="Row #"
               placeholderTextColor={colors.gray4}
-              value={treeInfo.rowNumber.toString()}
+              value={rowNumber}
+              onChangeText={setRowNumber}
             ></TextInput>
             <TextInput
               style={styles.textInput}
               placeholder="Location #"
               placeholderTextColor={colors.gray4}
-              value={treeInfo.bankNumber.toString()}
+              value={bankNumber}
+              onChangeText={setBankNumber}
             ></TextInput>
           </View>
         </View>

@@ -5,6 +5,9 @@ export default StyleSheet.create({
   gray4: {
     color: colors.gray4,
   },
+  gray3: {
+    color: colors.gray3,
+  },
   text: {
     color: colors.gray4,
     fontSize: 14,

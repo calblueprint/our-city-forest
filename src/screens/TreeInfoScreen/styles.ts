@@ -21,11 +21,15 @@ export default StyleSheet.create({
     gap: 5,
   },
   idBadge: {
+    flex: 0,
+    justifyContent: 'flex-start',
     backgroundColor: colors.primary_green_2,
     borderRadius: 5,
+    marginRight: 'auto',
   },
   idText: {
     flex: 0,
+    textAlign: 'left',
     color: colors.white1,
     fontSize: 14,
     padding: 10,
@@ -44,7 +48,7 @@ export default StyleSheet.create({
   body: {
     gap: 25,
     marginHorizontal: 44,
-    marginTop: 40,
+    marginTop: 32,
     flex: 1,
   },
   label: {
@@ -62,7 +66,7 @@ export default StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    color: colors.gray4,
+    color: colors.black3,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: colors.gray4,

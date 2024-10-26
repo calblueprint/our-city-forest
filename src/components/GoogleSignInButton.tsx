@@ -1,53 +1,58 @@
-import { Alert } from 'react-native';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
+import React, { useEffect } from 'react';
+import { Alert, Text, TouchableOpacity } from 'react-native';
+import * as AuthSession from 'expo-auth-session';
+import * as Google from 'expo-auth-session/providers/google';
+import Constants from 'expo-constants';
+import { styles } from '@/screens/styles';
 import { supabase } from '@/supabase/client';
 
-GoogleSignin.configure({
-  scopes: ['profile', 'email'],
-  webClientId: process.env.GOOGLE_WEB_CLIENT_ID,
-  iosClientId: process.env.GOOGLE_IOS_CLIENT_ID,
+const redirectUri = AuthSession.makeRedirectUri({
+  scheme: 'org.calblueprint.ourcityforest',
+  preferLocalhost: Constants.appOwnership !== 'expo',
 });
 
 export default function GoogleSignInButton() {
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+    webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
+    androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
+    iosClientId: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
+    redirectUri,
+    scopes: ['profile', 'email'],
+  });
+
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { id_token } = response.params;
+      if (id_token) {
+        supabase.auth
+          .signInWithIdToken({
+            provider: 'google',
+            token: id_token,
+          })
+          .then(({ data, error }) => {
+            if (error) {
+              Alert.alert('Sign-In Error', error.message);
+            } else {
+              console.log(data);
+            }
+          });
+      } else {
+        Alert.alert('Error', 'No ID token present!');
+      }
+    } else if (response?.type === 'error') {
+      Alert.alert('Error', 'Google sign-in failed.');
+    }
+  }, [response]);
+
   return (
-    <GoogleSigninButton
-      size={GoogleSigninButton.Size.Wide}
-      color={GoogleSigninButton.Color.Dark}
-      onPress={async () => {
-        try {
-          await GoogleSignin.hasPlayServices();
-          const userInfo = await GoogleSignin.signIn();
-          if (userInfo && userInfo.data && userInfo.data.idToken) {
-            const { data, error } = await supabase.auth.signInWithIdToken({
-              provider: 'google',
-              token: userInfo.data.idToken,
-            });
-            console.log(error, data);
-          } else {
-            throw new Error('no ID token present!');
-          }
-        } catch (error: any) {
-          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-            Alert.alert('Cancelled', 'Google sign-in was cancelled.');
-          } else if (error.code === statusCodes.IN_PROGRESS) {
-            Alert.alert(
-              'Sign-in in Progress',
-              'Google sign-in is currently in progress.',
-            );
-          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-            Alert.alert(
-              'Error',
-              'Google Play Services not available or outdated.',
-            );
-          } else {
-            Alert.alert('Error', 'An unknown error occurred during sign-in.');
-          }
-        }
+    <TouchableOpacity
+      style={styles.button}
+      disabled={!request}
+      onPress={() => {
+        promptAsync();
       }}
-    />
+    >
+      <Text style={styles.buttonText}>Sign in with Google</Text>
+    </TouchableOpacity>
   );
 }

@@ -1,5 +1,5 @@
-import { supabase } from '@/supabase/client';
+// import { supabase } from '@/supabase/client';
 
-export default async function signOut() {
-  const { error } = await supabase.auth.signOut();
-}
+// export default async function signOut() {
+//   const { error } = await supabase.auth.signOut();
+// }

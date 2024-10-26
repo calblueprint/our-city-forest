@@ -22,7 +22,7 @@
     "@react-native-google-signin/google-signin": "^13.1.0",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
-    "@supabase/supabase-js": "^2.45.4",
+    "@supabase/supabase-js": "^2.45.6",
     "@types/react-navigation": "^3.0.8",
     "expo": "~51.0.21",
     "expo-auth-session": "~5.5.2",

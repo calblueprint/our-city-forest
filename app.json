@@ -12,6 +12,10 @@
         "expo-camera",
         {
           "cameraPermission": "Allow Our City Forest to access your camera to scan QR codes."
+        }, 
+        "expo-dev-launcher",
+        {
+          "launchMode": "most-recent"
         }
       ], 
       [

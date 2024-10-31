@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Logo from '@/components/Logo';
 
-// Dummy home screen for now? idk what to put here
 export default function HomeScreen() {
   return (
     <View style={styles.container}>

@@ -1,7 +1,7 @@
 import { Pressable, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types';
+import { RootStackParamList } from '@/types/navigation';
 import styles from './styles';
 
 type TreeInfoPageProps = NativeStackScreenProps<
@@ -9,8 +9,7 @@ type TreeInfoPageProps = NativeStackScreenProps<
   'TreeInfoPage'
 >;
 
-export default function TreeInfoPage({ route, navigation }: TreeInfoPageProps) {
-  // Just placeholder text for now to show that the tree ID is being passed
+export default function TreeInfo({ route, navigation }: TreeInfoPageProps) {
   return (
     <View style={styles.container}>
       <Text>Tree Id:</Text>

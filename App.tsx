@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '@/app';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
-import TreeInfoPage from '@/components/TreeInfoPage/TreeInfoPage';
-import { RootStackParamList } from '@/types';
+import HomeScreen from '@/screens/Home/Home';
+import TreeInfoPage from '@/screens/TreeInfo/TreeInfo';
+import { RootStackParamList } from '@/types/navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

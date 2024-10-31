@@ -6,7 +6,7 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types';
+import { RootStackParamList } from '@/types/navigation';
 import styles from './styles';
 
 type QRCodeScannerProps = NativeStackScreenProps<RootStackParamList, 'Scanner'>;

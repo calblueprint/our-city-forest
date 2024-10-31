@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
@@ -8,6 +8,7 @@ import { styles } from '@/screens/styles';
 WebBrowser.maybeCompleteAuthSession();
 
 const redirectUri = 'https://auth.expo.io/@ocfdev/our-city-forest';
+
 export default function GoogleSignInButton() {
   const [userInfo, setUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({

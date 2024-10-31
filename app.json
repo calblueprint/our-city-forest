@@ -5,7 +5,6 @@
     "owner": "ocfdev",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "org.calblueprint.ourcityforest",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
     "plugins": [
@@ -54,6 +53,7 @@
       "eas": {
         "projectId": "d04f2944-f495-4c9b-b330-6e13ce59c6ff"
       }
-    }
+    },
+    "scheme": "our-city-forest"
   }
 }

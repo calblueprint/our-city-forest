@@ -16,7 +16,6 @@ type SearchScreenProps = NativeStackScreenProps<RootStackParamList, 'Search'>;
 
 export default function SearchScreen({ navigation }: SearchScreenProps) {
   const [trees, setTrees] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadTreeData = async () => {
@@ -25,7 +24,6 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
       if (treeData) {
         setTrees(treeData);
       }
-      setLoading(false);
     };
 
     loadTreeData();

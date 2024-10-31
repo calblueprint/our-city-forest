@@ -13,15 +13,11 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 const redirectUri = 'https://auth.expo.io/@cwz/our-city-forest';
-// const redirectUri = AuthSession.makeRedirectUri({
-//   scheme: "org.calblueprint.ourcityforest",
-//   preferLocalhost: false,
-// });
 
 export default function GoogleSignInButton() {
   console.log('GoogleSignInButton component rendered');
   const navigation = useNavigation<LoginScreenNavigationProp>();
-  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+  const [request, authResponse, promptAsync] = Google.useIdTokenAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
     androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
     iosClientId: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
@@ -32,9 +28,9 @@ export default function GoogleSignInButton() {
   console.log('Request state:', request);
 
   useEffect(() => {
-    console.log('useEffect triggered with response:', response);
-    if (response?.type === 'success') {
-      const { id_token } = response.params;
+    console.log('useEffect triggered with response:', authResponse);
+    if (authResponse?.type === 'success') {
+      const { id_token } = authResponse.params;
       console.log('ID Token:', id_token);
       if (id_token) {
         console.log('there is id token');
@@ -56,16 +52,16 @@ export default function GoogleSignInButton() {
         console.log('no id');
         Alert.alert('Error', 'No ID token present!');
       }
-    } else if (response?.type === 'error') {
+    } else if (authResponse?.type === 'error') {
       console.log('failure');
       Alert.alert('Error', 'Google sign-in failed.');
-    } else if (response?.type === 'dismiss') {
+    } else if (authResponse?.type === 'dismiss') {
       console.log('Sign-in dismissed by the user');
       Alert.alert('Sign-In Canceled', 'The sign-in process was canceled.');
     } else {
       console.log('else: Unknown response type or response is undefined');
     }
-  }, [response]);
+  }, [authResponse, navigation]);
 
   return (
     <TouchableOpacity

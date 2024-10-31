@@ -3,7 +3,6 @@ import { Text, TouchableOpacity } from 'react-native';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
 import { styles } from '@/screens/styles';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -11,7 +10,6 @@ WebBrowser.maybeCompleteAuthSession();
 const redirectUri = 'https://auth.expo.io/@ocfdev/our-city-forest';
 
 export default function GoogleSignInButton() {
-  const navigation = useNavigation();
   const [userInfo, setUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -23,32 +21,29 @@ export default function GoogleSignInButton() {
   console.log('Request URI:', request?.url);
 
   useEffect(() => {
-    const handleSignInWithGoogle = async () => {
-      const user = await AsyncStorage.getItem('@user');
-      console.log('Retrieved user from AsyncStorage:', user);
-      if (!user) {
-        if (
-          response?.type === 'success' &&
-          response.authentication?.accessToken
-        ) {
-          console.log('Response is successful, fetching user info...');
-          await getUserInfo(response.authentication.accessToken);
-        } else {
-          console.log('Response is not successful or missing accessToken.');
-        }
-      } else {
-        console.log(
-          'User already exists in AsyncStorage, setting user info...',
-        );
-        setUserInfo(JSON.parse(user));
-      }
-    };
-
-    console.log('Response received:', response);
     handleSignInWithGoogle();
-  }, [response, navigation]);
+  }, [response]);
 
-  const getUserInfo = async token => {
+  async function handleSignInWithGoogle() {
+    const user = await AsyncStorage.getItem('@user');
+    console.log('Retrieved user from AsyncStorage:', user);
+    if (!user) {
+      if (
+        response?.type === 'success' &&
+        response.authentication?.accessToken
+      ) {
+        console.log('Response is successful, fetching user info...');
+        await getUserInfo(response.authentication.accessToken);
+      } else {
+        console.log('Response is not successful or missing accessToken.');
+      }
+    } else {
+      console.log('User already exists in AsyncStorage, setting user info...');
+      setUserInfo(JSON.parse(user));
+    }
+  }
+
+  const getUserInfo = async (token: string) => {
     if (!token) {
       console.log('No token provided, aborting getUserInfo.');
       return;

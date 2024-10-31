@@ -5,7 +5,6 @@
     "owner": "calblueprint",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "org.calblueprint.ourcityforest",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -31,6 +30,7 @@
     },
     "web": {
       "favicon": "./assets/bp-favicon.png"
-    }
+    },
+    "scheme": "our-city-forest"
   }
 }

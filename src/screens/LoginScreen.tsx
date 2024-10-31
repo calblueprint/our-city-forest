@@ -2,8 +2,8 @@ import { View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Login from '@/components/Login';
-import { LoginStackParamList } from '@/navigation/types';
 import { styles } from '@/screens/styles';
+import { LoginStackParamList } from '@/types/navigation';
 
 type LoginProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;
 

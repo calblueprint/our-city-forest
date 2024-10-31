@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
 
-  memberLoginContainer: {
+  adminLoginContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',

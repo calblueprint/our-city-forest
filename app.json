@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "mobile-app-template",
-    "slug": "mobile-app-template",
-    "owner": "mobileapptemplate",
+    "name": "Our City Forest",
+    "slug": "our-city-forest",
+    "owner": "calblueprint",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/bp-icon.png",
@@ -13,9 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "org.calblueprint.ourcityforest",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app requires access to the camera to scan QR codes for tree information."
+      }
     },
     "android": {
+      "package": "org.calblueprint.ourcityforest",
+      "permissions": ["CAMERA"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/bp-adaptive-icon.png",
         "backgroundColor": "#ffffff"

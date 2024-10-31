@@ -19,8 +19,12 @@ export default function GoogleSignInButton() {
 
   console.log('Request URI:', request?.url);
 
+<<<<<<< HEAD
   React.useEffect(() => {
     console.log('Response received:', response);
+=======
+  useEffect(() => {
+>>>>>>> 2efb378 (draft)
     handleSignInWithGoogle();
   }, [response]);
 

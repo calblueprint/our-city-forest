@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/colors';
+import colors from '@/styles/colors';
 
 export default StyleSheet.create({
   gray4: {
     color: colors.gray4,
   },
-  gray3: {
+  black3: {
     color: colors.gray3,
   },
   text: {

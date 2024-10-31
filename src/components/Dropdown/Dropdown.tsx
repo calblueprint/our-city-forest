@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 import { Dropdown as DropdownElement } from 'react-native-element-dropdown';
 import { Icon } from 'react-native-elements';
-import colors from '@/colors';
+import colors from '@/styles/colors';
 import styles from './styles';
 
 type DropdownProps = {

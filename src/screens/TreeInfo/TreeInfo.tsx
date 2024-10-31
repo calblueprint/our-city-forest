@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
-import colors from '@/colors';
 import Dropdown from '@/components/Dropdown/Dropdown';
-import { RootStackParamList } from '@/types';
+import colors from '@/styles/colors';
+import { RootStackParamList } from '@/types/navigation';
+import { TreeHealth, TreeOwnership, TreeStatus } from '@/types/trees';
 import styles from './styles';
-import { TreeHealth, TreeOwnership, TreeStatus } from './types';
 
 type TreeInfoPageProps = NativeStackScreenProps<
   RootStackParamList,
@@ -24,7 +24,6 @@ type TreeInfoPageProps = NativeStackScreenProps<
 // TODO: add ownership address
 // TODO: fix addional notes spacing
 export default function TreeInfoPage({ route }: TreeInfoPageProps) {
-  // Can be changed to API call later
   const { treeName, scientificName, id } = {
     treeName: 'Strawberry Tree',
     scientificName: 'Arbutus ‘Marina’',

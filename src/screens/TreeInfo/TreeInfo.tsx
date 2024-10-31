@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import {
   ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
   View,
 } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
 import Dropdown from '@/components/Dropdown/Dropdown';
@@ -56,7 +60,10 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
       </ImageBackground>
       <View style={styles.body}>
         <View>
-          <Text style={styles.label}>Location</Text>
+          <View style={styles.editFlex}>
+            <Text style={styles.label}>Location</Text>
+            <Icon name="edit" />
+          </View>
           <View style={styles.locationInputView}>
             <TextInput
               style={styles.textInput}
@@ -100,11 +107,22 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
             setValue={() => {}}
             value={treeInfo.treeOwnership}
           />
+          <TextInput
+            style={[styles.textInput, styles.ownershipTextArea]}
+            placeholder="Write here..."
+            multiline
+            numberOfLines={4}
+          />
         </View>
 
         <View>
           <Text style={styles.label}>Additional Notes</Text>
-          <TextInput placeholder="Write here..." />
+          <TextInput
+            style={[styles.textInput, styles.textArea]}
+            placeholder="Write here..."
+            multiline
+            numberOfLines={4}
+          />
         </View>
       </View>
     </ScrollView>

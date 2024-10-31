@@ -5,6 +5,7 @@ export default StyleSheet.create({
   // Container
   container: {
     flex: 1,
+    paddingBottom: 40,
   },
   imageBg: {
     flex: 1,
@@ -57,6 +58,11 @@ export default StyleSheet.create({
     color: colors.gray3,
     marginBottom: 14,
   },
+  editFlex: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   locationInputView: {
     flex: 1,
     flexDirection: 'row',
@@ -72,5 +78,14 @@ export default StyleSheet.create({
     borderColor: colors.gray4,
     paddingVertical: 11,
     paddingHorizontal: 18,
+  },
+  textArea: {
+    minHeight: 170,
+    paddingVertical: 32,
+    paddingHorizontal: 32,
+  },
+  ownershipTextArea: {
+    marginTop: 14,
+    minHeight: 90,
   },
 });

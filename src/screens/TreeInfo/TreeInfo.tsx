@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import {
   ImageBackground,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -62,7 +60,11 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
         <View>
           <View style={styles.editFlex}>
             <Text style={styles.label}>Location</Text>
-            <Icon name="edit" />
+            <TouchableOpacity>
+              <View style={styles.editButton}>
+                <Text style={styles.editText}>Done</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.locationInputView}>
             <TextInput

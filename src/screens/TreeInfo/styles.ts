@@ -6,6 +6,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     paddingBottom: 40,
+    backgroundColor: colors.white1,
   },
   imageBg: {
     flex: 1,
@@ -58,11 +59,21 @@ export default StyleSheet.create({
     color: colors.gray3,
     marginBottom: 14,
   },
+
   editFlex: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  editButton: {
+    backgroundColor: colors.color2,
+    borderRadius: 10,
+  },
+  editText: {
+    fontSize: 16,
+    color: colors.gray3,
+  },
+
   locationInputView: {
     flex: 1,
     flexDirection: 'row',

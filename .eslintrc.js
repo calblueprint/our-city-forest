@@ -9,4 +9,5 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-shadow': 'error',
   },
+  ignorePatterns: ['src/supabase/functions/'],
 };

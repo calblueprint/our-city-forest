@@ -19,5 +19,5 @@
   },
   "extends": "expo/tsconfig.base",
   "include": ["src/**/*.ts", "src/**/*.tsx", "App.tsx", "./graphics.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "./src/supabase/functions/*"]
 }

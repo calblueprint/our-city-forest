@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Alert, Pressable, SafeAreaView, Text, View } from 'react-native';
+import {
+  Alert,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {
   BarcodeScanningResult,
   CameraView,
@@ -13,7 +20,19 @@ type QRCodeScannerProps = NativeStackScreenProps<RootStackParamList, 'Scanner'>;
 
 export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
   const [permission, requestPermission] = useCameraPermissions();
-  const [disableScanner, setDisableScanner] = useState<boolean>(false);
+  const [qrCodeFound, setQrCodeFound] = useState<boolean>(false);
+  const [qrCodeData, setQrCodeData] = useState<string | null>(null);
+  const [flashEnabled, setFlashEnabled] = useState<boolean>(false);
+
+  const resetQrCodeFound = () => {
+    setQrCodeFound(false);
+    setQrCodeData(null);
+  };
+  let qrCodeFoundTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  useEffect(() => {
+    console.log('flash enabled', flashEnabled);
+  }, [flashEnabled]);
 
   useEffect(() => {
     // Request camera permissions if not granted on mount
@@ -23,25 +42,15 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
   }, [permission, requestPermission]);
 
   const onBarcodeScanned = (data: BarcodeScanningResult) => {
-    // Disable scanning callback so we don't scan multiple times
-    setDisableScanner(true);
+    if (data.data) {
+      setQrCodeFound(true);
+      setQrCodeData(data.data);
+    }
 
-    Alert.alert(
-      'Found Tree QR Code!',
-      `Would you like to view more information about tree ${data.data}?`,
-      [
-        {
-          text: 'Cancel',
-          // Enable scanner after 2 seconds of pressing Cancel
-          onPress: () => setTimeout(() => setDisableScanner(false), 2000),
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => navigation.push('TreeInfoPage', { treeId: data.data }),
-        },
-      ],
-    );
+    if (qrCodeFoundTimeout) {
+      clearTimeout(qrCodeFoundTimeout);
+    }
+    qrCodeFoundTimeout = setTimeout(resetQrCodeFound, 1000);
   };
 
   // Camera permissions are still loading.
@@ -56,22 +65,43 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.iconFlex}>
+        <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
+          <Text style={styles.icon}>Flash</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.icon}>X</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.cameraView}>
-        <Text style={styles.qrMessage}>
-          Align the QR code within the frame to scan
-        </Text>
+        <View style={styles.textFlex}>
+          <Text style={styles.header}>Scan QR Code</Text>
+          <Text style={styles.subtext}>Aim the camera at the tree's code</Text>
+        </View>
+
         <CameraView
           style={styles.camera}
-          // Disable scanning callback so we don't scan multiple times
-          onBarcodeScanned={disableScanner ? undefined : onBarcodeScanned}
+          onBarcodeScanned={onBarcodeScanned}
           barcodeScannerSettings={{
             barcodeTypes: ['qr'],
           }}
+          enableTorch={flashEnabled}
         />
       </View>
-      <Pressable style={styles.cancelButton}>
-        <Text style={styles.cancelButtonText}>Cancel</Text>
-      </Pressable>
+
+      <TouchableOpacity
+        style={[
+          styles.scanButton,
+          qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
+        ]}
+        onPress={() =>
+          navigation.push('TreeInfoPage', { treeId: qrCodeData ?? '' })
+        }
+        disabled={!qrCodeFound}
+      >
+        <Text style={styles.scanButtonText}>Scan</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

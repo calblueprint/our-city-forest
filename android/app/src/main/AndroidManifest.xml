@@ -28,6 +28,8 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="org.calblueprint.ourcityforest"/>
         <data android:scheme="org.calblueprint.ourcityforest"/>
+        <data android:scheme="our-city-forest"/>
+        <data android:scheme="exp+our-city-forest"/>
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>

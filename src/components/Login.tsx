@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { LoginStackParamList } from '@/navigation/types';
+import { LoginStackParamList } from '@/types/navigation';
 import { styles } from '../screens/styles';
 
 type LoginProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;

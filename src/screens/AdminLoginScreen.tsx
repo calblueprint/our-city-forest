@@ -7,7 +7,7 @@ import { styles } from '@/screens/styles';
 export default function AdminLoginScreen() {
   return (
     <View style={styles.adminLoginContainer}>
-      <Text style={styles.loginHeadingText}>Staff and Member Login</Text>
+      <Text style={styles.loginHeadingText}>Admin Login</Text>
       <View style={styles.googleLoginProfileContainer}>
         <Svg height="220" width="220">
           <Circle cx="110" cy="110" r="110" fill="#D9D9D9" />

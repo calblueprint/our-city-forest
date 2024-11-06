@@ -39,5 +39,11 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+<<<<<<< HEAD
 ios/
 android/
+=======
+# ios
+ios/*
+android/*
+>>>>>>> 893ea80 (auth)

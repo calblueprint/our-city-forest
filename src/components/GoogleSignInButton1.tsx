@@ -7,14 +7,16 @@ import { styles } from '@/screens/styles';
 
 WebBrowser.maybeCompleteAuthSession();
 
+<<<<<<< HEAD
 const redirectUri = 'https://auth.expo.io/@ocfdev/our-city-forest';
+=======
+>>>>>>> 893ea80 (auth)
 export default function GoogleSignInButton() {
   const [userInfo, setUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
     androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
     iosClientId: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
-    redirectUri,
   });
 
   console.log(process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID);

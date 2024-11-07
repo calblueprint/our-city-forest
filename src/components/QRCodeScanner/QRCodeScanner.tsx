@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Alert,
   Pressable,
@@ -28,11 +28,17 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
     setQrCodeFound(false);
     setQrCodeData(null);
   };
-  let qrCodeFoundTimeout: ReturnType<typeof setTimeout> | null = null;
+  let qrCodeFoundTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
 
-  useEffect(() => {
-    console.log('flash enabled', flashEnabled);
-  }, [flashEnabled]);
+  const onBarcodeScanned = (data: BarcodeScanningResult) => {
+    setQrCodeFound(true);
+    setQrCodeData(data.data);
+
+    clearTimeout(qrCodeFoundTimeout.current);
+    qrCodeFoundTimeout.current = setTimeout(resetQrCodeFound, 500);
+  };
 
   useEffect(() => {
     // Request camera permissions if not granted on mount
@@ -40,18 +46,6 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
       requestPermission();
     }
   }, [permission, requestPermission]);
-
-  const onBarcodeScanned = (data: BarcodeScanningResult) => {
-    if (data.data) {
-      setQrCodeFound(true);
-      setQrCodeData(data.data);
-    }
-
-    if (qrCodeFoundTimeout) {
-      clearTimeout(qrCodeFoundTimeout);
-    }
-    qrCodeFoundTimeout = setTimeout(resetQrCodeFound, 1000);
-  };
 
   // Camera permissions are still loading.
   if (!permission) {
@@ -74,20 +68,24 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.cameraView}>
+      <View style={styles.mainFlex}>
         <View style={styles.textFlex}>
           <Text style={styles.header}>Scan QR Code</Text>
           <Text style={styles.subtext}>Aim the camera at the tree's code</Text>
         </View>
 
-        <CameraView
-          style={styles.camera}
-          onBarcodeScanned={onBarcodeScanned}
-          barcodeScannerSettings={{
-            barcodeTypes: ['qr'],
-          }}
-          enableTorch={flashEnabled}
-        />
+        <View
+          style={[styles.cameraView, qrCodeFound && styles.qrCodeFoundCamera]}
+        >
+          <CameraView
+            style={[styles.camera]}
+            onBarcodeScanned={onBarcodeScanned}
+            barcodeScannerSettings={{
+              barcodeTypes: ['qr'],
+            }}
+            enableTorch={flashEnabled}
+          />
+        </View>
       </View>
 
       <TouchableOpacity

@@ -23,7 +23,7 @@ export default StyleSheet.create({
     padding: 8,
   },
 
-  cameraView: {
+  mainFlex: {
     flex: 1,
     padding: 24,
     flexDirection: 'column',
@@ -47,11 +47,24 @@ export default StyleSheet.create({
     color: colors.white1,
   },
 
-  camera: {
+  cameraView: {
     alignSelf: 'center',
     width: 285,
     height: 248,
+    borderWidth: 2,
+    borderColor: colors.primary_green_2,
+    borderRadius: 12,
+    zIndex: 1,
   },
+  camera: {
+    flex: 1,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  qrCodeFoundCamera: {
+    borderColor: colors.primary_yellow,
+  },
+
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',

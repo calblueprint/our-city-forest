@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styles } from '@/screens/styles';
 
 WebBrowser.maybeCompleteAuthSession();
 
-export default function GoogleSignInButton() {
+export default function GoogleSignIn() {
   const [userInfo, setUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -63,22 +61,5 @@ export default function GoogleSignInButton() {
       console.error('Failed to fetch user data:', error);
     }
   };
-
   console.log('Current userInfo state:', userInfo);
-
-  return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={() => {
-        if (request) {
-          console.log('Prompting for Google sign-in...');
-          promptAsync();
-        } else {
-          console.log('Request is not ready.');
-        }
-      }}
-    >
-      <Text style={styles.buttonText}>Sign in with Google</Text>
-    </TouchableOpacity>
-  );
 }

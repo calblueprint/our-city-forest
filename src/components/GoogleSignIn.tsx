@@ -1,17 +1,24 @@
+<<<<<<< HEAD:src/components/GoogleSignInButton1.tsx
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+=======
+import { useEffect, useState } from 'react';
+>>>>>>> d83525b (created login screen):src/components/GoogleSignIn.tsx
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styles } from '@/screens/styles';
 
 WebBrowser.maybeCompleteAuthSession();
 
+<<<<<<< HEAD:src/components/GoogleSignInButton1.tsx
 <<<<<<< HEAD
 const redirectUri = 'https://auth.expo.io/@ocfdev/our-city-forest';
 =======
 >>>>>>> 893ea80 (auth)
 export default function GoogleSignInButton() {
+=======
+export default function GoogleSignIn() {
+>>>>>>> d83525b (created login screen):src/components/GoogleSignIn.tsx
   const [userInfo, setUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -72,22 +79,5 @@ export default function GoogleSignInButton() {
       console.error('Failed to fetch user data:', error);
     }
   };
-
   console.log('Current userInfo state:', userInfo);
-
-  return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={() => {
-        if (request) {
-          console.log('Prompting for Google sign-in...');
-          promptAsync();
-        } else {
-          console.log('Request is not ready.');
-        }
-      }}
-    >
-      <Text style={styles.buttonText}>Sign in with Google</Text>
-    </TouchableOpacity>
-  );
 }

@@ -15,12 +15,20 @@ export const styles = StyleSheet.create({
 
   logoContainer: {
     alignItems: 'center',
+<<<<<<< HEAD
     paddingTop: 20,
     paddingBottom: 70,
+=======
+>>>>>>> d83525b (created login screen)
   },
 
   logo: {
     height: 200,
+<<<<<<< HEAD
+=======
+    marginTop: 20,
+    marginBottom: 70,
+>>>>>>> d83525b (created login screen)
   },
 
   button: {
@@ -28,6 +36,10 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
+<<<<<<< HEAD
+=======
+    marginBottom: 10,
+>>>>>>> d83525b (created login screen)
   },
 
   buttonText: {
@@ -40,7 +52,10 @@ export const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+<<<<<<< HEAD
     paddingTop: 10,
+=======
+>>>>>>> d83525b (created login screen)
   },
 
   adminLoginText: {

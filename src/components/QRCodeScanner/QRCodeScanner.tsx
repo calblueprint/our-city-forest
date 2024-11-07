@@ -1,12 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  Alert,
-  Pressable,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import {
   BarcodeScanningResult,
   CameraView,
@@ -36,8 +29,9 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
     setQrCodeFound(true);
     setQrCodeData(data.data);
 
+    // Reset the QR code found state after not seeing a QR for 100ms
     clearTimeout(qrCodeFoundTimeout.current);
-    qrCodeFoundTimeout.current = setTimeout(resetQrCodeFound, 500);
+    qrCodeFoundTimeout.current = setTimeout(resetQrCodeFound, 100);
   };
 
   useEffect(() => {

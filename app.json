@@ -39,7 +39,7 @@
     "web": {
       "favicon": "./assets/bp-favicon.png"
     },
-    "scheme": "our-city-forest",
+    "scheme": "org.calblueprint.ourcityforest",
     "extra": {
       "eas": {
         "projectId": "d04f2944-f495-4c9b-b330-6e13ce59c6ff"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import GoogleSignInButton from '@/components/GoogleSignInButton1';
+import GoogleSignInButton from '@/components/GoogleSignInButton';
 import { styles } from '@/screens/styles';
 
 export default function AdminLoginScreen() {

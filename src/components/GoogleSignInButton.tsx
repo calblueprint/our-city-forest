@@ -1,74 +1,60 @@
-import React, { useEffect } from 'react';
-import { Alert, Text, TouchableOpacity } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Text, TouchableOpacity } from 'react-native';
+import { makeRedirectUri } from 'expo-auth-session';
 import * as Google from 'expo-auth-session/providers/google';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import * as WebBrowser from 'expo-web-browser';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from '@/screens/styles';
-import { supabase } from '@/supabase/client';
-import { LoginStackParamList } from '@/types/navigation';
 
-type LoginScreenNavigationProp = NativeStackNavigationProp<
-  LoginStackParamList,
-  'AdminLogin'
->;
-
-const redirectUri = 'https://auth.expo.io/@cwz/our-city-forest';
+WebBrowser.maybeCompleteAuthSession();
 
 export default function GoogleSignInButton() {
-  console.log('GoogleSignInButton component rendered');
-  const navigation = useNavigation<LoginScreenNavigationProp>();
-  const [request, authResponse, promptAsync] = Google.useIdTokenAuthRequest({
+  const [userInfo, setUserInfo] = useState(null);
+  const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
     androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
     iosClientId: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
-    redirectUri,
-    scopes: ['profile', 'email'],
+    redirectUri: makeRedirectUri({ scheme: 'org.calblueprint.ourcityforest' }),
   });
 
-  console.log('Request state:', request);
-
   useEffect(() => {
-    console.log('useEffect triggered with response:', authResponse);
-    if (authResponse?.type === 'success') {
-      const { id_token } = authResponse.params;
-      console.log('ID Token:', id_token);
-      if (id_token) {
-        console.log('there is id token');
-        supabase.auth
-          .signInWithIdToken({
-            provider: 'google',
-            token: id_token,
-          })
-          .then(({ data, error }) => {
-            if (error) {
-              console.log('bad');
-              Alert.alert('Sign-In Error', error.message);
-            } else {
-              console.log('yay');
-              navigation.navigate('afterlogin');
-            }
-          });
-      } else {
-        console.log('no id');
-        Alert.alert('Error', 'No ID token present!');
+    handleSignInWithGoogle();
+  }, [response]);
+
+  async function handleSignInWithGoogle() {
+    const user = await AsyncStorage.getItem('@user');
+    if (!user) {
+      if (
+        response?.type === 'success' &&
+        response.authentication?.accessToken
+      ) {
+        await getUserInfo(response.authentication.accessToken);
       }
-    } else if (authResponse?.type === 'error') {
-      console.log('failure');
-      Alert.alert('Error', 'Google sign-in failed.');
-    } else if (authResponse?.type === 'dismiss') {
-      console.log('Sign-in dismissed by the user');
-      Alert.alert('Sign-In Canceled', 'The sign-in process was canceled.');
     } else {
-      console.log('else: Unknown response type or response is undefined');
+      setUserInfo(JSON.parse(user));
     }
-  }, [authResponse, navigation]);
+  }
+
+  const getUserInfo = async (token: string) => {
+    if (!token) {
+      return;
+    }
+    try {
+      const resp = await fetch('https://www.googleapis.com/userinfo/v2/me', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const user = await resp.json();
+      await AsyncStorage.setItem('@user', JSON.stringify(user));
+      setUserInfo(user);
+    } catch (response) {
+      console.error('Failed to fetch user data');
+    }
+  };
 
   return (
     <TouchableOpacity
       style={styles.button}
-      disabled={!request}
       onPress={() => {
-        console.log('Button pressed - triggering promptAsync');
         promptAsync();
       }}
     >

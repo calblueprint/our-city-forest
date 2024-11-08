@@ -17,37 +17,43 @@ export default function GoogleSignInButton() {
     redirectUri: makeRedirectUri({ scheme: 'org.calblueprint.ourcityforest' }),
   });
 
+  console.log(request);
+  console.log(userInfo);
+
   useEffect(() => {
     handleSignInWithGoogle();
   }, [response]);
 
   async function handleSignInWithGoogle() {
-    const user = await AsyncStorage.getItem('@user');
-    if (!user) {
-      if (
+    try {
+      const userJSON = await AsyncStorage.getItem('@user');
+      if (userJSON) {
+        setUserInfo(JSON.parse(userJSON));
+      } else if (
         response?.type === 'success' &&
         response.authentication?.accessToken
       ) {
-        await getUserInfo(response.authentication.accessToken);
+        getUserInfo(response.authentication.accessToken);
       }
-    } else {
-      setUserInfo(JSON.parse(user));
+    } catch (error) {
+      console.error('Error retrieving user data from AsyncStorage:', error);
     }
   }
 
   const getUserInfo = async (token: string) => {
-    if (!token) {
-      return;
-    }
+    if (!token) return;
     try {
-      const resp = await fetch('https://www.googleapis.com/userinfo/v2/me', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const user = await resp.json();
+      const userResponse = await fetch(
+        'https://www.googleapis.com/userinfo/v2/me',
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      const user = await userResponse.json();
       await AsyncStorage.setItem('@user', JSON.stringify(user));
       setUserInfo(user);
-    } catch (response) {
-      console.error('Failed to fetch user data');
+    } catch (error) {
+      console.error('Failed to fetch user data:', error);
     }
   };
 

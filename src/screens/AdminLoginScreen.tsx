@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import GoogleSignInButton from '@/components/GoogleSignInButton';
+import GoogleSignOutButton from '@/components/GoogleSignOutButton';
 import { styles } from '@/screens/styles';
 
 export default function AdminLoginScreen() {
@@ -14,6 +15,7 @@ export default function AdminLoginScreen() {
         </Svg>
       </View>
       <GoogleSignInButton />
+      <GoogleSignOutButton />
     </View>
   );
 }

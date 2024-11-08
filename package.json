@@ -15,6 +15,7 @@
     "pre-commit": "(npm run tsc || true) && (npm run lint:check || true) && npm run prettier:check"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~3.2.3",
     "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-native-google-signin/google-signin": "^13.1.0",
     "@react-navigation/native": "^6.1.18",
@@ -27,11 +28,14 @@
     "expo-camera": "~15.0.16",
     "expo-constants": "~16.0.2",
     "expo-crypto": "~13.0.2",
+    "expo-dev-client": "~4.0.28",
     "expo-device": "~6.0.2",
     "expo-linking": "~6.3.1",
     "expo-status-bar": "~1.12.1",
     "expo-web-browser": "~13.0.3",
+    "nodemon": "^3.1.7",
     "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native": "^0.74.5",
     "react-native-config": "^1.5.3",
     "react-native-dotenv": "^3.4.11",
@@ -42,12 +46,9 @@
     "react-native-svg": "^15.7.1",
     "react-native-toast-message": "^2.2.1",
     "react-native-url-polyfill": "^2.0.0",
-    "zod": "^3.23.8",
-    "zustand": "^5.0.0-rc.2",
     "react-native-web": "~0.19.10",
-    "react-dom": "18.2.0",
-    "@expo/metro-runtime": "~3.2.3",
-    "expo-dev-client": "~4.0.28"
+    "zod": "^3.23.8",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

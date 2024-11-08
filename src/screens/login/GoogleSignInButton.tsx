@@ -5,7 +5,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { LoginStackParamList } from '@/navigation/types';
+import { LoginStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -63,7 +63,6 @@ export default function GoogleSignInButton({ navigation, route }: LoginProps) {
 
   return (
     <TouchableOpacity
-      style={styles.adminLoginLinkText}
       onPress={() => {
         promptAsync();
         navigation.navigate('AllTrees');

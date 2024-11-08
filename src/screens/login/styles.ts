@@ -15,12 +15,12 @@ export const styles = StyleSheet.create({
 
   logoContainer: {
     alignItems: 'center',
+    paddingTop: 20,
+    paddingBottom: 70,
   },
 
   logo: {
     height: 200,
-    marginTop: 20,
-    marginBottom: 70,
   },
 
   button: {
@@ -28,7 +28,6 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
-    marginBottom: 10,
   },
 
   buttonText: {
@@ -41,6 +40,7 @@ export const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    paddingTop: 10,
   },
 
   adminLoginText: {

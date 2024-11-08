@@ -1,4 +1,5 @@
 export type LoginStackParamList = {
   Login: undefined;
-  TreeAvailibility: undefined;
+  AvailableTrees: undefined;
+  AllTrees: undefined;
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AllTreesScreen from '@/screens/all_trees/AllTreesScreen';
+import AvailableTreesScreen from '@/screens/available_trees/AvailableTreesScreen';
 import LoginScreen from '@/screens/login/LoginScreen';
 import { LoginStackParamList } from '@/types/navigation';
 
@@ -16,7 +18,16 @@ export default function App() {
           component={LoginScreen}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen name="TreeAvailability" component={TreeAvailabilityScreen} /> */}
+        <Stack.Screen
+          name="AvailableTrees"
+          component={AvailableTreesScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AllTrees"
+          component={AllTreesScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

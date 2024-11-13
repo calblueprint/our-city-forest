@@ -1,5 +1,8 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import GoogleSignInButton from '@/components/GoogleSignInButton';
+import GoogleSignOutButton from '@/components/GoogleSignOutButton';
 import { styles } from '@/screens/styles';
 
 export default function AdminLoginScreen() {
@@ -11,9 +14,8 @@ export default function AdminLoginScreen() {
           <Circle cx="110" cy="110" r="110" fill="#D9D9D9" />
         </Svg>
       </View>
-      <TouchableOpacity style={styles.googleButton}>
-        <Text style={styles.buttonText}>Sign in with Google</Text>
-      </TouchableOpacity>
+      <GoogleSignInButton />
+      <GoogleSignOutButton />
     </View>
   );
 }

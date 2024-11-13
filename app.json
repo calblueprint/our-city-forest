@@ -7,6 +7,14 @@
     "orientation": "portrait",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Our City Forest to access your camera to scan QR codes."
+        }
+      ]
+    ],
     "splash": {
       "image": "./assets/bp-splash.png",
       "resizeMode": "contain",

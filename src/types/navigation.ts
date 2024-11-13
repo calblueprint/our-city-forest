@@ -3,3 +3,9 @@ export type LoginStackParamList = {
   GuestLogin: undefined;
   AdminLogin: undefined;
 };
+
+export type RootStackParamList = {
+  Home: undefined;
+  Scanner: undefined;
+  TreeInfoPage: { treeId: string };
+};

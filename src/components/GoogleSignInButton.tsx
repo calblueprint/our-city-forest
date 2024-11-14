@@ -5,8 +5,8 @@ import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { LoginStackParamList } from '@/types/navigation';
 import { styles } from '@/screens/login/styles';
+import { LoginStackParamList } from '@/types/navigation';
 
 WebBrowser.maybeCompleteAuthSession();
 

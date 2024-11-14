@@ -19,14 +19,14 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     marginHorizontal: 30,
-    marginBottom: 23,
+    marginBottom: 21 + 16,
     gap: 5,
   },
   idBadge: {
     flex: 0,
     justifyContent: 'flex-start',
-    backgroundColor: colors.primary_green_2,
-    borderRadius: 5,
+    backgroundColor: colors.primary_green,
+    borderRadius: 30,
     marginRight: 'auto',
   },
   idText: {
@@ -37,21 +37,33 @@ export default StyleSheet.create({
     padding: 10,
   },
   treeName: {
-    fontSize: 32,
-    color: colors.off_white,
-    fontWeight: 900,
+    paddingTop: 44,
+    fontSize: 24,
+    color: colors.gray1,
   },
+
   scientificName: {
-    fontSize: 20,
-    color: colors.off_white,
+    fontSize: 18,
+    color: colors.gray1,
+  },
+  separator: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray5,
+    marginTop: 7,
+    marginBottom: 20,
   },
 
   // Main body
   body: {
-    gap: 25,
-    marginHorizontal: 44,
-    marginTop: 32,
+    paddingHorizontal: 44,
+    marginTop: -16,
+    borderRadius: 20,
     flex: 1,
+    backgroundColor: colors.white1,
+  },
+  propertiesHeader: {
+    fontSize: 18,
+    color: colors.gray1,
   },
   label: {
     fontSize: 18,

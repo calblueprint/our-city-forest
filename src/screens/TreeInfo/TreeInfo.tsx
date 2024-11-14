@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
 import Dropdown from '@/components/Dropdown/Dropdown';
@@ -52,20 +51,25 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
           <View style={styles.idBadge}>
             <Text style={styles.idText}>ID-{id}</Text>
           </View>
-          <Text style={styles.treeName}>{treeName}</Text>
-          <Text style={styles.scientificName}>{scientificName}</Text>
         </View>
       </ImageBackground>
       <View style={styles.body}>
         <View>
-          <View style={styles.editFlex}>
-            <Text style={styles.label}>Location</Text>
-            <TouchableOpacity>
-              <View style={styles.editButton}>
-                <Text style={styles.editText}>Done</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <Text style={styles.treeName}>{treeName}</Text>
+          <Text style={styles.scientificName}>{scientificName}</Text>
+        </View>
+
+        <View style={styles.separator}></View>
+
+        <View style={styles.editFlex}>
+          <Text style={styles.propertiesHeader}>Properties</Text>
+          <TouchableOpacity style={styles.editButton}>
+            <Text style={styles.editText}>Done</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <Text style={styles.label}>Location</Text>
           <View style={styles.locationInputView}>
             <TextInput
               style={styles.textInput}
@@ -82,49 +86,49 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
               onChangeText={setBankNumber}
             ></TextInput>
           </View>
-        </View>
 
-        <View>
-          <Text style={styles.label}>Production Status</Text>
-          <Dropdown
-            options={Object.values(TreeStatus)}
-            setValue={() => {}}
-            value={treeInfo.status}
-          />
-        </View>
+          <View>
+            <Text style={styles.label}>Production Status</Text>
+            <Dropdown
+              options={Object.values(TreeStatus)}
+              setValue={() => {}}
+              value={treeInfo.status}
+            />
+          </View>
 
-        <View>
-          <Text style={styles.label}>Health</Text>
-          <Dropdown
-            options={Object.values(TreeHealth)}
-            setValue={() => {}}
-            value={treeInfo.health}
-          />
-        </View>
+          <View>
+            <Text style={styles.label}>Health</Text>
+            <Dropdown
+              options={Object.values(TreeHealth)}
+              setValue={() => {}}
+              value={treeInfo.health}
+            />
+          </View>
 
-        <View>
-          <Text style={styles.label}>Ownership Status</Text>
-          <Dropdown
-            options={Object.values(TreeOwnership)}
-            setValue={() => {}}
-            value={treeInfo.treeOwnership}
-          />
-          <TextInput
-            style={[styles.textInput, styles.ownershipTextArea]}
-            placeholder="Write here..."
-            multiline
-            numberOfLines={4}
-          />
-        </View>
+          <View>
+            <Text style={styles.label}>Ownership Status</Text>
+            <Dropdown
+              options={Object.values(TreeOwnership)}
+              setValue={() => {}}
+              value={treeInfo.treeOwnership}
+            />
+            <TextInput
+              style={[styles.textInput, styles.ownershipTextArea]}
+              placeholder="Write here..."
+              multiline
+              numberOfLines={4}
+            />
+          </View>
 
-        <View>
-          <Text style={styles.label}>Additional Notes</Text>
-          <TextInput
-            style={[styles.textInput, styles.textArea]}
-            placeholder="Write here..."
-            multiline
-            numberOfLines={4}
-          />
+          <View>
+            <Text style={styles.label}>Additional Notes</Text>
+            <TextInput
+              style={[styles.textInput, styles.textArea]}
+              placeholder="Write here..."
+              multiline
+              numberOfLines={4}
+            />
+          </View>
         </View>
       </View>
     </ScrollView>

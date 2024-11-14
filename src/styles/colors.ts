@@ -6,8 +6,10 @@ export default {
   off_white: '#F9F4E8',
   pure_black: '#000000',
   black3: '#282828',
+  gray1: '#333333',
   gray2: '#4F4F4F',
-  gray4: '#BDBDBD',
   gray3: '#828282',
+  gray4: '#BDBDBD',
+  gray5: '#E0E0E0',
   color2: ' #E0E0E0',
 };

@@ -1,4 +1,4 @@
-import { supabase } from './client';
+import { supabase } from '../client';
 
 // Function to add a single tree
 export async function addTree(species: string) {

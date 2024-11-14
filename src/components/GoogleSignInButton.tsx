@@ -4,11 +4,15 @@ import { makeRedirectUri } from 'expo-auth-session';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styles } from './styles';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { LoginStackParamList } from '@/types/navigation';
+import { styles } from '@/screens/login/styles';
 
 WebBrowser.maybeCompleteAuthSession();
 
-export default function GoogleSignInButton() {
+type LoginProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;
+
+export default function GoogleSignInButton({ navigation, route }: LoginProps) {
   const [userInfo, setUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -59,12 +63,12 @@ export default function GoogleSignInButton() {
 
   return (
     <TouchableOpacity
-      style={styles.button}
       onPress={() => {
         promptAsync();
+        navigation.navigate('AllTrees');
       }}
     >
-      <Text style={styles.buttonText}>Sign in with Google</Text>
+      <Text style={styles.adminLoginLinkText}>Login Here</Text>
     </TouchableOpacity>
   );
 }

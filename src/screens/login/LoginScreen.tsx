@@ -1,6 +1,6 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import GoogleSignInButton from '@/screens/login/GoogleSignInButton';
+import GoogleSignInButton from '@/components/GoogleSignInButton';
 import { LoginStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 

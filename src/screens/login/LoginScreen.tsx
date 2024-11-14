@@ -2,6 +2,7 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import GoogleSignInButton from '@/components/GoogleSignInButton';
 =======
 import GoogleSignIn from '@/components/GoogleSignIn';
@@ -9,6 +10,9 @@ import GoogleSignIn from '@/components/GoogleSignIn';
 =======
 import GoogleSignInButton from '@/screens/login/GoogleSignInButton';
 >>>>>>> 67e2d98 (hi fi login page created)
+=======
+import GoogleSignInButton from '@/components/GoogleSignInButton';
+>>>>>>> c708f3b (changed file structure)
 import { LoginStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 

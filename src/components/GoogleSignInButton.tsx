@@ -64,7 +64,6 @@ export default function GoogleSignInButton({ navigation, route }: LoginProps) {
   return (
     <TouchableOpacity
       onPress={() => {
-        console.log('Button pressed - triggering promptAsync');
         promptAsync();
         navigation.navigate('AllTrees');
       }}

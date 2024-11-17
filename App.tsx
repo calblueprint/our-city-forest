@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
@@ -9,8 +9,9 @@ import LoginScreen from '@/screens/login/LoginScreen';
 import TreeInfoPage from '@/screens/TreeInfo/TreeInfo';
 import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
 
-const LoginStack = createNativeStackNavigator<LoginStackParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
+const LoginStack = createNativeStackNavigator<LoginStackParamList>();
+DefaultTheme.colors.background = '#FFFFFF';
 
 DefaultTheme.colors.background = '#FFFFFF';
 

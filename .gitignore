@@ -9,8 +9,8 @@ dist/
 web-build/
 
 # Platforms
-ios/
-android/
+ios/*
+android/*
 
 # Native
 *.orig.*

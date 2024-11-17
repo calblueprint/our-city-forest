@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
+// import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
+// import HomeScreen from '@/screens/Home/Home';
+// import TreeInfoPage from '@/screens/TreeInfo/TreeInfo';
 import AllTreesScreen from '@/screens/all_trees/AllTreesScreen';
 import AvailableTreesScreen from '@/screens/available_trees/AvailableTreesScreen';
-import HomeScreen from '@/screens/Home/Home';
 import LoginScreen from '@/screens/login/LoginScreen';
-import TreeInfoPage from '@/screens/TreeInfo/TreeInfo';
 import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();

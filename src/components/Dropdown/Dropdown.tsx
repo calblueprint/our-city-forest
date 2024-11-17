@@ -22,7 +22,7 @@ function Dropdown({ options, setValue, value }: DropdownProps) {
         mode="default"
         style={styles.dropdown}
         placeholderStyle={styles.text}
-        selectedTextStyle={[styles.text, styles.gray3]}
+        selectedTextStyle={styles.text}
         inputSearchStyle={styles.text}
         itemTextStyle={[styles.text, styles.gray4]}
         containerStyle={styles.dropdownContainer}

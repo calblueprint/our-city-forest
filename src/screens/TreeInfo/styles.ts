@@ -22,54 +22,73 @@ export default StyleSheet.create({
     marginBottom: 21 + 16,
     gap: 5,
   },
-  idBadge: {
+  idPill: {
     flex: 0,
-    justifyContent: 'flex-start',
+    alignSelf: 'center',
     backgroundColor: colors.primary_green,
     borderRadius: 30,
-    marginRight: 'auto',
   },
   idText: {
     flex: 0,
     textAlign: 'left',
     color: colors.white1,
-    fontSize: 14,
+    fontSize: 16,
     padding: 10,
+    paddingVertical: 6,
   },
-  treeName: {
-    paddingTop: 44,
-    fontSize: 24,
-    color: colors.gray1,
+  idPillFlex: {
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
+  treeName: {
+    fontSize: 24,
+    color: colors.gray1,
+    paddingBottom: 10,
+  },
   scientificName: {
     fontSize: 18,
     color: colors.gray1,
+    paddingBottom: 10,
   },
+
   separator: {
     borderBottomWidth: 1,
     borderBottomColor: colors.gray5,
     marginTop: 7,
-    marginBottom: 20,
   },
 
   // Main body
   body: {
-    paddingHorizontal: 44,
+    paddingHorizontal: 42,
+    paddingTop: 48,
     marginTop: -16,
     borderRadius: 20,
     flex: 1,
     backgroundColor: colors.white1,
   },
+
   propertiesHeader: {
-    fontSize: 18,
+    fontSize: 24,
+    marginVertical: 30,
     color: colors.gray1,
   },
+  additionalNotesHeader: {
+    fontSize: 24,
+    color: colors.gray1,
+  },
+
   label: {
     fontSize: 18,
     fontWeight: 700,
     color: colors.gray3,
-    marginBottom: 14,
+    marginBottom: 7,
+  },
+  propertiesFlex: {
+    flex: 1,
+    gap: 26,
+    marginBottom: 32,
   },
 
   editFlex: {
@@ -78,12 +97,15 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   editButton: {
-    backgroundColor: colors.color2,
+    alignSelf: 'center',
+    backgroundColor: colors.primary_green,
+    padding: 9,
+    paddingHorizontal: 10,
     borderRadius: 10,
   },
   editText: {
     fontSize: 16,
-    color: colors.gray3,
+    color: colors.white1,
   },
 
   locationInputView: {
@@ -98,9 +120,10 @@ export default StyleSheet.create({
     color: colors.black3,
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: colors.gray4,
+    borderColor: colors.gray5,
     paddingVertical: 11,
     paddingHorizontal: 18,
+    fontSize: 16,
   },
   textArea: {
     minHeight: 170,

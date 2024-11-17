@@ -20,10 +20,6 @@ type TreeInfoPageProps = NativeStackScreenProps<
   'TreeInfoScreen'
 >;
 
-// TODO: add check next to location
-// TODO: fix drowdown color and arrow size
-// TODO: add ownership address
-// TODO: fix addional notes spacing
 export default function TreeInfoPage({ route }: TreeInfoPageProps) {
   const { treeName, scientificName, id } = {
     treeName: 'Strawberry Tree',
@@ -46,17 +42,17 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
 
   return (
     <ScrollView style={styles.container}>
-      <ImageBackground source={TreeBg} style={styles.imageBg}>
-        <View style={styles.headerFlex}>
-          <View style={styles.idBadge}>
-            <Text style={styles.idText}>ID-{id}</Text>
-          </View>
-        </View>
-      </ImageBackground>
+      <ImageBackground source={TreeBg} style={styles.imageBg}></ImageBackground>
       <View style={styles.body}>
         <View>
           <Text style={styles.treeName}>{treeName}</Text>
-          <Text style={styles.scientificName}>{scientificName}</Text>
+          <View style={styles.idPillFlex}>
+            <Text style={styles.scientificName}>{scientificName}</Text>
+
+            <View style={styles.idPill}>
+              <Text style={styles.idText}>ID-{id}</Text>
+            </View>
+          </View>
         </View>
 
         <View style={styles.separator}></View>
@@ -68,23 +64,25 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
           </TouchableOpacity>
         </View>
 
-        <View>
-          <Text style={styles.label}>Location</Text>
-          <View style={styles.locationInputView}>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Row #"
-              placeholderTextColor={colors.gray4}
-              value={rowNumber}
-              onChangeText={setRowNumber}
-            ></TextInput>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Location #"
-              placeholderTextColor={colors.gray4}
-              value={bankNumber}
-              onChangeText={setBankNumber}
-            ></TextInput>
+        <View style={styles.propertiesFlex}>
+          <View>
+            <Text style={styles.label}>Location</Text>
+            <View style={styles.locationInputView}>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Row #"
+                placeholderTextColor={colors.gray4}
+                value={rowNumber}
+                onChangeText={setRowNumber}
+              ></TextInput>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Location #"
+                placeholderTextColor={colors.gray4}
+                value={bankNumber}
+                onChangeText={setBankNumber}
+              ></TextInput>
+            </View>
           </View>
 
           <View>
@@ -112,23 +110,17 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
               setValue={() => {}}
               value={treeInfo.treeOwnership}
             />
-            <TextInput
-              style={[styles.textInput, styles.ownershipTextArea]}
-              placeholder="Write here..."
-              multiline
-              numberOfLines={4}
-            />
           </View>
+        </View>
 
-          <View>
-            <Text style={styles.label}>Additional Notes</Text>
-            <TextInput
-              style={[styles.textInput, styles.textArea]}
-              placeholder="Write here..."
-              multiline
-              numberOfLines={4}
-            />
-          </View>
+        <View style={styles.propertiesFlex}>
+          <Text style={styles.additionalNotesHeader}>Additional Notes</Text>
+          <TextInput
+            style={[styles.textInput, styles.textArea]}
+            placeholder="Write here..."
+            multiline
+            numberOfLines={4}
+          />
         </View>
       </View>
     </ScrollView>

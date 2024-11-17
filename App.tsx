@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AllTreesScreen from '@/screens/all_trees/AllTreesScreen';
 import AvailableTreesScreen from '@/screens/available_trees/AvailableTreesScreen';
 import LoginScreen from '@/screens/login/LoginScreen';
-import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
+import { LoginStackParamList } from '@/types/navigation';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();

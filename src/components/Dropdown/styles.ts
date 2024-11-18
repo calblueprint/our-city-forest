@@ -8,11 +8,20 @@ export default StyleSheet.create({
   black3: {
     color: colors.gray3,
   },
+  textContainer: {
+    paddingHorizontal: 20,
+  },
+  selectedBar: {
+    borderLeftWidth: 8,
+    borderColor: colors.primary_green,
+    overflow: 'hidden',
+    paddingHorizontal: 20 - 8,
+    margin: 0,
+  },
   text: {
     color: colors.gray4,
     fontSize: 16,
     textAlign: 'left',
-    paddingLeft: 10,
   },
   outer: {
     position: 'relative',
@@ -22,25 +31,24 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   dropdown: {
-    height: 44,
+    height: 47,
     borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingRight: 10,
+    textAlign: 'left',
+    flex: 1,
+    alignItems: 'center',
     borderColor: colors.gray5,
   },
   dropdownContainer: {
     borderRadius: 5,
     borderWidth: 1,
     borderColor: colors.gray5,
-    borderTopEndRadius: 0,
-    borderTopStartRadius: 0,
     position: 'relative',
   },
   itemContainer: {
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-    borderRadius: 5,
+    paddingHorizontal: 20,
+    paddingVertical: 14,
   },
   icon: {
     marginRight: 5,

@@ -11,7 +11,7 @@ type DropdownProps = {
 };
 
 type Option = {
-  label: string;
+  i: number;
   value: string;
 };
 
@@ -21,27 +21,42 @@ function Dropdown({ options, setValue, value }: DropdownProps) {
       <DropdownElement
         mode="default"
         style={styles.dropdown}
-        placeholderStyle={styles.text}
-        selectedTextStyle={styles.text}
+        placeholderStyle={[styles.text, styles.textContainer]}
+        selectedTextStyle={[styles.text, styles.textContainer]}
         inputSearchStyle={styles.text}
         itemTextStyle={[styles.text, styles.gray4]}
         containerStyle={styles.dropdownContainer}
         dropdownPosition="bottom"
-        itemContainerStyle={styles.itemContainer}
         iconStyle={styles.iconStyle}
-        data={options.map(option => {
-          return { label: option, value: option };
+        data={options.map((option, i) => {
+          return { i, value: option };
         })}
         maxHeight={400}
-        labelField="label"
+        labelField="value"
         valueField="value"
-        placeholder="Select Option"
+        placeholder="Select..."
         value={value}
-        renderItem={(item: Option, selected: boolean | undefined) => (
-          <Text style={[styles.text, styles.gray4, styles.itemContainer]}>
-            {item.value}
-          </Text>
-        )}
+        renderItem={(item: Option, selected: boolean | undefined) => {
+          return (
+            <Text
+              style={[
+                styles.text,
+                styles.gray4,
+                styles.itemContainer,
+                selected && styles.selectedBar,
+                { borderBottomLeftRadius: 0, borderTopLeftRadius: 0 },
+                item.i == 0 && {
+                  borderTopLeftRadius: 5,
+                },
+                item.i === options.length - 1 && {
+                  borderBottomLeftRadius: 5,
+                },
+              ]}
+            >
+              {item.value}
+            </Text>
+          );
+        }}
         renderRightIcon={() => (
           <Icon
             name="arrow-drop-down"

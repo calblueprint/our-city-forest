@@ -39,18 +39,19 @@ export default StyleSheet.create({
   idPillFlex: {
     flex: 0,
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
 
-  treeName: {
+  header: {
     fontSize: 24,
+    fontWeight: 900,
     color: colors.gray1,
     paddingBottom: 10,
   },
   scientificName: {
     fontSize: 18,
     color: colors.gray1,
-    paddingBottom: 10,
   },
 
   separator: {
@@ -63,6 +64,7 @@ export default StyleSheet.create({
   body: {
     paddingHorizontal: 42,
     paddingTop: 48,
+    marginBottom: 10,
     marginTop: -16,
     borderRadius: 20,
     flex: 1,
@@ -70,18 +72,11 @@ export default StyleSheet.create({
   },
 
   propertiesHeader: {
-    fontSize: 24,
     marginVertical: 30,
-    color: colors.gray1,
   },
-  additionalNotesHeader: {
-    fontSize: 24,
-    color: colors.gray1,
-  },
-
   label: {
-    fontSize: 18,
-    fontWeight: 700,
+    fontSize: 16,
+    fontWeight: 400,
     color: colors.gray3,
     marginBottom: 7,
   },
@@ -103,8 +98,8 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
   },
-  editText: {
-    fontSize: 16,
+  doneEditingText: {
+    fontSize: 18,
     color: colors.white1,
   },
 
@@ -117,18 +112,19 @@ export default StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    color: colors.black3,
+    color: colors.gray3,
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 10,
     borderColor: colors.gray5,
     paddingVertical: 11,
-    paddingHorizontal: 18,
+    paddingHorizontal: 20,
     fontSize: 16,
   },
   textArea: {
     minHeight: 170,
-    paddingVertical: 32,
-    paddingHorizontal: 32,
+    paddingVertical: 20,
+    color: colors.gray3,
+    fontSize: 14,
   },
   ownershipTextArea: {
     marginTop: 14,

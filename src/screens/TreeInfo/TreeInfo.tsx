@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
+  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -42,95 +43,101 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
   const [bankNumber, setBankNumber] = useState(treeInfo.bankNumber.toString());
 
   return (
-    <ScrollView style={styles.container}>
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="position" enabled>
-        <ImageBackground
-          source={TreeBg}
-          style={styles.imageBg}
-        ></ImageBackground>
-        <View style={styles.body}>
-          <View>
-            <Text style={styles.header}>{treeName}</Text>
-            <View style={styles.idPillFlex}>
-              <Text style={styles.scientificName}>{scientificName}</Text>
-
-              <View style={styles.idPill}>
-                <Text style={styles.idText}>ID-{id}</Text>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.separator}></View>
-
-          <View style={styles.editFlex}>
-            <Text style={[styles.header, styles.propertiesHeader]}>
-              Properties
-            </Text>
-            <TouchableOpacity style={styles.editButton}>
-              <Text style={styles.doneEditingText}>Done</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.propertiesFlex}>
+    <View style={{ flex: 1, backgroundColor: colors.white1 }}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'position' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 70}
+      >
+        <ScrollView style={styles.container}>
+          <ImageBackground
+            source={TreeBg}
+            style={styles.imageBg}
+          ></ImageBackground>
+          <View style={styles.body}>
             <View>
-              <Text style={styles.label}>Location</Text>
-              <View style={styles.locationInputView}>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder="Row #"
-                  placeholderTextColor={colors.gray4}
-                  value={rowNumber}
-                  onChangeText={setRowNumber}
-                ></TextInput>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder="Location #"
-                  placeholderTextColor={colors.gray4}
-                  value={bankNumber}
-                  onChangeText={setBankNumber}
-                ></TextInput>
+              <Text style={styles.header}>{treeName}</Text>
+              <View style={styles.idPillFlex}>
+                <Text style={styles.scientificName}>{scientificName}</Text>
+
+                <View style={styles.idPill}>
+                  <Text style={styles.idText}>ID-{id}</Text>
+                </View>
               </View>
             </View>
 
-            <View>
-              <Text style={styles.label}>Production Status</Text>
-              <Dropdown
-                options={Object.values(TreeStatus)}
-                setValue={() => {}}
-                value={treeInfo.status}
-              />
+            <View style={styles.separator}></View>
+
+            <View style={styles.editFlex}>
+              <Text style={[styles.header, styles.propertiesHeader]}>
+                Properties
+              </Text>
+              <TouchableOpacity style={styles.editButton}>
+                <Text style={styles.doneEditingText}>Done</Text>
+              </TouchableOpacity>
             </View>
 
-            <View>
-              <Text style={styles.label}>Health</Text>
-              <Dropdown
-                options={Object.values(TreeHealth)}
-                setValue={() => {}}
-                value={treeInfo.health}
-              />
+            <View style={styles.propertiesFlex}>
+              <View>
+                <Text style={styles.label}>Location</Text>
+                <View style={styles.locationInputView}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="Row #"
+                    placeholderTextColor={colors.gray4}
+                    value={rowNumber}
+                    onChangeText={setRowNumber}
+                  ></TextInput>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="Location #"
+                    placeholderTextColor={colors.gray4}
+                    value={bankNumber}
+                    onChangeText={setBankNumber}
+                  ></TextInput>
+                </View>
+              </View>
+
+              <View>
+                <Text style={styles.label}>Production Status</Text>
+                <Dropdown
+                  options={Object.values(TreeStatus)}
+                  setValue={() => {}}
+                  value={treeInfo.status}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.label}>Health</Text>
+                <Dropdown
+                  options={Object.values(TreeHealth)}
+                  setValue={() => {}}
+                  value={treeInfo.health}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.label}>Ownership Status</Text>
+                <Dropdown
+                  options={Object.values(TreeOwnership)}
+                  setValue={() => {}}
+                  value={treeInfo.treeOwnership}
+                />
+              </View>
             </View>
 
-            <View>
-              <Text style={styles.label}>Ownership Status</Text>
-              <Dropdown
-                options={Object.values(TreeOwnership)}
-                setValue={() => {}}
-                value={treeInfo.treeOwnership}
+            <View style={styles.propertiesFlex}>
+              <Text style={styles.header}>Additional Notes</Text>
+              <TextInput
+                style={[styles.textInput, styles.textArea]}
+                placeholder="Type notes here..."
+                multiline
+                numberOfLines={4}
               />
             </View>
           </View>
-
-          <View style={styles.propertiesFlex}>
-            <Text style={styles.header}>Additional Notes</Text>
-            <TextInput
-              style={[styles.textInput, styles.textArea]}
-              placeholder="Type notes here..."
-              multiline
-              numberOfLines={4}
-            />
-          </View>
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
-    </ScrollView>
+    </View>
   );
 }

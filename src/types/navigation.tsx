@@ -3,4 +3,3 @@ export type LoginStackParamList = {
   AvailableTrees: undefined;
   AllTrees: undefined;
 };
-

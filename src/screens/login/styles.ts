@@ -15,28 +15,14 @@ export const styles = StyleSheet.create({
 
   logoContainer: {
     alignItems: 'center',
-<<<<<<< HEAD
-<<<<<<< HEAD
     paddingTop: 20,
     paddingBottom: 70,
-=======
->>>>>>> d83525b (created login screen)
-=======
-    paddingTop: 20,
-    paddingBottom: 70,
->>>>>>> 67e2d98 (hi fi login page created)
   },
 
   logo: {
     height: 200,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     marginTop: 20,
     marginBottom: 70,
->>>>>>> d83525b (created login screen)
-=======
->>>>>>> 67e2d98 (hi fi login page created)
   },
 
   button: {
@@ -44,13 +30,7 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     marginBottom: 10,
->>>>>>> d83525b (created login screen)
-=======
->>>>>>> 67e2d98 (hi fi login page created)
   },
 
   buttonText: {
@@ -63,14 +43,7 @@ export const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-<<<<<<< HEAD
-<<<<<<< HEAD
     paddingTop: 10,
-=======
->>>>>>> d83525b (created login screen)
-=======
-    paddingTop: 10,
->>>>>>> 67e2d98 (hi fi login page created)
   },
 
   adminLoginText: {

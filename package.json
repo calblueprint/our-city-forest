@@ -6,8 +6,6 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
     "lint:check": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "prettier:check": "npx prettier --check .",
@@ -30,14 +28,12 @@
     "expo-cli": "^6.3.12",
     "expo-constants": "~17.0.3",
     "expo-crypto": "~14.0.1",
-    "expo-dev-client": "~5.0.2",
     "expo-device": "~7.0.1",
     "expo-status-bar": "~2.0.0",
     "expo-web-browser": "~14.0.1",
     "nodemon": "^3.1.7",
     "react": "18.3.1",
     "react-native": "0.76.2",
-    "react-native-config": "^1.5.3",
     "react-native-config": "^1.5.3",
     "react-native-dotenv": "^3.4.11",
     "react-native-gesture-handler": "~2.20.2",
@@ -49,20 +45,9 @@
     "react-native-url-polyfill": "^2.0.0",
     "react-native-web": "~0.19.13",
     "zod": "^3.23.8",
-<<<<<<< HEAD
     "zustand": "^5.0.0-rc.2",
-<<<<<<< HEAD
-    "react-native-web": "~0.19.10",
     "react-dom": "18.2.0",
-    "@expo/metro-runtime": "~3.2.3",
-    "expo-dev-client": "~4.0.28",
-    "expo-random": "~14.0.1"
-=======
-    "react-dom": "18.2.0"
->>>>>>> 1b578f1 (draft user auth)
-=======
-    "zustand": "^5.0.0-rc.2"
->>>>>>> 809f175 (changes)
+    "expo-dev-client": "~4.0.28"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

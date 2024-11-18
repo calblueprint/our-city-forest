@@ -9,23 +9,15 @@
     "userInterfaceStyle": "light",
     "plugins": [
       [
-        "expo-dev-launcher",
-        {
-          "launchMode": "most-recent"
-        }
-<<<<<<< HEAD
-      ], 
-      [
-        "expo-dev-launcher",
-        {
-          "launchMode": "most-recent"
-=======
-      ],
-      [
         "expo-camera",
         {
           "cameraPermission": "Allow Our City Forest to access your camera to scan QR codes."
->>>>>>> 809f175 (changes)
+        }
+      ],
+      [
+        "expo-dev-launcher",
+        {
+          "launchMode": "most-recent"
         }
       ]
     ],

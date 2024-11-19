@@ -35,7 +35,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </LoginStack.Navigator>
-      <RootStack.Navigator initialRouteName="Home">
+      {/* <RootStack.Navigator initialRouteName="Home">
         <RootStack.Screen
           name="Home"
           component={HomeScreen}
@@ -51,7 +51,7 @@ export default function App() {
           component={TreeInfoPage}
           options={{ headerShown: false }}
         />
-      </RootStack.Navigator>
+      </RootStack.Navigator> */}
     </NavigationContainer>
   );
 }

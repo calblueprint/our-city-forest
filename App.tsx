@@ -2,8 +2,6 @@ import * as React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
-import AllTreesScreen from '@/screens/all_trees/AllTreesScreen';
-import AvailableTreesScreen from '@/screens/available_trees/AvailableTreesScreen';
 import ContactPage from '@/screens/ContactPage/contactPage';
 import HomeScreen from '@/screens/Home/Home';
 import LoginScreen from '@/screens/login/LoginScreen';
@@ -23,16 +21,6 @@ const App = () => {
         <LoginStack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <LoginStack.Screen
-          name="AllTrees"
-          component={AllTreesScreen}
-          options={{ headerShown: false }}
-        />
-        <LoginStack.Screen
-          name="AvailableTrees"
-          component={AvailableTreesScreen}
           options={{ headerShown: false }}
         />
       </LoginStack.Navigator>

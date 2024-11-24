@@ -2,9 +2,7 @@ import { StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
 
 export default StyleSheet.create({
-  // Container
   container: {
-    // flex: 1,
     paddingBottom: 40,
     backgroundColor: colors.white1,
   },
@@ -12,8 +10,8 @@ export default StyleSheet.create({
     flex: 1,
     height: 292,
   },
+  switch: { paddingBottom: 32 },
 
-  // Header
   headerFlex: {
     flex: 1,
     flexDirection: 'column',
@@ -66,7 +64,7 @@ export default StyleSheet.create({
   // Main body
   body: {
     paddingHorizontal: 42,
-    paddingTop: 48,
+    paddingTop: 20,
     marginBottom: 10,
     marginTop: -16,
     borderRadius: 20,

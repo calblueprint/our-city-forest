@@ -60,7 +60,7 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
             style={styles.imageBg}
           ></ImageBackground>
           <View style={styles.body}>
-            <View>
+            <View style={styles.switch}>
               <ToggleSwitch
                 value={isEditing}
                 onValueChange={setIsEditing}
@@ -68,6 +68,7 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
                 falseLabel="Species"
               />
             </View>
+
             <View>
               <Text style={styles.header}>{treeData.species?.name ?? ''}</Text>
               <View style={styles.idPillFlex}>

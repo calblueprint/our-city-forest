@@ -45,8 +45,8 @@ export default function ToggleSwitch({
     Animated.timing(translateAnimation, {
       duration: 200,
       toValue: value
-        ? trueLabelLayout.x + trueLabelLayout.width / 2
-        : falseLabelLayout.x + falseLabelLayout.width / 2,
+        ? trueLabelLayout.x + trueLabelLayout.width / 2 - 2
+        : falseLabelLayout.x + falseLabelLayout.width / 2 + 2,
       useNativeDriver: true,
     }).start();
 
@@ -67,35 +67,37 @@ export default function ToggleSwitch({
   };
 
   return (
-    <View style={styles.main}>
-      <Animated.View
-        style={[
-          {
-            transform: [
-              { translateX: translateAnimation },
-              { scaleX: scaleAnimation },
-            ],
-            backgroundColor: colors.primary_green,
-            width: 1,
-          },
-        ]}
-      />
-      <TouchableOpacity
-        onLayout={event => setTrueLabelLayout(event.nativeEvent.layout)}
-        onPress={() => handlePress(true)}
-      >
-        <Text style={[styles.switch, value && styles.selected]}>
-          {trueLabel}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onLayout={event => setFalseLabelLayout(event.nativeEvent.layout)}
-        onPress={() => handlePress(false)}
-      >
-        <Text style={[styles.switch, !value && styles.selected]}>
-          {falseLabel}
-        </Text>
-      </TouchableOpacity>
+    <View style={styles.outer}>
+      <View style={styles.main}>
+        <Animated.View
+          style={[
+            {
+              transform: [
+                { translateX: translateAnimation },
+                { scaleX: scaleAnimation },
+              ],
+              backgroundColor: colors.primary_green,
+              width: 1,
+            },
+          ]}
+        />
+        <TouchableOpacity
+          onLayout={event => setTrueLabelLayout(event.nativeEvent.layout)}
+          onPress={() => handlePress(true)}
+        >
+          <Text style={[styles.switch, value && styles.selected]}>
+            {trueLabel}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onLayout={event => setFalseLabelLayout(event.nativeEvent.layout)}
+          onPress={() => handlePress(false)}
+        >
+          <Text style={[styles.switch, !value && styles.selected]}>
+            {falseLabel}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

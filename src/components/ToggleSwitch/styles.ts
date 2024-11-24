@@ -14,10 +14,10 @@ export default StyleSheet.create({
     margin: 2,
     padding: 8,
     borderRadius: 30,
+    zIndex: 2,
     color: colors.primary_green,
   },
   selected: {
-    backgroundColor: colors.primary_green,
     color: colors.white1,
   },
 });

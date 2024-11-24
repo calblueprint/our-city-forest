@@ -36,16 +36,15 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
     (async () => {
       const data = await getTreeInfo(treeId);
       setTreeData(data);
-      console.log(data);
     })();
   }, [treeId]);
 
   const saveTreeData = async () => {
     if (typeof treeData.row !== 'number') return;
     if (typeof treeData.bank !== 'number') return;
+
     const { species, ...treeWithoutSpecies } = treeData;
     await updateTree(treeId, treeWithoutSpecies);
-    console.log('Saved tree data:', treeWithoutSpecies);
   };
 
   return (

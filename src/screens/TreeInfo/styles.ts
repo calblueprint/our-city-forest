@@ -49,6 +49,9 @@ export default StyleSheet.create({
     color: colors.gray1,
     paddingBottom: 10,
   },
+  additionalNotes: {
+    paddingBottom: 4,
+  },
   scientificName: {
     fontSize: 18,
     color: colors.gray1,
@@ -57,7 +60,7 @@ export default StyleSheet.create({
   separator: {
     borderBottomWidth: 1,
     borderBottomColor: colors.gray5,
-    marginTop: 7,
+    marginTop: 10,
   },
 
   // Main body
@@ -77,7 +80,7 @@ export default StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: 400,
-    color: colors.gray3,
+    color: colors.gray2,
     marginBottom: 7,
   },
   propertiesFlex: {
@@ -124,7 +127,6 @@ export default StyleSheet.create({
     minHeight: 170,
     paddingVertical: 20,
     color: colors.gray3,
-    fontSize: 14,
   },
   ownershipTextArea: {
     marginTop: 14,

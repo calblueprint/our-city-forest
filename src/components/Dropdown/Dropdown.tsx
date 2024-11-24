@@ -4,9 +4,9 @@ import { Icon } from 'react-native-elements';
 import colors from '@/styles/colors';
 import styles from './styles';
 
-type DropdownProps = {
-  options: string[];
-  setValue: (value: string) => any;
+type DropdownProps<T extends string[]> = {
+  options: T;
+  setValue: (value: T[number]) => any;
   value: string;
 };
 
@@ -15,7 +15,11 @@ type Option = {
   value: string;
 };
 
-function Dropdown({ options, setValue, value }: DropdownProps) {
+function Dropdown<T extends string[]>({
+  options,
+  setValue,
+  value,
+}: DropdownProps<T>) {
   return (
     <View>
       <DropdownElement
@@ -28,7 +32,7 @@ function Dropdown({ options, setValue, value }: DropdownProps) {
         containerStyle={styles.dropdownContainer}
         dropdownPosition="bottom"
         iconStyle={styles.iconStyle}
-        data={options.map((option, i) => {
+        data={options.map((option: T[number], i: number) => {
           return { i, value: option };
         })}
         maxHeight={400}

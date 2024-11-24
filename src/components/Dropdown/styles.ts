@@ -19,8 +19,9 @@ export default StyleSheet.create({
     margin: 0,
   },
   text: {
-    color: colors.gray4,
+    color: colors.gray3,
     fontSize: 16,
+    textTransform: 'capitalize',
     textAlign: 'left',
   },
   outer: {

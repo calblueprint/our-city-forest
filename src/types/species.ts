@@ -1,5 +1,6 @@
 export type Species = {
   name: string;
+  scientific_name: string;
   image_link: string;
   description: string;
   fun_fact: string;

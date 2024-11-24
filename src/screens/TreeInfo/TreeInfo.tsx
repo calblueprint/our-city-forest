@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
@@ -9,12 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Switch } from 'react-native-switch';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
 import Dropdown from '@/components/Dropdown/Dropdown';
 import colors from '@/styles/colors';
+import { getTreeInfo, updateTree } from '@/supabase/queries/trees';
 import { RootStackParamList } from '@/types/navigation';
-import { TreeHealth, TreeOwnership, TreeStatus } from '@/types/trees';
+import { Tree, TreeHealth, TreeReservedFor } from '@/types/tree';
 import styles from './styles';
 
 type TreeInfoPageProps = NativeStackScreenProps<
@@ -23,24 +25,26 @@ type TreeInfoPageProps = NativeStackScreenProps<
 >;
 
 export default function TreeInfoPage({ route }: TreeInfoPageProps) {
-  const { treeName, scientificName, id } = {
-    treeName: 'Strawberry Tree',
-    scientificName: 'Arbutus ‘Marina’',
-    id: '245-123',
-  };
+  const treeId = route.params?.treeId ?? '9ce20e23-a66f-4df8-8696-421202f3d616';
+  const [treeData, setTreeData] = useState<Tree>({
+    tree_id: treeId,
+  });
 
-  const treeInfo = {
-    datePlanted: new Date(),
-    sourcingLocation: '2112 Berkeley Way',
-    bankNumber: 3,
-    rowNumber: 23,
-    status: TreeStatus.Available,
-    health: TreeHealth.Healthy,
-    treeOwnership: TreeOwnership.Planted,
-  };
+  useEffect(() => {
+    (async () => {
+      const data = await getTreeInfo(treeId);
+      setTreeData(data);
+      console.log(data);
+    })();
+  }, [treeId]);
 
-  const [rowNumber, setRowNumber] = useState(treeInfo.rowNumber.toString());
-  const [bankNumber, setBankNumber] = useState(treeInfo.bankNumber.toString());
+  const saveTreeData = async () => {
+    if (typeof treeData.row !== 'number') return;
+    if (typeof treeData.bank !== 'number') return;
+    const { species, ...treeWithoutSpecies } = treeData;
+    await updateTree(treeId, treeWithoutSpecies);
+    console.log('Saved tree data:', treeWithoutSpecies);
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.white1 }}>
@@ -56,12 +60,16 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
           ></ImageBackground>
           <View style={styles.body}>
             <View>
-              <Text style={styles.header}>{treeName}</Text>
+              <Text style={styles.header}>{treeData.species?.name ?? ''}</Text>
               <View style={styles.idPillFlex}>
-                <Text style={styles.scientificName}>{scientificName}</Text>
+                <Text style={styles.scientificName}>
+                  {treeData.species?.scientific_name ?? ''}
+                </Text>
 
                 <View style={styles.idPill}>
-                  <Text style={styles.idText}>ID-{id}</Text>
+                  <Text style={styles.idText}>
+                    BR-{treeData.bank}-{treeData.row}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -72,8 +80,11 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
               <Text style={[styles.header, styles.propertiesHeader]}>
                 Properties
               </Text>
-              <TouchableOpacity style={styles.editButton}>
-                <Text style={styles.doneEditingText}>Done</Text>
+              <TouchableOpacity
+                style={styles.editButton}
+                onPress={saveTreeData}
+              >
+                <Text style={styles.doneEditingText}>Save</Text>
               </TouchableOpacity>
             </View>
 
@@ -85,15 +96,26 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
                     style={styles.textInput}
                     placeholder="Row #"
                     placeholderTextColor={colors.gray4}
-                    value={rowNumber}
-                    onChangeText={setRowNumber}
+                    value={treeData?.row?.toString() ?? ''}
+                    onChangeText={newRow => {
+                      if (!isNaN(+newRow) && newRow.length > 0) {
+                        setTreeData({ ...treeData, row: +newRow });
+                      } else {
+                        setTreeData({
+                          ...treeData,
+                          row: newRow as unknown as number, // So the user can have intermediate text
+                        });
+                      }
+                    }}
                   ></TextInput>
                   <TextInput
                     style={styles.textInput}
                     placeholder="Location #"
                     placeholderTextColor={colors.gray4}
-                    value={bankNumber}
-                    onChangeText={setBankNumber}
+                    value={treeData?.bank?.toString() ?? ''}
+                    onChangeText={newBank =>
+                      setTreeData({ ...treeData, bank: +newBank })
+                    }
                   ></TextInput>
                 </View>
               </View>
@@ -101,35 +123,43 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
               <View>
                 <Text style={styles.label}>Production Status</Text>
                 <Dropdown
-                  options={Object.values(TreeStatus)}
-                  setValue={() => {}}
-                  value={treeInfo.status}
+                  options={Object.values(TreeReservedFor)}
+                  setValue={value =>
+                    setTreeData({ ...treeData, reserved_for: value })
+                  }
+                  value={treeData.reserved_for ?? ''}
                 />
               </View>
 
               <View>
-                <Text style={styles.label}>Health</Text>
+                <Text style={styles.label}>Health Status</Text>
                 <Dropdown
                   options={Object.values(TreeHealth)}
                   setValue={() => {}}
-                  value={treeInfo.health}
+                  value={treeData.health_status ?? ''}
                 />
               </View>
 
               <View>
                 <Text style={styles.label}>Ownership Status</Text>
                 <Dropdown
-                  options={Object.values(TreeOwnership)}
+                  options={Object.values(TreeReservedFor)}
                   setValue={() => {}}
-                  value={treeInfo.treeOwnership}
+                  value={treeData.reserved_for ?? ''}
                 />
               </View>
             </View>
 
             <View style={styles.propertiesFlex}>
-              <Text style={styles.header}>Additional Notes</Text>
+              <Text style={[styles.header, styles.additionalNotes]}>
+                Additional Notes
+              </Text>
               <TextInput
                 style={[styles.textInput, styles.textArea]}
+                value={treeData.additional_notes ?? ''}
+                onChangeText={newNotes =>
+                  setTreeData({ ...treeData, additional_notes: newNotes })
+                }
                 placeholder="Type notes here..."
                 multiline
                 numberOfLines={4}

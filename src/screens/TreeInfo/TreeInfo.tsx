@@ -13,6 +13,7 @@ import { Switch } from 'react-native-switch';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
 import Dropdown from '@/components/Dropdown/Dropdown';
+import ToggleSwitch from '@/components/ToggleSwitch/ToggleSwitch';
 import colors from '@/styles/colors';
 import { getTreeInfo, updateTree } from '@/supabase/queries/trees';
 import { RootStackParamList } from '@/types/navigation';
@@ -26,6 +27,7 @@ type TreeInfoPageProps = NativeStackScreenProps<
 
 export default function TreeInfoPage({ route }: TreeInfoPageProps) {
   const treeId = route.params?.treeId ?? '9ce20e23-a66f-4df8-8696-421202f3d616';
+  const [isEditing, setIsEditing] = useState(false);
   const [treeData, setTreeData] = useState<Tree>({
     tree_id: treeId,
   });
@@ -59,6 +61,14 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
             style={styles.imageBg}
           ></ImageBackground>
           <View style={styles.body}>
+            <View>
+              <ToggleSwitch
+                value={isEditing}
+                onValueChange={setIsEditing}
+                trueLabel="This tree"
+                falseLabel="Species"
+              />
+            </View>
             <View>
               <Text style={styles.header}>{treeData.species?.name ?? ''}</Text>
               <View style={styles.idPillFlex}>

@@ -80,6 +80,7 @@ export default function GoogleSignInButton({
     <TouchableOpacity
       onPress={() => {
         promptAsync();
+        navigation.navigate('Main');
       }}
     >
       <Text style={styles.adminLoginLinkText}>Login Here</Text>

@@ -9,6 +9,6 @@ export type RootStackParamList = {
   Home: undefined;
   Scanner: undefined;
   TreeInfoPage: { treeId: string };
-  Search: undefined;
+  TreeSearch: undefined;
   Contact: undefined;
 };

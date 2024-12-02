@@ -7,8 +7,19 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
-  ocfLogo: {
+  linksButton: {
     width: '100%',
+    height: 66,
+    color: 'gray',
+  },
+
+  contactIcons: {
+    width: 28,
+    height: 28,
+  },
+
+  ocfLogo: {
+    width: 93,
     height: 110,
   },
 

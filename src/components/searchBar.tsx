@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
-import { styles } from '../screens/SearchScreen/styles';
+import { styles } from '../screens/TreeSearch/styles';
 
 interface SearchBarProps {
   value: string;

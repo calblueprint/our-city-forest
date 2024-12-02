@@ -10,10 +10,10 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/types/navigation';
 import SearchBar from '../../components/searchBar';
-import { styles } from '../../screens/SearchScreen/styles';
 import { getAllSpecies } from '../../supabase/queries/species';
+import { styles } from './styles';
 
-type SearchScreenProps = NativeStackScreenProps<RootStackParamList, 'Search'>;
+type TreeSearchProps = NativeStackScreenProps<RootStackParamList, 'TreeSearch'>;
 
 type TreeItem = {
   tree_id: number;
@@ -22,7 +22,7 @@ type TreeItem = {
   sold: boolean;
 };
 
-export default function SearchScreen({ navigation }: SearchScreenProps) {
+export default function TreeSearch({ navigation }: TreeSearchProps) {
   const [trees, setTrees] = useState<TreeItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
 

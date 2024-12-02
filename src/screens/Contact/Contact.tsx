@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import {
   Linking,
   ScrollView,
@@ -15,7 +15,7 @@ import OcfLogo from '../svg/ocf-logo.svg';
 import Website from '../svg/website.svg';
 import { styles } from './styles';
 
-/* type ContactProps = NativeStackScreenProps<RootStackParamList, 'Contact'>;
+type ContactProps = NativeStackScreenProps<RootStackParamList, 'Contact'>;
 
 export default function Contact({ navigation }: ContactProps) {
   const openLink = (url: string) => {
@@ -68,4 +68,5 @@ export default function Contact({ navigation }: ContactProps) {
     </ScrollView>
   );
 };
+
  */

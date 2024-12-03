@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 import {
   Linking,
   ScrollView,
@@ -15,16 +15,21 @@ import OcfLogo from '../svg/ocf-logo.svg';
 import Website from '../svg/website.svg';
 import { styles } from './styles';
 
-type ContactProps = NativeStackScreenProps<RootStackParamList, 'Contact'>;
+type ContactProps = NativeStackScreenProps<RootStackParamList, 'About'>;
 
 export default function Contact({ navigation }: ContactProps) {
   const openLink = (url: string) => {
-    Linking.openURL(url).catch(err => console.error("Failed to open URL:", err));
+    Linking.openURL(url).catch(err =>
+      console.error('Failed to open URL:', err),
+    );
   };
 
   const openLocation = () => {
-    const locationUrl = 'https://www.google.com/maps/place/Our+City+Forest/@37.590136,-122.3968825,10z/data=!4m20!...';
-    Linking.openURL(locationUrl).catch(err => console.error("Failed to open location:", err));
+    const locationUrl =
+      'https://www.google.com/maps/place/Our+City+Forest/@37.590136,-122.3968825,10z/data=!4m20!...';
+    Linking.openURL(locationUrl).catch(err =>
+      console.error('Failed to open location:', err),
+    );
   };
 
   return (
@@ -34,14 +39,12 @@ export default function Contact({ navigation }: ContactProps) {
           <OcfLogo style={styles.ocfLogo} />
           <Text style={styles.Heading4Contact}>Contact Us</Text>
         </View>
-        
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Directory')}
-        >
+
+        <TouchableOpacity onPress={() => navigation.navigate('Directory')}>
           <View style={styles.linksButton}>
             <Call style={styles.contactIcons} />
             <Text style={styles.contactboldText}>Directory</Text>
-            <ArrowRight style={styles.contactIcons}  />
+            <ArrowRight style={styles.contactIcons} />
           </View>
         </TouchableOpacity>
 
@@ -55,18 +58,14 @@ export default function Contact({ navigation }: ContactProps) {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity  
-          onPress={openLocation}
-        >
+        <TouchableOpacity onPress={openLocation}>
           <View style={styles.linksButton}>
             <Location style={styles.contactIcons} />
             <Text style={styles.contactboldText}>Visit Us</Text>
-            <ArrowRight style={styles.contactIcons}  />
+            <ArrowRight style={styles.contactIcons} />
           </View>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
-};
-
- */
+}

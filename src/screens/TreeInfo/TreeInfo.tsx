@@ -1,12 +1,12 @@
 import { Pressable, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types/navigation';
+import { HomeStackParamList } from '@/types/navigation';
 import styles from './styles';
 
 type TreeInfoScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'TreeInfoScreen'
+  HomeStackParamList,
+  'TreeInfo'
 >;
 
 export default function TreeInfoScreen({
@@ -18,7 +18,7 @@ export default function TreeInfoScreen({
       <Text>Tree Id:</Text>
       <Text>{route.params.treeId}</Text>
 
-      <Pressable onPress={() => navigation.push('Scanner')}>
+      <Pressable onPress={() => navigation.push('QRCodeScanner')}>
         <Text>Back to scanner</Text>
       </Pressable>
 

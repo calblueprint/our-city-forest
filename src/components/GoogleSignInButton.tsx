@@ -6,18 +6,24 @@ import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { styles } from '@/screens/login/styles';
-import { MainTabParamList, RootStackParamList } from '@/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 
 WebBrowser.maybeCompleteAuthSession();
 
-type MainTabProps = NativeStackScreenProps<MainTabParamList, 'Home'>;
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type GoogleSignInButtonProps = NativeStackScreenProps<
+  RootStackParamList,
+  'LoginStack'
+>;
+
+type UserInfo = {
+  email: string;
+  name: string;
+};
 
 export default function GoogleSignInButton({
   navigation,
-  route,
-}: LoginScreenProps) {
-  const [userInfo, setUserInfo] = useState(null);
+}: GoogleSignInButtonProps) {
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
     androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
@@ -38,7 +44,11 @@ export default function GoogleSignInButton({
           response?.type === 'success' &&
           response.authentication?.accessToken
         ) {
-          getUserInfo(response.authentication.accessToken);
+          await getUserInfo(response.authentication.accessToken);
+          navigation.navigate('MainTabs', {
+            screen: 'Home',
+            params: { screen: 'TreeSearch' },
+          });
         }
       } catch (error) {
         console.error('Error retrieving user data from AsyncStorage:', error);
@@ -46,7 +56,7 @@ export default function GoogleSignInButton({
     }
 
     handleSignInWithGoogle();
-  }, [response]);
+  }, [navigation, response]);
 
   const getUserInfo = async (token: string) => {
     if (!token) return;
@@ -69,7 +79,6 @@ export default function GoogleSignInButton({
     <TouchableOpacity
       onPress={() => {
         promptAsync();
-        navigation.navigate('Main', { screen: 'Home' });
       }}
     >
       <Text style={styles.adminLoginLinkText}>Login Here</Text>

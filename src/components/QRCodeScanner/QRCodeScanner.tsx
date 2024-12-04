@@ -9,7 +9,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '@/types/navigation';
 import styles from './styles';
 
-type QRCodeScannerProps = NativeStackScreenProps<HomeStackParamList, 'Scanner'>;
+type QRCodeScannerProps = NativeStackScreenProps<
+  HomeStackParamList,
+  'QRCodeScanner'
+>;
 
 export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
   const [permission, requestPermission] = useCameraPermissions();

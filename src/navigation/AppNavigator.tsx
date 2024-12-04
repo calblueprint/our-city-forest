@@ -2,21 +2,20 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ContactScreen from './screens/ContactScreen';
-import DirectoryScreen from './screens/DirectoryScreen';
-// Import screen components
-import LoginScreen from './screens/LoginScreen';
-import QRCodeScannerScreen from './screens/QRCodeScannerScreen';
-import SpeciesInfoScreen from './screens/SpeciesInfoScreen';
-import TreeInfoScreen from './screens/TreeInfoScreen';
-import TreeSearchScreen from './screens/TreeSearchScreen';
-// Types
+import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
+import ContactScreen from '@/screens/Contact';
+// import DirectoryScreen from '@/screens/Directory/Directory';
+import LoginScreen from '@/screens/login/Login';
+// import SpeciesInfoScreen from '@/screens/SpeciesInfo/SpeciesInfo';
+import TreeInfoScreen from '@/screens/TreeInfo/TreeInfo';
+import TreeSearchScreen from '@/screens/TreeSearch/TreeSearch';
 import {
   ContactStackParamList,
   HomeStackParamList,
+  LoginStackParamList,
   RootStackParamList,
   RootTabParamList,
-} from './types';
+} from '@/types/navigation';
 
 // Stack and Tab Navigators
 const LoginStack = createStackNavigator<LoginStackParamList>();
@@ -30,9 +29,9 @@ function HomeStackNavigator() {
   return (
     <HomeStack.Navigator initialRouteName="TreeSearch">
       <HomeStack.Screen name="TreeSearch" component={TreeSearchScreen} />
-      <HomeStack.Screen name="QRCodeScanner" component={QRCodeScannerScreen} />
+      <HomeStack.Screen name="QRCodeScanner" component={QRCodeScanner} />
       <HomeStack.Screen name="TreeInfo" component={TreeInfoScreen} />
-      <HomeStack.Screen name="SpeciesInfo" component={SpeciesInfoScreen} />
+      {/* <HomeStack.Screen name="SpeciesInfo" component={SpeciesInfoScreen} /> */}
     </HomeStack.Navigator>
   );
 }
@@ -42,7 +41,7 @@ function ContactStackNavigator() {
   return (
     <ContactStack.Navigator initialRouteName="Contact">
       <ContactStack.Screen name="Contact" component={ContactScreen} />
-      <ContactStack.Screen name="Directory" component={DirectoryScreen} />
+      {/* <ContactStack.Screen name="Directory" component={DirectoryScreen} /> */}
     </ContactStack.Navigator>
   );
 }

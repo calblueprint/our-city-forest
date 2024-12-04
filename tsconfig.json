@@ -18,12 +18,6 @@
     }
   },
   "extends": "expo/tsconfig.base",
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/***/**/*.tsx",
-    "App.tsx",
-    "./graphics.d.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "App.tsx", "./graphics.d.ts"],
   "exclude": ["node_modules"]
 }

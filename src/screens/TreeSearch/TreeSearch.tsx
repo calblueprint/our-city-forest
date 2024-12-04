@@ -1,7 +1,7 @@
 import { StyleSheet, Text } from 'react-native';
 
-export default function AllTreesScreen() {
-  return <Text style={styles.text}>Available Trees</Text>;
+export default function TreeSearchScreen() {
+  return <Text style={styles.text}>Tree SEarch</Text>;
 }
 
 const styles = StyleSheet.create({

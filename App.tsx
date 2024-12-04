@@ -3,7 +3,7 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AllTreesScreen from '@/screens/all_trees/AllTreesScreen';
 import AvailableTreesScreen from '@/screens/available_trees/AvailableTreesScreen';
-import LoginScreen from '@/screens/login/LoginScreen';
+import LoginScreen from '@/screens/Login/Login';
 import { LoginStackParamList } from '@/types/navigation';
 
 const Stack = createNativeStackNavigator<LoginStackParamList>();

@@ -17,8 +17,10 @@
   "dependencies": {
     "@expo/metro-runtime": "~4.0.0",
     "@react-native-async-storage/async-storage": "^2.0.0",
+    "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
+    "@react-navigation/stack": "^6.4.1",
     "@supabase/supabase-js": "^2.45.6",
     "@types/react-navigation": "^3.0.8",
     "axios": "^1.7.7",
@@ -52,6 +54,7 @@
     "react-native-svg": "15.8.0",
     "react-native-toast-message": "^2.2.1",
     "react-native-url-polyfill": "^2.0.0",
+    "react-native-vector-icons": "^10.2.0",
     "react-native-web": "~0.19.13",
     "semver": "^7.6.3",
     "send": "^1.1.0",

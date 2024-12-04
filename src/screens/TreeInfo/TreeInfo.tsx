@@ -4,12 +4,15 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/types/navigation';
 import styles from './styles';
 
-type TreeInfoPageProps = NativeStackScreenProps<
+type TreeInfoScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  'TreeInfoPage'
+  'TreeInfoScreen'
 >;
 
-export default function TreeInfo({ route, navigation }: TreeInfoPageProps) {
+export default function TreeInfoScreen({
+  route,
+  navigation,
+}: TreeInfoScreenProps) {
   return (
     <View style={styles.container}>
       <Text>Tree Id:</Text>

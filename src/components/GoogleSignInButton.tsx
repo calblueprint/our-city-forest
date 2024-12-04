@@ -25,24 +25,24 @@ export default function GoogleSignInButton({ navigation, route }: LoginProps) {
   console.log(userInfo);
 
   useEffect(() => {
+    async function handleSignInWithGoogle() {
+      try {
+        const userJSON = await AsyncStorage.getItem('@user');
+        if (userJSON) {
+          setUserInfo(JSON.parse(userJSON));
+        } else if (
+          response?.type === 'success' &&
+          response.authentication?.accessToken
+        ) {
+          getUserInfo(response.authentication.accessToken);
+        }
+      } catch (error) {
+        console.error('Error retrieving user data from AsyncStorage:', error);
+      }
+    }
+
     handleSignInWithGoogle();
   }, [response]);
-
-  async function handleSignInWithGoogle() {
-    try {
-      const userJSON = await AsyncStorage.getItem('@user');
-      if (userJSON) {
-        setUserInfo(JSON.parse(userJSON));
-      } else if (
-        response?.type === 'success' &&
-        response.authentication?.accessToken
-      ) {
-        getUserInfo(response.authentication.accessToken);
-      }
-    } catch (error) {
-      console.error('Error retrieving user data from AsyncStorage:', error);
-    }
-  }
 
   const getUserInfo = async (token: string) => {
     if (!token) return;
@@ -65,7 +65,7 @@ export default function GoogleSignInButton({ navigation, route }: LoginProps) {
     <TouchableOpacity
       onPress={() => {
         promptAsync();
-        navigation.navigate('AllTrees');
+        navigation.navigate('TreeSearch');
       }}
     >
       <Text style={styles.adminLoginLinkText}>Login Here</Text>

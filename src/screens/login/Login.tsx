@@ -4,9 +4,9 @@ import GoogleSignInButton from '@/components/GoogleSignInButton';
 import { LoginStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
-type LoginProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;
+type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;
 
-export default function LoginScreen({ navigation, route }: LoginProps) {
+export default function LoginScreen({ navigation, route }: LoginScreenProps) {
   return (
     <View style={styles.loginContainer}>
       <Text style={styles.loginText}>I am a...</Text>
@@ -17,7 +17,7 @@ export default function LoginScreen({ navigation, route }: LoginProps) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('AvailableTrees')}
+        onPress={() => navigation.navigate('TreeSearch')}
       >
         <Text style={styles.buttonText}>Guest</Text>
       </TouchableOpacity>

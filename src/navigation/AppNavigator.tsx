@@ -4,9 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
 import ContactScreen from '@/screens/Contact';
-// import DirectoryScreen from '@/screens/Directory/Directory';
-import LoginScreen from '@/screens/login/Login';
-// import SpeciesInfoScreen from '@/screens/SpeciesInfo/SpeciesInfo';
+import DirectoryScreen from '@/screens/Directory/Directory';
+import LoginScreen from '@/screens/Login/Login';
+import SpeciesInfoScreen from '@/screens/SpeciesInfo/SpeciesInfo';
 import TreeInfoScreen from '@/screens/TreeInfo/TreeInfo';
 import TreeSearchScreen from '@/screens/TreeSearch/TreeSearch';
 import {
@@ -31,7 +31,7 @@ function HomeStackNavigator() {
       <HomeStack.Screen name="TreeSearch" component={TreeSearchScreen} />
       <HomeStack.Screen name="QRCodeScanner" component={QRCodeScanner} />
       <HomeStack.Screen name="TreeInfo" component={TreeInfoScreen} />
-      {/* <HomeStack.Screen name="SpeciesInfo" component={SpeciesInfoScreen} /> */}
+      <HomeStack.Screen name="SpeciesInfo" component={SpeciesInfoScreen} />
     </HomeStack.Navigator>
   );
 }
@@ -41,7 +41,7 @@ function ContactStackNavigator() {
   return (
     <ContactStack.Navigator initialRouteName="Contact">
       <ContactStack.Screen name="Contact" component={ContactScreen} />
-      {/* <ContactStack.Screen name="Directory" component={DirectoryScreen} /> */}
+      <ContactStack.Screen name="Directory" component={DirectoryScreen} />
     </ContactStack.Navigator>
   );
 }

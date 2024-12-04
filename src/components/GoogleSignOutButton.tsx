@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styles } from '@/screens/Login/styles';
+import { styles } from '@/screens/login/styles';
 
 export default function GoogleSignOutButton() {
   return (

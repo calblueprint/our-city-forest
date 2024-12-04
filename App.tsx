@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from '@/screens/Login/Login';
+import LoginScreen from '@/screens/login/Login';
 import TreeSearchScreen from '@/screens/TreeSearch/TreeSearch';
 import { LoginStackParamList } from '@/types/navigation';
 

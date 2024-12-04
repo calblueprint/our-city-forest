@@ -9,8 +9,8 @@ dist/
 web-build/
 
 # Platforms
-ios/*
-android/*
+ios/
+android/
 
 # Native
 *.orig.*
@@ -38,12 +38,3 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
-
-<<<<<<< HEAD
-ios/
-android/
-=======
-# ios
-ios/*
-android/*
->>>>>>> 893ea80 (auth)

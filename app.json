@@ -26,7 +26,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-
     "platforms": ["ios", "android", "web"],
     "ios": {
       "bundleIdentifier": "org.calblueprint.ourcityforest",

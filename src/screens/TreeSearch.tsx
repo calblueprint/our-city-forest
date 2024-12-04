@@ -8,14 +8,25 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
+import { RootStackParamList } from '@/types/navigation';
 import { fetchTreeData } from '../supabase/client';
 import { styles } from './styles/styles';
 
-type SearchScreenProps = NativeStackScreenProps<RootStackParamList, 'Search'>;
+type TreeSearchScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'TreeSearch'
+>;
 
-export default function SearchScreen({ navigation }: SearchScreenProps) {
-  const [trees, setTrees] = useState<any[]>([]);
+export default function SearchScreen({ navigation }: TreeSearchScreenProps) {
+  type Tree = {
+    tree_id: number;
+    species: string;
+    row: number;
+    bank: number;
+    image_url?: string;
+  };
+
+  const [trees, setTrees] = useState<Tree[]>([]);
 
   useEffect(() => {
     const loadTreeData = async () => {

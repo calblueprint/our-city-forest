@@ -6,13 +6,17 @@ import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { styles } from '@/screens/login/styles';
-import { LoginStackParamList } from '@/types/navigation';
+import { MainTabParamList, RootStackParamList } from '@/types/navigation';
 
 WebBrowser.maybeCompleteAuthSession();
 
-type LoginProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;
+type MainTabProps = NativeStackScreenProps<MainTabParamList, 'Home'>;
+type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export default function GoogleSignInButton({ navigation, route }: LoginProps) {
+export default function GoogleSignInButton({
+  navigation,
+  route,
+}: LoginScreenProps) {
   const [userInfo, setUserInfo] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -65,7 +69,7 @@ export default function GoogleSignInButton({ navigation, route }: LoginProps) {
     <TouchableOpacity
       onPress={() => {
         promptAsync();
-        navigation.navigate('TreeSearch');
+        navigation.navigate('Main', { screen: 'Home' });
       }}
     >
       <Text style={styles.adminLoginLinkText}>Login Here</Text>

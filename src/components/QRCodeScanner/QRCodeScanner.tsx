@@ -6,10 +6,10 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types/navigation';
+import { HomeStackParamList } from '@/types/navigation';
 import styles from './styles';
 
-type QRCodeScannerProps = NativeStackScreenProps<RootStackParamList, 'Scanner'>;
+type QRCodeScannerProps = NativeStackScreenProps<HomeStackParamList, 'Scanner'>;
 
 export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
   const [permission, requestPermission] = useCameraPermissions();
@@ -88,7 +88,7 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
           qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
         ]}
         onPress={() =>
-          navigation.push('TreeInfoScreen', { treeId: qrCodeData ?? '' })
+          navigation.push('TreeInfo', { treeId: qrCodeData ?? '' })
         }
         disabled={!qrCodeFound}
       >

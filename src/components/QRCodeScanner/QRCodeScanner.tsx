@@ -88,7 +88,7 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
           qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
         ]}
         onPress={() =>
-          navigation.push('TreeInfoPage', { treeId: qrCodeData ?? '' })
+          navigation.push('TreeInfoScreen', { treeId: qrCodeData ?? '' })
         }
         disabled={!qrCodeFound}
       >

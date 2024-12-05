@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
-import ContactScreen from '@/screens/Contact';
+import ContactScreen from '@/screens/Contact/Contact';
 import DirectoryScreen from '@/screens/Directory/Directory';
 import LoginScreen from '@/screens/Login/Login';
 import SpeciesInfoScreen from '@/screens/SpeciesInfo/SpeciesInfo';
@@ -23,6 +23,15 @@ const HomeStack = createStackNavigator<HomeStackParamList>();
 const ContactStack = createStackNavigator<ContactStackParamList>();
 const RootTab = createBottomTabNavigator<RootTabParamList>();
 const RootStack = createStackNavigator<RootStackParamList>();
+
+// Login Stack Navigator
+function LoginStackNavigator() {
+  return (
+    <LoginStack.Navigator initialRouteName="Login">
+      <LoginStack.Screen name="Login" component={LoginScreen} />
+    </LoginStack.Navigator>
+  );
+}
 
 // Home Stack Navigator
 function HomeStackNavigator() {
@@ -60,21 +69,12 @@ function RootTabNavigator() {
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="LoginStack">
-        <RootStack.Screen
-          name="LoginStack"
-          component={() => (
-            <LoginStack.Navigator initialRouteName="Login">
-              <LoginStack.Screen name="Login" component={LoginScreen} />
-            </LoginStack.Navigator>
-          )}
-          options={{ headerShown: false }}
-        />
-        <RootStack.Screen
-          name="MainTabs"
-          component={RootTabNavigator}
-          options={{ headerShown: false }}
-        />
+      <RootStack.Navigator
+        initialRouteName="LoginStack"
+        screenOptions={{ headerShown: false }}
+      >
+        <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
+        <RootStack.Screen name="MainTabs" component={RootTabNavigator} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

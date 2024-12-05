@@ -2,12 +2,9 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import GoogleSignInButton from '@/components/GoogleSignInButton';
 import { styles } from '@/screens/Login/styles';
-import { RootStackParamList } from '@/types/navigation';
+import { LoginStackParamList } from '@/types/navigation';
 
-type LoginScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'LoginStack'
->;
+type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;
 
 export default function LoginScreen({ navigation, route }: LoginScreenProps) {
   return (

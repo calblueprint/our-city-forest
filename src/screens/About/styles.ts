@@ -7,10 +7,24 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 20,
+  },
+
   linksButton: {
     width: '100%',
     height: 66,
-    color: 'gray',
+    backgroundColor: '#f0f0f0',
+  },
+
+  linksButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
 
   contactIcons: {

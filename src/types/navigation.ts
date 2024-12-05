@@ -11,4 +11,5 @@ export type RootStackParamList = {
   TreeInfoPage: { treeId: string };
   TreeSearch: undefined;
   About: undefined;
+  Directory: undefined;
 };

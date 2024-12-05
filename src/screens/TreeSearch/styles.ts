@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
 
   Heading4Search: {
     // change this later
-    color: '#446127',
+    color: 'primary_green',
     fontSize: 32,
     fontWeight: '700',
     paddingBottom: 10,

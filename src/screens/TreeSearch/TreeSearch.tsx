@@ -4,7 +4,6 @@ import {
   ImageBackground,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -71,8 +70,8 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
   return (
     <ScrollView style={styles.backgroundContainer}>
       <View style={styles.searchContainer}>
-        <Text style={styles.Heading4Search}>Trees Availability</Text>
-        <Text style={styles.treeInfo}>Remaining Trees: {remainingCount}</Text>
+        <Text style={styles.Heading4Search}>Trees Inventory</Text>
+        <Text style={styles.treeInfo}>in stock: {remainingCount}</Text>
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
         <FlatList
           data={filteredTrees}

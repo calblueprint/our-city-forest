@@ -4,7 +4,6 @@ import {
   ImageBackground,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';

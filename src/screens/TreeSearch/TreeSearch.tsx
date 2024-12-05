@@ -19,31 +19,42 @@ type TreeItem = {
   species: string;
   image_url: string;
   sold: boolean;
+  stockCount: number;
 };
 
 export default function TreeSearch({ navigation }: TreeSearchProps) {
   const [trees, setTrees] = useState<TreeItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadTreeData = async () => {
-      const speciesData = await getAllSpecies();
+      try {
+        setLoading(true);
+        const speciesData = await getAllSpecies();
 
-      if (!speciesData || speciesData.length === 0) {
-        console.error('Failed to fetch tree data');
-        return;
+        if (!speciesData || speciesData.length === 0) {
+          throw new Error('No tree data found');
+        }
+
+        const treesData: TreeItem[] = speciesData.map((species: any) => ({
+          tree_id: species.id ?? -1,
+          species: species.name ?? 'Unknown Species',
+          image_url: species.image ?? '',
+          sold: species.sold ?? false,
+          stockCount: species.stockCount ?? 0,
+        }));
+
+        const remainingTrees = treesData.filter(tree => !tree.sold);
+        setTrees(remainingTrees);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to fetch tree data:', err);
+        setError('Unable to load tree data. Please try again later.');
+      } finally {
+        setLoading(false);
       }
-
-      const treesData: TreeItem[] = speciesData.map((species: any) => ({
-        tree_id: species.id,
-        species: species.name,
-        image_url: species.image,
-        sold: species.sold ?? false,
-      }));
-
-      const remainingTrees = treesData.filter(tree => !tree.sold);
-
-      setTrees(remainingTrees);
     };
 
     loadTreeData();
@@ -53,35 +64,62 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
     tree.species.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  const remainingCount = filteredTrees.length;
+  const groupedTrees = filteredTrees.reduce(
+    (acc, tree) => {
+      if (!tree.sold) {
+        if (!acc[tree.species]) {
+          acc[tree.species] = [];
+        }
+        acc[tree.species].push(tree);
+      }
+      return acc;
+    },
+    {} as Record<string, TreeItem[]>,
+  );
 
   const renderTreeCard = ({ item }: { item: TreeItem }) => (
     <View style={styles.treeCard}>
       <ImageBackground
-        source={{ uri: item.image_url }}
+        source={{
+          uri: item.image_url || 'https://example.com/placeholder.jpg',
+        }}
         style={styles.treeImage}
       />
-      <View>
-        <Text style={styles.treeName}>{item.species}</Text>
-      </View>
+      <Text style={styles.treeName} numberOfLines={1}>
+        {item.species}
+      </Text>
+      <Text style={styles.treeStock}>{item.stockCount} in stock</Text>
     </View>
   );
 
   return (
     <ScrollView style={styles.backgroundContainer}>
-      <View style={styles.searchContainer}>
-        <Text style={styles.Heading4Search}>Trees Inventory</Text>
-        <Text style={styles.treeInfo}>in stock: {remainingCount}</Text>
+      <View style={styles.searchBarContainer}>
+        <Text style={styles.searchHeading}>Trees Inventory</Text>
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
-        <FlatList
-          data={filteredTrees}
-          renderItem={renderTreeCard}
-          keyExtractor={item => item.tree_id.toString()}
-          numColumns={2}
-          columnWrapperStyle={styles.treeGrid}
-          scrollEnabled={false}
-        />
       </View>
+
+      <FlatList
+        data={Object.entries(groupedTrees)}
+        keyExtractor={([species]) => species}
+        renderItem={({ item: [species, treesArray] }) => (
+          <View key={species}>
+            <FlatList
+              data={treesArray}
+              renderItem={renderTreeCard}
+              keyExtractor={item => item.tree_id.toString()}
+              numColumns={2}
+              columnWrapperStyle={styles.treeGrid}
+            />
+          </View>
+        )}
+        contentContainerStyle={styles.backgroundContainer}
+        ListEmptyComponent={
+          <Text style={styles.treeError}>
+            No trees found matching your search.
+          </Text>
+        }
+      />
     </ScrollView>
   );
 }

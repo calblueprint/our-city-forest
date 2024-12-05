@@ -1,116 +1,94 @@
 import { StyleSheet } from 'react-native';
+import colors from '@/styles/colors';
 
 export const styles = StyleSheet.create({
   backgroundContainer: {
     flexGrow: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-  },
-  treeCard: {
-    width: 160,
-    height: 182,
-    flexShrink: 0,
-    borderRadius: 5,
-    justifyContent: 'space-between',
-    overflow: 'hidden',
-  },
-
-  treeImage: {
-    width: 160,
-    height: 135,
-    flexShrink: 0,
-    borderRadius: 5,
-    resizeMode: 'cover',
-    backgroundColor: 'grey',
-  },
-
-  treeDetails: {
-    alignItems: 'flex-start',
-    overflow: 'hidden',
-    flexDirection: 'row',
-  },
-
-  treeName: {
-    // change this later
-    flexShrink: 1,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-
-  treeInfo: {
-    // change this later
-    fontSize: 14,
-    fontWeight: 'medium',
-  },
-
-  treeGrid: {
-    padding: 20,
-    justifyContent: 'space-between',
-  },
-
-  // Search Bar Styling
-
-  searchContainer: {
-    paddingTop: 32,
     paddingLeft: 27,
     paddingRight: 27,
   },
 
+  // Search Component
+
   searchBarContainer: {
-    margin: 10,
+    paddingTop: 68,
+    paddingBottom: 18,
   },
 
   searchBarInput: {
-    height: 40,
-    borderColor: 'white',
+    height: 42,
+    borderColor: colors.gray6,
     borderWidth: 1,
     borderRadius: 30,
     paddingHorizontal: 10,
-    backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 5,
+    backgroundColor: colors.gray6,
   },
 
-  Heading4Search: {
-    // change this later
-    color: '#446127',
+  searchHeading: {
+    color: colors.primary_green,
     fontSize: 32,
     fontWeight: '700',
     paddingBottom: 10,
     textAlign: 'left',
   },
 
-  // Filter Modal
+  // Tree Cards
 
-  filterOverlay: {
-    flex: 1,
-    justifyContent: 'center',
+  treeGrid: {
+    gap: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+
+  treeCard: {
+    width: '48%',
+    marginBottom: 10,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+
+  treeImage: {
+    width: '100%',
+    height: 135,
+    flexShrink: 0,
+    borderRadius: 5,
+    resizeMode: 'cover',
+    backgroundColor: colors.gray4,
+    marginBottom: 0,
+  },
+
+  treeInfoContainer: {
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    marginTop: 5,
   },
 
-  filterContent: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    width: '80%',
-  },
-
-  filterHeading: {
+  treeName: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
+    textAlign: 'left',
+    marginTop: 5,
+    flex: 1,
+    overflow: 'hidden',
   },
 
-  filterButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
+  treeStock: {
+    fontSize: 14,
+    fontWeight: 'medium',
+    color: colors.gray3,
+    textAlign: 'left',
+  },
+
+  treeError: {
+    fontSize: 14,
+    fontWeight: 'medium',
+    padding: 0,
   },
 });

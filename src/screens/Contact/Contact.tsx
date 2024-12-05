@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
-import { styles } from '../styles/styles';
+import { styles } from '../styles';
 
 export default function App() {
   return (

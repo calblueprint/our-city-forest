@@ -16,7 +16,9 @@ type TreeSearchScreenProps = NativeStackScreenProps<
   'TreeSearch'
 >;
 
-export default function SearchScreen({ navigation }: TreeSearchScreenProps) {
+export default function TreeSearchScreen({
+  navigation,
+}: TreeSearchScreenProps) {
   type Tree = {
     tree_id: number;
     species: string;

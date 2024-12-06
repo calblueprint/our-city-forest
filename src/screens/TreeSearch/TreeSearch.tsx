@@ -4,18 +4,30 @@ import {
   ImageBackground,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
-import { fetchTreeData } from '../supabase/client';
-import { styles } from './styles/styles';
+import { HomeStackParamList } from '@/types/navigation';
+import { fetchTreeData } from '../../supabase/client';
+import { styles } from './styles';
 
-type SearchScreenProps = NativeStackScreenProps<RootStackParamList, 'Search'>;
+type TreeSearchScreenProps = NativeStackScreenProps<
+  HomeStackParamList,
+  'TreeSearch'
+>;
 
-export default function SearchScreen({ navigation }: SearchScreenProps) {
-  const [trees, setTrees] = useState<any[]>([]);
+export default function TreeSearchScreen({
+  navigation,
+}: TreeSearchScreenProps) {
+  type Tree = {
+    tree_id: number;
+    species: string;
+    row: number;
+    bank: number;
+    image_url?: string;
+  };
+
+  const [trees, setTrees] = useState<Tree[]>([]);
 
   useEffect(() => {
     const loadTreeData = async () => {
@@ -29,7 +41,7 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
     loadTreeData();
   }, []);
 
-  const renderTreeCard = ({ item }: { item: any }) => (
+  const renderTreeCard = ({ item }: { item: Tree }) => (
     <View style={styles.treeRow}>
       <View style={styles.treeCard}>
         <ImageBackground
@@ -52,13 +64,8 @@ export default function SearchScreen({ navigation }: SearchScreenProps) {
 
   return (
     <ScrollView style={styles.backgroundContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
-        <Text>Contact Us</Text>
-      </TouchableOpacity>
-
       <View style={styles.searchContainer}>
         <Text style={styles.Heading4Search}>Trees Availibility</Text>
-
         <FlatList
           data={trees}
           renderItem={renderTreeCard}

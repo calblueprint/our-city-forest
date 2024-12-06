@@ -11,7 +11,7 @@
     "prettier:check": "npx prettier --check .",
     "prettier:fix": "npx prettier --write .",
     "prepare": "husky",
-    "pre-commit": "(npm run tsc || true) && (npm run lint:check || true) && npm run prettier:check"
+    "pre-commit": "(npx tsc --noEmit || true) && (npm run lint:check || true) && npm run prettier:check"
   },
   "dependencies": {
     "@expo/metro-runtime": "~4.0.0",

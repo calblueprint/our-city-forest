@@ -9,7 +9,7 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '@/types/navigation';
 import { fetchTreeData } from '../../supabase/client';
-import { styles } from '../styles/styles';
+import { styles } from './styles';
 
 type TreeSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -41,7 +41,7 @@ export default function TreeSearchScreen({
     loadTreeData();
   }, []);
 
-  const renderTreeCard = ({ item }: { item: any }) => (
+  const renderTreeCard = ({ item }: { item: Tree }) => (
     <View style={styles.treeRow}>
       <View style={styles.treeCard}>
         <ImageBackground

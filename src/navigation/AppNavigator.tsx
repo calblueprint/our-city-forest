@@ -10,18 +10,18 @@ import SpeciesInfoScreen from '@/screens/SpeciesInfo/SpeciesInfo';
 import TreeInfoScreen from '@/screens/TreeInfo/TreeInfo';
 import TreeSearchScreen from '@/screens/TreeSearch/TreeSearch';
 import {
+  BottomTabParamList,
   ContactStackParamList,
   HomeStackParamList,
   LoginStackParamList,
   RootStackParamList,
-  RootTabParamList,
 } from '@/types/navigation';
 
 // Stack and Tab Navigators
 const LoginStack = createStackNavigator<LoginStackParamList>();
 const HomeStack = createStackNavigator<HomeStackParamList>();
 const ContactStack = createStackNavigator<ContactStackParamList>();
-const RootTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const RootStack = createStackNavigator<RootStackParamList>();
 
 // Login Stack Navigator
@@ -56,12 +56,12 @@ function ContactStackNavigator() {
 }
 
 // Tab Navigator
-function RootTabNavigator() {
+function BottomTabNavigator() {
   return (
-    <RootTab.Navigator initialRouteName="Home">
-      <RootTab.Screen name="Home" component={HomeStackNavigator} />
-      <RootTab.Screen name="Contact" component={ContactStackNavigator} />
-    </RootTab.Navigator>
+    <BottomTab.Navigator initialRouteName="Home">
+      <BottomTab.Screen name="Home" component={HomeStackNavigator} />
+      <BottomTab.Screen name="Contact" component={ContactStackNavigator} />
+    </BottomTab.Navigator>
   );
 }
 
@@ -74,7 +74,7 @@ export default function AppNavigator() {
         screenOptions={{ headerShown: false }}
       >
         <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
-        <RootStack.Screen name="MainTabs" component={RootTabNavigator} />
+        <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

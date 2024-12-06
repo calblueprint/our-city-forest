@@ -4,15 +4,16 @@ import { makeRedirectUri } from 'expo-auth-session';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { styles } from '@/screens/Login/styles';
-import { RootStackParamList } from '@/types/navigation';
+import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
+import { styles } from './styles';
 
 WebBrowser.maybeCompleteAuthSession();
 
-type GoogleSignInButtonProps = NativeStackScreenProps<
-  RootStackParamList,
-  'LoginStack'
+type GoogleSignInButtonProps = CompositeScreenProps<
+  NativeStackScreenProps<LoginStackParamList, 'Login'>,
+  NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
 >;
 
 type UserInfo = {
@@ -45,7 +46,7 @@ export default function GoogleSignInButton({
           response.authentication?.accessToken
         ) {
           await getUserInfo(response.authentication.accessToken);
-          navigation.navigate('MainTabs', {
+          navigation.navigate('BottomTabs', {
             screen: 'Home',
             params: { screen: 'TreeSearch' },
           });

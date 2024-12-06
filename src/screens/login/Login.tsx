@@ -1,10 +1,14 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import GoogleSignInButton from '@/components/GoogleSignInButton';
-import { styles } from '@/screens/Login/styles';
-import { LoginStackParamList } from '@/types/navigation';
+import GoogleSignInButton from '@/components/GoogleSignInButton/GoogleSignInButton';
+import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
+import { styles } from './styles';
 
-type LoginScreenProps = NativeStackScreenProps<LoginStackParamList, 'Login'>;
+type LoginScreenProps = CompositeScreenProps<
+  NativeStackScreenProps<LoginStackParamList, 'Login'>,
+  NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
+>;
 
 export default function LoginScreen({ navigation, route }: LoginScreenProps) {
   return (
@@ -18,7 +22,7 @@ export default function LoginScreen({ navigation, route }: LoginScreenProps) {
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          navigation.navigate('MainTabs', {
+          navigation.navigate('BottomTabs', {
             screen: 'Home',
             params: { screen: 'TreeSearch' },
           })

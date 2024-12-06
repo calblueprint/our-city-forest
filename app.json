@@ -7,7 +7,6 @@
     "orientation": "portrait",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
-    "entryPoint": "./src/App.tsx",
     "plugins": [
       [
         "expo-camera",

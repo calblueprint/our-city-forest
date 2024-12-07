@@ -1,20 +1,28 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+
+const { width, height } = Dimensions.get('window');
+
+const responsivePadding = width * 0.05;
 
 export const styles = StyleSheet.create({
   backgroundContainer: {
     flexGrow: 1,
-    flexDirection: 'column',
     backgroundColor: 'white',
+    paddingTop: 18,
     paddingLeft: 27,
     paddingRight: 27,
   },
 
   // Search Component
 
-  searchBarContainer: {
-    paddingTop: 68,
-    paddingBottom: 18,
+  searchContainer: {
+    paddingLeft: responsivePadding,
+    paddingRight: responsivePadding,
+    paddingTop: height * 0.1,
+    paddingBottom: height * 0.02,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.gray6,
   },
 
   searchBarInput: {

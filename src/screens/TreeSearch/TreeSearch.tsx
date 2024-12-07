@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  ImageBackground,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
+import { FlatList, ImageBackground, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/types/navigation';
 import SearchBar from '../../components/searchBar';
-import { getAllSpecies } from '../../supabase/queries/species';
+import { supabase } from '../../supabase/client';
 import { styles } from './styles';
 
 type TreeSearchProps = NativeStackScreenProps<RootStackParamList, 'TreeSearch'>;
@@ -17,7 +11,7 @@ type TreeSearchProps = NativeStackScreenProps<RootStackParamList, 'TreeSearch'>;
 type TreeItem = {
   tree_id: number;
   species: string;
-  image_url: string;
+  image_link: string;
   sold: boolean;
   stockCount: number;
 };
@@ -32,22 +26,37 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
     const loadTreeData = async () => {
       try {
         setLoading(true);
-        const speciesData = await getAllSpecies();
+        const { data, error } = await supabase
+          .from('trees')
+          .select('tree_id, species, sold, species(image_link)');
 
-        if (!speciesData || speciesData.length === 0) {
-          throw new Error('No tree data found');
+        if (error) {
+          throw new Error(`Error fetching tree data: ${error.message}`);
         }
 
-        const treesData: TreeItem[] = speciesData.map((species: any) => ({
-          tree_id: species.id ?? -1,
-          species: species.name ?? 'Unknown Species',
-          image_url: species.image ?? '',
-          sold: species.sold ?? false,
-          stockCount: species.stockCount ?? 0,
-        }));
+        const treeCounts: Record<string, number> = data.reduce(
+          (acc, tree) => {
+            if (!tree.sold) {
+              acc[tree.species] = (acc[tree.species] || 0) + 1;
+            }
+            return acc;
+          },
+          {} as Record<string, number>,
+        );
 
-        const remainingTrees = treesData.filter(tree => !tree.sold);
-        setTrees(remainingTrees);
+        const treesData: TreeItem[] = Object.keys(treeCounts).map(species => {
+          const treeSample = data.find(tree => tree.species === species);
+
+          return {
+            tree_id: treeSample?.tree_id || 0,
+            species: species,
+            image_link: treeSample?.species?.image_link || '',
+            sold: false,
+            stockCount: treeCounts[species],
+          };
+        });
+
+        setTrees(treesData);
         setError(null);
       } catch (err) {
         console.error('Failed to fetch tree data:', err);
@@ -56,7 +65,6 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
         setLoading(false);
       }
     };
-
     loadTreeData();
   }, []);
 
@@ -64,24 +72,11 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
     tree.species.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  const groupedTrees = filteredTrees.reduce(
-    (acc, tree) => {
-      if (!tree.sold) {
-        if (!acc[tree.species]) {
-          acc[tree.species] = [];
-        }
-        acc[tree.species].push(tree);
-      }
-      return acc;
-    },
-    {} as Record<string, TreeItem[]>,
-  );
-
   const renderTreeCard = ({ item }: { item: TreeItem }) => (
     <View style={styles.treeCard}>
       <ImageBackground
         source={{
-          uri: item.image_url || 'https://example.com/placeholder.jpg',
+          uri: item.image_link || 'https://example.com/placeholder.jpg',
         }}
         style={styles.treeImage}
       />
@@ -93,26 +88,17 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
   );
 
   return (
-    <ScrollView style={styles.backgroundContainer}>
-      <View style={styles.searchBarContainer}>
+    <>
+      <View style={styles.searchContainer}>
         <Text style={styles.searchHeading}>Trees Inventory</Text>
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
       </View>
 
       <FlatList
-        data={Object.entries(groupedTrees)}
-        keyExtractor={([species]) => species}
-        renderItem={({ item: [species, treesArray] }) => (
-          <View key={species}>
-            <FlatList
-              data={treesArray}
-              renderItem={renderTreeCard}
-              keyExtractor={item => item.tree_id.toString()}
-              numColumns={2}
-              columnWrapperStyle={styles.treeGrid}
-            />
-          </View>
-        )}
+        data={filteredTrees}
+        keyExtractor={item => item.tree_id.toString()}
+        renderItem={renderTreeCard}
+        numColumns={2}
         contentContainerStyle={styles.backgroundContainer}
         ListEmptyComponent={
           <Text style={styles.treeError}>
@@ -120,6 +106,6 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
           </Text>
         }
       />
-    </ScrollView>
+    </>
   );
 }

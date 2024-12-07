@@ -17,15 +17,15 @@ DefaultTheme.colors.background = '#FFFFFF';
 const App = () => {
   return (
     <NavigationContainer theme={DefaultTheme}>
-      <LoginStack.Navigator initialRouteName="Login">
+      {/* <LoginStack.Navigator initialRouteName="Login">
         <LoginStack.Screen
           name="Login"
           component={LoginScreen}
           options={{ headerShown: false }}
         />
-      </LoginStack.Navigator>
+      </LoginStack.Navigator> */}
 
-      <RootStack.Navigator initialRouteName="Home">
+      <RootStack.Navigator initialRouteName="About">
         <RootStack.Screen
           name="Home"
           component={HomeScreen}

@@ -74,7 +74,7 @@ export default function TreeDisplay({ treeData }: TreeDisplayProps) {
           <View style={styles.property}>
             <SvgWateringCan />
             <Text style={styles.propertyText}>
-              {displayValue(treeData.species?.water_amount)} Water
+              {displayValue(treeData.species?.water_amount)}
             </Text>
           </View>
         )}

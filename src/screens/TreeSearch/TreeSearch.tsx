@@ -65,7 +65,7 @@ export default function TreeSearchScreen({
   return (
     <ScrollView style={styles.backgroundContainer}>
       <View style={styles.searchContainer}>
-        <Text style={styles.Heading4Search}>Trees Availibility</Text>
+        <Text style={styles.searchHeading}>Trees Availibility</Text>
         <FlatList
           data={trees}
           renderItem={renderTreeCard}

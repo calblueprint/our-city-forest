@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   loginContainer: {
@@ -8,9 +10,8 @@ export const styles = StyleSheet.create({
   },
 
   loginText: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#446127',
+    ...typography.heading3,
+    color: colors.primary,
   },
 
   logoContainer: {
@@ -34,9 +35,8 @@ export const styles = StyleSheet.create({
   },
 
   buttonText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
+    ...typography.largeBold,
+    color: colors.white,
   },
 
   adminLoginContainer: {
@@ -47,15 +47,7 @@ export const styles = StyleSheet.create({
   },
 
   adminLoginText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#828282',
-  },
-
-  adminLoginLinkText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#446127',
-    textDecorationLine: 'underline',
+    ...typography.smallBold,
+    color: colors.gray3,
   },
 });

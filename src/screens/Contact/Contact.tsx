@@ -18,7 +18,7 @@ export default function App() {
 
       <View style={styles.contactInfo}>
         <View>
-          <Text style={styles.Heading4Contact}>Contact Us</Text>
+          <Text style={styles.contactHeader}>Contact Us</Text>
         </View>
         <View>
           <Text style={styles.contactboldText}>Location</Text>

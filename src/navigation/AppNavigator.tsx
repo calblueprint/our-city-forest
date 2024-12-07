@@ -40,7 +40,7 @@ function LoginStackNavigator() {
 function HomeStackNavigator() {
   return (
     <HomeStack.Navigator
-      initialRouteName="TreeSearch"
+      initialRouteName="TreeInfo"
       screenOptions={{ headerShown: false }}
     >
       <HomeStack.Screen name="TreeSearch" component={TreeSearchScreen} />
@@ -82,7 +82,7 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <RootStack.Navigator
-        initialRouteName="LoginStack"
+        initialRouteName="BottomTabs"
         screenOptions={{ headerShown: false }}
       >
         <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />

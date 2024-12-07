@@ -49,6 +49,8 @@
     "react-native": "^0.76.3",
     "react-native-config": "^1.5.3",
     "react-native-dotenv": "^3.4.11",
+    "react-native-element-dropdown": "^2.12.2",
+    "react-native-elements": "^3.4.3",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.12.0",

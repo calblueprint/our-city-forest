@@ -12,6 +12,8 @@ type Colors = {
   gray3: string;
   gray4: string;
   gray5: string;
+  gray6: string;
+  color2: string;
 };
 
 const colors: Colors = {

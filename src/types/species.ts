@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export type Species = {
   name: string;
   scientific_name: string;

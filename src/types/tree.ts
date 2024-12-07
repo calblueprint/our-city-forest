@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Species } from './species';
 
 export type Tree = {

@@ -8,17 +8,20 @@ type DropdownProps<T extends string[]> = {
   options: T;
   setValue: (value: T[number]) => any;
   value: string;
+  displayValue?: (s: string) => string;
 };
 
 type Option = {
-  i: number;
+  label: string;
   value: string;
+  i: number;
 };
 
 function Dropdown<T extends string[]>({
   options,
   setValue,
   value,
+  displayValue = s => s,
 }: DropdownProps<T>) {
   return (
     <View>
@@ -33,10 +36,10 @@ function Dropdown<T extends string[]>({
         dropdownPosition="bottom"
         iconStyle={styles.iconStyle}
         data={options.map((option: T[number], i: number) => {
-          return { i, value: option };
+          return { i, label: displayValue(option), value: option };
         })}
         maxHeight={400}
-        labelField="value"
+        labelField="label"
         valueField="value"
         placeholder="Select..."
         value={value}
@@ -57,7 +60,7 @@ function Dropdown<T extends string[]>({
                 },
               ]}
             >
-              {item.value}
+              {item.label}
             </Text>
           );
         }}

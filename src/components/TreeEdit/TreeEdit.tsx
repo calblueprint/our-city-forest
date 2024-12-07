@@ -7,7 +7,12 @@ import SvgRepeat from '@/icons/Repeat';
 import SvgUser from '@/icons/User';
 import colors from '@/styles/colors';
 import { updateTree } from '@/supabase/queries/trees';
-import { Tree, TreeHealth, TreeReservedFor } from '@/types/tree';
+import {
+  Tree,
+  TreeHealth,
+  TreeProductionStatus,
+  TreeReservedFor,
+} from '@/types/tree';
 import Dropdown from '../Dropdown/Dropdown';
 import styles from './styles';
 
@@ -24,6 +29,8 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
       /\w\S*/g,
       text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
     );
+
+  const displayValue = (s: string) => titleCase(s.replace('_', ' '));
 
   const saveTreeData = async () => {
     setIsEditing(false);
@@ -108,6 +115,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeHealth)}
+              displayValue={displayValue}
               setValue={value =>
                 setTreeData({ ...treeData, health_status: value })
               }
@@ -117,7 +125,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             <View style={styles.iconTextView}>
               <SvgHeart />
               <Text style={[styles.displayText, styles.greenText]}>
-                {titleCase(treeData.health_status ?? '')}
+                {displayValue(treeData.health_status ?? '')}
               </Text>
             </View>
           )}
@@ -127,17 +135,18 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           <Text style={styles.label}>Production Status</Text>
           {isEditing ? (
             <Dropdown
-              options={Object.values(TreeReservedFor)}
+              options={Object.values(TreeProductionStatus)}
+              displayValue={displayValue}
               setValue={value =>
-                setTreeData({ ...treeData, reserved_for: value })
+                setTreeData({ ...treeData, production_status: value })
               }
-              value={treeData.reserved_for ?? ''}
+              value={treeData.production_status ?? ''}
             />
           ) : (
             <View style={styles.iconTextView}>
               <SvgRepeat />
               <Text style={[styles.displayText, styles.greenText]}>
-                {titleCase(treeData.reserved_for ?? '')}
+                {displayValue(treeData.reserved_for ?? '')}
               </Text>
             </View>
           )}
@@ -148,6 +157,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeReservedFor)}
+              displayValue={displayValue}
               setValue={value =>
                 setTreeData({ ...treeData, reserved_for: value })
               }
@@ -157,7 +167,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             <View style={styles.iconTextView}>
               <SvgUser />
               <Text style={[styles.displayText, styles.greenText]}>
-                {titleCase(treeData.reserved_for ?? '')}
+                {displayValue(treeData.reserved_for ?? '')}
               </Text>
             </View>
           )}

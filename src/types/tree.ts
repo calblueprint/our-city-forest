@@ -11,6 +11,7 @@ export type Tree = {
   sold?: boolean;
   reserved?: boolean;
   reserved_for?: TreeReservedFor;
+  production_status?: TreeProductionStatus;
   street_ready?: boolean;
   required_action?: string;
   source?: string;
@@ -28,4 +29,10 @@ export enum TreeHealth {
 export enum TreeReservedFor {
   Resident = 'resident',
   CommunityPlanting = 'community_planting',
+  Sold = 'sold',
+}
+
+export enum TreeProductionStatus {
+  InProduction = 'in_production',
+  StreetReady = 'street_ready',
 }

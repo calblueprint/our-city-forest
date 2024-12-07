@@ -1,22 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import Logo from '@/components/Logo';
+import React from 'react';
+import { Text } from 'react-native';
+import { useFonts } from 'expo-font';
+import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
+import { DefaultTheme } from '@react-navigation/native';
+import AppNavigator from '@/navigation/AppNavigator';
+import colors from '@/styles/colors';
+
+DefaultTheme.colors.background = colors.white;
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Logo />
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded] = useFonts({
+    DMSans_400Regular,
+    DMSans_700Bold,
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  const defaultFontFamily = 'DMSans_400Regular';
+  (Text as any).defaultProps = (Text as any).defaultProps || {};
+  (Text as any).defaultProps.style = { fontFamily: defaultFontFamily };
+
+  return <AppNavigator />;
+}

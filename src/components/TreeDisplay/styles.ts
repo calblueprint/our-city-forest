@@ -6,6 +6,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     marginTop: 25,
     gap: 25,
+    paddingBottom: 25,
   },
   text: {
     fontSize: 14,
@@ -46,9 +47,21 @@ export default StyleSheet.create({
   },
   properties: {
     flexWrap: 'wrap',
+    alignItems: 'center',
     flexDirection: 'row',
-    gap: 30,
   },
+  property: {
+    marginTop: 15,
+    width: '50%',
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+  },
+  propertyText: {
+    fontSize: 16,
+    color: colors.gray3,
+  },
+
   funFactHeader: {
     flexDirection: 'row',
     gap: 10,

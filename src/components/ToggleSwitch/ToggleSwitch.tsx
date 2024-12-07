@@ -75,7 +75,7 @@ export default function ToggleSwitch({
                 { translateX: translateAnimation },
                 { scaleX: scaleAnimation },
               ],
-              backgroundColor: colors.primary_green,
+              backgroundColor: colors.primary,
               width: 1,
             },
           ]}

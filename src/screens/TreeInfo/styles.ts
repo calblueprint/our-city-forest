@@ -4,7 +4,7 @@ import colors from '@/styles/colors';
 export default StyleSheet.create({
   container: {
     paddingBottom: 40,
-    backgroundColor: colors.white1,
+    backgroundColor: colors.white,
   },
   imageBg: {
     flex: 1,
@@ -23,14 +23,15 @@ export default StyleSheet.create({
   idPill: {
     flex: 0,
     alignSelf: 'center',
-    backgroundColor: colors.primary_green,
+    backgroundColor: colors.primary,
     borderRadius: 30,
   },
   idText: {
     flex: 0,
     textAlign: 'left',
-    color: colors.white1,
+    color: colors.white,
     fontSize: 16,
+    fontFamily: 'DM Sans',
     padding: 10,
     paddingVertical: 6,
   },
@@ -43,7 +44,7 @@ export default StyleSheet.create({
 
   header: {
     fontSize: 24,
-    fontWeight: 900,
+    fontFamily: 'DM Sans Bold',
     color: colors.gray1,
     paddingBottom: 10,
   },
@@ -52,6 +53,7 @@ export default StyleSheet.create({
   },
   scientificName: {
     fontSize: 18,
+    fontFamily: 'DM Sans',
     color: colors.gray1,
   },
 
@@ -69,7 +71,7 @@ export default StyleSheet.create({
     marginTop: -16,
     borderRadius: 20,
     flex: 1,
-    backgroundColor: colors.white1,
+    backgroundColor: colors.white,
   },
 
   propertiesHeader: {
@@ -77,7 +79,7 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    fontWeight: 400,
+    fontFamily: 'DM Sans',
     color: colors.gray2,
     marginBottom: 7,
   },
@@ -94,14 +96,15 @@ export default StyleSheet.create({
   },
   editButton: {
     alignSelf: 'center',
-    backgroundColor: colors.primary_green,
+    backgroundColor: colors.primary,
     padding: 9,
     paddingHorizontal: 10,
     borderRadius: 10,
   },
   doneEditingText: {
     fontSize: 18,
-    color: colors.white1,
+    fontFamily: 'DM Sans',
+    color: colors.white,
   },
 
   locationInputView: {
@@ -120,6 +123,7 @@ export default StyleSheet.create({
     paddingVertical: 11,
     paddingHorizontal: 20,
     fontSize: 16,
+    fontFamily: 'DM Sans',
   },
   textArea: {
     minHeight: 170,

@@ -22,10 +22,11 @@ export default StyleSheet.create({
     padding: 8,
     borderRadius: 30,
     zIndex: 2,
-    color: colors.primary_green,
+    color: colors.primary,
+    fontFamily: 'DM Sans',
   },
   selected: {
-    color: colors.white1,
-    fontWeight: 700,
+    color: colors.white,
+    fontFamily: 'DM Sans Bold',
   },
 });

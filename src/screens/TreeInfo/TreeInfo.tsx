@@ -23,7 +23,7 @@ type TreeInfoScreenProps = NativeStackScreenProps<
   'TreeInfo'
 >;
 
-export default function TreeInfoPage({ route }: TreeInfoPageProps) {
+export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
   const treeId = route.params?.treeId ?? '9ce20e23-a66f-4df8-8696-421202f3d616';
   const [isSpecies, setIsSpecies] = useState(false);
   const [treeData, setTreeData] = useState<Tree>({
@@ -39,7 +39,7 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
   }, [treeId]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white1 }}>
+    <View style={{ flex: 1, backgroundColor: colors.white }}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'position' : undefined}
@@ -75,7 +75,7 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
                 )}
               </View>
             </View>
-            
+
             <View style={styles.separator}></View>
 
             {isSpecies ? (

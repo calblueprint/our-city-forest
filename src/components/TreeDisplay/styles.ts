@@ -10,12 +10,13 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 14,
+    fontFamily: 'DM Sans',
     color: colors.gray3,
   },
   funFact: {
-    color: colors.primary_green,
+    color: colors.primary,
     fontSize: 18,
-    fontWeight: 700,
+    fontFamily: 'DM Sans Bold',
   },
   separator: {
     borderBottomWidth: 1,
@@ -23,7 +24,7 @@ export default StyleSheet.create({
   },
   header: {
     fontSize: 18,
-    fontWeight: 500,
+    fontFamily: 'DM Sans',
     color: colors.gray1,
   },
   textInput: {
@@ -35,6 +36,7 @@ export default StyleSheet.create({
     paddingVertical: 11,
     paddingHorizontal: 20,
     fontSize: 14,
+    fontFamily: 'DM Sans',
   },
   locations: {
     flexDirection: 'column',
@@ -51,6 +53,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   property: {
+    fontFamily: 'DM Sans',
     marginTop: 15,
     width: '50%',
     flexDirection: 'row',
@@ -59,6 +62,7 @@ export default StyleSheet.create({
   },
   propertyText: {
     fontSize: 16,
+    fontFamily: 'DM Sans',
     color: colors.gray3,
   },
 

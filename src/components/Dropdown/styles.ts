@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   selectedBar: {
     borderLeftWidth: 8,
-    borderColor: colors.primary_green,
+    borderColor: colors.primary,
     overflow: 'hidden',
     paddingHorizontal: 20 - 8,
     margin: 0,

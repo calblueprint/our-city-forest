@@ -45,11 +45,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
     <View>
       <View style={styles.editFlex}>
         <Text style={[styles.header, styles.propertiesHeader]}>Properties</Text>
-        {isEditing ? (
-          <TouchableOpacity style={styles.editButton} onPress={saveTreeData}>
-            <Text style={styles.doneEditingText}>Save</Text>
-          </TouchableOpacity>
-        ) : (
+        {!isEditing && (
           <TouchableOpacity
             style={[styles.editButton, { backgroundColor: undefined }]}
             onPress={() => setIsEditing(true)}
@@ -172,24 +168,27 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             </View>
           )}
         </View>
-      </View>
 
-      <View style={styles.propertiesFlex}>
-        <Text style={[styles.header, styles.additionalNotes]}>
-          Additional Notes
-        </Text>
-        <TextInput
-          style={[styles.textInput, styles.textArea]}
-          value={treeData.additional_notes ?? ''}
-          onChangeText={newNotes =>
-            setTreeData({ ...treeData, additional_notes: newNotes })
-          }
-          placeholder="Type notes here..."
-          multiline
-          editable={isEditing}
-          numberOfLines={4}
-        />
+        <View>
+          <Text style={styles.label}>Additional Notes</Text>
+          <TextInput
+            style={[styles.textInput, styles.textArea]}
+            value={treeData.additional_notes ?? ''}
+            onChangeText={newNotes =>
+              setTreeData({ ...treeData, additional_notes: newNotes })
+            }
+            placeholder="Type notes here..."
+            multiline
+            editable={isEditing}
+            numberOfLines={4}
+          />
+        </View>
       </View>
+      {isEditing && (
+        <TouchableOpacity style={styles.editButton} onPress={saveTreeData}>
+          <Text style={styles.doneEditingText}>Save</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

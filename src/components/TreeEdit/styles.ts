@@ -13,14 +13,15 @@ export default StyleSheet.create({
   idPill: {
     flex: 0,
     alignSelf: 'center',
-    backgroundColor: colors.primary_green,
+    backgroundColor: colors.primary,
     borderRadius: 30,
   },
   idText: {
     flex: 0,
     textAlign: 'left',
-    color: colors.white1,
+    color: colors.white,
     fontSize: 16,
+    fontFamily: 'DM Sans',
     padding: 10,
     paddingVertical: 6,
   },
@@ -33,15 +34,13 @@ export default StyleSheet.create({
 
   header: {
     fontSize: 24,
-    fontWeight: 900,
+    fontFamily: 'DM Sans Bold',
     color: colors.gray1,
     paddingBottom: 10,
   },
-  additionalNotes: {
-    paddingBottom: 4,
-  },
   scientificName: {
     fontSize: 18,
+    fontFamily: 'DM Sans',
     color: colors.gray1,
   },
 
@@ -58,17 +57,17 @@ export default StyleSheet.create({
     marginTop: -16,
     borderRadius: 20,
     flex: 1,
-    backgroundColor: colors.white1,
+    backgroundColor: colors.white,
   },
 
   propertiesHeader: {
     marginVertical: 30,
   },
   label: {
+    fontFamily: 'DM Sans',
     fontSize: 16,
-    fontWeight: 400,
     color: colors.gray2,
-    marginBottom: 7,
+    marginBottom: 10,
   },
   propertiesFlex: {
     flex: 1,
@@ -80,17 +79,21 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
   },
   editButton: {
     alignSelf: 'center',
-    backgroundColor: colors.primary_green,
-    padding: 9,
-    paddingHorizontal: 10,
+    backgroundColor: colors.primary,
+    paddingHorizontal: 37,
+    paddingVertical: 13,
+    width: '100%',
+    alignItems: 'center',
     borderRadius: 10,
   },
   doneEditingText: {
     fontSize: 18,
-    color: colors.white1,
+    fontFamily: 'DM Sans Bold',
+    color: colors.white,
   },
 
   locationInputView: {
@@ -105,14 +108,16 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     fontSize: 16,
+    fontFamily: 'DM Sans',
     gap: 9,
   },
   displayText: {
     fontSize: 16,
+    fontFamily: 'DM Sans',
     color: colors.gray3,
   },
   greenText: {
-    color: colors.primary_green,
+    color: colors.primary,
   },
 
   textInput: {
@@ -124,6 +129,7 @@ export default StyleSheet.create({
     paddingVertical: 11,
     paddingHorizontal: 20,
     fontSize: 16,
+    fontFamily: 'DM Sans',
   },
   textArea: {
     minHeight: 170,

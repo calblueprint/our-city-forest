@@ -8,6 +8,7 @@ import SvgUser from '@/icons/User';
 import colors from '@/styles/colors';
 import { updateTree } from '@/supabase/queries/trees';
 import {
+  displayValue,
   Tree,
   TreeHealth,
   TreeProductionStatus,
@@ -23,14 +24,6 @@ type TreeEditProps = {
 
 export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
   const [isEditing, setIsEditing] = useState(false);
-
-  const titleCase = (str: string) =>
-    str.replace(
-      /\w\S*/g,
-      text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
-    );
-
-  const displayValue = (s: string) => titleCase(s.replace('_', ' '));
 
   const saveTreeData = async () => {
     setIsEditing(false);

@@ -36,3 +36,11 @@ export enum TreeProductionStatus {
   InProduction = 'in_production',
   StreetReady = 'street_ready',
 }
+
+export const titleCase = (str: string) =>
+  str.replace(
+    /\w\S*/g,
+    text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
+  );
+
+export const displayValue = (s: string) => titleCase(s.replace('_', ' '));

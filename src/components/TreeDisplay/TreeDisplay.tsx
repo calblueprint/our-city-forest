@@ -1,12 +1,19 @@
 import { Text, TextInput, View } from 'react-native';
+import SvgBear from '@/icons/Bear';
+import SvgDrop from '@/icons/Drop';
+import SvgFlash from '@/icons/Flash';
+import SvgLeaf from '@/icons/Leaf';
 import Lightbulb from '@/icons/Lightbulb';
 import SvgLocationPin from '@/icons/Location';
 import SvgNuts from '@/icons/Nuts';
 import SvgPaintbucket from '@/icons/Paintbucket';
 import SvgRuler from '@/icons/Ruler';
+import SvgShapes from '@/icons/Shapes';
 import SvgTree from '@/icons/Tree';
 import SvgWarning2 from '@/icons/Warning2';
-import { Tree } from '@/types/tree';
+import SvgWateringCan from '@/icons/WateringCan';
+import { TreeFruitType } from '@/types/species';
+import { displayValue, Tree } from '@/types/tree';
 import styles from './styles';
 
 type TreeDisplayProps = {
@@ -49,60 +56,69 @@ export default function TreeDisplay({ treeData }: TreeDisplayProps) {
           <View style={styles.property}>
             <SvgRuler />
             <Text style={styles.propertyText}>
-              {treeData.species?.height_ft}ft
-            </Text>
-          </View>
-        )}
-
-        {treeData.species?.has_nuts !== null && (
-          <View style={styles.property}>
-            <SvgNuts />
-            <Text style={styles.propertyText}>
-              {treeData.species?.has_nuts ? 'Has nuts' : 'No nuts'}
+              {treeData.species?.height_ft} ft
             </Text>
           </View>
         )}
 
         {treeData.species?.tree_shape && (
           <View style={styles.property}>
-            <SvgTree />
+            <SvgShapes />
             <Text style={styles.propertyText}>
-              {treeData.species?.tree_shape}
+              {displayValue(treeData.species?.tree_shape)}
             </Text>
           </View>
         )}
 
-        {treeData.species?.utility_friendly && (
+        {treeData.species?.water_amount && (
+          <View style={styles.property}>
+            <SvgWateringCan />
+            <Text style={styles.propertyText}>
+              {displayValue(treeData.species?.water_amount)} Water
+            </Text>
+          </View>
+        )}
+
+        {treeData.species?.root_damage_potential && (
           <View style={styles.property}>
             <SvgWarning2 />
-            <Text style={styles.propertyText}>Utility Friendly</Text>
-          </View>
-        )}
-
-        {treeData.species?.flower_color && (
-          <View style={styles.property}>
-            <SvgPaintbucket />
             <Text style={styles.propertyText}>
-              {treeData.species?.flower_color}
+              {displayValue(treeData.species.root_damage_potential)}
             </Text>
           </View>
         )}
 
-        {treeData.species?.has_nuts && (
+        {treeData.species?.fruit_type && (
           <View style={styles.property}>
-            <SvgNuts />
+            {treeData.species.fruit_type === TreeFruitType.Dry ? (
+              <SvgNuts />
+            ) : (
+              <SvgDrop />
+            )}
             <Text style={styles.propertyText}>
-              {treeData.species?.has_nuts ? 'Has nuts' : 'No nuts'}
+              {displayValue(treeData.species.fruit_type)} Fruit
             </Text>
           </View>
         )}
 
-        {treeData.species?.has_nuts && (
+        {treeData.species?.ca_native && (
           <View style={styles.property}>
-            <SvgNuts />
-            <Text style={styles.propertyText}>
-              {treeData.species?.has_nuts ? 'Has nuts' : 'No nuts'}
-            </Text>
+            <SvgBear />
+            <Text style={styles.propertyText}>CA Native</Text>
+          </View>
+        )}
+
+        {treeData.species?.evegreen && (
+          <View style={styles.property}>
+            <SvgLeaf />
+            <Text style={styles.propertyText}>Evegreen</Text>
+          </View>
+        )}
+
+        {treeData.species?.powerline_friendly && (
+          <View style={styles.property}>
+            <SvgFlash />
+            <Text style={styles.propertyText}>Powerline Friendly</Text>
           </View>
         )}
       </View>

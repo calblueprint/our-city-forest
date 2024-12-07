@@ -8,9 +8,42 @@ export type Species = {
   ca_native?: boolean;
   fall_color?: boolean;
   utility_friendly?: boolean;
-  root_damage_potential?: string;
-  tree_shape?: string;
+  root_damage_potential?: TreeRootDamagePotential;
+  tree_shape?: TreeShape;
   flower_color?: string;
-  fruit_type?: string;
-  has_nuts?: boolean;
+  fruit_type?: TreeFruitType;
+  water_amount?: TreeWaterAmount;
+  evegreen?: boolean;
+  powerline_friendly?: boolean;
 };
+
+export enum TreeShape {
+  Columnar = 'columnar',
+  Conical = 'conical',
+  Irregular = 'irregular',
+  Palm = 'palm',
+  Rounded = 'rounded',
+  Prostrate = 'prostrate',
+  Pyramid = 'pyramid',
+  Sprawling = 'sprawling',
+  SwordPalm = 'sword_palm',
+  Weeping = 'weeping',
+  Vase = 'vase',
+}
+
+export enum TreeFruitType {
+  Wet = 'wet',
+  Dry = 'dry',
+}
+
+export enum TreeRootDamagePotential {
+  Low = 'low',
+  Moderate = 'moderate',
+  High = 'high',
+}
+
+export enum TreeWaterAmount {
+  Low = 'low',
+  Moderate = 'moderate',
+  High = 'high',
+}

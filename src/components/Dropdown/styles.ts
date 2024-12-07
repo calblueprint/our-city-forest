@@ -19,6 +19,7 @@ export default StyleSheet.create({
     margin: 0,
   },
   text: {
+    fontFamily: 'DM Sans',
     color: colors.gray3,
     fontSize: 16,
     textTransform: 'capitalize',

@@ -135,7 +135,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             <View style={styles.iconTextView}>
               <SvgRepeat />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.reserved_for ?? '')}
+                {displayValue(treeData.production_status ?? '')}
               </Text>
             </View>
           )}

@@ -1,28 +1,30 @@
 import * as React from 'react';
-import Svg, { Circle, Path, SvgProps } from 'react-native-svg';
+import Svg, { Ellipse, Path, SvgProps } from 'react-native-svg';
 
 const SvgBear = (props: SvgProps) => (
-  <Svg width={37} height={33} fill="none" {...props}>
-    <Circle
-      cx={6.058}
-      cy={6.058}
-      r={6.058}
+  <Svg width={31} height={25} fill="none" {...props}>
+    <Ellipse
+      cx={5.402}
+      cy={5.264}
       fill="#446127"
-      transform="matrix(-1 0 0 1 33.991 3.759)"
+      rx={5.402}
+      ry={5.264}
+      transform="matrix(-1 0 0 1 29.303 .954)"
     />
-    <Circle cx={18.27} cy={18.05} r={11.719} fill="#9BA98C" />
-    <Circle
-      cx={6.058}
-      cy={6.058}
-      r={6.058}
+    <Ellipse cx={15.285} cy={13.372} fill="#9BA98C" rx={10.449} ry={10.182} />
+    <Ellipse
+      cx={5.402}
+      cy={5.264}
       fill="#9BA98C"
-      transform="matrix(-1 0 0 1 15.01 3.759)"
+      rx={5.402}
+      ry={5.264}
+      transform="matrix(-1 0 0 1 12.379 .954)"
     />
-    <Circle cx={23.32} cy={16.85} r={1.2} fill="#446127" />
-    <Circle cx={13.219} cy={16.849} r={1.199} fill="#446127" />
+    <Ellipse cx={19.788} cy={12.329} fill="#446127" rx={1.07} ry={1.043} />
+    <Ellipse cx={10.781} cy={12.328} fill="#446127" rx={1.069} ry={1.041} />
     <Path
       fill="#446127"
-      d="M17.763 22.232a.7.7 0 0 0 1.015 0l1.494-1.575a.7.7 0 0 0-.508-1.181h-2.987a.7.7 0 0 0-.508 1.181z"
+      d="M14.784 16.955a.7.7 0 0 0 1.003 0l1.126-1.156a.7.7 0 0 0-.502-1.189h-2.252a.7.7 0 0 0-.501 1.189z"
     />
   </Svg>
 );

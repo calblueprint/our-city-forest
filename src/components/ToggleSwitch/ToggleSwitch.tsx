@@ -42,7 +42,7 @@ export default function ToggleSwitch({
     if (!trueLabelLayout || !falseLabelLayout) return;
 
     Animated.timing(translateAnimation, {
-      duration: 150,
+      duration: 100,
       toValue: value
         ? trueLabelLayout.x + trueLabelLayout.width / 2 - 2
         : falseLabelLayout.x + falseLabelLayout.width / 2 + 2,
@@ -50,7 +50,7 @@ export default function ToggleSwitch({
     }).start();
 
     Animated.timing(scaleAnimation, {
-      duration: 150,
+      duration: 100,
       toValue: (value ? trueLabelLayout.width : falseLabelLayout.width) ?? 0,
       useNativeDriver: true,
     }).start();

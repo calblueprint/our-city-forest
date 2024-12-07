@@ -2,6 +2,7 @@ import { Text, TextInput, View } from 'react-native';
 import SvgBear from '@/icons/Bear';
 import SvgDrop from '@/icons/Drop';
 import SvgFlash from '@/icons/Flash';
+import SvgFruit from '@/icons/Fruit';
 import SvgLeaf from '@/icons/Leaf';
 import Lightbulb from '@/icons/Lightbulb';
 import SvgLocationPin from '@/icons/Location';
@@ -90,11 +91,7 @@ export default function TreeDisplay({ treeData }: TreeDisplayProps) {
 
         {treeData.species?.fruit_type && (
           <View style={styles.property}>
-            {treeData.species.fruit_type === TreeFruitType.Dry ? (
-              <SvgNuts />
-            ) : (
-              <SvgDrop />
-            )}
+            <SvgFruit />
             <Text style={styles.propertyText}>
               {displayValue(treeData.species.fruit_type)} Fruit
             </Text>

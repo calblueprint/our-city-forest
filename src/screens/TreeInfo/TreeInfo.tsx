@@ -14,13 +14,13 @@ import TreeDisplay from '@/components/TreeDisplay/TreeDisplay';
 import TreeEdit from '@/components/TreeEdit/TreeEdit';
 import colors from '@/styles/colors';
 import { getTreeInfo } from '@/supabase/queries/trees';
-import { RootStackParamList } from '@/types/navigation';
+import { HomeStackParamList } from '@/types/navigation';
 import { Tree } from '@/types/tree';
 import styles from './styles';
 
-type TreeInfoPageProps = NativeStackScreenProps<
-  RootStackParamList,
-  'TreeInfoScreen'
+type TreeInfoScreenProps = NativeStackScreenProps<
+  HomeStackParamList,
+  'TreeInfo'
 >;
 
 export default function TreeInfoPage({ route }: TreeInfoPageProps) {
@@ -75,7 +75,7 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
                 )}
               </View>
             </View>
-
+            
             <View style={styles.separator}></View>
 
             {isSpecies ? (

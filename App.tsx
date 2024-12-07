@@ -1,23 +1,26 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TreeInfoScreen from '@/screens/TreeInfo/TreeInfo';
-import { RootStackParamList } from '@/types/navigation';
+import React from 'react';
+import { Text } from 'react-native';
+import { useFonts } from 'expo-font';
+import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
+import { DefaultTheme } from '@react-navigation/native';
+import AppNavigator from '@/navigation/AppNavigator';
+import colors from '@/styles/colors';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+DefaultTheme.colors.background = colors.white;
 
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="TreeInfoScreen"
-          component={TreeInfoScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+export default function App() {
+  const [fontsLoaded] = useFonts({
+    DMSans_400Regular,
+    DMSans_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  const defaultFontFamily = 'DMSans_400Regular';
+  (Text as any).defaultProps = (Text as any).defaultProps || {};
+  (Text as any).defaultProps.style = { fontFamily: defaultFontFamily };
+
+  return <AppNavigator />;
 }
-
-export default App;

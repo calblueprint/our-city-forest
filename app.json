@@ -14,14 +14,7 @@
         {
           "cameraPermission": "Allow Our City Forest to access your camera to scan QR codes."
         }
-      ]
-    ],
-    "splash": {
-      "image": "./assets/bp-splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "plugins": [
+      ],
       [
         "expo-dev-launcher",
         {
@@ -29,6 +22,11 @@
         }
       ]
     ],
+    "splash": {
+      "image": "./assets/bp-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "platforms": ["ios", "android", "web"],
     "ios": {
       "bundleIdentifier": "org.calblueprint.ourcityforest",
@@ -48,11 +46,11 @@
     "web": {
       "favicon": "./assets/bp-favicon.png"
     },
-    "scheme": "org.calblueprint.ourcityforest",
     "extra": {
       "eas": {
         "projectId": "d04f2944-f495-4c9b-b330-6e13ce59c6ff"
       }
-    }
+    },
+    "scheme": "our-city-forest"
   }
 }

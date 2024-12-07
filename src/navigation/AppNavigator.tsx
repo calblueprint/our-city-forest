@@ -27,7 +27,10 @@ const RootStack = createStackNavigator<RootStackParamList>();
 // Login Stack Navigator
 function LoginStackNavigator() {
   return (
-    <LoginStack.Navigator initialRouteName="Login">
+    <LoginStack.Navigator
+      initialRouteName="Login"
+      screenOptions={{ headerShown: false }}
+    >
       <LoginStack.Screen name="Login" component={LoginScreen} />
     </LoginStack.Navigator>
   );
@@ -36,7 +39,10 @@ function LoginStackNavigator() {
 // Home Stack Navigator
 function HomeStackNavigator() {
   return (
-    <HomeStack.Navigator initialRouteName="TreeSearch">
+    <HomeStack.Navigator
+      initialRouteName="TreeSearch"
+      screenOptions={{ headerShown: false }}
+    >
       <HomeStack.Screen name="TreeSearch" component={TreeSearchScreen} />
       <HomeStack.Screen name="QRCodeScanner" component={QRCodeScanner} />
       <HomeStack.Screen name="TreeInfo" component={TreeInfoScreen} />
@@ -48,7 +54,10 @@ function HomeStackNavigator() {
 // Contact Stack Navigator
 function ContactStackNavigator() {
   return (
-    <ContactStack.Navigator initialRouteName="Contact">
+    <ContactStack.Navigator
+      initialRouteName="Contact"
+      screenOptions={{ headerShown: false }}
+    >
       <ContactStack.Screen name="Contact" component={ContactScreen} />
       <ContactStack.Screen name="Directory" component={DirectoryScreen} />
     </ContactStack.Navigator>
@@ -58,7 +67,10 @@ function ContactStackNavigator() {
 // Tab Navigator
 function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator initialRouteName="Home">
+    <BottomTab.Navigator
+      initialRouteName="Home"
+      screenOptions={{ headerShown: false }}
+    >
       <BottomTab.Screen name="Home" component={HomeStackNavigator} />
       <BottomTab.Screen name="Contact" component={ContactStackNavigator} />
     </BottomTab.Navigator>

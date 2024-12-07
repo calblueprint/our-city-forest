@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 export default StyleSheet.create({
   container: {
@@ -7,7 +8,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     paddingHorizontal: 44,
-    backgroundColor: colors.primary_green,
+    backgroundColor: colors.primary,
   },
 
   iconFlex: {
@@ -19,7 +20,7 @@ export default StyleSheet.create({
   },
 
   icon: {
-    backgroundColor: colors.white1,
+    backgroundColor: colors.white,
     padding: 8,
   },
 
@@ -36,15 +37,17 @@ export default StyleSheet.create({
     flexDirection: 'column',
     gap: 8,
   },
+
   header: {
     textAlign: 'center',
-    fontSize: 24,
-    color: colors.white1,
+    ...typography.heading5,
+    color: colors.white,
   },
+
   subtext: {
     textAlign: 'center',
-    fontSize: 20,
-    color: colors.white1,
+    ...typography.normalRegular,
+    color: colors.white,
   },
 
   cameraView: {
@@ -52,17 +55,19 @@ export default StyleSheet.create({
     width: 285,
     height: 248,
     borderWidth: 2,
-    borderColor: colors.primary_green_2,
+    borderColor: colors.secondary,
     borderRadius: 12,
     zIndex: 1,
   },
+
   camera: {
     flex: 1,
     borderRadius: 12,
     overflow: 'hidden',
   },
+
   qrCodeFoundCamera: {
-    borderColor: colors.primary_yellow,
+    borderColor: colors.tertiary,
   },
 
   buttonContainer: {
@@ -71,6 +76,7 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     margin: 64,
   },
+
   scanButton: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -85,17 +91,11 @@ export default StyleSheet.create({
     backgroundColor: colors.gray4,
   },
   scanButtonEnabled: {
-    backgroundColor: colors.primary_yellow,
+    backgroundColor: colors.tertiary,
   },
 
   scanButtonText: {
-    fontSize: 18,
-    color: colors.white1,
-  },
-
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    ...typography.mediumBold,
+    color: colors.white,
   },
 });

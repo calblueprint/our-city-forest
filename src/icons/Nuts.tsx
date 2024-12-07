@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Svg, { G, Path } from 'react-native-svg';
+import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgNuts = (props: any) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={37}
-    height={37}
-    fill="none"
-    {...props}
-  >
+const SvgNuts = (props: SvgProps) => (
+  <Svg width={37} height={37} fill="none" {...props}>
     <G
       stroke="#446127"
       strokeLinecap="round"

@@ -60,9 +60,9 @@ export default function ToggleSwitch({
     runAnimations(value);
   }, [trueLabelLayout, falseLabelLayout]);
 
-  const handlePress = (value: boolean) => {
-    runAnimations(value);
-    onValueChange(value);
+  const handlePress = (newValue: boolean) => {
+    runAnimations(newValue);
+    onValueChange(newValue);
   };
 
   return (

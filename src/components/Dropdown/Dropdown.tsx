@@ -52,7 +52,7 @@ function Dropdown<T extends string[]>({
                 styles.itemContainer,
                 selected && styles.selectedBar,
                 { borderBottomLeftRadius: 0, borderTopLeftRadius: 0 },
-                item.i == 0 && {
+                item.i === 0 && {
                   borderTopLeftRadius: 5,
                 },
                 item.i === options.length - 1 && {

@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgLightbulb = (props: any) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={27}
-    height={27}
-    fill="none"
-    {...props}
-  >
+const SvgLightbulb = (props: SvgProps) => (
+  <Svg width={27} height={27} fill="none" {...props}>
     <Path
       stroke="#446127"
       strokeLinecap="round"

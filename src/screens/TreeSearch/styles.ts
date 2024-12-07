@@ -5,6 +5,8 @@ const { width, height } = Dimensions.get('window');
 
 const responsivePadding = width * 0.05;
 
+const screenWidth = Dimensions.get('window').width;
+
 export const styles = StyleSheet.create({
   backgroundContainer: {
     flexGrow: 1,
@@ -45,11 +47,13 @@ export const styles = StyleSheet.create({
   // Tree Cards
 
   treeGrid: {
-    gap: 10,
+    width: '100%',
+    gap: 16,
+    paddingHorizontal: width * 0.04,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    width: '100%',
+    alignItems: 'flex-start',
   },
 
   treeCard: {
@@ -63,7 +67,7 @@ export const styles = StyleSheet.create({
 
   treeImage: {
     width: '100%',
-    height: 135,
+    height: 150,
     flexShrink: 0,
     borderRadius: 5,
     resizeMode: 'cover',

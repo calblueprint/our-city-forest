@@ -28,7 +28,7 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
         setLoading(true);
         const { data, error } = await supabase
           .from('trees')
-          .select('tree_id, species, sold, species(image_link)');
+          .select('tree_id, species, sold, species (name, image_link)');
 
         if (error) {
           throw new Error(`Error fetching tree data: ${error.message}`);
@@ -37,24 +37,28 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
         const treeCounts: Record<string, number> = data.reduce(
           (acc, tree) => {
             if (!tree.sold) {
-              acc[tree.species] = (acc[tree.species] || 0) + 1;
+              acc[tree.species.name] = (acc[tree.species.name] || 0) + 1;
             }
             return acc;
           },
           {} as Record<string, number>,
         );
 
-        const treesData: TreeItem[] = Object.keys(treeCounts).map(species => {
-          const treeSample = data.find(tree => tree.species === species);
+        const treesData: TreeItem[] = Object.keys(treeCounts).map(
+          speciesName => {
+            const treeSample = data.find(
+              tree => tree.species.name === speciesName,
+            );
 
-          return {
-            tree_id: treeSample?.tree_id || 0,
-            species: species,
-            image_link: treeSample?.species?.image_link || '',
-            sold: false,
-            stockCount: treeCounts[species],
-          };
-        });
+            return {
+              tree_id: treeSample?.tree_id || 0,
+              species: speciesName,
+              image_link: treeSample?.species?.image_link || '',
+              sold: false,
+              stockCount: treeCounts[speciesName],
+            };
+          },
+        );
 
         setTrees(treesData);
         setError(null);

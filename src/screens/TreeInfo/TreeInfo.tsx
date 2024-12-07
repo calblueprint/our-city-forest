@@ -29,6 +29,7 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
   const [treeData, setTreeData] = useState<Tree>({
     tree_id: treeId,
   });
+  const treeBgImage = treeData.species?.image_link;
 
   useEffect(() => {
     (async () => {
@@ -46,7 +47,7 @@ export default function TreeInfoPage({ route }: TreeInfoPageProps) {
       >
         <ScrollView style={styles.container}>
           <ImageBackground
-            source={TreeBg}
+            source={treeBgImage ? { uri: treeBgImage } : TreeBg}
             style={styles.imageBg}
           ></ImageBackground>
           <View style={styles.body}>

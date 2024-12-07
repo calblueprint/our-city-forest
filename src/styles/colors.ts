@@ -5,8 +5,12 @@ export default {
   white1: '#FFFFFF',
   off_white: '#F9F4E8',
   pure_black: '#000000',
+  black2: '##1D1D1D',
   black3: '#282828',
+  gray1: '#333333',
   gray2: '#4F4F4F',
-  gray4: '#BDBDBD',
   gray3: '#828282',
+  gray4: '#BDBDBD',
+  gray5: '#E0E0E0',
+  gray6: '#F2F2F2',
 };

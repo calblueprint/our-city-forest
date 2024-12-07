@@ -2,7 +2,8 @@ import * as React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
-import About from '@/screens/About/About';
+import Contact from '@/screens/Contact/Contact';
+import Directory from '@/screens/Contact/Directory';
 import HomeScreen from '@/screens/Home/Home';
 import LoginScreen from '@/screens/login/LoginScreen';
 import TreeInfoPage from '@/screens/TreeInfo/TreeInfo';
@@ -25,7 +26,7 @@ const App = () => {
         />
       </LoginStack.Navigator> */}
 
-      <RootStack.Navigator initialRouteName="About">
+      <RootStack.Navigator initialRouteName="Contact">
         <RootStack.Screen
           name="Home"
           component={HomeScreen}
@@ -47,8 +48,13 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <RootStack.Screen
-          name="About"
-          component={About}
+          name="Contact"
+          component={Contact}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name="Directory"
+          component={Directory}
           options={{ headerShown: false }}
         />
       </RootStack.Navigator>

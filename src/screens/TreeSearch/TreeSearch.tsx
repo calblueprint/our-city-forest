@@ -70,8 +70,7 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
   return (
     <ScrollView style={styles.backgroundContainer}>
       <View style={styles.searchContainer}>
-        <Text style={styles.Heading4Search}>Trees Availability</Text>
-        <Text style={styles.treeInfo}>Remaining Trees: {remainingCount}</Text>
+        <Text style={styles.searchHeading}>Trees Availability</Text>
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
         <FlatList
           data={filteredTrees}

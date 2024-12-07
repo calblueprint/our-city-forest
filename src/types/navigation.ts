@@ -10,6 +10,6 @@ export type RootStackParamList = {
   Scanner: undefined;
   TreeInfoPage: { treeId: string };
   TreeSearch: undefined;
-  About: undefined;
+  Contact: undefined;
   Directory: undefined;
 };

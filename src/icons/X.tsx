@@ -1,20 +1,20 @@
-import type { SVGProps } from 'react';
 import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
-const SvgX = (props: SVGProps<SVGSVGElement>) => (
-  <svg
+const SvgX = (props: any) => (
+  <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={19}
-    height={17}
+    width={28}
+    height={26}
     fill="none"
     {...props}
   >
-    <path
+    <Path
       fill="#fff"
       fillRule="evenodd"
-      d="M7.45 9.022.705.643h5.341l4.163 5.18L14.656.666h2.942l-5.966 6.925 7.074 8.801h-5.325l-4.507-5.6-4.812 5.585H1.105zm6.707 5.819L3.981 2.196h1.29L15.433 14.84z"
+      d="M11.573 13.63 3.448 3.535h6.436l5.016 6.24 5.358-6.212h3.545l-7.19 8.345 8.525 10.606h-6.417l-5.43-6.749-5.8 6.73H3.929zm8.084 7.012L7.394 5.404h1.554l12.247 15.238z"
       clipRule="evenodd"
     />
-  </svg>
+  </Svg>
 );
 export default SvgX;

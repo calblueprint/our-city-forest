@@ -38,12 +38,12 @@ export default function ToggleSwitch({
   const translateAnimation = useRef(new Animated.Value(40)).current;
   const scaleAnimation = useRef(new Animated.Value(0)).current;
 
-  const runAnimations = (value: boolean) => {
+  const runAnimations = (newValue: boolean) => {
     if (!trueLabelLayout || !falseLabelLayout) return;
 
     Animated.timing(translateAnimation, {
       duration: 100,
-      toValue: value
+      toValue: newValue
         ? trueLabelLayout.x + trueLabelLayout.width / 2 - 2
         : falseLabelLayout.x + falseLabelLayout.width / 2 + 2,
       useNativeDriver: true,
@@ -51,7 +51,7 @@ export default function ToggleSwitch({
 
     Animated.timing(scaleAnimation, {
       duration: 100,
-      toValue: (value ? trueLabelLayout.width : falseLabelLayout.width) ?? 0,
+      toValue: (newValue ? trueLabelLayout.width : falseLabelLayout.width) ?? 0,
       useNativeDriver: true,
     }).start();
   };

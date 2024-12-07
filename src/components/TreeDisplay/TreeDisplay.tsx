@@ -1,19 +1,14 @@
 import { Text, TextInput, View } from 'react-native';
 import SvgBear from '@/icons/Bear';
-import SvgDrop from '@/icons/Drop';
 import SvgFlash from '@/icons/Flash';
 import SvgFruit from '@/icons/Fruit';
 import SvgLeaf from '@/icons/Leaf';
 import Lightbulb from '@/icons/Lightbulb';
 import SvgLocationPin from '@/icons/Location';
-import SvgNuts from '@/icons/Nuts';
-import SvgPaintbucket from '@/icons/Paintbucket';
 import SvgRuler from '@/icons/Ruler';
 import SvgShapes from '@/icons/Shapes';
-import SvgTree from '@/icons/Tree';
 import SvgWarning2 from '@/icons/Warning2';
 import SvgWateringCan from '@/icons/WateringCan';
-import { TreeFruitType } from '@/types/species';
 import { displayValue, Tree } from '@/types/tree';
 import styles from './styles';
 

@@ -17,7 +17,6 @@ export default StyleSheet.create({
     overflow: 'hidden',
   },
   switch: {
-    fontWeight: 700,
     fontSize: 14,
     margin: 2,
     padding: 8,
@@ -27,5 +26,6 @@ export default StyleSheet.create({
   },
   selected: {
     color: colors.white1,
+    fontWeight: 700,
   },
 });

@@ -61,14 +61,23 @@ function Dropdown<T extends string[]>({
             </Text>
           );
         }}
-        renderRightIcon={() => (
-          <Icon
-            name="arrow-drop-down"
-            type="material"
-            color={colors.gray4}
-            size={24}
-          />
-        )}
+        renderRightIcon={visible =>
+          visible ? (
+            <Icon
+              name="arrow-drop-up"
+              type="material"
+              color={colors.gray4}
+              size={24}
+            />
+          ) : (
+            <Icon
+              name="arrow-drop-down"
+              type="material"
+              color={colors.gray4}
+              size={24}
+            />
+          )
+        }
         onChange={(item: Option) => {
           setValue(item.value);
         }}

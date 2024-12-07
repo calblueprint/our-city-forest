@@ -12,4 +12,5 @@ export type Species = {
   tree_shape: string;
   flower_color: string;
   fruit_type: string;
+  has_nuts: boolean;
 };

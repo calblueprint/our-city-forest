@@ -40,7 +40,7 @@ function LoginStackNavigator() {
 function HomeStackNavigator() {
   return (
     <HomeStack.Navigator
-      initialRouteName="TreeInfo"
+      initialRouteName="SpeciesInfo"
       screenOptions={{ headerShown: false }}
     >
       <HomeStack.Screen name="TreeSearch" component={TreeSearchScreen} />

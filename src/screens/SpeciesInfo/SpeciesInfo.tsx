@@ -7,15 +7,14 @@ import {
   Text,
   View,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
 import SpeciesDisplay from '@/components/SpeciesDisplay/SpeciesDisplay';
-import ToggleSwitch from '@/components/ToggleSwitch/ToggleSwitch';
-import TreeDisplay from '@/components/TreeDisplay/TreeDisplay';
-import TreeEdit from '@/components/TreeEdit/TreeEdit';
+import SvgBackArrow from '@/icons/BackArrow';
+import SvgScanBarcode from '@/icons/ScanBarcode';
 import colors from '@/styles/colors';
 import { getAllTreesForSpecies, getSpecies } from '@/supabase/queries/species';
-import { getTreeInfo } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { Species } from '@/types/species';
 import { Tree } from '@/types/tree';
@@ -26,7 +25,10 @@ type SpeciesInfoScreenProps = NativeStackScreenProps<
   'SpeciesInfo'
 >;
 
-export default function SpeciesInfoScreen({ route }: SpeciesInfoScreenProps) {
+export default function SpeciesInfoScreen({
+  route,
+  navigation,
+}: SpeciesInfoScreenProps) {
   const speciesName = route.params?.speciesName ?? 'California Buckwheat';
   const [speciesData, setSpeciesData] = useState<Partial<Species>>({
     name: speciesName,
@@ -58,6 +60,16 @@ export default function SpeciesInfoScreen({ route }: SpeciesInfoScreenProps) {
             source={treeBgImage ? { uri: treeBgImage } : TreeBg}
             style={styles.imageBg}
           >
+            <View style={styles.topBar}>
+              <TouchableOpacity>
+                <SvgBackArrow />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.push('QRCodeScanner')}
+              >
+                <SvgScanBarcode />
+              </TouchableOpacity>
+            </View>
             <View style={styles.imageEmbed}>
               <View style={styles.countPill}>
                 <Text style={styles.idText}>{treeData.length} left</Text>

@@ -6,6 +6,13 @@ export default StyleSheet.create({
     paddingBottom: 40,
     backgroundColor: colors.white,
   },
+  topBar: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 40,
+    marginHorizontal: 27,
+    justifyContent: 'space-between',
+  },
   imageBg: {
     flex: 1,
     height: 292,
@@ -73,7 +80,7 @@ export default StyleSheet.create({
   // Main body
   body: {
     paddingHorizontal: 42,
-    paddingTop: 20,
+    paddingTop: 64,
     marginBottom: 10,
     marginTop: -16,
     borderRadius: 20,

@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '@/types/navigation';
-import { fetchTreeData } from '../../supabase/client';
+import SearchBar from '../../components/searchBar';
+import { getAllSpecies } from '../../supabase/queries/species';
 import { styles } from './styles';
 
 type TreeSearchScreenProps = NativeStackScreenProps<
@@ -16,48 +17,55 @@ type TreeSearchScreenProps = NativeStackScreenProps<
   'TreeSearch'
 >;
 
-export default function TreeSearchScreen({
-  navigation,
-}: TreeSearchScreenProps) {
-  type Tree = {
-    tree_id: number;
-    species: string;
-    row: number;
-    bank: number;
-    image_url?: string;
-  };
+type TreeItem = {
+  tree_id: number;
+  species: string;
+  image_url: string;
+  sold: boolean;
+};
 
-  const [trees, setTrees] = useState<Tree[]>([]);
+export default function TreeSearch({ navigation }: TreeSearchProps) {
+  const [trees, setTrees] = useState<TreeItem[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const loadTreeData = async () => {
-      const treeData = await fetchTreeData();
-      console.log('Fetched trees:', treeData);
-      if (treeData) {
-        setTrees(treeData);
+      const speciesData = await getAllSpecies();
+
+      if (!speciesData || speciesData.length === 0) {
+        console.error('Failed to fetch tree data');
+        return;
       }
+
+      const treesData: TreeItem[] = speciesData.map((species: any) => ({
+        tree_id: species.id,
+        species: species.name,
+        image_url: species.image,
+        sold: species.sold ?? false,
+      }));
+
+      const remainingTrees = treesData.filter(tree => !tree.sold);
+
+      setTrees(remainingTrees);
     };
 
     loadTreeData();
   }, []);
 
-  const renderTreeCard = ({ item }: { item: Tree }) => (
-    <View style={styles.treeRow}>
-      <View style={styles.treeCard}>
-        <ImageBackground
-          source={{
-            uri: item.image_url || 'https://example.com/placeholder-image.jpg',
-          }}
-          style={styles.treeImage}
-        ></ImageBackground>
-        <View>
-          <Text style={styles.treeName}>{item.species}</Text>
-          <View style={styles.treeDetails}>
-            <Text style={styles.treeInfo}>Row {item.row}</Text>
-            <Text style={styles.treeInfo}> • </Text>
-            <Text style={styles.treeInfo}>Bank {item.bank}</Text>
-          </View>
-        </View>
+  const filteredTrees = trees.filter(tree =>
+    tree.species.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
+  const remainingCount = filteredTrees.length;
+
+  const renderTreeCard = ({ item }: { item: TreeItem }) => (
+    <View style={styles.treeCard}>
+      <ImageBackground
+        source={{ uri: item.image_url }}
+        style={styles.treeImage}
+      />
+      <View>
+        <Text style={styles.treeName}>{item.species}</Text>
       </View>
     </View>
   );
@@ -65,11 +73,15 @@ export default function TreeSearchScreen({
   return (
     <ScrollView style={styles.backgroundContainer}>
       <View style={styles.searchContainer}>
-        <Text style={styles.searchHeading}>Trees Availibility</Text>
+        <Text style={styles.searchHeading}>Trees Availability</Text>
+        <SearchBar value={searchQuery} onChange={setSearchQuery} />
         <FlatList
-          data={trees}
+          data={filteredTrees}
           renderItem={renderTreeCard}
           keyExtractor={item => item.tree_id.toString()}
+          numColumns={2}
+          columnWrapperStyle={styles.treeGrid}
+          scrollEnabled={false}
         />
       </View>
     </ScrollView>

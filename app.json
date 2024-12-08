@@ -2,6 +2,7 @@
   "expo": {
     "name": "Our City Forest",
     "slug": "our-city-forest",
+    "newArchEnabled": true,
     "owner": "ocfdev",
     "version": "1.0.0",
     "orientation": "portrait",

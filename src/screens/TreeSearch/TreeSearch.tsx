@@ -7,12 +7,15 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types/navigation';
+import { HomeStackParamList } from '@/types/navigation';
 import SearchBar from '../../components/searchBar';
 import { getAllSpecies } from '../../supabase/queries/species';
 import { styles } from './styles';
 
-type TreeSearchProps = NativeStackScreenProps<RootStackParamList, 'TreeSearch'>;
+type TreeSearchScreenProps = NativeStackScreenProps<
+  HomeStackParamList,
+  'TreeSearch'
+>;
 
 type TreeItem = {
   tree_id: number;

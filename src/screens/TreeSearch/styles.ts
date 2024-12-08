@@ -1,5 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+import typography from '@/styles/typography';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -10,7 +12,7 @@ const screenWidth = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
   backgroundContainer: {
     flexGrow: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     paddingTop: 18,
     paddingLeft: 27,
     paddingRight: 27,

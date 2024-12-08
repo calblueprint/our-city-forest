@@ -22,8 +22,6 @@ export default function SpeciesDisplay({
   speciesData,
   treeData,
 }: SpeciesDisplayProps) {
-  console.log('speciesData', speciesData);
-  console.log('treeData', treeData);
   return (
     <View style={styles.main}>
       <Text style={styles.text}>{speciesData.description}</Text>

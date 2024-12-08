@@ -5,8 +5,6 @@ const { width, height } = Dimensions.get('window');
 
 const responsivePadding = width * 0.05;
 
-const screenWidth = Dimensions.get('window').width;
-
 export const styles = StyleSheet.create({
   backgroundContainer: {
     flexGrow: 1,
@@ -48,7 +46,6 @@ export const styles = StyleSheet.create({
 
   treeGrid: {
     width: '100%',
-    gap: 16,
     paddingHorizontal: width * 0.04,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -57,11 +54,12 @@ export const styles = StyleSheet.create({
   },
 
   treeCard: {
-    width: '48%',
-    marginBottom: 10,
+    width: width > 600 ? '30%' : '48%',
+    marginBottom: width * 0.02,
+    marginHorizontal: width * 0.01,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    borderRadius: 8,
+    borderRadius: 10,
     overflow: 'hidden',
   },
 
@@ -79,27 +77,27 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    marginTop: 5,
+    marginTop: width * 0.01,
   },
 
   treeName: {
-    fontSize: 18,
+    fontSize: width > 600 ? 20 : 18,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginTop: 5,
+    marginTop: width * 0.01,
     flex: 1,
     overflow: 'hidden',
   },
 
   treeStock: {
-    fontSize: 14,
+    fontSize: width > 600 ? 16 : 14,
     fontWeight: 'medium',
     color: colors.gray3,
     textAlign: 'left',
   },
 
   treeError: {
-    fontSize: 14,
+    fontSize: width > 600 ? 16 : 14,
     fontWeight: 'medium',
     padding: 0,
   },

@@ -1,3 +1,8 @@
+import {
+  FunctionsFetchError,
+  FunctionsHttpError,
+  FunctionsRelayError,
+} from '@supabase/supabase-js';
 import { Tree } from '@/types/tree';
 import { supabase } from '../client';
 
@@ -10,9 +15,12 @@ export async function addTree(species: string) {
   }
 }
 
-// Function to add multiple trees
-export async function addMultipleTrees(species: string, quantity: number) {
-  const { error } = await supabase.rpc('add_multiple_trees', {
+// Function to add multiple trees of the same species. Returns an array of UUIDs for all trees that were added.
+export async function addMultipleTrees(
+  species: string,
+  quantity: number,
+): Promise<string[]> {
+  const { data, error } = await supabase.rpc('add_multiple_trees', {
     species: species,
     quantity: quantity,
   });
@@ -20,6 +28,9 @@ export async function addMultipleTrees(species: string, quantity: number) {
   if (error) {
     throw new Error(`Error adding multiple trees: ${error.message}`);
   }
+
+  const treeIds: string[] = Array.isArray(data) ? data : [];
+  return treeIds;
 }
 
 // Function to remove a single tree by UUID
@@ -249,5 +260,32 @@ export async function updateTreeQrCodeUrl(treeId: string, qrCodeUrl?: string) {
 
   if (error) {
     throw new Error(`Error updating QR code URL: ${error.message}`);
+  }
+}
+
+// Calls Supabase Edge function to generate QR code
+export async function generateQRImage(treeId: string): Promise<void> {
+  try {
+    const { data, error } = await supabase.functions.invoke('qr-generate', {
+      body: { tree_id: treeId },
+    });
+
+    // Typed error handling because generic error.message provides no information
+    if (error instanceof FunctionsHttpError) {
+      const errorMessage = await error.context.text();
+      throw new Error(`FunctionsHttpError: ${errorMessage}$`);
+    } else if (error instanceof FunctionsRelayError) {
+      throw new Error(`FunctionsRelayError: ${error.message}$`);
+    } else if (error instanceof FunctionsFetchError) {
+      throw new Error(`FunctionsFetchError: ${error.message}$`);
+    } else if (error) {
+      throw new Error(`Failed to generate QR code: ${error.message}`);
+    }
+
+    console.log(`QR code generated successfully for tree ${treeId}`);
+    return data;
+  } catch (error) {
+    console.error(`Error generating QR code for tree ${treeId}:`, error);
+    throw error;
   }
 }

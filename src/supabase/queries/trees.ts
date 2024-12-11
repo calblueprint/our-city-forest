@@ -15,11 +15,11 @@ export async function addTree(species: string) {
   }
 }
 
+// Function to add multiple trees of the same species. Returns an array of UUIDs for all trees that were added.
 export async function addMultipleTrees(
   species: string,
   quantity: number,
 ): Promise<string[]> {
-  // add_multiple_trees returns all uuids of trees added in JSON form
   const { data, error } = await supabase.rpc('add_multiple_trees', {
     species: species,
     quantity: quantity,
@@ -29,7 +29,6 @@ export async function addMultipleTrees(
     throw new Error(`Error adding multiple trees: ${error.message}`);
   }
 
-  // data is now a JSON array of UUIDs, parse it if needed
   const treeIds: string[] = Array.isArray(data) ? data : [];
   return treeIds;
 }
@@ -271,7 +270,7 @@ export async function generateQRImage(treeId: string): Promise<void> {
       body: { tree_id: treeId },
     });
 
-    // typed error handling because generic error.message provides no info
+    // Typed error handling because generic error.message provides no information
     if (error instanceof FunctionsHttpError) {
       const errorMessage = await error.context.text();
       throw new Error(`FunctionsHttpError: ${errorMessage}$`);

@@ -109,12 +109,19 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       {isAuthenticated ? (
-        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Navigator
+          initialRouteName="BottomTabs"
+          screenOptions={{ headerShown: false }}
+        >
           <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
         </RootStack.Navigator>
       ) : (
-        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Navigator
+          initialRouteName="LoginStack"
+          screenOptions={{ headerShown: false }}
+        >
           <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
+          <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
         </RootStack.Navigator>
       )}
     </NavigationContainer>

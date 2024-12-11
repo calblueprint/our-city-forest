@@ -1,8 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
+import SvgContactSelected from '@/icons/ContactSelected';
+import SvgContactUnselected from '@/icons/ContactUnselected';
+import SvgHomeSelected from '@/icons/HomeSelected';
+import SvgHomeUnselected from '@/icons/HomeUnselected';
 import ContactScreen from '@/screens/Contact/Contact';
 import DirectoryScreen from '@/screens/Directory/Directory';
 import LoginScreen from '@/screens/Login/Login';
@@ -18,11 +22,11 @@ import {
 } from '@/types/navigation';
 
 // Stack and Tab Navigators
-const LoginStack = createStackNavigator<LoginStackParamList>();
-const HomeStack = createStackNavigator<HomeStackParamList>();
-const ContactStack = createStackNavigator<ContactStackParamList>();
+const LoginStack = createNativeStackNavigator<LoginStackParamList>();
+const HomeStack = createNativeStackNavigator<HomeStackParamList>();
+const ContactStack = createNativeStackNavigator<ContactStackParamList>();
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-const RootStack = createStackNavigator<RootStackParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 // Login Stack Navigator
 function LoginStackNavigator() {
@@ -69,7 +73,28 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      screenOptions={{ headerShown: false }}
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: { paddingTop: 10 },
+        tabBarIcon: ({ focused }) => {
+          if (route.name === 'Home') {
+            return focused ? (
+              <SvgHomeSelected width={30} height={30} />
+            ) : (
+              <SvgHomeUnselected width={30} height={30} />
+            );
+          }
+          if (route.name === 'Contact') {
+            return focused ? (
+              <SvgContactSelected width={30} height={30} />
+            ) : (
+              <SvgContactUnselected width={30} height={30} />
+            );
+          }
+          return null;
+        },
+      })}
     >
       <BottomTab.Screen name="Home" component={HomeStackNavigator} />
       <BottomTab.Screen name="Contact" component={ContactStackNavigator} />

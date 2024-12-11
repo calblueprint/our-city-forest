@@ -14,7 +14,7 @@ export default StyleSheet.create({
   iconFlex: {
     flex: 0,
     width: '100%',
-    paddingHorizontal: 44,
+    paddingHorizontal: 27,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -90,6 +90,7 @@ export default StyleSheet.create({
   scanButtonDisabled: {
     backgroundColor: colors.gray4,
   },
+
   scanButtonEnabled: {
     backgroundColor: colors.tertiary,
   },

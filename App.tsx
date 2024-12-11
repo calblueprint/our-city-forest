@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
@@ -22,5 +23,9 @@ export default function App() {
   (Text as any).defaultProps = (Text as any).defaultProps || {};
   (Text as any).defaultProps.style = { fontFamily: defaultFontFamily };
 
-  return <AppNavigator />;
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AppNavigator />
+    </GestureHandlerRootView>
+  );
 }

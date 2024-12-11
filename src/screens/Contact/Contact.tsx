@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
 import { styles } from './styles';
 
-export default function App() {
+export default function ContactScreen() {
   return (
     <ScrollView style={styles.backgroundContainer}>
       <View style={styles.imageContainer}>

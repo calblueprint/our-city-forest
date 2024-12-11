@@ -12,4 +12,5 @@ export type RootStackParamList = {
   TreeSearch: undefined;
   Contact: undefined;
   Directory: undefined;
+  QRCodeScanner: undefined;
 };

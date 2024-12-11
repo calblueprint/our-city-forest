@@ -4,14 +4,14 @@ import colors from '@/styles/colors';
 const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  backgroundContainer: {
+  contactContainer: {
     flexGrow: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
     alignItems: 'center',
   },
 
-  headerContainer: {
+  contactHeaderContainer: {
     paddingTop: height * 0.1,
     height: height / 3,
     flexDirection: 'column',
@@ -122,7 +122,65 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  backButton: {},
+  // Directory
 
-  backIcon: {},
+  directoryContainer: {
+    paddingTop: height * 0.07,
+    paddingLeft: 42,
+    paddingRight: 42,
+    paddingBottom: 42,
+  },
+
+  directoryHeader: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  backIcon: {
+    width: 24,
+    height: 24,
+  },
+
+  callIcon: {
+    width: 64,
+    height: 64,
+    paddingTop: 45,
+    paddingBottom: 45,
+  },
+
+  directoryContent: {
+    gap: 29,
+  },
+
+  directoryDetailsContainer: {
+    gap: 10,
+  },
+
+  directoryHeading: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: 'black',
+  },
+
+  directorySubHeading: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: colors.gray2,
+  },
+
+  directoryTextBold: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: colors.gray2,
+  },
+
+  directoryTextLight: {
+    fontSize: 14,
+    color: colors.gray3,
+  },
 });

@@ -67,8 +67,8 @@ export default function Contact({ navigation }: ContactProps) {
   console.log('Rendering Contact screen');
 
   return (
-    <View style={styles.backgroundContainer}>
-      <View style={styles.headerContainer}>
+    <View style={styles.contactContainer}>
+      <View style={styles.contactHeaderContainer}>
         <Image source={require('assets/OCF.png')} />
         <Text style={styles.contactHeading}>Contact Us</Text>
       </View>
@@ -112,7 +112,9 @@ export default function Contact({ navigation }: ContactProps) {
       />
 
       <View style={styles.logoutContainer}>
-        <Text style={styles.logoutText}>Logout</Text>
+        <TouchableOpacity>
+          <Text style={styles.logoutText}>Log Out</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

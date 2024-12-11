@@ -74,6 +74,7 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
+        headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: { paddingTop: 10 },
         tabBarIcon: ({ focused }) => {

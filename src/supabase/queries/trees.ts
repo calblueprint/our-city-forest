@@ -1,3 +1,4 @@
+import { Tree } from '@/types/tree';
 import { supabase } from '../client';
 
 // Function to add a single tree
@@ -53,10 +54,20 @@ export async function getTreeInfo(treeId: string) {
     throw new Error(`Error retrieving tree info: ${error.message}`);
   }
 
-  return data;
+  return data as Tree;
 }
 
 // Functions to update each property
+export async function updateTree(treeId: string, data: Partial<Tree>) {
+  const { error } = await supabase
+    .from('trees')
+    .update({ ...data })
+    .eq('tree_id', treeId);
+
+  if (error) {
+    throw new Error(`Error updating tree (${data}): ${error.message}`);
+  }
+}
 
 // Update species
 export async function updateTreeSpecies(treeId: string, newSpecies: string) {

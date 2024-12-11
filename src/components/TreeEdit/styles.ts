@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 export default StyleSheet.create({
   headerFlex: {
@@ -10,21 +11,23 @@ export default StyleSheet.create({
     marginBottom: 21 + 16,
     gap: 5,
   },
+
   idPill: {
     flex: 0,
     alignSelf: 'center',
     backgroundColor: colors.primary,
     borderRadius: 30,
   },
+
   idText: {
+    ...typography.normalRegular,
     flex: 0,
     textAlign: 'left',
     color: colors.white,
-    fontSize: 16,
-    fontFamily: 'DM Sans',
     padding: 10,
     paddingVertical: 6,
   },
+
   idPillFlex: {
     flex: 0,
     flexDirection: 'row',
@@ -33,14 +36,13 @@ export default StyleSheet.create({
   },
 
   header: {
-    fontSize: 24,
-    fontFamily: 'DM Sans Bold',
+    ...typography.heading5,
     color: colors.gray1,
     paddingBottom: 10,
   },
+
   scientificName: {
-    fontSize: 18,
-    fontFamily: 'DM Sans',
+    ...typography.mediumRegular,
     color: colors.gray1,
   },
 
@@ -63,12 +65,13 @@ export default StyleSheet.create({
   propertiesHeader: {
     marginVertical: 30,
   },
+
   label: {
-    fontFamily: 'DM Sans',
-    fontSize: 16,
+    ...typography.normalRegular,
     color: colors.gray2,
     marginBottom: 10,
   },
+
   propertiesFlex: {
     flex: 1,
     gap: 26,
@@ -81,6 +84,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
   },
+
   editButton: {
     alignSelf: 'center',
     backgroundColor: colors.primary,
@@ -90,9 +94,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
+
   doneEditingText: {
-    fontSize: 18,
-    fontFamily: 'DM Sans Bold',
+    ...typography.mediumBold,
     color: colors.white,
   },
 
@@ -103,24 +107,26 @@ export default StyleSheet.create({
     flexGrow: 1,
     gap: 15,
   },
+
   iconTextView: {
+    ...typography.normalRegular,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    fontSize: 16,
-    fontFamily: 'DM Sans',
     gap: 9,
   },
+
   displayText: {
-    fontSize: 16,
-    fontFamily: 'DM Sans',
+    ...typography.normalRegular,
     color: colors.gray3,
   },
+
   greenText: {
     color: colors.primary,
   },
 
   textInput: {
+    ...typography.normalRegular,
     flex: 1,
     color: colors.gray3,
     borderWidth: 1,
@@ -128,14 +134,14 @@ export default StyleSheet.create({
     borderColor: colors.gray5,
     paddingVertical: 11,
     paddingHorizontal: 20,
-    fontSize: 16,
-    fontFamily: 'DM Sans',
   },
+
   textArea: {
     minHeight: 170,
     paddingVertical: 20,
     color: colors.gray3,
   },
+
   ownershipTextArea: {
     marginTop: 14,
     minHeight: 90,

@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 export default StyleSheet.create({
   outer: {
@@ -9,6 +10,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     padding: 2,
   },
+
   main: {
     flexDirection: 'row',
     borderRadius: 30,
@@ -16,17 +18,18 @@ export default StyleSheet.create({
     alignSelf: 'center',
     overflow: 'hidden',
   },
+
   switch: {
-    fontSize: 14,
+    ...typography.smallRegular,
     margin: 2,
     padding: 8,
     borderRadius: 30,
     zIndex: 2,
     color: colors.primary,
-    fontFamily: 'DM Sans',
   },
+
   selected: {
+    ...typography.smallBold,
     color: colors.white,
-    fontFamily: 'DM Sans Bold',
   },
 });

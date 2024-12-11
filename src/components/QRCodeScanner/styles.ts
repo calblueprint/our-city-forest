@@ -90,6 +90,7 @@ export default StyleSheet.create({
   scanButtonDisabled: {
     backgroundColor: colors.gray4,
   },
+
   scanButtonEnabled: {
     backgroundColor: colors.tertiary,
   },

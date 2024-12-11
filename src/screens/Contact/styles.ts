@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
+import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   backgroundContainer: {
     flexGrow: 1,
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
 
   linksButton: {
@@ -23,11 +25,9 @@ export const styles = StyleSheet.create({
     height: 110,
   },
 
-  Heading4Contact: {
-    // change this later
-    color: '#333',
-    fontSize: 24,
-    fontWeight: '700',
+  contactHeader: {
+    color: colors.gray1,
+    ...typography.heading5,
     paddingBottom: 30,
     textAlign: 'left',
   },
@@ -37,26 +37,23 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     borderRadius: 20,
     marginTop: 250,
     padding: 40,
   },
 
   contactText: {
-    // change this later
-    color: '#4F4F4F',
-    fontSize: 16,
+    color: colors.gray2,
+    ...typography.normalRegular,
     paddingBottom: 40,
     textAlign: 'center',
   },
 
   contactboldText: {
-    // change this later
-    color: '#4F4F4F',
-    fontSize: 18,
+    color: colors.gray2,
+    ...typography.mediumBold,
     paddingBottom: 10,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
 });

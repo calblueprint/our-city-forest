@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types/navigation';
+import { ContactStackParamList } from '@/types/navigation';
 import ArrowRight from '../svg/arrow-right.svg';
 import Call from '../svg/call.svg';
 import Location from '../svg/location.svg';
@@ -15,9 +15,12 @@ import OcfLogo from '../svg/ocf-logo.svg';
 import Website from '../svg/website.svg';
 import { styles } from './styles';
 
-type ContactProps = NativeStackScreenProps<RootStackParamList, 'Contact'>;
+type ContactScreenProps = NativeStackScreenProps<
+  ContactStackParamList,
+  'Contact'
+>;
 
-export default function Contact({ navigation }: ContactProps) {
+export default function ContactScreen({ navigation }: ContactScreenProps) {
   const openLink = (url: string) => {
     Linking.openURL(url).catch(err => console.error("Failed to open URL:", err));
   };
@@ -32,7 +35,7 @@ export default function Contact({ navigation }: ContactProps) {
       <View>
         <View>
           <OcfLogo style={styles.ocfLogo} />
-          <Text style={styles.Heading4Contact}>Contact Us</Text>
+          <Text style={styles.contactHeader}>Contact Us</Text>
         </View>
         
         <TouchableOpacity

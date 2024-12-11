@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 const { width, height } = Dimensions.get('window');
 
@@ -8,7 +9,7 @@ const responsivePadding = width * 0.05;
 export const styles = StyleSheet.create({
   backgroundContainer: {
     flexGrow: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     paddingTop: 18,
     paddingLeft: 27,
     paddingRight: 27,
@@ -36,8 +37,7 @@ export const styles = StyleSheet.create({
 
   searchHeading: {
     color: colors.primary_green,
-    fontSize: 32,
-    fontWeight: '700',
+    ...typography.heading4,
     paddingBottom: 10,
     textAlign: 'left',
   },
@@ -81,8 +81,8 @@ export const styles = StyleSheet.create({
   },
 
   treeName: {
+    ...typography.mediumBold,
     fontSize: width > 600 ? 20 : 18,
-    fontWeight: 'bold',
     textAlign: 'left',
     marginTop: width * 0.01,
     flex: 1,
@@ -90,15 +90,15 @@ export const styles = StyleSheet.create({
   },
 
   treeStock: {
+    ...typography.smallRegular,
     fontSize: width > 600 ? 16 : 14,
-    fontWeight: 'medium',
     color: colors.gray3,
     textAlign: 'left',
   },
 
   treeError: {
+    ...typography.smallRegular,
     fontSize: width > 600 ? 16 : 14,
-    fontWeight: 'medium',
     padding: 0,
   },
 });

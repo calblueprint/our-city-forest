@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -16,6 +15,7 @@ import {
   LoginStackParamList,
   RootStackParamList,
 } from '@/types/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 // Stack and Tab Navigators
 const LoginStack = createStackNavigator<LoginStackParamList>();
@@ -79,15 +79,19 @@ function BottomTabNavigator() {
 
 // Root Navigator
 export default function AppNavigator() {
+  const { isAuthenticated } = useAuth(); 
+
   return (
     <NavigationContainer>
-      <RootStack.Navigator
-        initialRouteName="LoginStack"
-        screenOptions={{ headerShown: false }}
-      >
-        <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
-        <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
-      </RootStack.Navigator>
+      {isAuthenticated ? (
+        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+          <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
+        </RootStack.Navigator>
+      ) : (
+        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+          <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
+        </RootStack.Navigator>
+      )}
     </NavigationContainer>
   );
 }

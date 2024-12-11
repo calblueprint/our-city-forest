@@ -5,6 +5,7 @@ import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
 import AppNavigator from '@/navigation/AppNavigator';
 import colors from '@/styles/colors';
+import {AuthContextProvider} from '@/context/AuthContext';
 
 DefaultTheme.colors.background = colors.white;
 
@@ -22,5 +23,9 @@ export default function App() {
   (Text as any).defaultProps = (Text as any).defaultProps || {};
   (Text as any).defaultProps.style = { fontFamily: defaultFontFamily };
 
-  return <AppNavigator />;
+  return (
+    <AuthContextProvider>
+      <AppNavigator />
+    </AuthContextProvider>
+  );
 }

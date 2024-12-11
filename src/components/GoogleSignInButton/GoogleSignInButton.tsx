@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { makeRedirectUri } from 'expo-auth-session';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
+import { useAuth } from '@/context/AuthContext';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -16,15 +16,8 @@ type GoogleSignInButtonProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
 >;
 
-type UserInfo = {
-  email: string;
-  name: string;
-};
-
-export default function GoogleSignInButton({
-  navigation,
-}: GoogleSignInButtonProps) {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+export default function GoogleSignInButton({ navigation }: GoogleSignInButtonProps) {
+  const { setAuthenticated } = useAuth(); 
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
     androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
@@ -32,56 +25,33 @@ export default function GoogleSignInButton({
     redirectUri: makeRedirectUri({ scheme: 'org.calblueprint.ourcityforest' }),
   });
 
-  console.log(request);
-  console.log(userInfo);
-
   useEffect(() => {
-    async function handleSignInWithGoogle() {
-      try {
-        const userJSON = await AsyncStorage.getItem('@user');
-        if (userJSON) {
-          setUserInfo(JSON.parse(userJSON));
-        } else if (
-          response?.type === 'success' &&
-          response.authentication?.accessToken
-        ) {
-          await getUserInfo(response.authentication.accessToken);
-          navigation.navigate('BottomTabs', {
-            screen: 'Home',
-            params: { screen: 'TreeSearch' },
-          });
-        }
-      } catch (error) {
-        console.error('Error retrieving user data from AsyncStorage:', error);
-      }
+    if (response?.type === 'success' && response.authentication?.accessToken) {
+      handleSignInWithGoogle(response.authentication.accessToken);
     }
+  }, [response]);
 
-    handleSignInWithGoogle();
-  }, [navigation, response]);
-
-  const getUserInfo = async (token: string) => {
-    if (!token) return;
+  const handleSignInWithGoogle = async (token: string) => {
     try {
-      const userResponse = await fetch(
-        'https://www.googleapis.com/userinfo/v2/me',
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
-      const user = await userResponse.json();
-      await AsyncStorage.setItem('@user', JSON.stringify(user));
-      setUserInfo(user);
+      const userResponse = await fetch('https://www.googleapis.com/userinfo/v2/me', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (userResponse.ok) {
+        await setAuthenticated(true); 
+        navigation.navigate('BottomTabs', { screen: 'Home', params: { screen: 'TreeSearch' } });
+      } else {
+        console.error('Authentication failed');
+        await setAuthenticated(false);
+      }
     } catch (error) {
-      console.error('Failed to fetch user data:', error);
+      console.error('Failed to sign in with Google:', error);
+      await setAuthenticated(false);
     }
   };
 
   return (
-    <TouchableOpacity
-      onPress={() => {
-        promptAsync();
-      }}
-    >
+    <TouchableOpacity onPress={() => promptAsync()}>
       <Text style={styles.adminLoginLinkText}>Login Here</Text>
     </TouchableOpacity>
   );

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "expo start --go",
+    "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "lint:check": "npx eslint .",

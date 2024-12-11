@@ -6,7 +6,6 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import SvgFlash from '@/icons/Flash';
 import SvgFlashCircle from '@/icons/FlashCircle';
 import SvgXButton from '@/icons/XButton';
 import { HomeStackParamList } from '@/types/navigation';

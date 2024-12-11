@@ -26,7 +26,7 @@ const App = () => {
         />
       </LoginStack.Navigator> */}
 
-      <RootStack.Navigator initialRouteName="Contact">
+      <RootStack.Navigator initialRouteName="TreeSearch">
         <RootStack.Screen
           name="Home"
           component={HomeScreen}

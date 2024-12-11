@@ -15,15 +15,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  scannerIcon: {
-    height: 53,
-    width: 53,
-    borderRadius: 26.5,
-    backgroundColor: colors.primary_green,
-    justifyContent: 'center',
-    padding: 10,
-    alignItems: 'center',
-  },
+  // scannerIcon: {
+  //   height: 53,
+  //   width: 53,
+  //   borderRadius: 26.5,
+  //   backgroundColor: colors.primary_green,
+  //   justifyContent: 'center',
+  //   padding: 10,
+  //   alignItems: 'center',
+  // },
 
   // Search Component
 

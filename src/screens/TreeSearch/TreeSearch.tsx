@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, ImageBackground, Text, View } from 'react-native';
+import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import QrCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
 import Scanner from '@/icons/Scanner';
 import { RootStackParamList } from '@/types/navigation';
 import SearchBar from '../../components/searchBar';
 import { supabase } from '../../supabase/client';
+import TreeInfo from '../TreeInfo/TreeInfo';
 import { styles } from './styles';
 
 type TreeSearchProps = NativeStackScreenProps<RootStackParamList, 'TreeSearch'>;
@@ -79,7 +80,12 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
   );
 
   const renderTreeCard = ({ item }: { item: TreeItem }) => (
-    <View style={styles.treeCard}>
+    <Pressable
+      onPress={() =>
+        navigation.navigate('TreeInfoPage', { treeId: item.tree_id.toString() })
+      }
+      style={styles.treeCard}
+    >
       <ImageBackground
         source={{
           uri: item.image_link || 'https://example.com/placeholder.jpg',
@@ -90,17 +96,14 @@ export default function TreeSearch({ navigation }: TreeSearchProps) {
         {item.species}
       </Text>
       <Text style={styles.treeStock}>{item.stockCount} in stock</Text>
-    </View>
+    </Pressable>
   );
 
   return (
     <>
       <View style={styles.headingContainer}>
         <Text style={styles.searchHeading}>Trees Inventory</Text>
-        <Scanner
-          style={styles.scannerIcon}
-          onPress={() => navigation.navigate('QRCodeScanner')}
-        />
+        <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
       </View>
       <SearchBar value={searchQuery} onChange={setSearchQuery} />
 

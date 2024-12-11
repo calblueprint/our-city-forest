@@ -134,6 +134,7 @@ export const styles = StyleSheet.create({
   directoryHeader: {
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom: 40,
   },
 
   backButton: {

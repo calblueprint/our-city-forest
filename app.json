@@ -2,16 +2,32 @@
   "expo": {
     "name": "Our City Forest",
     "slug": "our-city-forest",
-    "owner": "calblueprint",
+    "newArchEnabled": true,
+    "owner": "ocfdev",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Our City Forest to access your camera to scan QR codes."
+        }
+      ],
+      [
+        "expo-dev-launcher",
+        {
+          "launchMode": "most-recent"
+        }
+      ]
+    ],
     "splash": {
       "image": "./assets/bp-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "platforms": ["ios", "android", "web"],
     "ios": {
       "bundleIdentifier": "org.calblueprint.ourcityforest",
       "supportsTablet": true,
@@ -29,6 +45,12 @@
     },
     "web": {
       "favicon": "./assets/bp-favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d04f2944-f495-4c9b-b330-6e13ce59c6ff"
+      }
+    },
+    "scheme": "our-city-forest"
   }
 }

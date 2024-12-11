@@ -8,6 +8,10 @@ node_modules/
 dist/
 web-build/
 
+# Platforms
+ios/
+android/
+
 # Native
 *.orig.*
 *.jks
@@ -34,3 +38,8 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Supabase
+src/supabase/.branches
+src/supabase/.temp
+src/supabase/.env

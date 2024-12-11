@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   },
 
   searchHeading: {
-    color: colors.primary_green,
+    color: colors.primary,
     ...typography.heading4,
     paddingBottom: 10,
     textAlign: 'left',

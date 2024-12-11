@@ -19,7 +19,7 @@ type TreeItem = {
   stockCount: number;
 };
 
-export default function TreeSearch({ navigation }: TreeSearchProps) {
+export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
   const [trees, setTrees] = useState<TreeItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);

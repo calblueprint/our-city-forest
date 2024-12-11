@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { addMultipleTrees, generateQRImage } from '../../supabase/queries';
+import { addMultipleTrees, generateQRImage } from '@/supabase/queries/trees';
 import styles from './styles';
 
 export default function AddTrees() {

@@ -3,9 +3,9 @@ import { Text } from 'react-native';
 import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
+import { AuthContextProvider } from '@/context/AuthContext';
 import AppNavigator from '@/navigation/AppNavigator';
 import colors from '@/styles/colors';
-import {AuthContextProvider} from '@/context/AuthContext';
 
 DefaultTheme.colors.background = colors.white;
 

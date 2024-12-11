@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
+import { useAuth } from '@/context/AuthContext';
 import ContactScreen from '@/screens/Contact/Contact';
 import DirectoryScreen from '@/screens/Directory/Directory';
 import LoginScreen from '@/screens/Login/Login';
@@ -15,7 +16,6 @@ import {
   LoginStackParamList,
   RootStackParamList,
 } from '@/types/navigation';
-import { useAuth } from '@/context/AuthContext';
 
 // Stack and Tab Navigators
 const LoginStack = createStackNavigator<LoginStackParamList>();
@@ -79,7 +79,7 @@ function BottomTabNavigator() {
 
 // Root Navigator
 export default function AppNavigator() {
-  const { isAuthenticated } = useAuth(); 
+  const { isAuthenticated } = useAuth();
 
   return (
     <NavigationContainer>

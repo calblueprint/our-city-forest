@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type AuthState = {
@@ -16,19 +22,19 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       try {
         const storedAuth = await AsyncStorage.getItem('authenticated');
         console.log('Auth state from storage:', storedAuth);
-        setIsAuthenticated(storedAuth === 'true'); 
+        setIsAuthenticated(storedAuth === 'true');
       } catch (error) {
         console.error('Error loading authentication state:', error);
       }
     };
 
     syncAuthState();
-  }, []); 
+  }, []);
 
   const setAuthenticated = async (value: boolean) => {
     try {
       await AsyncStorage.setItem('authenticated', value ? 'true' : 'false');
-      setIsAuthenticated(value); 
+      setIsAuthenticated(value);
     } catch (error) {
       console.error('Failed to update authentication state:', error);
     }

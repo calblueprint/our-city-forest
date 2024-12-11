@@ -1,8 +1,19 @@
 import React from 'react';
 import { Image, ScrollView, Text, View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import GoogleSignOutButton from '@/components/GoogleSignOutButton/GoogleSignOutButton';
+import { ContactStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
-export default function ContactScreen() {
+type ContactScreenProps = NativeStackScreenProps<
+  ContactStackParamList,
+  'Contact'
+>;
+
+export default function ContactScreen({
+  navigation,
+  route,
+}: ContactScreenProps) {
   return (
     <ScrollView style={styles.backgroundContainer}>
       <View style={styles.imageContainer}>
@@ -17,6 +28,9 @@ export default function ContactScreen() {
       </View>
 
       <View style={styles.contactInfo}>
+        {/* temporary button */}
+        <GoogleSignOutButton navigation={navigation} route={route} />
+
         <View>
           <Text style={styles.contactHeader}>Contact Us</Text>
         </View>

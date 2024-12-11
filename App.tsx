@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
+import { AuthContextProvider } from '@/context/AuthContext';
 import AppNavigator from '@/navigation/AppNavigator';
 import colors from '@/styles/colors';
 
@@ -25,7 +26,9 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <AppNavigator />
+      <AuthContextProvider>
+        <AppNavigator />
+      </AuthContextProvider>
     </GestureHandlerRootView>
   );
 }

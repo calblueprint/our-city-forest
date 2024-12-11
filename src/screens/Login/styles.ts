@@ -22,8 +22,8 @@ export const styles = StyleSheet.create({
 
   logo: {
     height: 200,
-    marginTop: 40,
-    marginBottom: 40,
+    marginTop: 20,
+    marginBottom: 70,
   },
 
   button: {

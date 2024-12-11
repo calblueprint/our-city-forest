@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React from 'react';
 import { Text, TextInput, View } from 'react-native';
 import SvgBear from '@/icons/Bear';
 import SvgFlash from '@/icons/Flash';

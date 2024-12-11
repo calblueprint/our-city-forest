@@ -8,6 +8,7 @@
     "orientation": "portrait",
     "icon": "./assets/bp-icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "plugins": [
       [
         "expo-camera",

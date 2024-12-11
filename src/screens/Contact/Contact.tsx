@@ -1,8 +1,18 @@
-import React from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
+/* import React from 'react';
+import {
+  Linking,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import GoogleSignOutButton from '@/components/GoogleSignOutButton/GoogleSignOutButton';
 import { ContactStackParamList } from '@/types/navigation';
+import ArrowRight from '../svg/arrow-right.svg';
+import Call from '../svg/call.svg';
+import Location from '../svg/location.svg';
+import OcfLogo from '../svg/ocf-logo.svg';
+import Website from '../svg/website.svg';
 import { styles } from './styles';
 
 type ContactScreenProps = NativeStackScreenProps<
@@ -10,58 +20,56 @@ type ContactScreenProps = NativeStackScreenProps<
   'Contact'
 >;
 
-export default function ContactScreen({
-  navigation,
-  route,
-}: ContactScreenProps) {
+export default function ContactScreen({ navigation }: ContactScreenProps) {
+  const openLink = (url: string) => {
+    Linking.openURL(url).catch(err => console.error("Failed to open URL:", err));
+  };
+
+  const openLocation = () => {
+    const locationUrl = 'https://www.google.com/maps/place/Our+City+Forest/@37.590136,-122.3968825,10z/data=!4m20!...';
+    Linking.openURL(locationUrl).catch(err => console.error("Failed to open location:", err));
+  };
+
   return (
     <ScrollView style={styles.backgroundContainer}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={{
-            uri: 'https://images.squarespace-cdn.com/content/v1/545bbd7ee4b032c1794c4020/1502738972151-U1234630JTWT5NEITDFG/image-asset.jpeg?format=1500w',
-          }}
-          style={styles.contactImage}
-        />
-
-        <View style={styles.contactOverlay}></View>
-      </View>
-
-      <View style={styles.contactInfo}>
-        {/* temporary button */}
-        <GoogleSignOutButton navigation={navigation} route={route} />
-
+      <View>
         <View>
+          <OcfLogo style={styles.ocfLogo} />
           <Text style={styles.contactHeader}>Contact Us</Text>
         </View>
-        <View>
-          <Text style={styles.contactboldText}>Location</Text>
-          <Text style={styles.contactText}>
-            123 Berkeley Way, San Jose, CA 95035
-          </Text>
-        </View>
+        
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Directory')}
+        >
+          <View style={styles.linksButton}>
+            <Call style={styles.contactIcons} />
+            <Text style={styles.contactboldText}>Directory</Text>
+            <ArrowRight style={styles.contactIcons}  />
+          </View>
+        </TouchableOpacity>
 
-        <View>
-          <Text style={styles.contactboldText}>Hours</Text>
-          <Text style={styles.contactText}>M-TH | 9 AM - 12 PM</Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => openLink('https://www.ourcityforest.org/')}
+        >
+          <View style={styles.linksButton}>
+            <Website style={styles.contactIcons} />
+            <Text style={styles.contactboldText}>Website</Text>
+            <ArrowRight style={styles.contactIcons} />
+          </View>
+        </TouchableOpacity>
 
-        <View>
-          <Text style={styles.contactboldText}>Call</Text>
-          <Text style={styles.contactText}>123 - 456 - 7890</Text>
-        </View>
-
-        <View>
-          <Text style={styles.contactboldText}>Email</Text>
-          <Text style={styles.contactText}>
-            nurserymanager@ourcityforest.org
-          </Text>
-        </View>
-
-        <View>
-          <Text style={styles.contactText}>Instagram - Facebook</Text>
-        </View>
+        <TouchableOpacity  
+          onPress={openLocation}
+        >
+          <View style={styles.linksButton}>
+            <Location style={styles.contactIcons} />
+            <Text style={styles.contactboldText}>Visit Us</Text>
+            <ArrowRight style={styles.contactIcons}  />
+          </View>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
-}
+};
+
+ */

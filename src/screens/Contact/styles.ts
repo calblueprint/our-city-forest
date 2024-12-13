@@ -1,17 +1,18 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  contactContainer: {
+  container: {
     flexGrow: 1,
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     alignItems: 'center',
   },
 
-  contactHeaderContainer: {
+  headerContainer: {
     paddingTop: height * 0.1,
     height: height / 3,
     flexDirection: 'column',
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
     padding: 20,
     width: '100%',
     height: 66,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     borderColor: colors.gray5,
     borderBottomWidth: 0.8,
     borderTopWidth: 0.8,
@@ -42,9 +43,8 @@ export const styles = StyleSheet.create({
   },
 
   contactHeading: {
-    color: colors.primary_green,
-    fontSize: 24,
-    fontWeight: '700',
+    ...typography.heading5,
+    color: colors.primary,
     paddingBottom: 30,
     textAlign: 'center',
     alignItems: 'center',
@@ -61,17 +61,16 @@ export const styles = StyleSheet.create({
   },
 
   contactText: {
+    ...typography.normalRegular,
     color: colors.gray3,
-    fontSize: 16,
     paddingBottom: 40,
     textAlign: 'center',
   },
 
   contactboldText: {
-    color: colors.pure_black,
-    fontSize: 18,
+    ...typography.mediumBold,
+    color: colors.black1,
     paddingBottom: 10,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
 
@@ -92,7 +91,7 @@ export const styles = StyleSheet.create({
   },
 
   socialButton: {
-    backgroundColor: colors.primary_green,
+    backgroundColor: colors.primary,
     borderRadius: 100,
     width: 50,
     height: 50,
@@ -115,73 +114,9 @@ export const styles = StyleSheet.create({
   },
 
   logoutText: {
-    color: colors.primary_green,
-    fontSize: 16,
+    ...typography.normalBold,
+    color: colors.primary,
     paddingBottom: 40,
     textAlign: 'center',
-    fontWeight: 'bold',
-  },
-
-  // Directory
-
-  directoryContainer: {
-    paddingTop: height * 0.07,
-    paddingLeft: 42,
-    paddingRight: 42,
-    paddingBottom: 42,
-  },
-
-  directoryHeader: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 40,
-  },
-
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  backIcon: {
-    width: 24,
-    height: 24,
-  },
-
-  callIcon: {
-    width: 64,
-    height: 64,
-    paddingTop: 45,
-    paddingBottom: 45,
-  },
-
-  directoryContent: {
-    gap: 29,
-  },
-
-  directoryDetailsContainer: {
-    gap: 10,
-  },
-
-  directoryHeading: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: 'black',
-  },
-
-  directorySubHeading: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: colors.gray2,
-  },
-
-  directoryTextBold: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: colors.gray2,
-  },
-
-  directoryTextLight: {
-    fontSize: 14,
-    color: colors.gray3,
   },
 });

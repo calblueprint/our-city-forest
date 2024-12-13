@@ -1,67 +1,53 @@
 import { StyleSheet } from 'react-native';
+import colors from '@/styles/colors';
+import typography from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   loginContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-
-  profileContainer: {
+    padding: 40,
     flex: 1,
     justifyContent: 'center',
+  },
+
+  loginText: {
+    ...typography.heading3,
+    color: colors.primary,
+  },
+
+  logoContainer: {
     alignItems: 'center',
-    paddingTop: 80,
+    paddingTop: 20,
+    paddingBottom: 70,
   },
 
-  loginSelectionContainer: {
-    flex: 1,
-    rowGap: 20,
-    padding: 40,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    backgroundColor: '#DFDFDF',
-  },
-
-  loginHeadingText: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    textAlign: 'left',
-  },
-
-  buttonsContainer: {
-    rowGap: 10,
+  logo: {
+    height: 200,
+    marginTop: 20,
+    marginBottom: 70,
   },
 
   button: {
-    backgroundColor: '#8F8F8F',
+    backgroundColor: '#446127',
     padding: 15,
     borderRadius: 5,
     alignItems: 'center',
+    marginBottom: 10,
   },
 
   buttonText: {
-    color: 'white',
-    fontSize: 16,
+    ...typography.largeBold,
+    color: colors.white,
   },
 
   adminLoginContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    paddingHorizontal: 40,
-    paddingVertical: 100,
-    rowGap: 50,
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingTop: 10,
   },
 
-  googleLoginProfileContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  googleButton: {
-    backgroundColor: '#8F8F8F',
-    padding: 25,
-    borderRadius: 5,
-    alignItems: 'center',
+  adminLoginText: {
+    ...typography.smallBold,
+    color: colors.gray3,
   },
 });

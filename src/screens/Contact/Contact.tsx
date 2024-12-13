@@ -70,8 +70,8 @@ export default function Contact({ navigation }: ContactScreenProps) {
   console.log('Rendering Contact screen');
 
   return (
-    <View style={styles.contactContainer}>
-      <View style={styles.contactHeaderContainer}>
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
         <Image source={require('assets/OCF.png')} />
         <Text style={styles.contactHeading}>Contact Us</Text>
       </View>

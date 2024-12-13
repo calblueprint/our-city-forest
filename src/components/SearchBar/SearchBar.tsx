@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
-import TreeFilterModal from '@/components/TreeFilter';
+import TreeFilterModal from '@/components/TreeFilter/TreeFilter';
 import Search from '@/icons/Search';
 import Filter from '@/icons/Sort';
-import { styles } from '../screens/TreeSearch/styles';
+import { styles } from './styles';
 
 type SearchBarProps = {
   value: string;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { styles } from '../screens/TreeSearch/styles';
+import { styles } from './styles';
 
 type TreeFilterModalProps = {
   visible: boolean;

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import QrCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
 import Scanner from '@/icons/Scanner';
+import { getAvailableTreeSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
-import SearchBar from '../../components/searchBar';
-import { supabase } from '../../supabase/client';
-import TreeInfo from '../TreeInfo/TreeInfo';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import { styles } from './styles';
 
 type TreeSearchScreenProps = NativeStackScreenProps<
@@ -15,65 +13,29 @@ type TreeSearchScreenProps = NativeStackScreenProps<
 >;
 
 type TreeItem = {
-  tree_id: number;
   species: string;
   image_link: string;
-  sold: boolean;
   stockCount: number;
 };
 
 export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
   const [trees, setTrees] = useState<TreeItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadTreeData = async () => {
-      try {
-        setLoading(true);
-        const { data, error } = await supabase
-          .from('trees')
-          .select('tree_id, species, sold, species (name, image_link)');
-
-        if (error) {
-          throw new Error(`Error fetching tree data: ${error.message}`);
+      (async () => {
+        const data = await getAvailableTreeSpecies();
+        if (data) {
+          const formattedData: TreeItem[] = data.map((item: any) => ({
+            species: item.species_name,
+            image_link:
+              item.image_link || 'https://example.com/placeholder.jpg',
+            stockCount: item.count,
+          }));
+          setTrees(formattedData);
         }
-
-        const treeCounts: Record<string, number> = data.reduce(
-          (acc, tree) => {
-            if (!tree.sold) {
-              acc[tree.species.name] = (acc[tree.species.name] || 0) + 1;
-            }
-            return acc;
-          },
-          {} as Record<string, number>,
-        );
-
-        const treesData: TreeItem[] = Object.keys(treeCounts).map(
-          speciesName => {
-            const treeSample = data.find(
-              tree => tree.species.name === speciesName,
-            );
-
-            return {
-              tree_id: treeSample?.tree_id || 0,
-              species: speciesName,
-              image_link: treeSample?.species?.image_link || '',
-              sold: false,
-              stockCount: treeCounts[speciesName],
-            };
-          },
-        );
-
-        setTrees(treesData);
-        setError(null);
-      } catch (err) {
-        console.error('Failed to fetch tree data:', err);
-        setError('Unable to load tree data. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
+      })();
     };
     loadTreeData();
   }, []);
@@ -82,42 +44,42 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
     tree.species.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  const renderTreeCard = ({ item }: { item: TreeItem }) => (
+  const renderSpeciesCard = ({ item }: { item: TreeItem }) => (
     <Pressable
       onPress={() =>
-        navigation.navigate('TreeInfo', { treeId: item.tree_id.toString() })
+        navigation.push('SpeciesInfo', { speciesName: item.species })
       }
-      style={styles.treeCard}
+      style={styles.speciesCard}
     >
       <ImageBackground
         source={{
           uri: item.image_link || 'https://example.com/placeholder.jpg',
         }}
-        style={styles.treeImage}
+        style={styles.speciesImage}
       />
-      <Text style={styles.treeName} numberOfLines={1}>
+      <Text style={styles.speciesName} numberOfLines={1}>
         {item.species}
       </Text>
-      <Text style={styles.treeStock}>{item.stockCount} in stock</Text>
+      <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
     </Pressable>
   );
 
   return (
     <>
       <View style={styles.headingContainer}>
-        <Text style={styles.searchHeading}>Tree Inventory</Text>
+        <Text style={styles.searchHeading}>Available Trees</Text>
         <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
       </View>
       <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
       <FlatList
         data={filteredTrees}
-        keyExtractor={item => item.tree_id.toString()}
-        renderItem={renderTreeCard}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={renderSpeciesCard}
         numColumns={2}
         contentContainerStyle={styles.treeContainer}
         ListEmptyComponent={
-          <Text style={styles.treeError}>
+          <Text style={styles.searchError}>
             No trees found matching your search.
           </Text>
         }

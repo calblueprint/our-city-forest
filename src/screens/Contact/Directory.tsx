@@ -3,12 +3,15 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import BackArrow from '@/icons/BackArrow';
 import Call from '@/icons/Call';
-import { RootStackParamList } from '@/types/navigation';
+import { ContactStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
-type DirectoryProps = NativeStackScreenProps<RootStackParamList, 'Directory'>;
+type DirectoryScreenProps = NativeStackScreenProps<
+  ContactStackParamList,
+  'Directory'
+>;
 
-export default function Directory({ navigation }: DirectoryProps) {
+export default function Directory({ navigation }: DirectoryScreenProps) {
   const handleGoBack = () => {
     navigation.navigate('Contact');
   };

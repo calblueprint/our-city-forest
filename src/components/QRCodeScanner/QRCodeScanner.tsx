@@ -6,10 +6,15 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/types/navigation';
+import SvgFlashCircle from '@/icons/FlashCircle';
+import SvgXButton from '@/icons/XButton';
+import { HomeStackParamList } from '@/types/navigation';
 import styles from './styles';
 
-type QRCodeScannerProps = NativeStackScreenProps<RootStackParamList, 'Scanner'>;
+type QRCodeScannerProps = NativeStackScreenProps<
+  HomeStackParamList,
+  'QRCodeScanner'
+>;
 
 export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
   const [permission, requestPermission] = useCameraPermissions();
@@ -55,10 +60,10 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
     <SafeAreaView style={styles.container}>
       <View style={styles.iconFlex}>
         <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
-          <Text style={styles.icon}>Flash</Text>
+          <SvgFlashCircle />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.icon}>X</Text>
+          <SvgXButton />
         </TouchableOpacity>
       </View>
 
@@ -88,7 +93,7 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
           qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
         ]}
         onPress={() =>
-          navigation.push('TreeInfoPage', { treeId: qrCodeData ?? '' })
+          navigation.push('TreeInfo', { treeId: qrCodeData ?? '' })
         }
         disabled={!qrCodeFound}
       >

@@ -9,10 +9,13 @@ import Location from '@/icons/Location';
 import Website from '@/icons/Website';
 import X from '@/icons/X';
 import Youtube from '@/icons/Youtube';
-import { RootStackParamList } from '@/types/navigation';
+import { ContactStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
-type ContactProps = NativeStackScreenProps<RootStackParamList, 'Contact'>;
+type ContactScreenProps = NativeStackScreenProps<
+  ContactStackParamList,
+  'Contact'
+>;
 
 type ContactButtonProps = {
   icon: React.ReactNode;

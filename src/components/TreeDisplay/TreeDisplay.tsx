@@ -14,8 +14,16 @@ import styles from './styles';
 
 type TreeDisplayProps = {
   treeData: Tree;
+  allTreesData: Tree[];
 };
-export default function TreeDisplay({ treeData }: TreeDisplayProps) {
+export default function TreeDisplay({
+  treeData,
+  allTreesData,
+}: TreeDisplayProps) {
+  const uniqueLocations = allTreesData.filter(
+    (t, index, self) =>
+      index === self.findIndex(u => u.bank === t.bank && u.row === t.row),
+  );
   return (
     <View style={styles.main}>
       <Text style={styles.text}>{treeData.species?.description}</Text>
@@ -37,13 +45,18 @@ export default function TreeDisplay({ treeData }: TreeDisplayProps) {
 
       <Text style={styles.header}>Location</Text>
       <View style={styles.locations}>
-        <View style={styles.locationEntry}>
-          <SvgLocationPin />
-          <Text style={styles.propertyText}>
-            Bank #{treeData.bank} {'  '}|{'  '} Row #{treeData.row}
-            {/* TODO: Needs to support range of rows */}
-          </Text>
-        </View>
+        {uniqueLocations.map((location, index) => (
+          <View
+            style={styles.locationEntry}
+            key={`${location.bank}-${location.row}-${index}`}
+          >
+            <SvgLocationPin />
+            <Text style={styles.propertyText}>
+              Bank #{location.bank} {'  '}|{'  '} Row #{location.row}
+              {/* TODO: Needs to support range of rows */}
+            </Text>
+          </View>
+        ))}
       </View>
 
       <Text style={styles.header}>Properties</Text>

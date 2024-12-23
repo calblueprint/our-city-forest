@@ -22,6 +22,10 @@ export default function SpeciesDisplay({
   speciesData,
   treeData,
 }: SpeciesDisplayProps) {
+  const uniqueLocations = treeData.filter(
+    (tree, index, self) =>
+      index === self.findIndex(t => t.bank === tree.bank && t.row === tree.row),
+  );
   return (
     <View style={styles.main}>
       <Text style={styles.text}>{speciesData.description}</Text>
@@ -112,8 +116,11 @@ export default function SpeciesDisplay({
         <>
           <Text style={styles.header}>Location</Text>
           <View style={styles.locations}>
-            {treeData?.map(tree => (
-              <View style={styles.locationEntry} key={tree.tree_id}>
+            {uniqueLocations?.map((tree, index) => (
+              <View
+                style={styles.locationEntry}
+                key={`${tree.bank}-${tree.row}-${index}`}
+              >
                 <SvgLocationPin />
                 <Text style={styles.propertyText}>
                   Bank #{tree.bank ?? 0} {'  '}|{'  '} Row #{tree.row ?? 0}

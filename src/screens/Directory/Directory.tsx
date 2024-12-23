@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import BackArrow from '@/icons/BackArrow';
-import Call from '@/icons/Call';
+import CallBig from '@/icons/CallBig';
 import { ContactStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -23,7 +23,7 @@ export default function Directory({ navigation }: DirectoryScreenProps) {
       </TouchableOpacity>
 
       <View style={styles.headerContainer}>
-        <Call style={styles.callIcon} />
+        <CallBig style={styles.callIcon} />
         <Text style={styles.headerText}>Directory</Text>
       </View>
 

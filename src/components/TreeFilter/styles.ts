@@ -5,39 +5,62 @@ import typography from '@/styles/typography';
 const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  filterContainer: {
+  filterBackground: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 
-  filterContent: {
+  filterContainer: {
     width: '100%',
     height: height * 0.8,
     backgroundColor: colors.white,
-    padding: 40,
+    paddingHorizontal: 40,
+    paddingBottom: 20,
     borderTopLeftRadius: 44,
     borderTopRightRadius: 44,
-    alignItems: 'flex-start',
   },
 
-  filterHeading: {},
+  filterProperties: {
+    marginBottom: 23,
+    gap: 10,
+  },
+
+  filterHeading: {
+    paddingTop: 40,
+    paddingBottom: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 
   filterHeadingText: {
     ...typography.heading5,
     color: colors.primary,
-    marginBottom: 10,
   },
 
-  filterText: {
-    ...typography.normalRegular,
-    color: colors.gray4,
+  filterSubHeadingText: {
+    ...typography.mediumBold,
+    color: colors.gray2,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray5,
+    paddingBottom: 5,
   },
 
-  resetButton: {},
+  resetButton: {
+    width: 86,
+    height: 34,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    backgroundColor: colors.gray5,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
 
-  resetText: {},
+  resetText: {
+    ...typography.mediumBold,
+    color: colors.gray3,
+  },
 
   completeButton: {
     backgroundColor: colors.primary,
@@ -48,26 +71,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
+    paddingBottom: 10,
   },
 
   completeButtonText: {
     ...typography.mediumBold,
     color: colors.white,
-  },
-
-  checkboxContainer: {
-    marginVertical: 20,
-    width: '100%',
-  },
-
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 8,
-  },
-
-  checkboxLabel: {
-    ...typography.normalRegular,
-    marginLeft: 8,
   },
 });

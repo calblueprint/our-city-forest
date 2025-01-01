@@ -83,16 +83,6 @@ export const styles = StyleSheet.create({
     gap: 16,
   },
 
-  checkbox: {
-    width: 20,
-    height: 20,
-    backgroundColor: colors.gray5,
-    borderRadius: 5,
-    borderWidth: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   checkboxLabel: {
     ...typography.normalRegular,
     color: colors.gray3,

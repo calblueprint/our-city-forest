@@ -6,12 +6,11 @@ export const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: colors.gray6,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray5,
     paddingTop: 5,
     paddingBottom: 20,
-    paddingRight: 27,
-    paddingLeft: 27,
+    paddingHorizontal: 24,
   },
 
   searchBarInput: {
@@ -42,11 +41,10 @@ export const styles = StyleSheet.create({
   },
 
   filterIconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 30,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
     backgroundColor: colors.white,
-    padding: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },

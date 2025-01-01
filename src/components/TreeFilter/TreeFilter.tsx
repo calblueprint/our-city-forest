@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import CheckboxComponent from '@/components/Checkbox/Checkbox';
+import { Checkbox } from 'expo-checkbox';
 import Dropdown from '@/components/Dropdown/Dropdown';
 import { styles } from './styles';
 
@@ -109,8 +109,9 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
     >
       <View style={styles.filterBackground}>
         <View style={styles.filterContainer}>
+          <View style={styles.grabber}></View>
           <View style={styles.filterHeading}>
-            <Text style={styles.filterHeadingText}>Filter Trees</Text>
+            <Text style={styles.headerText}>Filter Trees</Text>
             <TouchableOpacity style={styles.resetButton} onPress={resetFilters}>
               <Text style={styles.resetText}>Reset</Text>
             </TouchableOpacity>
@@ -119,27 +120,38 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
           <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
             {/* Height */}
             <View style={styles.filterProperties}>
-              <Text style={styles.filterSubHeadingText}>Height</Text>
-              <CheckboxComponent
-                checked={heightChecks.small}
-                onToggle={() => handleHeightChange('small')}
-                label="Small"
-              />
-              <CheckboxComponent
-                checked={heightChecks.medium}
-                onToggle={() => handleHeightChange('medium')}
-                label="Medium"
-              />
-              <CheckboxComponent
-                checked={heightChecks.large}
-                onToggle={() => handleHeightChange('large')}
-                label="Large"
-              />
+              <Text style={styles.subheaderText}>Height</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={heightChecks.small}
+                    onValueChange={() => handleHeightChange('small')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Small</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={heightChecks.medium}
+                    onValueChange={() => handleHeightChange('medium')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Medium</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={heightChecks.large}
+                    onValueChange={() => handleHeightChange('large')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Large</Text>
+                </View>
+              </View>
             </View>
 
             {/* Tree Shape */}
             <View style={styles.filterProperties}>
-              <Text style={styles.filterSubHeadingText}>Tree Shape</Text>
+              <Text style={styles.subheaderText}>Tree Shape</Text>
               <Dropdown
                 options={treeShapeOptions}
                 value={treeShape}
@@ -149,63 +161,95 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
 
             {/* Fruit Type */}
             <View style={styles.filterProperties}>
-              <Text style={styles.filterSubHeadingText}>Fruit Type</Text>
-              <CheckboxComponent
-                checked={fruitChecks.wet}
-                onToggle={() => handleFruitChange('wet')}
-                label="Wet Fruit"
-              />
-              <CheckboxComponent
-                checked={fruitChecks.dry}
-                onToggle={() => handleFruitChange('dry')}
-                label="Dry Fruit"
-              />
+              <Text style={styles.subheaderText}>Fruit Type</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={fruitChecks.wet}
+                    onValueChange={() => handleFruitChange('wet')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Wet Fruit</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={fruitChecks.dry}
+                    onValueChange={() => handleFruitChange('dry')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Dry Fruit</Text>
+                </View>
+              </View>
             </View>
 
             {/* Water Amount  */}
             <View style={styles.filterProperties}>
-              <Text style={styles.filterSubHeadingText}>Water Amount</Text>
-              <CheckboxComponent
-                checked={waterChecks.less}
-                onToggle={() => handleWaterChange('less')}
-                label="Less"
-              />
-              <CheckboxComponent
-                checked={waterChecks.moderate}
-                onToggle={() => handleWaterChange('moderate')}
-                label="Moderate"
-              />
-              <CheckboxComponent
-                checked={waterChecks.more}
-                onToggle={() => handleWaterChange('more')}
-                label="More"
-              />
+              <Text style={styles.subheaderText}>Water Amount</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={waterChecks.less}
+                    onValueChange={() => handleWaterChange('less')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Less</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={waterChecks.moderate}
+                    onValueChange={() => handleWaterChange('moderate')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Moderate</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={waterChecks.more}
+                    onValueChange={() => handleWaterChange('more')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>More</Text>
+                </View>
+              </View>
             </View>
 
             {/* Other Properties */}
             <View style={styles.filterProperties}>
-              <Text style={styles.filterSubHeadingText}>Other Properties</Text>
-              <CheckboxComponent
-                checked={otherChecks.native}
-                onToggle={() => handleOtherChange('native')}
-                label="California Native"
-              />
-              <CheckboxComponent
-                checked={otherChecks.evergreen}
-                onToggle={() => handleOtherChange('evergreen')}
-                label="Evergreen"
-              />
-              <CheckboxComponent
-                checked={otherChecks.powerline}
-                onToggle={() => handleOtherChange('powerline')}
-                label="Powerline Friendly"
-              />
-
-              <CheckboxComponent
-                checked={otherChecks.lowroot}
-                onToggle={() => handleOtherChange('lowroot')}
-                label="Low root damage"
-              />
+              <Text style={styles.subheaderText}>Other Properties</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={otherChecks.native}
+                    onValueChange={() => handleOtherChange('native')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>California Native</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={otherChecks.evergreen}
+                    onValueChange={() => handleOtherChange('evergreen')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Evergreen</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={otherChecks.powerline}
+                    onValueChange={() => handleOtherChange('powerline')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Powerline Friendly</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    value={otherChecks.lowroot}
+                    onValueChange={() => handleOtherChange('lowroot')}
+                    style={styles.checkbox}
+                  />
+                  <Text style={styles.checkboxLabel}>Low Root Damage</Text>
+                </View>
+              </View>
             </View>
           </ScrollView>
 

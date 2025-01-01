@@ -27,7 +27,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
           onChangeText={onChange}
         />
         <TouchableOpacity onPress={openModal}>
-          <Filter style={styles.filterIconContainer} />
+          <View style={styles.filterIconContainer}>
+            <Filter />
+          </View>
         </TouchableOpacity>
         <TreeFilterModal visible={modalVisible} onClose={closeModal} />
       </View>

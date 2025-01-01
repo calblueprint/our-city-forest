@@ -66,8 +66,8 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
 
   return (
     <>
-      <View style={styles.headingContainer}>
-        <Text style={styles.searchHeading}>Available Trees</Text>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>Available Trees</Text>
         <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
       </View>
       <SearchBar value={searchQuery} onChange={setSearchQuery} />
@@ -77,7 +77,8 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
         keyExtractor={(item, index) => index.toString()}
         renderItem={renderSpeciesCard}
         numColumns={2}
-        contentContainerStyle={styles.treeContainer}
+        contentContainerStyle={styles.speciesContainer}
+        columnWrapperStyle={{ justifyContent: 'space-between', gap: 12 }}
         ListEmptyComponent={
           <Text style={styles.searchError}>
             No trees found matching your search.

@@ -2,14 +2,14 @@ import { Dimensions, StyleSheet } from 'react-native';
 import colors from '@/styles/colors';
 import typography from '@/styles/typography';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   filterBackground: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.25)',
   },
 
   filterContainer: {
@@ -22,6 +22,15 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 44,
   },
 
+  grabber: {
+    width: 128,
+    height: 6, // Height of the grabber
+    borderRadius: 4, // Rounded edges
+    backgroundColor: colors.gray5,
+    alignSelf: 'center', // Center horizontally
+    marginVertical: 8,
+  },
+
   filterProperties: {
     marginBottom: 23,
     gap: 10,
@@ -32,19 +41,17 @@ export const styles = StyleSheet.create({
     paddingBottom: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
-  filterHeadingText: {
+  headerText: {
     ...typography.heading5,
     color: colors.primary,
   },
 
-  filterSubHeadingText: {
+  subheaderText: {
     ...typography.mediumBold,
     color: colors.gray2,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray5,
-    paddingBottom: 5,
   },
 
   resetButton: {
@@ -59,6 +66,35 @@ export const styles = StyleSheet.create({
 
   resetText: {
     ...typography.mediumBold,
+    color: colors.gray3,
+  },
+
+  checkboxGroup: {
+    flexDirection: 'column',
+    gap: 16,
+    borderTopColor: colors.gray5,
+    borderTopWidth: 1,
+    paddingTop: 12,
+  },
+
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+
+  checkbox: {
+    width: 20,
+    height: 20,
+    backgroundColor: colors.gray5,
+    borderRadius: 5,
+    borderWidth: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  checkboxLabel: {
+    ...typography.normalRegular,
     color: colors.gray3,
   },
 

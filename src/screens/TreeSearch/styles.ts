@@ -4,53 +4,31 @@ import typography from '@/styles/typography';
 
 const { width, height } = Dimensions.get('window');
 
-const responsivePadding = width * 0.05;
-
 export const styles = StyleSheet.create({
-  headingContainer: {
-    paddingLeft: responsivePadding,
-    paddingRight: responsivePadding,
+  headerContainer: {
     paddingTop: height * 0.1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingBottom: 10,
   },
 
-  // scannerIcon: {
-  //   height: 53,
-  //   width: 53,
-  //   borderRadius: 26.5,
-  //   backgroundColor: colors.primary,
-  //   justifyContent: 'center',
-  //   padding: 10,
-  //   alignItems: 'center',
-  // },
-
-  searchHeading: {
+  headerText: {
     ...typography.heading5,
     color: colors.primary,
-    paddingBottom: 10,
     textAlign: 'left',
   },
 
-  treeContainer: {
+  speciesContainer: {
     flexGrow: 1,
-    backgroundColor: colors.white,
-    paddingTop: 18,
-    paddingLeft: 27,
-    paddingRight: 27,
-  },
-
-  treeGrid: {
-    width: '100%',
-    paddingHorizontal: width * 0.04,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    gap: 12,
   },
 
   speciesCard: {
+    flex: 1,
     width: width > 600 ? '30%' : '48%',
     marginBottom: width * 0.02,
     marginHorizontal: width * 0.01,
@@ -68,13 +46,6 @@ export const styles = StyleSheet.create({
     resizeMode: 'cover',
     backgroundColor: colors.gray4,
     marginBottom: 0,
-  },
-
-  treeInfoContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    marginTop: width * 0.01,
   },
 
   speciesName: {

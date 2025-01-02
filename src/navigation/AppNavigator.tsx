@@ -9,7 +9,7 @@ import SvgHomeSelected from '@/icons/HomeSelected';
 import SvgHomeUnselected from '@/icons/HomeUnselected';
 import ContactScreen from '@/screens/Contact/Contact';
 import DirectoryScreen from '@/screens/Directory/Directory';
-// import LoginScreen from '@/screens/login/Login';
+import LoginScreen from '@/screens/Login/Login';
 import SpeciesInfoScreen from '@/screens/SpeciesInfo/SpeciesInfo';
 import TreeInfoScreen from '@/screens/TreeInfo/TreeInfo';
 import TreeSearchScreen from '@/screens/TreeSearch/TreeSearch';
@@ -28,17 +28,17 @@ const ContactStack = createNativeStackNavigator<ContactStackParamList>();
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
-// // Login Stack Navigator
-// function LoginStackNavigator() {
-//   return (
-//     <LoginStack.Navigator
-//       initialRouteName="Login"
-//       screenOptions={{ headerShown: false }}
-//     >
-//       <LoginStack.Screen name="Login" component={LoginScreen} />
-//     </LoginStack.Navigator>
-//   );
-// }
+// Login Stack Navigator
+function LoginStackNavigator() {
+  return (
+    <LoginStack.Navigator
+      initialRouteName="Login"
+      screenOptions={{ headerShown: false }}
+    >
+      <LoginStack.Screen name="Login" component={LoginScreen} />
+    </LoginStack.Navigator>
+  );
+}
 
 // Home Stack Navigator
 function HomeStackNavigator() {
@@ -120,7 +120,7 @@ export default function AppNavigator() {
           initialRouteName="LoginStack"
           screenOptions={{ headerShown: false }}
         >
-          {/* <RootStack.Screen name="LoginStack" component={LoginStackNavigator} /> */}
+          <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
           <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
         </RootStack.Navigator>
       )}

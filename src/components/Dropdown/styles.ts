@@ -3,14 +3,6 @@ import colors from '@/styles/colors';
 import typography from '@/styles/typography';
 
 export default StyleSheet.create({
-  gray4: {
-    color: colors.gray4,
-  },
-
-  black3: {
-    color: colors.gray3,
-  },
-
   textContainer: {
     paddingHorizontal: 20,
   },

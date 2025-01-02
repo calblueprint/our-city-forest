@@ -1,19 +1,19 @@
 import * as React from 'react';
-import Svg, { G, Path, SvgProps } from 'react-native-svg';
+import Svg, { ClipPath, Defs, G, Path, SvgProps } from 'react-native-svg';
 
-const SvgLocationPin = (props: SvgProps) => (
-  <Svg width={27} height={27} fill="none" {...props}>
-    <G fill="#446127">
+const SvgLocation = (props: SvgProps) => (
+  <Svg width={29} height={29} fill="none" {...props}>
+    <G clipPath="url(#location_svg__a)">
       <Path
-        d="M22.957 9.656C21.82 4.65 17.454 2.397 13.62 2.397h-.011c-3.824 0-8.2 2.243-9.338 7.248-1.268 5.59 2.156 10.324 5.254 13.303a5.9 5.9 0 0 0 4.095 1.657 5.84 5.84 0 0 0 4.084-1.657c3.098-2.98 6.522-7.703 5.254-13.292"
-        opacity={0.4}
-      />
-      <Path
-        stroke="#446127"
-        strokeWidth={1.5}
-        d="M16.281 11.67a2.663 2.663 0 1 1-5.325 0 2.663 2.663 0 0 1 5.325 0Z"
+        fill="#446127"
+        d="M24.51 10.835c-1.211-5.39-5.861-7.817-9.946-7.817h-.011c-4.074 0-8.735 2.415-9.947 7.805-1.35 6.02 2.296 11.118 5.597 14.327a6.24 6.24 0 0 0 4.361 1.785c1.57 0 3.139-.595 4.35-1.785 3.3-3.209 6.946-8.295 5.596-14.315m-9.946 5.845c-2.008 0-3.635-1.646-3.635-3.675s1.627-3.676 3.635-3.676 3.635 1.646 3.635 3.675-1.627 3.676-3.635 3.676"
       />
     </G>
+    <Defs>
+      <ClipPath id="location_svg__a">
+        <Path fill="#fff" d="M.718.976H28.41v28H.718z" />
+      </ClipPath>
+    </Defs>
   </Svg>
 );
-export default SvgLocationPin;
+export default SvgLocation;

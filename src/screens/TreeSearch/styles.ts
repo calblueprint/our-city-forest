@@ -4,56 +4,31 @@ import typography from '@/styles/typography';
 
 const { width, height } = Dimensions.get('window');
 
-const responsivePadding = width * 0.05;
-
 export const styles = StyleSheet.create({
-  backgroundContainer: {
-    flexGrow: 1,
-    backgroundColor: colors.white,
-    paddingTop: 18,
-    paddingLeft: 27,
-    paddingRight: 27,
-  },
-
-  // Search Component
-
-  searchContainer: {
-    paddingLeft: responsivePadding,
-    paddingRight: responsivePadding,
+  headerContainer: {
     paddingTop: height * 0.1,
-    paddingBottom: height * 0.02,
-    borderBottomWidth: 2,
-    borderBottomColor: colors.gray6,
-  },
-
-  searchBarInput: {
-    height: 42,
-    borderColor: colors.gray6,
-    borderWidth: 1,
-    borderRadius: 30,
-    paddingHorizontal: 10,
-    backgroundColor: colors.gray6,
-  },
-
-  searchHeading: {
-    color: colors.primary,
-    ...typography.heading4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 24,
     paddingBottom: 10,
+  },
+
+  headerText: {
+    ...typography.heading5,
+    color: colors.primary,
     textAlign: 'left',
   },
 
-  // Tree Cards
-
-  treeGrid: {
-    width: '100%',
-    paddingHorizontal: width * 0.04,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+  speciesContainer: {
+    flexGrow: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    gap: 12,
   },
 
-  treeCard: {
+  speciesCard: {
+    flex: 1,
     width: width > 600 ? '30%' : '48%',
     marginBottom: width * 0.02,
     marginHorizontal: width * 0.01,
@@ -63,7 +38,7 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
-  treeImage: {
+  speciesImage: {
     width: '100%',
     height: 150,
     flexShrink: 0,
@@ -73,14 +48,7 @@ export const styles = StyleSheet.create({
     marginBottom: 0,
   },
 
-  treeInfoContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    marginTop: width * 0.01,
-  },
-
-  treeName: {
+  speciesName: {
     ...typography.mediumBold,
     fontSize: width > 600 ? 20 : 18,
     textAlign: 'left',
@@ -89,15 +57,15 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
-  treeStock: {
+  speciesStock: {
     ...typography.smallRegular,
     fontSize: width > 600 ? 16 : 14,
     color: colors.gray3,
     textAlign: 'left',
   },
 
-  treeError: {
-    ...typography.smallRegular,
+  searchError: {
+    ...typography.normalRegular,
     fontSize: width > 600 ? 16 : 14,
     padding: 0,
   },

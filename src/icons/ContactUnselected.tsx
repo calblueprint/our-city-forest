@@ -9,5 +9,4 @@ const SvgContactUnselected = (props: SvgProps) => (
     />
   </Svg>
 );
-
 export default SvgContactUnselected;

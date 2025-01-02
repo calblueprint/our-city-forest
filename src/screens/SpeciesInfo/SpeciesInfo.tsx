@@ -29,7 +29,7 @@ export default function SpeciesInfoScreen({
   route,
   navigation,
 }: SpeciesInfoScreenProps) {
-  const speciesName = route.params?.speciesName ?? 'California Buckwheat';
+  const speciesName = route.params?.speciesName ?? '';
   const [speciesData, setSpeciesData] = useState<Partial<Species>>({
     name: speciesName,
   });
@@ -61,7 +61,7 @@ export default function SpeciesInfoScreen({
             style={styles.imageBg}
           >
             <View style={styles.topBar}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
                 <SvgBackArrow />
               </TouchableOpacity>
               <TouchableOpacity

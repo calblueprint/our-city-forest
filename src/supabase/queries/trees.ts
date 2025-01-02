@@ -55,6 +55,18 @@ export async function removeMultipleTrees(treeIds: string[]) {
   }
 }
 
+// Retrieves a JSON array of available tree species in the format:
+// [{ "name": "Oak", "image_link": "https://example.com/oak.jpg", "count": 10 }, ...]
+export async function getAvailableTreeSpecies() {
+  const { data, error } = await supabase.rpc('get_available_tree_species');
+
+  if (error) {
+    throw new Error(`Error retrieving available species: ${error.message}`);
+  }
+
+  return data;
+}
+
 // Retrieves tree info by UUID, returns properties as JSON: { "bank": null, "date": null, "health_status": null, ... }
 export async function getTreeInfo(treeId: string) {
   const { data, error } = await supabase.rpc('get_tree_by_uuid', {

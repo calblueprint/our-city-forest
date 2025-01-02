@@ -6,7 +6,7 @@ import styles from './styles';
 
 type DropdownProps<T extends string[]> = {
   options: T;
-  setValue: (value: T[number]) => any;
+  setValue: (value: T[number]) => unknown;
   value: string;
   displayValue?: (s: string) => string;
 };
@@ -31,7 +31,7 @@ function Dropdown<T extends string[]>({
         placeholderStyle={[styles.text, styles.textContainer]}
         selectedTextStyle={[styles.text, styles.textContainer]}
         inputSearchStyle={styles.text}
-        itemTextStyle={[styles.text, styles.gray4]}
+        itemTextStyle={styles.text}
         containerStyle={styles.dropdownContainer}
         dropdownPosition="bottom"
         iconStyle={styles.iconStyle}
@@ -48,7 +48,6 @@ function Dropdown<T extends string[]>({
             <Text
               style={[
                 styles.text,
-                styles.gray4,
                 styles.itemContainer,
                 selected && styles.selectedBar,
                 { borderBottomLeftRadius: 0, borderTopLeftRadius: 0 },

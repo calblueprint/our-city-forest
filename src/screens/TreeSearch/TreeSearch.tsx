@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Scanner from '@/icons/Scanner';
 import { getAvailableTreeSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
+import { Species } from '@/types/species';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { styles } from './styles';
 
@@ -52,20 +53,22 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
         console.log('Raw Supabase data:', data);
         console.log('Fetched data:', data);
         if (data) {
-          const formattedData: TreeItem[] = data.map((item: any) => ({
-            species: item.species_name,
-            image_link:
-              item.image_link || 'https://example.com/placeholder.jpg',
-            stockCount: item.count,
-            height: item.height_ft,
-            shape: item.tree_shape,
-            litter: item.fruit_type,
-            water: item.water_amount,
-            california_native: item.ca_native,
-            evergreen: item.evergreen,
-            powerline_friendly: item.powerline_friendly,
-            root_damage_potential: item.root_damage_potential,
-          }));
+          const formattedData: TreeItem[] = data.map(
+            (item: Species & { count: number }) => ({
+              species: item.name,
+              image_link:
+                item.image_link || 'https://example.com/placeholder.jpg',
+              stockCount: item.count,
+              height: item.height_ft,
+              shape: item.tree_shape,
+              litter: item.fruit_type,
+              water: item.water_amount,
+              california_native: item.ca_native,
+              evergreen: item.evergreen,
+              powerline_friendly: item.powerline_friendly,
+              root_damage_potential: item.root_damage_potential,
+            }),
+          );
           setTrees(formattedData);
         }
       })();

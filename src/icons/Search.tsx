@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgSearch = (props: any) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={30}
-    height={30}
-    fill="none"
-    {...props}
-  >
+const SvgSearch = (props: SvgProps) => (
+  <Svg width={30} height={30} fill="none" {...props}>
     <Path
       stroke="#4F4F4F"
       strokeLinecap="round"

@@ -113,7 +113,7 @@ export default function TreeDisplay({
           </View>
         )}
 
-        {treeData.species?.evegreen && (
+        {treeData.species?.evergreen && (
           <View style={styles.property}>
             <SvgLeaf />
             <Text style={styles.propertyText}>Evegreen</Text>

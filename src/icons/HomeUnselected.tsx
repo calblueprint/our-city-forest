@@ -1,7 +1,7 @@
 import React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgHomeUnselected = (props: any) => (
+const SvgHomeUnselected = (props: SvgProps) => (
   <Svg width={30} height={31} fill="none" {...props}>
     <Path
       fill="#446127"
@@ -9,5 +9,4 @@ const SvgHomeUnselected = (props: any) => (
     />
   </Svg>
 );
-
 export default SvgHomeUnselected;

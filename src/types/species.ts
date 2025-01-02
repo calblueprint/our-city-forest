@@ -14,7 +14,7 @@ export type Species = {
   flower_color?: string;
   fruit_type?: TreeFruitType;
   water_amount?: TreeWaterAmount;
-  evegreen?: boolean;
+  evergreen?: boolean;
   powerline_friendly?: boolean;
 };
 

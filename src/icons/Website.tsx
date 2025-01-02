@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgGlobal = (props: any) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={29}
-    height={29}
-    fill="none"
-    {...props}
-  >
+const SvgGlobal = (props: SvgProps) => (
+  <Svg width={29} height={29} fill="none" {...props}>
     <Path
       fill="#446127"
       d="M14.564 27.518c-6.842 0-12.404-5.623-12.404-12.542S7.722 2.434 14.564 2.434s12.404 5.624 12.404 12.542-5.562 12.542-12.404 12.542m0-23.334c-5.885 0-10.673 4.842-10.673 10.792s4.788 10.792 10.673 10.792 10.673-4.842 10.673-10.792S20.45 4.184 14.564 4.184"

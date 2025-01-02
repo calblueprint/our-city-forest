@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgSort = (props: any) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={23}
-    height={22}
-    fill="none"
-    {...props}
-  >
+const SvgSort = (props: SvgProps) => (
+  <Svg width={23} height={22} fill="none" {...props}>
     <Path
       stroke="#171717"
       strokeLinecap="round"

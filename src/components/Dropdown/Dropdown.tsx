@@ -6,7 +6,7 @@ import styles from './styles';
 
 type DropdownProps<T extends string[]> = {
   options: T;
-  setValue: (value: T[number]) => any;
+  setValue: (value: T[number]) => unknown;
   value: string;
   displayValue?: (s: string) => string;
 };

@@ -97,7 +97,7 @@ export default function SpeciesDisplay({
           </View>
         )}
 
-        {speciesData.evegreen && (
+        {speciesData.evergreen && (
           <View style={styles.property}>
             <SvgLeaf />
             <Text style={styles.propertyText}>Evegreen</Text>

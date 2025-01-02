@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
+import Svg, { ClipPath, Defs, G, Path, SvgProps } from 'react-native-svg';
 
-const SvgLocation = (props: any) => (
-  <Svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={29}
-    height={29}
-    fill="none"
-    {...props}
-  >
+const SvgLocation = (props: SvgProps) => (
+  <Svg width={29} height={29} fill="none" {...props}>
     <G clipPath="url(#location_svg__a)">
       <Path
         fill="#446127"

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   LayoutRectangle,
@@ -38,27 +38,30 @@ export default function ToggleSwitch({
   const translateAnimation = useRef(new Animated.Value(40)).current;
   const scaleAnimation = useRef(new Animated.Value(0)).current;
 
-  const runAnimations = (newValue: boolean) => {
-    if (!trueLabelLayout || !falseLabelLayout) return;
+  const runAnimations = useCallback(
+    (newValue: boolean) => {
+      if (!trueLabelLayout || !falseLabelLayout) return;
 
-    Animated.timing(translateAnimation, {
-      duration: 100,
-      toValue: newValue
-        ? trueLabelLayout.x + trueLabelLayout.width / 2 - 2
-        : falseLabelLayout.x + falseLabelLayout.width / 2 + 2,
-      useNativeDriver: true,
-    }).start();
+      Animated.timing(translateAnimation, {
+        duration: 100,
+        toValue: newValue
+          ? trueLabelLayout.x + trueLabelLayout.width / 2 - 2
+          : falseLabelLayout.x + falseLabelLayout.width / 2 + 2,
+        useNativeDriver: true,
+      }).start();
 
-    Animated.timing(scaleAnimation, {
-      duration: 100,
-      toValue: (newValue ? trueLabelLayout.width : falseLabelLayout.width) ?? 0,
-      useNativeDriver: true,
-    }).start();
-  };
-
+      Animated.timing(scaleAnimation, {
+        duration: 100,
+        toValue:
+          (newValue ? trueLabelLayout.width : falseLabelLayout.width) ?? 0,
+        useNativeDriver: true,
+      }).start();
+    },
+    [trueLabelLayout, falseLabelLayout, translateAnimation, scaleAnimation],
+  );
   useEffect(() => {
     runAnimations(value);
-  }, [trueLabelLayout, falseLabelLayout]);
+  }, [trueLabelLayout, falseLabelLayout, value, runAnimations]);
 
   const handlePress = (newValue: boolean) => {
     runAnimations(newValue);

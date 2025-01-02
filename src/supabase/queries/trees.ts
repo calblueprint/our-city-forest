@@ -56,7 +56,7 @@ export async function removeMultipleTrees(treeIds: string[]) {
 }
 
 // Retrieves a JSON array of available tree species in the format:
-// [{ "species_name": "Oak", "image_link": "https://example.com/oak.jpg", "count": 10 }, ...]
+// [{ "name": "Oak", "image_link": "https://example.com/oak.jpg", "count": 10 }, ...]
 export async function getAvailableTreeSpecies() {
   const { data, error } = await supabase.rpc('get_available_tree_species');
 

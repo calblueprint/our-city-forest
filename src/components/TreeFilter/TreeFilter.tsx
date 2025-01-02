@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import Dropdown from '@/components/Dropdown/Dropdown';
@@ -7,38 +7,91 @@ import { styles } from './styles';
 type TreeFilterModalProps = {
   visible: boolean;
   onClose: () => void;
+  filters: {
+    height: string[];
+    shape: string;
+    fruit: string[];
+    water: string[];
+    other: string[];
+  };
+  setFilters: React.Dispatch<
+    React.SetStateAction<{
+      height: string[];
+      shape: string;
+      fruit: string[];
+      water: string[];
+      other: string[];
+    }>
+  >;
 };
 
 const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
   visible,
   onClose,
+  filters,
+  setFilters,
 }) => {
   // Individual filter states
   const [heightChecks, setHeightChecks] = useState({
-    small: false,
-    medium: false,
-    large: false,
+    small: filters.height.includes('small'),
+    medium: filters.height.includes('medium'),
+    large: filters.height.includes('large'),
   });
 
   const [fruitChecks, setFruitChecks] = useState({
-    wet: false,
-    dry: false,
+    wet: filters.fruit.includes('wet'),
+    dry: filters.fruit.includes('dry'),
   });
 
   const [waterChecks, setWaterChecks] = useState({
-    less: false,
-    moderate: false,
-    more: false,
+    less: filters.water.includes('less'),
+    moderate: filters.water.includes('moderate'),
+    more: filters.water.includes('more'),
   });
 
   const [otherChecks, setOtherChecks] = useState({
-    native: false,
-    evergreen: false,
-    powerline: false,
-    lowroot: false,
+    native: filters.other.includes('native'),
+    evergreen: filters.other.includes('evergreen'),
+    powerline: filters.other.includes('powerline'),
+    lowroot: filters.other.includes('lowroot'),
   });
 
-  const [treeShape, setTreeShape] = useState<string>('');
+  const [treeShape, setTreeShape] = useState<string>(filters.shape);
+
+  useEffect(() => {
+    setFilters({
+      height: Object.keys(heightChecks).filter(
+        key => heightChecks[key as keyof typeof heightChecks],
+      ) as string[],
+      shape: treeShape,
+      fruit: Object.keys(fruitChecks).filter(
+        key => fruitChecks[key as keyof typeof fruitChecks],
+      ) as string[],
+      water: Object.keys(waterChecks).filter(
+        key => waterChecks[key as keyof typeof waterChecks],
+      ) as string[],
+      other: Object.keys(otherChecks).filter(
+        key => otherChecks[key as keyof typeof otherChecks],
+      ) as string[],
+    });
+  }, [
+    heightChecks,
+    treeShape,
+    fruitChecks,
+    waterChecks,
+    otherChecks,
+    setFilters,
+  ]);
+
+  useEffect(() => {
+    console.log('Updated filters:', {
+      heightChecks,
+      fruitChecks,
+      waterChecks,
+      otherChecks,
+      treeShape,
+    });
+  }, [heightChecks, fruitChecks, waterChecks, otherChecks, treeShape]);
 
   const handleHeightChange = (key: keyof typeof heightChecks) => {
     setHeightChecks(prev => ({
@@ -69,6 +122,7 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
   };
 
   const resetFilters = () => {
+    console.log('Resetting filters');
     setHeightChecks({
       small: false,
       medium: false,
@@ -90,6 +144,13 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
       lowroot: false,
     });
     setTreeShape('');
+    setFilters({
+      height: [],
+      shape: '',
+      fruit: [],
+      water: [],
+      other: [],
+    });
   };
 
   const treeShapeOptions = [

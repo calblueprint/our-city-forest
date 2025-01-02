@@ -8,9 +8,30 @@ import { styles } from './styles';
 type SearchBarProps = {
   value: string;
   onChange: (text: string) => void;
+  filters: {
+    height: string[];
+    shape: string;
+    fruit: string[];
+    water: string[];
+    other: string[];
+  };
+  setFilters: React.Dispatch<
+    React.SetStateAction<{
+      height: string[];
+      shape: string;
+      fruit: string[];
+      water: string[];
+      other: string[];
+    }>
+  >;
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  value,
+  onChange,
+  filters,
+  setFilters,
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => setModalVisible(true);
@@ -31,7 +52,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
             <Filter />
           </View>
         </TouchableOpacity>
-        <TreeFilterModal visible={modalVisible} onClose={closeModal} />
+        <TreeFilterModal
+          visible={modalVisible}
+          onClose={closeModal}
+          filters={filters}
+          setFilters={setFilters}
+        />
       </View>
     </View>
   );

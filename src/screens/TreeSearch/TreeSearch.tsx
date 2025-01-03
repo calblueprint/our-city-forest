@@ -54,7 +54,7 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
           const formattedData: TreeSpeciesItem[] = data.map(
             (item: TreeSpecies & { count: number }) => ({
               species: item.name,
-              image_link:
+              image_url:
                 item.image_url || 'https://example.com/placeholder.jpg',
               stock_count: item.count,
               max_height_ft: item.max_height_ft,

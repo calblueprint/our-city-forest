@@ -26,11 +26,9 @@ type TreeInfoScreenProps = NativeStackScreenProps<
 export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
   const treeId = route.params?.treeId ?? '';
   const [isSpecies, setIsSpecies] = useState(true);
-  const [treeData, setTreeData] = useState<Partial<Tree>>({
-    tree_id: treeId,
-  });
+  const [treeData, setTreeData] = useState<Tree | null>(null);
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);
-  const treeBgImage = treeData.species?.image_url;
+  const treeBgImage = treeData?.species?.image_url;
 
   useEffect(() => {
     (async () => {
@@ -38,10 +36,10 @@ export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
       setTreeData(data);
     })();
     (async () => {
-      const data = await getAllTreesForSpecies(treeData.species?.name ?? '');
+      const data = await getAllTreesForSpecies(treeData?.species?.name ?? '');
       setAllTreesData(data);
     })();
-  }, [treeData.species?.name, treeId]);
+  }, [treeData?.species?.name, treeId]);
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
@@ -65,16 +63,16 @@ export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
               />
             </View>
             <View>
-              <Text style={styles.header}>{treeData.species?.name ?? ''}</Text>
+              <Text style={styles.header}>{treeData?.species?.name ?? ''}</Text>
               <View style={styles.idPillFlex}>
                 <Text style={styles.scientificName}>
-                  {treeData.species?.scientific_name ?? ''}
+                  {treeData?.species?.scientific_name ?? ''}
                 </Text>
 
                 {isSpecies && (
                   <View style={styles.idPill}>
                     <Text style={styles.idText}>
-                      BR-{treeData.bank}-{treeData.row}
+                      BR-{treeData?.bank}-{treeData?.row}
                     </Text>
                   </View>
                 )}
@@ -83,10 +81,14 @@ export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
 
             <View style={styles.separator}></View>
 
-            {isSpecies ? (
-              <TreeEdit treeData={treeData} setTreeData={setTreeData} />
+            {treeData ? (
+              isSpecies ? (
+                <TreeEdit treeData={treeData} setTreeData={setTreeData} />
+              ) : (
+                <TreeDisplay treeData={treeData} allTreesData={allTreesData} />
+              )
             ) : (
-              <TreeDisplay treeData={treeData} allTreesData={allTreesData} />
+              <Text>Loading tree data...</Text>
             )}
           </View>
         </ScrollView>

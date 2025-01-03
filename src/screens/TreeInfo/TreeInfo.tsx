@@ -24,9 +24,9 @@ type TreeInfoScreenProps = NativeStackScreenProps<
 >;
 
 export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
-  const treeId = route.params?.treeId ?? '9ce20e23-a66f-4df8-8696-421202f3d616';
+  const treeId = route.params?.treeId ?? '';
   const [isSpecies, setIsSpecies] = useState(true);
-  const [treeData, setTreeData] = useState<Tree>({
+  const [treeData, setTreeData] = useState<Partial<Tree>>({
     tree_id: treeId,
   });
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);

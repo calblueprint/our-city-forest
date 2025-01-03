@@ -26,11 +26,12 @@ export enum TreeProductionStatus {
 }
 
 export enum TreeOwnershipStatus {
-  Nursery = 'nursery',
+  Available = 'available',
   Sold = 'sold',
   ReservedResident = 'reserved_resident',
   ReservedCommunity = 'reserved_community',
-  Planted = 'planted',
+  PlantedResident = 'planted_resident',
+  PlantedCommunity = 'planted_community',
 }
 
 export const titleCase = (str: string) =>

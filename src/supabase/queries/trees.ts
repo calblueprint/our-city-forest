@@ -69,9 +69,11 @@ export async function getAllTreesForSpecies(speciesName: string) {
 }
 
 // Retrieves a JSON array of available tree species in the format:
-// [{ "name": "Oak", "image_link": "https://example.com/oak.jpg", "count": 10 }, ...]
+// [{ "name": "Oak", "image_url": "https://example.com/oak.jpg", "count": 10 }, ...]
 export async function getAvailableTreeSpecies() {
   const { data, error } = await supabase.rpc('get_available_tree_species');
+
+  console.log('get_available_tree_species data:', data);
 
   if (error) {
     throw new Error(`Error retrieving available species: ${error.message}`);

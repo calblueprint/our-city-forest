@@ -10,7 +10,7 @@ import SvgShapes from '@/icons/Shapes';
 import SvgWarning2 from '@/icons/Warning2';
 import SvgWateringCan from '@/icons/WateringCan';
 import { displayValue, Tree } from '@/types/tree';
-import { TreeFoliageType } from '@/types/tree_species';
+import { TreeSpeciesFoliageType } from '@/types/tree_species';
 import styles from './styles';
 
 type TreeDisplayProps = {
@@ -114,7 +114,8 @@ export default function TreeDisplay({
           </View>
         )}
 
-        {treeData.species?.foliage_type === TreeFoliageType.Evergreen && (
+        {treeData.species?.foliage_type ===
+          TreeSpeciesFoliageType.Evergreen && (
           <View style={styles.property}>
             <SvgLeaf />
             <Text style={styles.propertyText}>Evergreen</Text>

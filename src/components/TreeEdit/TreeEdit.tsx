@@ -10,7 +10,7 @@ import { updateTree } from '@/supabase/queries/trees';
 import {
   displayValue,
   Tree,
-  TreeHealth,
+  TreeHealthStatus,
   TreeProductionStatus,
   TreeReservedFor,
 } from '@/types/tree';
@@ -103,7 +103,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           <Text style={styles.label}>Health Status</Text>
           {isEditing ? (
             <Dropdown
-              options={Object.values(TreeHealth)}
+              options={Object.values(TreeHealthStatus)}
               displayValue={displayValue}
               setValue={value =>
                 setTreeData({ ...treeData, health_status: value })

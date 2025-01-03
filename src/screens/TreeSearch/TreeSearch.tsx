@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Scanner from '@/icons/Scanner';
 import { getAvailableTreeSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
-import { TreeFoliageType, TreeSpecies } from '@/types/tree_species';
+import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { styles } from './styles';
 
@@ -64,7 +64,7 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
               litter_type: item.litter_type,
               water_use: item.water_use,
               california_native: item.california_native,
-              evergreen: item.foliage_type === TreeFoliageType.Evergreen,
+              evergreen: item.foliage_type === TreeSpeciesFoliageType.Evergreen,
               powerline_friendly: item.utility_friendly,
               root_damage_potential: item.root_damage_potential,
             }),

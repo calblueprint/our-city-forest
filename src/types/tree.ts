@@ -3,39 +3,34 @@ import { TreeSpecies } from './tree_species';
 
 export type Tree = {
   tree_id: string;
-  species?: TreeSpecies;
-  street_address?: string;
+  species: TreeSpecies;
+  tag_id?: string;
   bank?: number;
   row?: number;
-  health_status?: TreeHealth;
-  planted?: boolean;
-  sold?: boolean;
-  reserved?: boolean;
-  reserved_for?: TreeReservedFor;
-  production_status?: TreeProductionStatus;
-  street_ready?: boolean;
-  required_action?: string;
-  source?: string;
-  date?: Date;
-  qr_code_url?: string;
-  tag_id?: string;
+  health_status: TreeHealthStatus;
+  production_status: TreeProductionStatus;
+  ownership_status: TreeOwnershipStatus;
   additional_notes?: string;
+  qr_code_url?: string;
+  created_at: Date;
 };
 
-export enum TreeHealth {
+export enum TreeHealthStatus {
   Healthy = 'healthy',
-  Quarantined = 'sick',
-}
-
-export enum TreeReservedFor {
-  Resident = 'resident',
-  CommunityPlanting = 'community_planting',
-  Sold = 'sold',
+  Sick = 'sick',
 }
 
 export enum TreeProductionStatus {
   InProduction = 'in_production',
   StreetReady = 'street_ready',
+}
+
+export enum TreeOwnershipStatus {
+  Nursery = 'nursery',
+  Sold = 'sold',
+  ReservedResident = 'reserved_resident',
+  ReservedCommunity = 'reserved_community',
+  Planted = 'planted',
 }
 
 export const titleCase = (str: string) =>

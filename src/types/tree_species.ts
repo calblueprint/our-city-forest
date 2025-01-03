@@ -5,20 +5,20 @@ export type TreeSpecies = {
   description: string;
   fun_fact: string;
   california_native: boolean;
-  tree_shape: TreeShape;
-  foliage_type: TreeFoliageType;
+  tree_shape: TreeSpeciesShape;
+  foliage_type: TreeSpeciesFoliageType;
   max_height_ft: number;
   leaf_color?: string;
   flower_color?: string;
   has_fall_color: boolean;
-  litter_type?: TreeLitterType;
-  water_use: TreeWaterUse;
-  root_damage_potential: TreeRootDamagePotential;
+  litter_type?: TreeSpeciesLitterType;
+  water_use: TreeSpeciesWaterUse;
+  root_damage_potential: TreeSpeciesRootDamagePotential;
   utility_friendly: boolean;
   image_url?: string;
 };
 
-export enum TreeShape {
+export enum TreeSpeciesShape {
   Columnar = 'columnar',
   Conical = 'conical',
   Irregular = 'irregular',
@@ -32,23 +32,23 @@ export enum TreeShape {
   Vase = 'vase',
 }
 
-export enum TreeFoliageType {
+export enum TreeSpeciesFoliageType {
   Deciduous = 'deciduous',
   Evergreen = 'evergreen',
 }
 
-export enum TreeLitterType {
+export enum TreeSpeciesLitterType {
   Dry = 'dry',
   Wet = 'wet',
 }
 
-export enum TreeWaterUse {
+export enum TreeSpeciesWaterUse {
   Low = 'low',
   Moderate = 'moderate',
   High = 'high',
 }
 
-export enum TreeRootDamagePotential {
+export enum TreeSpeciesRootDamagePotential {
   Low = 'low',
   Moderate = 'moderate',
   High = 'high',

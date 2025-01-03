@@ -10,9 +10,9 @@ import { updateTree } from '@/supabase/queries/trees';
 import {
   displayValue,
   Tree,
-  TreeHealth,
+  TreeHealthStatus,
+  TreeOwnershipStatus,
   TreeProductionStatus,
-  TreeReservedFor,
 } from '@/types/tree';
 import Dropdown from '../Dropdown/Dropdown';
 import styles from './styles';
@@ -103,7 +103,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           <Text style={styles.label}>Health Status</Text>
           {isEditing ? (
             <Dropdown
-              options={Object.values(TreeHealth)}
+              options={Object.values(TreeHealthStatus)}
               displayValue={displayValue}
               setValue={value =>
                 setTreeData({ ...treeData, health_status: value })
@@ -145,18 +145,18 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           <Text style={styles.label}>Ownership Status</Text>
           {isEditing ? (
             <Dropdown
-              options={Object.values(TreeReservedFor)}
+              options={Object.values(TreeOwnershipStatus)}
               displayValue={displayValue}
               setValue={value =>
-                setTreeData({ ...treeData, reserved_for: value })
+                setTreeData({ ...treeData, ownership_status: value })
               }
-              value={treeData.reserved_for ?? ''}
+              value={treeData.ownership_status ?? ''}
             />
           ) : (
             <View style={styles.iconTextView}>
               <SvgUser />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.reserved_for ?? '')}
+                {displayValue(treeData.ownership_status ?? '')}
               </Text>
             </View>
           )}

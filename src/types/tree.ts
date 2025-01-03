@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { Species } from './species';
+import { TreeSpecies } from './tree_species';
 
 export type Tree = {
   tree_id: string;
-  species?: Species;
+  species?: TreeSpecies;
   street_address?: string;
   bank?: number;
   row?: number;

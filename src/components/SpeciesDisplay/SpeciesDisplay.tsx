@@ -10,12 +10,12 @@ import SvgRuler from '@/icons/Ruler';
 import SvgShapes from '@/icons/Shapes';
 import SvgWarning2 from '@/icons/Warning2';
 import SvgWateringCan from '@/icons/WateringCan';
-import { Species } from '@/types/species';
 import { displayValue, Tree } from '@/types/tree';
+import { TreeFoliageType, TreeSpecies } from '@/types/tree_species';
 import styles from './styles';
 
 type SpeciesDisplayProps = {
-  speciesData: Partial<Species>;
+  speciesData: Partial<TreeSpecies>;
   treeData: Tree[];
 };
 export default function SpeciesDisplay({
@@ -47,10 +47,12 @@ export default function SpeciesDisplay({
 
       <Text style={styles.header}>Properties</Text>
       <View style={styles.properties}>
-        {speciesData.height_ft && (
+        {speciesData.max_height_ft && (
           <View style={styles.property}>
             <SvgRuler />
-            <Text style={styles.propertyText}>{speciesData.height_ft} ft</Text>
+            <Text style={styles.propertyText}>
+              {speciesData.max_height_ft} ft
+            </Text>
           </View>
         )}
 
@@ -63,11 +65,11 @@ export default function SpeciesDisplay({
           </View>
         )}
 
-        {speciesData.water_amount && (
+        {speciesData.water_use && (
           <View style={styles.property}>
             <SvgWateringCan />
             <Text style={styles.propertyText}>
-              {displayValue(speciesData.water_amount)}
+              {displayValue(speciesData.water_use)}
             </Text>
           </View>
         )}
@@ -81,30 +83,30 @@ export default function SpeciesDisplay({
           </View>
         )}
 
-        {speciesData.fruit_type && (
+        {speciesData.litter_type && (
           <View style={styles.property}>
             <SvgFruit />
             <Text style={styles.propertyText}>
-              {displayValue(speciesData.fruit_type)} Fruit
+              {displayValue(speciesData.litter_type)} Fruit
             </Text>
           </View>
         )}
 
-        {speciesData.ca_native && (
+        {speciesData.california_native && (
           <View style={styles.property}>
             <SvgBear />
             <Text style={styles.propertyText}>CA Native</Text>
           </View>
         )}
 
-        {speciesData.evergreen && (
+        {speciesData.foliage_type === TreeFoliageType.Evergreen && (
           <View style={styles.property}>
             <SvgLeaf />
-            <Text style={styles.propertyText}>Evegreen</Text>
+            <Text style={styles.propertyText}>Evergreen</Text>
           </View>
         )}
 
-        {speciesData.powerline_friendly && (
+        {speciesData.utility_friendly && (
           <View style={styles.property}>
             <SvgFlash />
             <Text style={styles.propertyText}>Powerline Friendly</Text>

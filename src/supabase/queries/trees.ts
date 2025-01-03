@@ -55,6 +55,19 @@ export async function removeMultipleTrees(treeIds: string[]) {
   }
 }
 
+export async function getAllTreesForSpecies(speciesName: string) {
+  const { error, data } = await supabase
+    .from('trees')
+    .select('*')
+    .eq('species', speciesName);
+
+  if (error) {
+    throw new Error(`Error getting trees for species: ${error.message}`);
+  }
+
+  return data as Tree[];
+}
+
 // Retrieves a JSON array of available tree species in the format:
 // [{ "name": "Oak", "image_link": "https://example.com/oak.jpg", "count": 10 }, ...]
 export async function getAvailableTreeSpecies() {

@@ -14,10 +14,11 @@ import SpeciesDisplay from '@/components/SpeciesDisplay/SpeciesDisplay';
 import SvgBackArrow from '@/icons/BackArrow';
 import SvgScanBarcode from '@/icons/ScanBarcode';
 import colors from '@/styles/colors';
-import { getAllTreesForSpecies, getSpecies } from '@/supabase/queries/species';
+import { getTreeSpecies } from '@/supabase/queries/tree_species';
+import { getAllTreesForSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
-import { Species } from '@/types/species';
 import { Tree } from '@/types/tree';
+import { TreeSpecies } from '@/types/tree_species';
 import styles from './styles';
 
 type SpeciesInfoScreenProps = NativeStackScreenProps<
@@ -30,15 +31,15 @@ export default function SpeciesInfoScreen({
   navigation,
 }: SpeciesInfoScreenProps) {
   const speciesName = route.params?.speciesName ?? '';
-  const [speciesData, setSpeciesData] = useState<Partial<Species>>({
+  const [speciesData, setSpeciesData] = useState<Partial<TreeSpecies>>({
     name: speciesName,
   });
   const [treeData, setTreeData] = useState<Tree[]>([]);
-  const treeBgImage = speciesData.image_link;
+  const treeBgImage = speciesData.image_url;
 
   useEffect(() => {
     (async () => {
-      const data = await getSpecies(speciesName);
+      const data = await getTreeSpecies(speciesName);
       setSpeciesData(data);
     })();
 

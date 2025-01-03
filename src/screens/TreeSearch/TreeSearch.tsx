@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Scanner from '@/icons/Scanner';
 import { getAvailableTreeSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
-import { Species } from '@/types/species';
+import { TreeFoliageType, TreeSpecies } from '@/types/tree_species';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { styles } from './styles';
 
@@ -54,18 +54,18 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
         console.log('Fetched data:', data);
         if (data) {
           const formattedData: TreeItem[] = data.map(
-            (item: Species & { count: number }) => ({
+            (item: TreeSpecies & { count: number }) => ({
               species: item.name,
               image_link:
-                item.image_link || 'https://example.com/placeholder.jpg',
-              stockCount: item.count,
-              height: item.height_ft,
-              shape: item.tree_shape,
-              litter: item.fruit_type,
-              water: item.water_amount,
-              california_native: item.ca_native,
-              evergreen: item.evergreen,
-              powerline_friendly: item.powerline_friendly,
+                item.image_url || 'https://example.com/placeholder.jpg',
+              stock_count: item.count,
+              max_height_ft: item.max_height_ft,
+              tree_shape: item.tree_shape,
+              litter_type: item.litter_type,
+              water_use: item.water_use,
+              california_native: item.california_native,
+              evergreen: item.foliage_type === TreeFoliageType.Evergreen,
+              powerline_friendly: item.utility_friendly,
               root_damage_potential: item.root_damage_potential,
             }),
           );

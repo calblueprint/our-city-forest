@@ -10,6 +10,7 @@ import SvgShapes from '@/icons/Shapes';
 import SvgWarning2 from '@/icons/Warning2';
 import SvgWateringCan from '@/icons/WateringCan';
 import { displayValue, Tree } from '@/types/tree';
+import { TreeFoliageType } from '@/types/tree_species';
 import styles from './styles';
 
 type TreeDisplayProps = {
@@ -61,11 +62,11 @@ export default function TreeDisplay({
 
       <Text style={styles.header}>Properties</Text>
       <View style={styles.properties}>
-        {treeData.species?.height_ft && (
+        {treeData.species?.max_height_ft && (
           <View style={styles.property}>
             <SvgRuler />
             <Text style={styles.propertyText}>
-              {treeData.species?.height_ft} ft
+              {treeData.species?.max_height_ft} ft
             </Text>
           </View>
         )}
@@ -79,11 +80,11 @@ export default function TreeDisplay({
           </View>
         )}
 
-        {treeData.species?.water_amount && (
+        {treeData.species?.water_use && (
           <View style={styles.property}>
             <SvgWateringCan />
             <Text style={styles.propertyText}>
-              {displayValue(treeData.species?.water_amount)}
+              {displayValue(treeData.species?.water_use)}
             </Text>
           </View>
         )}
@@ -97,30 +98,30 @@ export default function TreeDisplay({
           </View>
         )}
 
-        {treeData.species?.fruit_type && (
+        {treeData.species?.litter_type && (
           <View style={styles.property}>
             <SvgFruit />
             <Text style={styles.propertyText}>
-              {displayValue(treeData.species.fruit_type)} Fruit
+              {displayValue(treeData.species.litter_type)} Fruit
             </Text>
           </View>
         )}
 
-        {treeData.species?.ca_native && (
+        {treeData.species?.california_native && (
           <View style={styles.property}>
             <SvgBear />
             <Text style={styles.propertyText}>CA Native</Text>
           </View>
         )}
 
-        {treeData.species?.evergreen && (
+        {treeData.species?.foliage_type === TreeFoliageType.Evergreen && (
           <View style={styles.property}>
             <SvgLeaf />
-            <Text style={styles.propertyText}>Evegreen</Text>
+            <Text style={styles.propertyText}>Evergreen</Text>
           </View>
         )}
 
-        {treeData.species?.powerline_friendly && (
+        {treeData.species?.utility_friendly && (
           <View style={styles.property}>
             <SvgFlash />
             <Text style={styles.propertyText}>Powerline Friendly</Text>

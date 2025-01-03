@@ -13,8 +13,7 @@ import ToggleSwitch from '@/components/ToggleSwitch/ToggleSwitch';
 import TreeDisplay from '@/components/TreeDisplay/TreeDisplay';
 import TreeEdit from '@/components/TreeEdit/TreeEdit';
 import colors from '@/styles/colors';
-import { getAllTreesForSpecies } from '@/supabase/queries/species';
-import { getTreeInfo } from '@/supabase/queries/trees';
+import { getAllTreesForSpecies, getTreeInfo } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { Tree } from '@/types/tree';
 import styles from './styles';
@@ -31,7 +30,7 @@ export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
     tree_id: treeId,
   });
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);
-  const treeBgImage = treeData.species?.image_link;
+  const treeBgImage = treeData.species?.image_url;
 
   useEffect(() => {
     (async () => {

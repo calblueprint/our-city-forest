@@ -50,8 +50,6 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
     const loadTreeData = async () => {
       (async () => {
         const data = await getAvailableTreeSpecies();
-        console.log('Raw Supabase data:', data);
-        console.log('Fetched data:', data);
         if (data) {
           const formattedData: TreeSpeciesItem[] = data.map(
             (item: TreeSpecies & { count: number }) => ({
@@ -77,61 +75,26 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
   }, []);
 
   const applyFilters = (tree: TreeSpeciesItem) => {
-    console.log('Checking tree:', tree);
-    console.log('With filters:', filters);
     if (filters.height.length > 0) {
       const height_ft = parseFloat(tree.max_height);
-      console.log(
-        'Tree height (parsed):',
-        height_ft,
-        'Height filter:',
-        filters.height,
-      );
       const matchesHeight = filters.height.some(filter => {
-        console.log('Checking height filter:', filter);
         if (filter === 'small') return height_ft < 40;
         if (filter === 'medium') return height_ft >= 40 && height_ft <= 60;
         if (filter === 'large') return height_ft > 60;
         return false; // If filter is null or invalid
       });
-      console.log('Matches height:', matchesHeight);
       if (!matchesHeight) return false;
     }
     if (filters.shape && filters.shape !== tree.tree_shape) {
-      console.log(
-        'Tree shape:',
-        tree.tree_shape,
-        'Shape filter:',
-        filters.shape,
-      );
       return false;
     }
     if (filters.fruit.length > 0 && !filters.fruit.includes(tree.litter_type)) {
-      console.log(
-        'Tree litter:',
-        tree.litter_type,
-        'Fruit filter:',
-        filters.fruit,
-      );
       return false;
     }
     if (filters.water.length > 0 && !filters.water.includes(tree.water_use)) {
-      console.log(
-        'Tree water:',
-        tree.water_use,
-        'Water filter:',
-        filters.water,
-      );
       return false;
     }
     if (filters.other.length > 0) {
-      console.log('Tree other properties:', {
-        native: tree.california_native,
-        evergreen: tree.evergreen,
-        powerline: tree.powerline_friendly,
-        lowroot: tree.root_damage_potential,
-      });
-      console.log('Other filters:', filters.other);
       const matchesOther = filters.other.every(option => {
         if (option === 'native') return tree.california_native || false;
         if (option === 'evergreen') return tree.evergreen || false;
@@ -139,10 +102,8 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
         if (option === 'lowroot') return tree.root_damage_potential === 'low';
         return false;
       });
-      console.log('Matches other filters:', matchesOther);
       if (!matchesOther) return false;
     }
-    console.log('Tree passes all filters:', tree.species);
     return true; // Pass all filters
   };
 
@@ -151,7 +112,6 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
       tree.species.toLowerCase().includes(searchQuery.toLowerCase()) &&
       applyFilters(tree),
   );
-  console.log('Filtered trees:', filteredTrees);
 
   const renderSpeciesCard = ({ item }: { item: TreeSpeciesItem }) => (
     <Pressable

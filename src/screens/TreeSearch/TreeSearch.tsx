@@ -13,14 +13,14 @@ type TreeSearchScreenProps = NativeStackScreenProps<
   'TreeSearch'
 >;
 
-type TreeItem = {
+type TreeSpeciesItem = {
   species: string;
-  image_link: string;
-  stockCount: number;
-  height: string;
-  shape: string;
-  litter: string;
-  water: string;
+  image_url: string;
+  stock_count: number;
+  max_height: string;
+  tree_shape: string;
+  litter_type: string;
+  water_use: string;
   california_native: boolean;
   evergreen: boolean;
   powerline_friendly: boolean;
@@ -36,7 +36,7 @@ type FilterState = {
 };
 
 export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
-  const [trees, setTrees] = useState<TreeItem[]>([]);
+  const [trees, setTrees] = useState<TreeSpeciesItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filters, setFilters] = useState<FilterState>({
     height: [],
@@ -53,7 +53,7 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
         console.log('Raw Supabase data:', data);
         console.log('Fetched data:', data);
         if (data) {
-          const formattedData: TreeItem[] = data.map(
+          const formattedData: TreeSpeciesItem[] = data.map(
             (item: TreeSpecies & { count: number }) => ({
               species: item.name,
               image_link:
@@ -76,11 +76,11 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
     loadTreeData();
   }, []);
 
-  const applyFilters = (tree: TreeItem) => {
+  const applyFilters = (tree: TreeSpeciesItem) => {
     console.log('Checking tree:', tree);
     console.log('With filters:', filters);
     if (filters.height.length > 0) {
-      const height_ft = parseFloat(tree.height);
+      const height_ft = parseFloat(tree.max_height);
       console.log(
         'Tree height (parsed):',
         height_ft,
@@ -97,16 +97,31 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
       console.log('Matches height:', matchesHeight);
       if (!matchesHeight) return false;
     }
-    if (filters.shape && filters.shape !== tree.shape) {
-      console.log('Tree shape:', tree.shape, 'Shape filter:', filters.shape);
+    if (filters.shape && filters.shape !== tree.tree_shape) {
+      console.log(
+        'Tree shape:',
+        tree.tree_shape,
+        'Shape filter:',
+        filters.shape,
+      );
       return false;
     }
-    if (filters.fruit.length > 0 && !filters.fruit.includes(tree.litter)) {
-      console.log('Tree litter:', tree.litter, 'Fruit filter:', filters.fruit);
+    if (filters.fruit.length > 0 && !filters.fruit.includes(tree.litter_type)) {
+      console.log(
+        'Tree litter:',
+        tree.litter_type,
+        'Fruit filter:',
+        filters.fruit,
+      );
       return false;
     }
-    if (filters.water.length > 0 && !filters.water.includes(tree.water)) {
-      console.log('Tree water:', tree.water, 'Water filter:', filters.water);
+    if (filters.water.length > 0 && !filters.water.includes(tree.water_use)) {
+      console.log(
+        'Tree water:',
+        tree.water_use,
+        'Water filter:',
+        filters.water,
+      );
       return false;
     }
     if (filters.other.length > 0) {
@@ -138,7 +153,7 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
   );
   console.log('Filtered trees:', filteredTrees);
 
-  const renderSpeciesCard = ({ item }: { item: TreeItem }) => (
+  const renderSpeciesCard = ({ item }: { item: TreeSpeciesItem }) => (
     <Pressable
       onPress={() =>
         navigation.push('SpeciesInfo', { speciesName: item.species })
@@ -147,14 +162,14 @@ export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
     >
       <ImageBackground
         source={{
-          uri: item.image_link || 'https://example.com/placeholder.jpg',
+          uri: item.image_url || 'https://example.com/placeholder.jpg',
         }}
         style={styles.speciesImage}
       />
       <Text style={styles.speciesName} numberOfLines={1}>
         {item.species}
       </Text>
-      <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
+      <Text style={styles.speciesStock}>{item.stock_count} in stock</Text>
     </Pressable>
   );
 

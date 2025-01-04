@@ -7,20 +7,18 @@ import { useAuth } from '@/context/AuthContext';
 import { ContactStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
-type GoogleSignOutButtonProps = NativeStackScreenProps<
+type SignOutButtonProps = NativeStackScreenProps<
   ContactStackParamList,
   'Contact'
 >;
 
-export const GoogleSignOutButton: React.FC<GoogleSignOutButtonProps> = ({
-  navigation,
-}) => {
-  const { setIsAuthenticated: setAuthenticated } = useAuth();
+export const SignOutButton: React.FC<SignOutButtonProps> = ({ navigation }) => {
+  const { setIsAuthenticated } = useAuth();
 
-  const handleSignOut = async () => {
+  const signOut = async () => {
     try {
-      await AsyncStorage.setItem('authenticated', 'false');
-      await setAuthenticated(false);
+      await AsyncStorage.setItem('authStatus', 'false');
+      await setIsAuthenticated(false);
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -33,7 +31,7 @@ export const GoogleSignOutButton: React.FC<GoogleSignOutButtonProps> = ({
   };
 
   return (
-    <TouchableOpacity style={styles.button} onPress={handleSignOut}>
+    <TouchableOpacity style={styles.button} onPress={signOut}>
       <Text style={styles.buttonText}>Sign out</Text>
     </TouchableOpacity>
   );

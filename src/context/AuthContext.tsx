@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const syncAuthState = async () => {
       try {
-        const storedAuth = await AsyncStorage.getItem('authenticated');
+        const storedAuth = await AsyncStorage.getItem('authStatus');
         console.log('Auth state from storage:', storedAuth);
         setIsAuthenticated(storedAuth === 'true');
       } catch (error) {
@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const setAuthenticated = async (value: boolean) => {
     try {
-      await AsyncStorage.setItem('authenticated', value ? 'true' : 'false');
+      await AsyncStorage.setItem('authStatus', value ? 'true' : 'false');
       setIsAuthenticated(value);
     } catch (error) {
       console.error('Failed to update authentication state:', error);

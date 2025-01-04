@@ -72,7 +72,7 @@ export const getAllTreesForSpecies = async (
 
 // Retrieves a JSON array of available tree species in the format:
 // [{ "name": "Oak", "image_url": "https://example.com/oak.jpg", "count": 10 }, ...]
-export const getAvailableTreeSpecies = async (): Promise<void> => {
+export const getAvailableTreeSpecies = async () => {
   const { data, error } = await supabase.rpc('get_available_tree_species');
 
   console.log('get_available_tree_species data:', data);

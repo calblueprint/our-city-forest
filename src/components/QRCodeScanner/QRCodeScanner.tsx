@@ -16,7 +16,7 @@ type QRCodeScannerProps = NativeStackScreenProps<
 >;
 
 export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
-  const [permission, requestPermission] = useCameraPermissions();
+  const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [qrCodeFound, setQrCodeFound] = useState<boolean>(false);
   const [qrCodeData, setQrCodeData] = useState<string | null>(null);
   const [flashEnabled, setFlashEnabled] = useState<boolean>(false);
@@ -25,33 +25,33 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
     setQrCodeFound(false);
     setQrCodeData(null);
   };
-  let qrCodeFoundTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(
+  let qrCodeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
 
-  const onBarcodeScanned = (data: BarcodeScanningResult) => {
+  const handleBarcodeScanned = (data: BarcodeScanningResult) => {
     setQrCodeFound(true);
     setQrCodeData(data.data);
 
     // Reset the QR code found state after not seeing a QR for 100ms
-    clearTimeout(qrCodeFoundTimeout.current);
-    qrCodeFoundTimeout.current = setTimeout(resetQrCodeFound, 100);
+    clearTimeout(qrCodeTimeoutRef.current);
+    qrCodeTimeoutRef.current = setTimeout(resetQrCodeFound, 100);
   };
 
   useEffect(() => {
     // Request camera permissions if not granted on mount
-    if (!permission?.granted) {
-      requestPermission();
+    if (!cameraPermission?.granted) {
+      requestCameraPermission();
     }
-  }, [permission, requestPermission]);
+  }, [cameraPermission, requestCameraPermission]);
 
   // Camera permissions are still loading.
-  if (!permission) {
+  if (!cameraPermission) {
     return <View />;
   }
 
   // No perms :(
-  if (!permission.granted) {
+  if (!cameraPermission.granted) {
     return <Text>Permission for camera not granted.</Text>;
   }
 
@@ -77,7 +77,7 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
         >
           <CameraView
             style={[styles.camera]}
-            onBarcodeScanned={onBarcodeScanned}
+            onBarcodeScanned={handleBarcodeScanned}
             barcodeScannerSettings={{
               barcodeTypes: ['qr'],
             }}

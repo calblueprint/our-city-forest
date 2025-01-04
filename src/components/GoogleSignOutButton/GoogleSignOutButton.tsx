@@ -15,7 +15,7 @@ type GoogleSignOutButtonProps = NativeStackScreenProps<
 export const GoogleSignOutButton: React.FC<GoogleSignOutButtonProps> = ({
   navigation,
 }) => {
-  const { setAuthenticated } = useAuth();
+  const { setIsAuthenticated: setAuthenticated } = useAuth();
 
   const handleSignOut = async () => {
     try {

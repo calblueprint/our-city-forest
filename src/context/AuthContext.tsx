@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type AuthState = {
   isAuthenticated: boolean;
-  setAuthenticated: (value: boolean) => Promise<void>;
+  setIsAuthenticated: (value: boolean) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthState | undefined>(undefined);
@@ -41,7 +41,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, setIsAuthenticated: setAuthenticated }}
+    >
       {children}
     </AuthContext.Provider>
   );

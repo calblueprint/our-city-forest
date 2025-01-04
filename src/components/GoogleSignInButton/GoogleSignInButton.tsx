@@ -19,7 +19,7 @@ type GoogleSignInButtonProps = CompositeScreenProps<
 export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
   navigation,
 }) => {
-  const { setAuthenticated } = useAuth();
+  const { setIsAuthenticated } = useAuth();
   const [, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
     androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
@@ -38,25 +38,25 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
         );
 
         if (userResponse.ok) {
-          await setAuthenticated(true);
+          await setIsAuthenticated(true);
           navigation.navigate('BottomTabs', {
             screen: 'Home',
             params: { screen: 'TreeSearch' },
           });
         } else {
           console.error('Authentication failed');
-          await setAuthenticated(false);
+          await setIsAuthenticated(false);
         }
       } catch (error) {
         console.error('Failed to sign in with Google:', error);
-        await setAuthenticated(false);
+        await setIsAuthenticated(false);
       }
     };
 
     if (response?.type === 'success' && response.authentication?.accessToken) {
       handleSignInWithGoogle(response.authentication.accessToken);
     }
-  }, [response, navigation, setAuthenticated]);
+  }, [response, navigation, setIsAuthenticated]);
 
   return (
     <TouchableOpacity onPress={() => promptAsync()}>

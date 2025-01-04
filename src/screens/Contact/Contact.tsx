@@ -69,8 +69,6 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
     openLink(locationUrl);
   };
 
-  console.log('Rendering Contact screen');
-
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>

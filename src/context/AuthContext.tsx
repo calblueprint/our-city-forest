@@ -21,7 +21,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const syncAuthState = async () => {
       try {
         const storedAuth = await AsyncStorage.getItem('authStatus');
-        console.log('Auth state from storage:', storedAuth);
         setIsAuthenticated(storedAuth === 'true');
       } catch (error) {
         console.error('Error loading authentication state:', error);

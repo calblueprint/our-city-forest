@@ -84,15 +84,13 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
     setFilters,
   ]);
 
-  useEffect(() => {
-    console.log('Updated filters:', {
-      heightChecks,
-      fruitChecks,
-      waterChecks,
-      otherChecks,
-      treeShape,
-    });
-  }, [heightChecks, fruitChecks, waterChecks, otherChecks, treeShape]);
+  useEffect(() => {}, [
+    heightChecks,
+    fruitChecks,
+    waterChecks,
+    otherChecks,
+    treeShape,
+  ]);
 
   const handleHeightChange = (key: keyof typeof heightChecks) => {
     setHeightChecks(prev => ({
@@ -123,7 +121,6 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
   };
 
   const resetFilters = () => {
-    console.log('Resetting filters');
     setHeightChecks({
       small: false,
       medium: false,

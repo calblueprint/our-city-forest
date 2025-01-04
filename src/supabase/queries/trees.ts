@@ -75,8 +75,6 @@ export const getAllTreesForSpecies = async (
 export const getAvailableTreeSpecies = async () => {
   const { data, error } = await supabase.rpc('get_available_tree_species');
 
-  console.log('get_available_tree_species data:', data);
-
   if (error) {
     throw new Error(`Error retrieving available species: ${error.message}`);
   }
@@ -341,7 +339,6 @@ export const generateQRImage = async (treeId: string): Promise<void> => {
       throw new Error(`Failed to generate QR code: ${error.message}`);
     }
 
-    console.log(`QR code generated successfully for tree ${treeId}`);
     return data;
   } catch (error) {
     console.error(`Error generating QR code for tree ${treeId}:`, error);

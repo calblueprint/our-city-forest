@@ -3,7 +3,7 @@ import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { addMultipleTrees, generateQRImage } from '@/supabase/queries/trees';
 import { styles } from './styles';
 
-export function AddTrees() {
+export const AddTrees = () => {
   const [speciesName, setSpeciesName] = useState('');
   const [quantity, setQuantity] = useState(1);
 
@@ -67,4 +67,4 @@ export function AddTrees() {
       </TouchableOpacity>
     </View>
   );
-}
+};

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CommonActions } from '@react-navigation/native';
@@ -11,7 +12,9 @@ type GoogleSignOutButtonProps = NativeStackScreenProps<
   'Contact'
 >;
 
-export function GoogleSignOutButton({ navigation }: GoogleSignOutButtonProps) {
+export const GoogleSignOutButton: React.FC<GoogleSignOutButtonProps> = ({
+  navigation,
+}) => {
   const { setAuthenticated } = useAuth();
 
   const handleSignOut = async () => {
@@ -34,4 +37,4 @@ export function GoogleSignOutButton({ navigation }: GoogleSignOutButtonProps) {
       <Text style={styles.buttonText}>Sign out</Text>
     </TouchableOpacity>
   );
-}
+};

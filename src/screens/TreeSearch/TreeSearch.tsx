@@ -35,7 +35,9 @@ type FilterState = {
   other: string[];
 };
 
-export function TreeSearchScreen({ navigation }: TreeSearchScreenProps) {
+export const TreeSearchScreen: React.FC<TreeSearchScreenProps> = ({
+  navigation,
+}) => {
   const [trees, setTrees] = useState<TreeSpeciesItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filters, setFilters] = useState<FilterState>({
@@ -161,4 +163,4 @@ export function TreeSearchScreen({ navigation }: TreeSearchScreenProps) {
       />
     </>
   );
-}
+};

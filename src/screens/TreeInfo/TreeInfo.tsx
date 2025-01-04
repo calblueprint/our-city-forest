@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
@@ -23,7 +23,7 @@ type TreeInfoScreenProps = NativeStackScreenProps<
   'TreeInfo'
 >;
 
-export function TreeInfoScreen({ route }: TreeInfoScreenProps) {
+export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({ route }) => {
   const treeId = route.params?.treeId ?? '';
   const [isSpecies, setIsSpecies] = useState(true);
   const [treeData, setTreeData] = useState<Tree | null>(null);
@@ -95,4 +95,4 @@ export function TreeInfoScreen({ route }: TreeInfoScreenProps) {
       </KeyboardAvoidingView>
     </View>
   );
-}
+};

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -10,7 +11,10 @@ type LoginScreenProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
 >;
 
-export function LoginScreen({ navigation, route }: LoginScreenProps) {
+export const LoginScreen: React.FC<LoginScreenProps> = ({
+  navigation,
+  route,
+}) => {
   return (
     <View style={styles.loginContainer}>
       <Text style={styles.loginText}>I am a...</Text>
@@ -37,4 +41,4 @@ export function LoginScreen({ navigation, route }: LoginScreenProps) {
       </View>
     </View>
   );
-}
+};

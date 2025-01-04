@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, TextInput, View } from 'react-native';
 import {
   Bear,
@@ -19,7 +20,10 @@ type TreeDisplayProps = {
   treeData: Tree;
   allTreesData: Tree[];
 };
-export function TreeDisplay({ treeData, allTreesData }: TreeDisplayProps) {
+export const TreeDisplay: React.FC<TreeDisplayProps> = ({
+  treeData,
+  allTreesData,
+}) => {
   const uniqueLocations = allTreesData.filter(
     (t, index, self) =>
       index === self.findIndex(u => u.bank === t.bank && u.row === t.row),
@@ -130,4 +134,4 @@ export function TreeDisplay({ treeData, allTreesData }: TreeDisplayProps) {
       </View>
     </View>
   );
-}
+};

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   LayoutRectangle,
@@ -18,12 +18,12 @@ type ToggleSwitchProps = {
   falseLabel: string;
 };
 
-export function ToggleSwitch({
+export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   value,
   onValueChange,
   trueLabel,
   falseLabel,
-}: ToggleSwitchProps) {
+}) => {
   if (
     Platform.OS === 'android' &&
     UIManager.setLayoutAnimationEnabledExperimental
@@ -102,4 +102,4 @@ export function ToggleSwitch({
       </View>
     </View>
   );
-}
+};

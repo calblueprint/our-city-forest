@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import {
   BarcodeScanningResult,
@@ -15,7 +15,7 @@ type QRCodeScannerProps = NativeStackScreenProps<
   'QRCodeScanner'
 >;
 
-export function QRCodeScanner({ navigation }: QRCodeScannerProps) {
+export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
   const [permission, requestPermission] = useCameraPermissions();
   const [qrCodeFound, setQrCodeFound] = useState<boolean>(false);
   const [qrCodeData, setQrCodeData] = useState<string | null>(null);
@@ -100,4 +100,4 @@ export function QRCodeScanner({ navigation }: QRCodeScannerProps) {
       </TouchableOpacity>
     </SafeAreaView>
   );
-}
+};

@@ -11,7 +11,7 @@ import { colors } from '@/styles/colors';
 
 DefaultTheme.colors.background = colors.white;
 
-export function App() {
+export const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
     DMSans_400Regular,
     DMSans_700Bold,
@@ -32,4 +32,4 @@ export function App() {
       </AuthContextProvider>
     </GestureHandlerRootView>
   );
-}
+};

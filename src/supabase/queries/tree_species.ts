@@ -1,18 +1,18 @@
 import { TreeSpecies } from '@/types/tree_species';
 import { supabase } from '../client';
 
-export async function addTreeSpecies(species: TreeSpecies) {
+export const addTreeSpecies = async (species: TreeSpecies): Promise<void> => {
   const { error } = await supabase.from('tree_species').insert({ ...species });
 
   if (error) {
     throw new Error(`Error adding tree species: ${error.message}`);
   }
-}
+};
 
-export async function updateTreeSpecies(
+export const updateTreeSpecies = async (
   speciesName: string,
   update: Partial<Omit<TreeSpecies, 'name'>>,
-) {
+): Promise<void> => {
   const { error } = await supabase
     .from('tree_species')
     .update({ ...update })
@@ -21,9 +21,9 @@ export async function updateTreeSpecies(
   if (error) {
     throw new Error(`Error updating tree species: ${error.message}`);
   }
-}
+};
 
-export async function getAllTreeSpecies() {
+export const getAllTreeSpecies = async (): Promise<TreeSpecies[]> => {
   const { error, data } = await supabase.from('tree_species').select();
 
   if (error) {
@@ -31,9 +31,11 @@ export async function getAllTreeSpecies() {
   }
 
   return data as TreeSpecies[];
-}
+};
 
-export async function getTreeSpecies(speciesName: string) {
+export const getTreeSpecies = async (
+  speciesName: string,
+): Promise<TreeSpecies> => {
   const { error, data } = await supabase
     .from('tree_species')
     .select('*')
@@ -49,9 +51,9 @@ export async function getTreeSpecies(speciesName: string) {
   }
 
   return data[0] as TreeSpecies;
-}
+};
 
-export async function deleteTreeSpecies(speciesName: string) {
+export const deleteTreeSpecies = async (speciesName: string): Promise<void> => {
   const { error } = await supabase
     .from('tree_species')
     .delete()
@@ -60,4 +62,4 @@ export async function deleteTreeSpecies(speciesName: string) {
   if (error) {
     throw new Error(`Error deleting tree species: ${error.message}`);
   }
-}
+};

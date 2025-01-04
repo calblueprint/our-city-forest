@@ -31,7 +31,7 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 // Login Stack Navigator
-function LoginStackNavigator() {
+const LoginStackNavigator = () => {
   return (
     <LoginStack.Navigator
       initialRouteName="Login"
@@ -40,10 +40,10 @@ function LoginStackNavigator() {
       <LoginStack.Screen name="Login" component={LoginScreen} />
     </LoginStack.Navigator>
   );
-}
+};
 
 // Home Stack Navigator
-function HomeStackNavigator() {
+const HomeStackNavigator = () => {
   return (
     <HomeStack.Navigator
       initialRouteName="TreeSearch"
@@ -55,10 +55,10 @@ function HomeStackNavigator() {
       <HomeStack.Screen name="SpeciesInfo" component={SpeciesInfoScreen} />
     </HomeStack.Navigator>
   );
-}
+};
 
 // Contact Stack Navigator
-function ContactStackNavigator() {
+const ContactStackNavigator = () => {
   return (
     <ContactStack.Navigator
       initialRouteName="Contact"
@@ -68,10 +68,10 @@ function ContactStackNavigator() {
       <ContactStack.Screen name="Directory" component={DirectoryScreen} />
     </ContactStack.Navigator>
   );
-}
+};
 
 // Tab Navigator
-function BottomTabNavigator() {
+const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
@@ -102,10 +102,10 @@ function BottomTabNavigator() {
       <BottomTab.Screen name="Contact" component={ContactStackNavigator} />
     </BottomTab.Navigator>
   );
-}
+};
 
 // Root Navigator
-export function AppNavigator() {
+export const AppNavigator = () => {
   const { isAuthenticated } = useAuth();
 
   return (
@@ -128,4 +128,4 @@ export function AppNavigator() {
       )}
     </NavigationContainer>
   );
-}
+};

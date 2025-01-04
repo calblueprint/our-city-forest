@@ -10,7 +10,9 @@ type DirectoryScreenProps = NativeStackScreenProps<
   'Directory'
 >;
 
-export function DirectoryScreen({ navigation }: DirectoryScreenProps) {
+export const DirectoryScreen: React.FC<DirectoryScreenProps> = ({
+  navigation,
+}) => {
   const handleGoBack = () => {
     navigation.navigate('Contact');
   };
@@ -73,4 +75,4 @@ export function DirectoryScreen({ navigation }: DirectoryScreenProps) {
       </View>
     </ScrollView>
   );
-}
+};

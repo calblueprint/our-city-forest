@@ -16,7 +16,9 @@ type GoogleSignInButtonProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
 >;
 
-export function GoogleSignInButton({ navigation }: GoogleSignInButtonProps) {
+export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
+  navigation,
+}) => {
   const { setAuthenticated } = useAuth();
   const [, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -61,4 +63,4 @@ export function GoogleSignInButton({ navigation }: GoogleSignInButtonProps) {
       <Text style={styles.adminLoginLinkText}>Login Here</Text>
     </TouchableOpacity>
   );
-}
+};

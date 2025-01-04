@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
@@ -25,10 +25,10 @@ type SpeciesInfoScreenProps = NativeStackScreenProps<
   'SpeciesInfo'
 >;
 
-export function SpeciesInfoScreen({
+export const SpeciesInfoScreen: React.FC<SpeciesInfoScreenProps> = ({
   route,
   navigation,
-}: SpeciesInfoScreenProps) {
+}) => {
   const speciesName = route.params?.speciesName ?? '';
   const [speciesData, setSpeciesData] = useState<Partial<TreeSpecies>>({
     name: speciesName,
@@ -94,4 +94,4 @@ export function SpeciesInfoScreen({
       </KeyboardAvoidingView>
     </View>
   );
-}
+};

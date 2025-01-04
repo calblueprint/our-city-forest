@@ -20,7 +20,10 @@ type SpeciesDisplayProps = {
   speciesData: Partial<TreeSpecies>;
   treeData: Tree[];
 };
-export function SpeciesDisplay({ speciesData, treeData }: SpeciesDisplayProps) {
+export const SpeciesDisplay: React.FC<SpeciesDisplayProps> = ({
+  speciesData,
+  treeData,
+}) => {
   const uniqueLocations = treeData.filter(
     (tree, index, self) =>
       index === self.findIndex(t => t.bank === tree.bank && t.row === tree.row),
@@ -134,4 +137,4 @@ export function SpeciesDisplay({ speciesData, treeData }: SpeciesDisplayProps) {
       )}
     </View>
   );
-}
+};

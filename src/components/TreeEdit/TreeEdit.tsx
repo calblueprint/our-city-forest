@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { EditPen, Heart, Location, Repeat, User } from '@/icons';
 import { colors } from '@/styles/colors';
@@ -18,7 +18,10 @@ type TreeEditProps = {
   setTreeData: (treeData: Tree) => void;
 };
 
-export function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
+export const TreeEdit: React.FC<TreeEditProps> = ({
+  treeData,
+  setTreeData,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const saveTreeData = async () => {
@@ -180,4 +183,4 @@ export function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
       )}
     </View>
   );
-}
+};

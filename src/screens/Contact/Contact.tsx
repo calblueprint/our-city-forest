@@ -50,7 +50,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, onPress }) => (
   </TouchableOpacity>
 );
 
-export function ContactScreen({ navigation }: ContactScreenProps) {
+export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
   const openLink = async (url: string) => {
     try {
       const supported = await Linking.canOpenURL(url);
@@ -123,4 +123,4 @@ export function ContactScreen({ navigation }: ContactScreenProps) {
       </View>
     </View>
   );
-}
+};

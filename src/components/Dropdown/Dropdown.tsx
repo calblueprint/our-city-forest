@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, View } from 'react-native';
 import { Dropdown as DropdownElement } from 'react-native-element-dropdown';
 import { Icon } from 'react-native-elements';
@@ -17,12 +18,12 @@ type Option = {
   i: number;
 };
 
-export function Dropdown<T extends string[]>({
+export const Dropdown = <T extends string[]>({
   options,
   setValue,
   value,
   displayValue = s => s,
-}: DropdownProps<T>) {
+}: DropdownProps<T>): React.JSX.Element => {
   return (
     <View>
       <DropdownElement
@@ -86,4 +87,4 @@ export function Dropdown<T extends string[]>({
       />
     </View>
   );
-}
+};

@@ -7,19 +7,19 @@ import { Tree } from '@/types/tree';
 import { supabase } from '../client';
 
 // Function to add a single tree
-export async function addTree(species: string) {
+export const addTree = async (species: string): Promise<void> => {
   const { error } = await supabase.rpc('add_tree', { species });
 
   if (error) {
     throw new Error(`Error adding tree: ${error.message}`);
   }
-}
+};
 
 // Function to add multiple trees of the same species. Returns an array of UUIDs for all trees that were added.
-export async function addMultipleTrees(
+export const addMultipleTrees = async (
   species: string,
   quantity: number,
-): Promise<string[]> {
+): Promise<string[]> => {
   const { data, error } = await supabase.rpc('add_multiple_trees', {
     species: species,
     quantity: quantity,
@@ -31,10 +31,10 @@ export async function addMultipleTrees(
 
   const treeIds: string[] = Array.isArray(data) ? data : [];
   return treeIds;
-}
+};
 
 // Function to remove a single tree by UUID
-export async function removeTree(treeId: string) {
+export const removeTree = async (treeId: string): Promise<void> => {
   const { error } = await supabase.rpc('remove_tree', {
     tree_uuid: treeId,
   });
@@ -42,10 +42,10 @@ export async function removeTree(treeId: string) {
   if (error) {
     throw new Error(`Error removing tree: ${error.message}`);
   }
-}
+};
 
 // Function to remove multiple trees by a list of UUIDs
-export async function removeMultipleTrees(treeIds: string[]) {
+export const removeMultipleTrees = async (treeIds: string[]): Promise<void> => {
   const { error } = await supabase.rpc('remove_multiple_trees', {
     tree_uuids: treeIds,
   });
@@ -53,9 +53,11 @@ export async function removeMultipleTrees(treeIds: string[]) {
   if (error) {
     throw new Error(`Error removing multiple trees: ${error.message}`);
   }
-}
+};
 
-export async function getAllTreesForSpecies(speciesName: string) {
+export const getAllTreesForSpecies = async (
+  speciesName: string,
+): Promise<Tree[]> => {
   const { error, data } = await supabase
     .from('trees')
     .select('*')
@@ -66,11 +68,11 @@ export async function getAllTreesForSpecies(speciesName: string) {
   }
 
   return data as Tree[];
-}
+};
 
 // Retrieves a JSON array of available tree species in the format:
 // [{ "name": "Oak", "image_url": "https://example.com/oak.jpg", "count": 10 }, ...]
-export async function getAvailableTreeSpecies() {
+export const getAvailableTreeSpecies = async (): Promise<void> => {
   const { data, error } = await supabase.rpc('get_available_tree_species');
 
   console.log('get_available_tree_species data:', data);
@@ -80,10 +82,10 @@ export async function getAvailableTreeSpecies() {
   }
 
   return data;
-}
+};
 
 // Retrieves tree info by UUID, returns properties as JSON: { "bank": null, "date": null, "health_status": null, ... }
-export async function getTreeInfo(treeId: string) {
+export const getTreeInfo = async (treeId: string): Promise<Tree> => {
   const { data, error } = await supabase.rpc('get_tree_by_uuid', {
     tree_uuid: treeId,
   });
@@ -93,10 +95,13 @@ export async function getTreeInfo(treeId: string) {
   }
 
   return data as Tree;
-}
+};
 
 // Functions to update each property
-export async function updateTree(treeId: string, data: Partial<Tree>) {
+export const updateTree = async (
+  treeId: string,
+  data: Partial<Tree>,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ ...data })
@@ -105,10 +110,13 @@ export async function updateTree(treeId: string, data: Partial<Tree>) {
   if (error) {
     throw new Error(`Error updating tree (${data}): ${error.message}`);
   }
-}
+};
 
 // Update species
-export async function updateTreeSpecies(treeId: string, newSpecies: string) {
+export const updateTreeSpecies = async (
+  treeId: string,
+  newSpecies: string,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ species: newSpecies })
@@ -117,13 +125,13 @@ export async function updateTreeSpecies(treeId: string, newSpecies: string) {
   if (error) {
     throw new Error(`Error updating species: ${error.message}`);
   }
-}
+};
 
 // Update street address
-export async function updateTreeStreetAddress(
+export const updateTreeStreetAddress = async (
   treeId: string,
   newAddress: string,
-) {
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ street_address: newAddress })
@@ -132,10 +140,13 @@ export async function updateTreeStreetAddress(
   if (error) {
     throw new Error(`Error updating street address: ${error.message}`);
   }
-}
+};
 
 // Update bank
-export async function updateTreeBank(treeId: string, newBank: number) {
+export const updateTreeBank = async (
+  treeId: string,
+  newBank: number,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ bank: newBank })
@@ -144,10 +155,13 @@ export async function updateTreeBank(treeId: string, newBank: number) {
   if (error) {
     throw new Error(`Error updating bank: ${error.message}`);
   }
-}
+};
 
 // Update row
-export async function updateTreeRow(treeId: string, newRow: number) {
+export const updateTreeRow = async (
+  treeId: string,
+  newRow: number,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ row: newRow })
@@ -156,13 +170,13 @@ export async function updateTreeRow(treeId: string, newRow: number) {
   if (error) {
     throw new Error(`Error updating row: ${error.message}`);
   }
-}
+};
 
 // Update health status
-export async function updateTreeHealthStatus(
+export const updateTreeHealthStatus = async (
   treeId: string,
   newHealthStatus: string,
-) {
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ health_status: newHealthStatus })
@@ -171,10 +185,13 @@ export async function updateTreeHealthStatus(
   if (error) {
     throw new Error(`Error updating health status: ${error.message}`);
   }
-}
+};
 
 // Update planted status
-export async function updateTreePlanted(treeId: string, isPlanted: boolean) {
+export const updateTreePlanted = async (
+  treeId: string,
+  isPlanted: boolean,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ planted: isPlanted })
@@ -183,10 +200,13 @@ export async function updateTreePlanted(treeId: string, isPlanted: boolean) {
   if (error) {
     throw new Error(`Error updating planted status: ${error.message}`);
   }
-}
+};
 
 // Update sold status
-export async function updateTreeSold(treeId: string, isSold: boolean) {
+export const updateTreeSold = async (
+  treeId: string,
+  isSold: boolean,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ sold: isSold })
@@ -195,10 +215,13 @@ export async function updateTreeSold(treeId: string, isSold: boolean) {
   if (error) {
     throw new Error(`Error updating sold status: ${error.message}`);
   }
-}
+};
 
 // Update reserved status
-export async function updateTreeReserved(treeId: string, isReserved: boolean) {
+export const updateTreeReserved = async (
+  treeId: string,
+  isReserved: boolean,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ reserved: isReserved })
@@ -207,13 +230,13 @@ export async function updateTreeReserved(treeId: string, isReserved: boolean) {
   if (error) {
     throw new Error(`Error updating reserved status: ${error.message}`);
   }
-}
+};
 
 // Update reserved for
-export async function updateTreeReservedFor(
+export const updateTreeReservedFor = async (
   treeId: string,
   reservedFor?: string,
-) {
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ reserved_for: reservedFor })
@@ -222,13 +245,13 @@ export async function updateTreeReservedFor(
   if (error) {
     throw new Error(`Error updating reserved for: ${error.message}`);
   }
-}
+};
 
 // Update street ready status
-export async function updateTreeStreetReady(
+export const updateTreeStreetReady = async (
   treeId: string,
   isStreetReady?: boolean,
-) {
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ street_ready: isStreetReady })
@@ -237,13 +260,13 @@ export async function updateTreeStreetReady(
   if (error) {
     throw new Error(`Error updating street ready status: ${error.message}`);
   }
-}
+};
 
 // Update required action
-export async function updateTreeRequiredAction(
+export const updateTreeRequiredAction = async (
   treeId: string,
   requiredAction?: string,
-) {
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ required_action: requiredAction })
@@ -252,10 +275,13 @@ export async function updateTreeRequiredAction(
   if (error) {
     throw new Error(`Error updating required action: ${error.message}`);
   }
-}
+};
 
 // Update source
-export async function updateTreeSource(treeId: string, source?: string) {
+export const updateTreeSource = async (
+  treeId: string,
+  source?: string,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ source })
@@ -264,10 +290,13 @@ export async function updateTreeSource(treeId: string, source?: string) {
   if (error) {
     throw new Error(`Error updating source: ${error.message}`);
   }
-}
+};
 
 // Update date
-export async function updateTreeDate(treeId: string, date?: Date) {
+export const updateTreeDate = async (
+  treeId: string,
+  date?: Date,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ date })
@@ -276,10 +305,13 @@ export async function updateTreeDate(treeId: string, date?: Date) {
   if (error) {
     throw new Error(`Error updating date: ${error.message}`);
   }
-}
+};
 
 // Update QR code URL
-export async function updateTreeQrCodeUrl(treeId: string, qrCodeUrl?: string) {
+export const updateTreeQrCodeUrl = async (
+  treeId: string,
+  qrCodeUrl?: string,
+): Promise<void> => {
   const { error } = await supabase
     .from('trees')
     .update({ qr_code_url: qrCodeUrl })
@@ -288,10 +320,10 @@ export async function updateTreeQrCodeUrl(treeId: string, qrCodeUrl?: string) {
   if (error) {
     throw new Error(`Error updating QR code URL: ${error.message}`);
   }
-}
+};
 
 // Calls Supabase Edge function to generate QR code
-export async function generateQRImage(treeId: string): Promise<void> {
+export const generateQRImage = async (treeId: string): Promise<void> => {
   try {
     const { data, error } = await supabase.functions.invoke('qr-generate', {
       body: { tree_id: treeId },
@@ -315,4 +347,4 @@ export async function generateQRImage(treeId: string): Promise<void> {
     console.error(`Error generating QR code for tree ${treeId}:`, error);
     throw error;
   }
-}
+};

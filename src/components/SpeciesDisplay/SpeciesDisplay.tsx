@@ -12,8 +12,8 @@ import {
   Warning,
   WateringCan,
 } from '@/icons';
-import { displayValue, Tree } from '@/types/tree';
-import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
+import { formatEnumKey, Tree } from '@/types/tree';
+import { TreeSpecies } from '@/types/tree_species';
 import { styles } from './styles';
 
 type SpeciesDisplayProps = {
@@ -62,7 +62,7 @@ export const SpeciesDisplay: React.FC<SpeciesDisplayProps> = ({
           <View style={styles.property}>
             <Shapes />
             <Text style={styles.propertyText}>
-              {displayValue(speciesData.tree_shape)}
+              {formatEnumKey(speciesData.tree_shape)}
             </Text>
           </View>
         )}
@@ -71,7 +71,7 @@ export const SpeciesDisplay: React.FC<SpeciesDisplayProps> = ({
           <View style={styles.property}>
             <WateringCan />
             <Text style={styles.propertyText}>
-              {displayValue(speciesData.water_use)}
+              {formatEnumKey(speciesData.water_use)}
             </Text>
           </View>
         )}
@@ -80,7 +80,7 @@ export const SpeciesDisplay: React.FC<SpeciesDisplayProps> = ({
           <View style={styles.property}>
             <Warning />
             <Text style={styles.propertyText}>
-              {displayValue(speciesData.root_damage_potential)}
+              {formatEnumKey(speciesData.root_damage_potential)}
             </Text>
           </View>
         )}
@@ -89,7 +89,7 @@ export const SpeciesDisplay: React.FC<SpeciesDisplayProps> = ({
           <View style={styles.property}>
             <Fruit />
             <Text style={styles.propertyText}>
-              {displayValue(speciesData.litter_type)} Fruit
+              {formatEnumKey(speciesData.litter_type)} Fruit
             </Text>
           </View>
         )}
@@ -101,10 +101,12 @@ export const SpeciesDisplay: React.FC<SpeciesDisplayProps> = ({
           </View>
         )}
 
-        {speciesData.foliage_type === TreeSpeciesFoliageType.Evergreen && (
+        {speciesData.foliage_type && (
           <View style={styles.property}>
             <Leaf />
-            <Text style={styles.propertyText}>Evergreen</Text>
+            <Text style={styles.propertyText}>
+              {formatEnumKey(speciesData.foliage_type)}
+            </Text>
           </View>
         )}
 

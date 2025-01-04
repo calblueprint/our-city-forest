@@ -34,10 +34,10 @@ export enum TreeOwnershipStatus {
   PlantedCommunity = 'planted_community',
 }
 
-export const titleCase = (str: string) =>
+export const toTitleCase = (str: string) =>
   str.replace(
     /\w\S*/g,
     text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
   );
 
-export const displayValue = (s: string) => titleCase(s.replace('_', ' '));
+export const formatEnumKey = (s: string) => toTitleCase(s.replace(/_/g, ' '));

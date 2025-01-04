@@ -12,8 +12,7 @@ import {
   Warning,
   WateringCan,
 } from '@/icons';
-import { displayValue, Tree } from '@/types/tree';
-import { TreeSpeciesFoliageType } from '@/types/tree_species';
+import { formatEnumKey, Tree } from '@/types/tree';
 import { styles } from './styles';
 
 type TreeDisplayProps = {
@@ -65,7 +64,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
 
       <Text style={styles.header}>Properties</Text>
       <View style={styles.properties}>
-        {treeData.species?.max_height_ft && (
+        {treeData.species.max_height_ft && (
           <View style={styles.property}>
             <Ruler />
             <Text style={styles.propertyText}>
@@ -74,58 +73,59 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
           </View>
         )}
 
-        {treeData.species?.tree_shape && (
+        {treeData.species.tree_shape && (
           <View style={styles.property}>
             <Shapes />
             <Text style={styles.propertyText}>
-              {displayValue(treeData.species?.tree_shape)}
+              {formatEnumKey(treeData.species?.tree_shape)}
             </Text>
           </View>
         )}
 
-        {treeData.species?.water_use && (
+        {treeData.species.water_use && (
           <View style={styles.property}>
             <WateringCan />
             <Text style={styles.propertyText}>
-              {displayValue(treeData.species?.water_use)}
+              {formatEnumKey(treeData.species?.water_use)}
             </Text>
           </View>
         )}
 
-        {treeData.species?.root_damage_potential && (
+        {treeData.species.root_damage_potential && (
           <View style={styles.property}>
             <Warning />
             <Text style={styles.propertyText}>
-              {displayValue(treeData.species.root_damage_potential)}
+              {formatEnumKey(treeData.species.root_damage_potential)}
             </Text>
           </View>
         )}
 
-        {treeData.species?.litter_type && (
+        {treeData.species.litter_type && (
           <View style={styles.property}>
             <Fruit />
             <Text style={styles.propertyText}>
-              {displayValue(treeData.species.litter_type)} Fruit
+              {formatEnumKey(treeData.species.litter_type)} Fruit
             </Text>
           </View>
         )}
 
-        {treeData.species?.california_native && (
+        {treeData.species.california_native && (
           <View style={styles.property}>
             <Bear />
             <Text style={styles.propertyText}>CA Native</Text>
           </View>
         )}
 
-        {treeData.species?.foliage_type ===
-          TreeSpeciesFoliageType.Evergreen && (
+        {treeData.species.foliage_type && (
           <View style={styles.property}>
             <Leaf />
-            <Text style={styles.propertyText}>Evergreen</Text>
+            <Text style={styles.propertyText}>
+              {formatEnumKey(treeData.species.foliage_type)}
+            </Text>
           </View>
         )}
 
-        {treeData.species?.utility_friendly && (
+        {treeData.species.utility_friendly && (
           <View style={styles.property}>
             <Flash />
             <Text style={styles.propertyText}>Powerline Friendly</Text>

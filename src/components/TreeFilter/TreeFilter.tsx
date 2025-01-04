@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Checkbox } from '@/components/Checkbox/Checkbox';
 import { Dropdown } from '@/components/Dropdown/Dropdown';
+import { TreeSpeciesShape } from '@/types/tree_species';
 import { styles } from './styles';
 
 type TreeFilterModalProps = {
@@ -153,14 +154,6 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
     });
   };
 
-  const treeShapeOptions = [
-    'Columnar',
-    'Conical',
-    'Irregular',
-    'Palm',
-    'Rounded',
-  ];
-
   return (
     <Modal
       animationType="slide"
@@ -211,9 +204,9 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Tree Shape</Text>
               <Dropdown
-                options={treeShapeOptions}
+                options={Object.values(TreeSpeciesShape)}
                 value={treeShape}
-                setValue={setTreeShape}
+                onChange={setTreeShape}
               />
             </View>
 

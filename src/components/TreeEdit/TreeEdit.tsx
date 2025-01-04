@@ -4,7 +4,7 @@ import { EditPen, Heart, Location, Repeat, User } from '@/icons';
 import { colors } from '@/styles/colors';
 import { updateTree } from '@/supabase/queries/trees';
 import {
-  displayValue,
+  formatEnumKey,
   Tree,
   TreeHealthStatus,
   TreeOwnershipStatus,
@@ -103,8 +103,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeHealthStatus)}
-              displayValue={displayValue}
-              setValue={value =>
+              onChange={value =>
                 setTreeData({ ...treeData, health_status: value })
               }
               value={treeData.health_status ?? ''}
@@ -113,7 +112,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
             <View style={styles.iconTextView}>
               <Heart />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.health_status ?? '')}
+                {formatEnumKey(treeData.health_status ?? '')}
               </Text>
             </View>
           )}
@@ -124,8 +123,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeProductionStatus)}
-              displayValue={displayValue}
-              setValue={value =>
+              onChange={value =>
                 setTreeData({ ...treeData, production_status: value })
               }
               value={treeData.production_status ?? ''}
@@ -134,7 +132,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
             <View style={styles.iconTextView}>
               <Repeat />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.production_status ?? '')}
+                {formatEnumKey(treeData.production_status ?? '')}
               </Text>
             </View>
           )}
@@ -145,8 +143,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeOwnershipStatus)}
-              displayValue={displayValue}
-              setValue={value =>
+              onChange={value =>
                 setTreeData({ ...treeData, ownership_status: value })
               }
               value={treeData.ownership_status ?? ''}
@@ -155,7 +152,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
             <View style={styles.iconTextView}>
               <User />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.ownership_status ?? '')}
+                {formatEnumKey(treeData.ownership_status ?? '')}
               </Text>
             </View>
           )}

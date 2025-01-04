@@ -6,17 +6,16 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import SvgFlashCircle from '@/icons/FlashCircle';
-import SvgXButton from '@/icons/XButton';
+import { FlashCircle, XButton } from '@/icons';
 import { HomeStackParamList } from '@/types/navigation';
-import styles from './styles';
+import { styles } from './styles';
 
 type QRCodeScannerProps = NativeStackScreenProps<
   HomeStackParamList,
   'QRCodeScanner'
 >;
 
-export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
+export function QRCodeScanner({ navigation }: QRCodeScannerProps) {
   const [permission, requestPermission] = useCameraPermissions();
   const [qrCodeFound, setQrCodeFound] = useState<boolean>(false);
   const [qrCodeData, setQrCodeData] = useState<string | null>(null);
@@ -60,10 +59,10 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
     <SafeAreaView style={styles.container}>
       <View style={styles.iconFlex}>
         <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
-          <SvgFlashCircle />
+          <FlashCircle />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <SvgXButton />
+          <XButton />
         </TouchableOpacity>
       </View>
 

@@ -1,14 +1,16 @@
 import React from 'react';
 import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import ArrowRight from '@/icons/ArrowRight';
-import Call from '@/icons/Call';
-import Facebook from '@/icons/Facebook';
-import Instagram from '@/icons/Instagram';
-import Location from '@/icons/Location';
-import Website from '@/icons/Website';
-import X from '@/icons/X';
-import Youtube from '@/icons/Youtube';
+import {
+  ArrowRight,
+  Call,
+  Facebook,
+  Instagram,
+  Location,
+  Website,
+  X,
+  Youtube,
+} from '@/icons';
 import { ContactStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -48,7 +50,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ icon, onPress }) => (
   </TouchableOpacity>
 );
 
-export default function Contact({ navigation }: ContactScreenProps) {
+export function ContactScreen({ navigation }: ContactScreenProps) {
   const openLink = async (url: string) => {
     try {
       const supported = await Linking.canOpenURL(url);

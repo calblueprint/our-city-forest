@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgSort = (props: SvgProps) => (
+export const Filter = (props: SvgProps) => (
   <Svg width={23} height={22} fill="none" {...props}>
     <Path
       stroke="#171717"
@@ -11,4 +11,3 @@ const SvgSort = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgSort;

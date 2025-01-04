@@ -1,27 +1,26 @@
 import React from 'react';
 import { Text, TextInput, View } from 'react-native';
-import SvgBear from '@/icons/Bear';
-import SvgFlash from '@/icons/Flash';
-import SvgFruit from '@/icons/Fruit';
-import SvgLeaf from '@/icons/Leaf';
-import Lightbulb from '@/icons/Lightbulb';
-import SvgLocationPin from '@/icons/Location';
-import SvgRuler from '@/icons/Ruler';
-import SvgShapes from '@/icons/Shapes';
-import SvgWarning2 from '@/icons/Warning2';
-import SvgWateringCan from '@/icons/WateringCan';
+import {
+  Bear,
+  Flash,
+  Fruit,
+  Leaf,
+  Lightbulb,
+  Location,
+  Ruler,
+  Shapes,
+  Warning,
+  WateringCan,
+} from '@/icons';
 import { displayValue, Tree } from '@/types/tree';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
-import styles from './styles';
+import { styles } from './styles';
 
 type SpeciesDisplayProps = {
   speciesData: Partial<TreeSpecies>;
   treeData: Tree[];
 };
-export default function SpeciesDisplay({
-  speciesData,
-  treeData,
-}: SpeciesDisplayProps) {
+export function SpeciesDisplay({ speciesData, treeData }: SpeciesDisplayProps) {
   const uniqueLocations = treeData.filter(
     (tree, index, self) =>
       index === self.findIndex(t => t.bank === tree.bank && t.row === tree.row),
@@ -49,7 +48,7 @@ export default function SpeciesDisplay({
       <View style={styles.properties}>
         {speciesData.max_height_ft && (
           <View style={styles.property}>
-            <SvgRuler />
+            <Ruler />
             <Text style={styles.propertyText}>
               {speciesData.max_height_ft} ft
             </Text>
@@ -58,7 +57,7 @@ export default function SpeciesDisplay({
 
         {speciesData.tree_shape && (
           <View style={styles.property}>
-            <SvgShapes />
+            <Shapes />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.tree_shape)}
             </Text>
@@ -67,7 +66,7 @@ export default function SpeciesDisplay({
 
         {speciesData.water_use && (
           <View style={styles.property}>
-            <SvgWateringCan />
+            <WateringCan />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.water_use)}
             </Text>
@@ -76,7 +75,7 @@ export default function SpeciesDisplay({
 
         {speciesData.root_damage_potential && (
           <View style={styles.property}>
-            <SvgWarning2 />
+            <Warning />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.root_damage_potential)}
             </Text>
@@ -85,7 +84,7 @@ export default function SpeciesDisplay({
 
         {speciesData.litter_type && (
           <View style={styles.property}>
-            <SvgFruit />
+            <Fruit />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.litter_type)} Fruit
             </Text>
@@ -94,21 +93,21 @@ export default function SpeciesDisplay({
 
         {speciesData.california_native && (
           <View style={styles.property}>
-            <SvgBear />
+            <Bear />
             <Text style={styles.propertyText}>CA Native</Text>
           </View>
         )}
 
         {speciesData.foliage_type === TreeSpeciesFoliageType.Evergreen && (
           <View style={styles.property}>
-            <SvgLeaf />
+            <Leaf />
             <Text style={styles.propertyText}>Evergreen</Text>
           </View>
         )}
 
         {speciesData.utility_friendly && (
           <View style={styles.property}>
-            <SvgFlash />
+            <Flash />
             <Text style={styles.propertyText}>Powerline Friendly</Text>
           </View>
         )}
@@ -123,7 +122,7 @@ export default function SpeciesDisplay({
                 style={styles.locationEntry}
                 key={`${tree.bank}-${tree.row}-${index}`}
               >
-                <SvgLocationPin />
+                <Location />
                 <Text style={styles.propertyText}>
                   Bank #{tree.bank ?? 0} {'  '}|{'  '} Row #{tree.row ?? 0}
                   {/* TODO: Needs to support range of rows */}

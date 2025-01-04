@@ -3,19 +3,17 @@ import { TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 
 type CheckboxProps = {
-  value: boolean;
-  onValueChange: () => void;
+  isChecked: boolean;
+  onChange: () => void;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ value, onValueChange }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ isChecked, onChange }) => {
   return (
     <TouchableOpacity
-      onPress={onValueChange}
-      style={[styles.checkbox, value && styles.checkboxChecked]}
+      onPress={onChange}
+      style={[styles.checkbox, isChecked && styles.checkboxChecked]}
     >
-      {value && <View style={styles.checkmark} />}
+      {isChecked && <View style={styles.checkmark} />}
     </TouchableOpacity>
   );
 };
-
-export default Checkbox;

@@ -16,9 +16,7 @@ type GoogleSignInButtonProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
 >;
 
-export default function GoogleSignInButton({
-  navigation,
-}: GoogleSignInButtonProps) {
+export function GoogleSignInButton({ navigation }: GoogleSignInButtonProps) {
   const { setAuthenticated } = useAuth();
   const [, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,

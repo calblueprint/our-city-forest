@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgNuts = (props: SvgProps) => (
+export const Nuts = (props: SvgProps) => (
   <Svg width={37} height={37} fill="none" {...props}>
     <G
       stroke="#446127"
@@ -18,4 +18,3 @@ const SvgNuts = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgNuts;

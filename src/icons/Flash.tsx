@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgFlash = (props: SvgProps) => (
+export const Flash = (props: SvgProps) => (
   <Svg width={31} height={31} fill="none" {...props}>
     <G fill="#446127">
       <Path d="M15.44 4.702v20.825l-1 1.137c-1.388 1.575-2.525 1.15-2.525-.95v-9H8.052c-1.75 0-2.237-1.075-1.075-2.387z" />
@@ -12,4 +12,3 @@ const SvgFlash = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgFlash;

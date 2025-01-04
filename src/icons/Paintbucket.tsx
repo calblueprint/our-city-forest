@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgPaintbucket = (props: SvgProps) => (
+export const Paintbucket = (props: SvgProps) => (
   <Svg width={27} height={27} fill="none" {...props}>
     <G fill="#446127">
       <Path
@@ -12,4 +12,3 @@ const SvgPaintbucket = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgPaintbucket;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgHeart = (props: SvgProps) => (
+export const Heart = (props: SvgProps) => (
   <Svg width={25} height={25} fill="none" {...props}>
     <Path
       fill="#446127"
@@ -9,4 +9,3 @@ const SvgHeart = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgHeart;

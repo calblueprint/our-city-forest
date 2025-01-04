@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Scanner from '@/icons/Scanner';
+import { Scanner } from '@/icons';
 import { getAvailableTreeSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { styles } from './styles';
 
 type TreeSearchScreenProps = NativeStackScreenProps<
@@ -35,7 +35,7 @@ type FilterState = {
   other: string[];
 };
 
-export default function TreeSearch({ navigation }: TreeSearchScreenProps) {
+export function TreeSearchScreen({ navigation }: TreeSearchScreenProps) {
   const [trees, setTrees] = useState<TreeSpeciesItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filters, setFilters] = useState<FilterState>({

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgDrop = (props: SvgProps) => (
+export const Drop = (props: SvgProps) => (
   <Svg width={31} height={31} fill="none" {...props}>
     <G fill="#446127">
       <Path d="m21.178 9.652-12.85 12.85c-.6.6-1.625.462-1.988-.3a10.15 10.15 0 0 1-1.025-4.438c-.025-6.9 6.975-12.8 9.35-14.612a1.26 1.26 0 0 1 1.538 0 33.7 33.7 0 0 1 5.037 4.787c.425.5.4 1.25-.062 1.713" />
@@ -12,4 +12,3 @@ const SvgDrop = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgDrop;

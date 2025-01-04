@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgContactUnselected = (props: SvgProps) => (
+export const ContactUnselected = (props: SvgProps) => (
   <Svg width={31} height={31} fill="none" {...props}>
     <Path
       fill="#446127"
@@ -9,4 +9,3 @@ const SvgContactUnselected = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgContactUnselected;

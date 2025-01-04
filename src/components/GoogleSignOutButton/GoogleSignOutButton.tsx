@@ -11,9 +11,7 @@ type GoogleSignOutButtonProps = NativeStackScreenProps<
   'Contact'
 >;
 
-export default function GoogleSignOutButton({
-  navigation,
-}: GoogleSignOutButtonProps) {
+export function GoogleSignOutButton({ navigation }: GoogleSignOutButtonProps) {
   const { setAuthenticated } = useAuth();
 
   const handleSignOut = async () => {

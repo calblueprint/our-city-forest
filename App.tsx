@@ -6,12 +6,12 @@ import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
 import { AuthContextProvider } from '@/context/AuthContext';
-import AppNavigator from '@/navigation/AppNavigator';
-import colors from '@/styles/colors';
+import { AppNavigator } from '@/navigation/AppNavigator';
+import { colors } from '@/styles/colors';
 
 DefaultTheme.colors.background = colors.white;
 
-export default function App() {
+export function App() {
   const [fontsLoaded] = useFonts({
     DMSans_400Regular,
     DMSans_700Bold,

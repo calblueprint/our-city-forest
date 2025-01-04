@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgLightbulb = (props: SvgProps) => (
+export const Lightbulb = (props: SvgProps) => (
   <Svg width={27} height={27} fill="none" {...props}>
     <Path
       stroke="#446127"
@@ -12,4 +12,3 @@ const SvgLightbulb = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgLightbulb;

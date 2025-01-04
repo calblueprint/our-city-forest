@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgInstagram = (props: SvgProps) => (
+export const Instagram = (props: SvgProps) => (
   <Svg width={28} height={28} fill="none" {...props}>
     <Path
       fill="#fff"
@@ -9,4 +9,3 @@ const SvgInstagram = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgInstagram;

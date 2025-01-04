@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgFlashCircle = (props: SvgProps) => (
+export const FlashCircle = (props: SvgProps) => (
   <Svg width={41} height={40} fill="none" {...props}>
     <G fill="#fff">
       <Path
@@ -12,4 +12,3 @@ const SvgFlashCircle = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgFlashCircle;

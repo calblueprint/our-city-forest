@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
-import TreeFilterModal from '@/components/TreeFilter/TreeFilter';
-import Search from '@/icons/Search';
-import Filter from '@/icons/Sort';
+import { TreeFilterModal } from '@/components/TreeFilter/TreeFilter';
+import { Filter, Search } from '@/icons';
 import { styles } from './styles';
 
 type SearchBarProps = {
@@ -26,7 +25,7 @@ type SearchBarProps = {
   >;
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({
+export const SearchBar: React.FC<SearchBarProps> = ({
   value,
   onChange,
   filters,
@@ -62,5 +61,3 @@ const SearchBar: React.FC<SearchBarProps> = ({
     </View>
   );
 };
-
-export default SearchBar;

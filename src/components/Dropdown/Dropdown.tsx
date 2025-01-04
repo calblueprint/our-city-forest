@@ -1,8 +1,8 @@
 import { Text, View } from 'react-native';
 import { Dropdown as DropdownElement } from 'react-native-element-dropdown';
 import { Icon } from 'react-native-elements';
-import colors from '@/styles/colors';
-import styles from './styles';
+import { colors } from '@/styles/colors';
+import { styles } from './styles';
 
 type DropdownProps<T extends string[]> = {
   options: T;
@@ -17,7 +17,7 @@ type Option = {
   i: number;
 };
 
-function Dropdown<T extends string[]>({
+export function Dropdown<T extends string[]>({
   options,
   setValue,
   value,
@@ -87,5 +87,3 @@ function Dropdown<T extends string[]>({
     </View>
   );
 }
-
-export default Dropdown;

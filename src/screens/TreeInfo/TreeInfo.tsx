@@ -9,21 +9,21 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
-import ToggleSwitch from '@/components/ToggleSwitch/ToggleSwitch';
-import TreeDisplay from '@/components/TreeDisplay/TreeDisplay';
-import TreeEdit from '@/components/TreeEdit/TreeEdit';
-import colors from '@/styles/colors';
+import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
+import { TreeDisplay } from '@/components/TreeDisplay/TreeDisplay';
+import { TreeEdit } from '@/components/TreeEdit/TreeEdit';
+import { colors } from '@/styles/colors';
 import { getAllTreesForSpecies, getTreeInfo } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { Tree } from '@/types/tree';
-import styles from './styles';
+import { styles } from './styles';
 
 type TreeInfoScreenProps = NativeStackScreenProps<
   HomeStackParamList,
   'TreeInfo'
 >;
 
-export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
+export function TreeInfoScreen({ route }: TreeInfoScreenProps) {
   const treeId = route.params?.treeId ?? '';
   const [isSpecies, setIsSpecies] = useState(true);
   const [treeData, setTreeData] = useState<Tree | null>(null);

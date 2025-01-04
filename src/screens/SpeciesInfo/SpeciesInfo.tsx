@@ -10,23 +10,22 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TreeBg from '@/../assets/tree-info-bg.png';
-import SpeciesDisplay from '@/components/SpeciesDisplay/SpeciesDisplay';
-import SvgBackArrow from '@/icons/BackArrow';
-import SvgScanBarcode from '@/icons/ScanBarcode';
-import colors from '@/styles/colors';
+import { SpeciesDisplay } from '@/components/SpeciesDisplay/SpeciesDisplay';
+import { BackArrow, ScanBarcode } from '@/icons';
+import { colors } from '@/styles/colors';
 import { getTreeSpecies } from '@/supabase/queries/tree_species';
 import { getAllTreesForSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { Tree } from '@/types/tree';
 import { TreeSpecies } from '@/types/tree_species';
-import styles from './styles';
+import { styles } from './styles';
 
 type SpeciesInfoScreenProps = NativeStackScreenProps<
   HomeStackParamList,
   'SpeciesInfo'
 >;
 
-export default function SpeciesInfoScreen({
+export function SpeciesInfoScreen({
   route,
   navigation,
 }: SpeciesInfoScreenProps) {
@@ -63,12 +62,12 @@ export default function SpeciesInfoScreen({
           >
             <View style={styles.topBar}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <SvgBackArrow />
+                <BackArrow />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => navigation.push('QRCodeScanner')}
               >
-                <SvgScanBarcode />
+                <ScanBarcode />
               </TouchableOpacity>
             </View>
             <View style={styles.imageEmbed}>

@@ -8,8 +8,8 @@ import {
   UIManager,
   View,
 } from 'react-native';
-import colors from '@/styles/colors';
-import styles from './styles';
+import { colors } from '@/styles/colors';
+import { styles } from './styles';
 
 type ToggleSwitchProps = {
   value: boolean;
@@ -18,7 +18,7 @@ type ToggleSwitchProps = {
   falseLabel: string;
 };
 
-export default function ToggleSwitch({
+export function ToggleSwitch({
   value,
   onValueChange,
   trueLabel,

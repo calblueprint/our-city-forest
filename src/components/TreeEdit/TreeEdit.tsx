@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import SvgEdit from '@/icons/EditPen';
-import SvgHeart from '@/icons/Heart';
-import SvgLocationPin from '@/icons/Location';
-import SvgRepeat from '@/icons/Repeat';
-import SvgUser from '@/icons/User';
-import colors from '@/styles/colors';
+import { EditPen, Heart, Location, Repeat, User } from '@/icons';
+import { colors } from '@/styles/colors';
 import { updateTree } from '@/supabase/queries/trees';
 import {
   displayValue,
@@ -14,15 +10,15 @@ import {
   TreeOwnershipStatus,
   TreeProductionStatus,
 } from '@/types/tree';
-import Dropdown from '../Dropdown/Dropdown';
-import styles from './styles';
+import { Dropdown } from '../Dropdown/Dropdown';
+import { styles } from './styles';
 
 type TreeEditProps = {
   treeData: Tree;
   setTreeData: (treeData: Tree) => void;
 };
 
-export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
+export function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   const saveTreeData = async () => {
@@ -43,7 +39,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             style={[styles.editButton, { backgroundColor: undefined }]}
             onPress={() => setIsEditing(true)}
           >
-            <SvgEdit />
+            <EditPen />
           </TouchableOpacity>
         )}
       </View>
@@ -90,7 +86,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             </View>
           ) : (
             <View style={styles.iconTextView}>
-              <SvgLocationPin />
+              <Location />
               <Text style={styles.displayText}>
                 Bank #{treeData.bank}
                 {'  '}|{'  '}Row #{treeData.row}
@@ -112,7 +108,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             />
           ) : (
             <View style={styles.iconTextView}>
-              <SvgHeart />
+              <Heart />
               <Text style={[styles.displayText, styles.greenText]}>
                 {displayValue(treeData.health_status ?? '')}
               </Text>
@@ -133,7 +129,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             />
           ) : (
             <View style={styles.iconTextView}>
-              <SvgRepeat />
+              <Repeat />
               <Text style={[styles.displayText, styles.greenText]}>
                 {displayValue(treeData.production_status ?? '')}
               </Text>
@@ -154,7 +150,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             />
           ) : (
             <View style={styles.iconTextView}>
-              <SvgUser />
+              <User />
               <Text style={[styles.displayText, styles.greenText]}>
                 {displayValue(treeData.ownership_status ?? '')}
               </Text>

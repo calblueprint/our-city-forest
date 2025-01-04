@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
@@ -81,5 +81,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-export default styles;

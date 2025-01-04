@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   searchContainer: {
@@ -49,5 +49,3 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export default styles;

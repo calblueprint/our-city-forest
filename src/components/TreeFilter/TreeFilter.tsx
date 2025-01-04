@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import Checkbox from '@/components/Checkbox/Checkbox';
-import Dropdown from '@/components/Dropdown/Dropdown';
+import { Checkbox } from '@/components/Checkbox/Checkbox';
+import { Dropdown } from '@/components/Dropdown/Dropdown';
 import { styles } from './styles';
 
 type TreeFilterModalProps = {
@@ -25,7 +25,7 @@ type TreeFilterModalProps = {
   >;
 };
 
-const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
+export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
   visible,
   onClose,
   filters,
@@ -185,22 +185,22 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={heightChecks.small}
-                    onValueChange={() => handleHeightChange('small')}
+                    isChecked={heightChecks.small}
+                    onChange={() => handleHeightChange('small')}
                   />
                   <Text style={styles.checkboxLabel}>Small (&lt; 40')</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={heightChecks.medium}
-                    onValueChange={() => handleHeightChange('medium')}
+                    isChecked={heightChecks.medium}
+                    onChange={() => handleHeightChange('medium')}
                   />
                   <Text style={styles.checkboxLabel}>Medium (40 - 60')</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={heightChecks.large}
-                    onValueChange={() => handleHeightChange('large')}
+                    isChecked={heightChecks.large}
+                    onChange={() => handleHeightChange('large')}
                   />
                   <Text style={styles.checkboxLabel}>Large (60' +)</Text>
                 </View>
@@ -223,15 +223,15 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={fruitChecks.wet}
-                    onValueChange={() => handleFruitChange('wet')}
+                    isChecked={fruitChecks.wet}
+                    onChange={() => handleFruitChange('wet')}
                   />
                   <Text style={styles.checkboxLabel}>Wet Fruit</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={fruitChecks.dry}
-                    onValueChange={() => handleFruitChange('dry')}
+                    isChecked={fruitChecks.dry}
+                    onChange={() => handleFruitChange('dry')}
                   />
                   <Text style={styles.checkboxLabel}>Dry Fruit</Text>
                 </View>
@@ -244,22 +244,22 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={waterChecks.less}
-                    onValueChange={() => handleWaterChange('less')}
+                    isChecked={waterChecks.less}
+                    onChange={() => handleWaterChange('less')}
                   />
                   <Text style={styles.checkboxLabel}>Less</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={waterChecks.moderate}
-                    onValueChange={() => handleWaterChange('moderate')}
+                    isChecked={waterChecks.moderate}
+                    onChange={() => handleWaterChange('moderate')}
                   />
                   <Text style={styles.checkboxLabel}>Moderate</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={waterChecks.more}
-                    onValueChange={() => handleWaterChange('more')}
+                    isChecked={waterChecks.more}
+                    onChange={() => handleWaterChange('more')}
                   />
                   <Text style={styles.checkboxLabel}>More</Text>
                 </View>
@@ -272,29 +272,29 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={otherChecks.native}
-                    onValueChange={() => handleOtherChange('native')}
+                    isChecked={otherChecks.native}
+                    onChange={() => handleOtherChange('native')}
                   />
                   <Text style={styles.checkboxLabel}>California native</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={otherChecks.evergreen}
-                    onValueChange={() => handleOtherChange('evergreen')}
+                    isChecked={otherChecks.evergreen}
+                    onChange={() => handleOtherChange('evergreen')}
                   />
                   <Text style={styles.checkboxLabel}>Evergreen</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={otherChecks.powerline}
-                    onValueChange={() => handleOtherChange('powerline')}
+                    isChecked={otherChecks.powerline}
+                    onChange={() => handleOtherChange('powerline')}
                   />
                   <Text style={styles.checkboxLabel}>Powerline friendly</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    value={otherChecks.lowroot}
-                    onValueChange={() => handleOtherChange('lowroot')}
+                    isChecked={otherChecks.lowroot}
+                    onChange={() => handleOtherChange('lowroot')}
                   />
                   <Text style={styles.checkboxLabel}>Low root damage</Text>
                 </View>
@@ -311,5 +311,3 @@ const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
     </Modal>
   );
 };
-
-export default TreeFilterModal;

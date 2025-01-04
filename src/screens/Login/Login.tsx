@@ -1,7 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import GoogleSignInButton from '@/components/GoogleSignInButton/GoogleSignInButton';
+import { GoogleSignInButton } from '@/components/GoogleSignInButton/GoogleSignInButton';
 import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -10,7 +10,7 @@ type LoginScreenProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
 >;
 
-export default function LoginScreen({ navigation, route }: LoginScreenProps) {
+export function LoginScreen({ navigation, route }: LoginScreenProps) {
   return (
     <View style={styles.loginContainer}>
       <Text style={styles.loginText}>I am a...</Text>

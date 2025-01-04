@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
-export default StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     paddingBottom: 40,
     backgroundColor: colors.white,

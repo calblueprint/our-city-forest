@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgWarning2 = (props: SvgProps) => (
+export const Warning = (props: SvgProps) => (
   <Svg width={28} height={27} fill="none" {...props}>
     <G fill="#446127" opacity={0.4}>
       <Path d="M23.905 10.115v7.41c0 1.214-.664 2.34-1.738 2.958l-6.574 3.716a3.57 3.57 0 0 1-3.486 0l-6.574-3.716a3.4 3.4 0 0 1-1.738-2.958v-7.41c0-1.213.664-2.34 1.738-2.957l6.574-3.716a3.57 3.57 0 0 1 3.486 0l6.574 3.716c1.074.617 1.738 1.733 1.738 2.957" />
@@ -13,4 +13,3 @@ const SvgWarning2 = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgWarning2;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Ellipse, Path, SvgProps } from 'react-native-svg';
 
-const SvgBear = (props: SvgProps) => (
+export const Bear = (props: SvgProps) => (
   <Svg width={31} height={25} fill="none" {...props}>
     <Ellipse
       cx={5.402}
@@ -28,4 +28,3 @@ const SvgBear = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgBear;

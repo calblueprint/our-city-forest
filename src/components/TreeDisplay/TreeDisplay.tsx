@@ -1,26 +1,25 @@
 import { Text, TextInput, View } from 'react-native';
-import SvgBear from '@/icons/Bear';
-import SvgFlash from '@/icons/Flash';
-import SvgFruit from '@/icons/Fruit';
-import SvgLeaf from '@/icons/Leaf';
-import Lightbulb from '@/icons/Lightbulb';
-import SvgLocationPin from '@/icons/Location';
-import SvgRuler from '@/icons/Ruler';
-import SvgShapes from '@/icons/Shapes';
-import SvgWarning2 from '@/icons/Warning2';
-import SvgWateringCan from '@/icons/WateringCan';
+import {
+  Bear,
+  Flash,
+  Fruit,
+  Leaf,
+  Lightbulb,
+  Location,
+  Ruler,
+  Shapes,
+  Warning,
+  WateringCan,
+} from '@/icons';
 import { displayValue, Tree } from '@/types/tree';
 import { TreeSpeciesFoliageType } from '@/types/tree_species';
-import styles from './styles';
+import { styles } from './styles';
 
 type TreeDisplayProps = {
   treeData: Tree;
   allTreesData: Tree[];
 };
-export default function TreeDisplay({
-  treeData,
-  allTreesData,
-}: TreeDisplayProps) {
+export function TreeDisplay({ treeData, allTreesData }: TreeDisplayProps) {
   const uniqueLocations = allTreesData.filter(
     (t, index, self) =>
       index === self.findIndex(u => u.bank === t.bank && u.row === t.row),
@@ -51,7 +50,7 @@ export default function TreeDisplay({
             style={styles.locationEntry}
             key={`${location.bank}-${location.row}-${index}`}
           >
-            <SvgLocationPin />
+            <Location />
             <Text style={styles.propertyText}>
               Bank #{location.bank} {'  '}|{'  '} Row #{location.row}
               {/* TODO: Needs to support range of rows */}
@@ -64,7 +63,7 @@ export default function TreeDisplay({
       <View style={styles.properties}>
         {treeData.species?.max_height_ft && (
           <View style={styles.property}>
-            <SvgRuler />
+            <Ruler />
             <Text style={styles.propertyText}>
               {treeData.species?.max_height_ft} ft
             </Text>
@@ -73,7 +72,7 @@ export default function TreeDisplay({
 
         {treeData.species?.tree_shape && (
           <View style={styles.property}>
-            <SvgShapes />
+            <Shapes />
             <Text style={styles.propertyText}>
               {displayValue(treeData.species?.tree_shape)}
             </Text>
@@ -82,7 +81,7 @@ export default function TreeDisplay({
 
         {treeData.species?.water_use && (
           <View style={styles.property}>
-            <SvgWateringCan />
+            <WateringCan />
             <Text style={styles.propertyText}>
               {displayValue(treeData.species?.water_use)}
             </Text>
@@ -91,7 +90,7 @@ export default function TreeDisplay({
 
         {treeData.species?.root_damage_potential && (
           <View style={styles.property}>
-            <SvgWarning2 />
+            <Warning />
             <Text style={styles.propertyText}>
               {displayValue(treeData.species.root_damage_potential)}
             </Text>
@@ -100,7 +99,7 @@ export default function TreeDisplay({
 
         {treeData.species?.litter_type && (
           <View style={styles.property}>
-            <SvgFruit />
+            <Fruit />
             <Text style={styles.propertyText}>
               {displayValue(treeData.species.litter_type)} Fruit
             </Text>
@@ -109,7 +108,7 @@ export default function TreeDisplay({
 
         {treeData.species?.california_native && (
           <View style={styles.property}>
-            <SvgBear />
+            <Bear />
             <Text style={styles.propertyText}>CA Native</Text>
           </View>
         )}
@@ -117,14 +116,14 @@ export default function TreeDisplay({
         {treeData.species?.foliage_type ===
           TreeSpeciesFoliageType.Evergreen && (
           <View style={styles.property}>
-            <SvgLeaf />
+            <Leaf />
             <Text style={styles.propertyText}>Evergreen</Text>
           </View>
         )}
 
         {treeData.species?.utility_friendly && (
           <View style={styles.property}>
-            <SvgFlash />
+            <Flash />
             <Text style={styles.propertyText}>Powerline Friendly</Text>
           </View>
         )}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Circle, G, Path, SvgProps } from 'react-native-svg';
 
-const SvgXButton = (props: SvgProps) => (
+export const XButton = (props: SvgProps) => (
   <Svg width={35} height={34} fill="none" {...props}>
     <Circle cx={17.383} cy={16.998} r={16.665} fill="#fff" fillOpacity={0.5} />
     <G stroke="#fff" strokeLinecap="round" strokeWidth={2.5}>
@@ -9,4 +9,3 @@ const SvgXButton = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgXButton;

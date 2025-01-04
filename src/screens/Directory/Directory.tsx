@@ -1,8 +1,7 @@
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import BackArrow from '@/icons/BackArrow';
-import CallBig from '@/icons/CallBig';
+import { BackArrow, CallBig } from '@/icons';
 import { ContactStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -11,7 +10,7 @@ type DirectoryScreenProps = NativeStackScreenProps<
   'Directory'
 >;
 
-export default function Directory({ navigation }: DirectoryScreenProps) {
+export function DirectoryScreen({ navigation }: DirectoryScreenProps) {
   const handleGoBack = () => {
     navigation.navigate('Contact');
   };

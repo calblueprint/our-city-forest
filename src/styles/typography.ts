@@ -17,7 +17,7 @@ type TypographyStyles = {
   smallRegular: TextStyle;
 };
 
-const typography: TypographyStyles = StyleSheet.create({
+export const typography: TypographyStyles = StyleSheet.create({
   heading1: {
     fontFamily: 'DMSans_700Bold',
     fontSize: 56,
@@ -89,5 +89,3 @@ const typography: TypographyStyles = StyleSheet.create({
     lineHeight: 19.6,
   },
 });
-
-export default typography;

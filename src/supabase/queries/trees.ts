@@ -70,13 +70,27 @@ export const getAllTreesForSpecies = async (
   return data as Tree[];
 };
 
+// Retrieves a JSON array of all tree species in the format:
+// [{ "name": "Oak", "image_url": "https://example.com/oak.jpg", "count": 10 }, ...]
+export const getAllTreeSpecies = async () => {
+  const { data, error } = await supabase.rpc('get_all_tree_species');
+
+  if (error) {
+    throw new Error(`Error retrieving all tree species: ${error.message}`);
+  }
+
+  return data;
+};
+
 // Retrieves a JSON array of available tree species in the format:
 // [{ "name": "Oak", "image_url": "https://example.com/oak.jpg", "count": 10 }, ...]
 export const getAvailableTreeSpecies = async () => {
   const { data, error } = await supabase.rpc('get_available_tree_species');
 
   if (error) {
-    throw new Error(`Error retrieving available species: ${error.message}`);
+    throw new Error(
+      `Error retrieving available tree species: ${error.message}`,
+    );
   }
 
   return data;

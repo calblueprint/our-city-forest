@@ -13,13 +13,12 @@ type DirectoryScreenProps = NativeStackScreenProps<
 export const DirectoryScreen: React.FC<DirectoryScreenProps> = ({
   navigation,
 }) => {
-  const handleGoBack = () => {
-    navigation.navigate('Contact');
-  };
-
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={handleGoBack}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
         <BackArrow style={styles.backIcon} />
       </TouchableOpacity>
 

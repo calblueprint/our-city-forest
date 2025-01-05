@@ -6,22 +6,22 @@ import { colors } from '@/styles/colors';
 import { formatEnumKey } from '@/types/tree';
 import { styles } from './styles';
 
-type DropdownProps<T extends string[]> = {
-  options: T;
-  onChange: (value: T[number]) => unknown;
-  value: string;
-};
-
 type Option = {
   label: string;
   value: string;
   index: number;
 };
 
+type DropdownProps<T extends string[]> = {
+  options: T;
+  value: string;
+  onChange: (value: T[number]) => unknown;
+};
+
 export const Dropdown = <T extends string[]>({
   options,
-  onChange,
   value,
+  onChange,
 }: DropdownProps<T>): React.JSX.Element => {
   return (
     <View>

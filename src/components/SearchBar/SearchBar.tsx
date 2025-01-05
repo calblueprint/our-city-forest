@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
-import { TreeFilterModal } from '@/components/TreeFilter/TreeFilter';
+import { SearchFilter } from '@/components/SearchFilter/SearchFilter';
 import { Filter, Search } from '@/icons';
 import { styles } from './styles';
 
 type SearchBarProps = {
-  value: string;
-  onChange: (text: string) => void;
-  filters: {
+  searchText: string;
+  onSearchTextChange: (text: string) => void;
+  activeFilters: {
     height: string[];
     shape: string;
-    fruit: string[];
+    litter: string[];
     water: string[];
     other: string[];
   };
-  setFilters: React.Dispatch<
+  onActiveFilterChange: React.Dispatch<
     React.SetStateAction<{
       height: string[];
       shape: string;
-      fruit: string[];
+      litter: string[];
       water: string[];
       other: string[];
     }>
@@ -26,15 +26,15 @@ type SearchBarProps = {
 };
 
 export const SearchBar: React.FC<SearchBarProps> = ({
-  value,
-  onChange,
-  filters,
-  setFilters,
+  searchText,
+  onSearchTextChange,
+  activeFilters,
+  onActiveFilterChange,
 }) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const openModal = () => setModalVisible(true);
-  const closeModal = () => setModalVisible(false);
+  const openFilter = () => setIsFilterOpen(true);
+  const closeFilter = () => setIsFilterOpen(false);
 
   return (
     <View style={styles.searchContainer}>
@@ -43,19 +43,19 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <TextInput
           style={styles.searchBarInput}
           placeholder="Find a species..."
-          value={value}
-          onChangeText={onChange}
+          value={searchText}
+          onChangeText={onSearchTextChange}
         />
-        <TouchableOpacity onPress={openModal}>
+        <TouchableOpacity onPress={openFilter}>
           <View style={styles.filterIconContainer}>
             <Filter />
           </View>
         </TouchableOpacity>
-        <TreeFilterModal
-          visible={modalVisible}
-          onClose={closeModal}
-          filters={filters}
-          setFilters={setFilters}
+        <SearchFilter
+          isOpen={isFilterOpen}
+          onClose={closeFilter}
+          activeFilters={activeFilters}
+          onActiveFilterChange={onActiveFilterChange}
         />
       </View>
     </View>

@@ -12,9 +12,9 @@ import {
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { LoginScreen } from '@/screens/Login/Login';
-import { SpeciesInfoScreen } from '@/screens/SpeciesInfo/SpeciesInfo';
 import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
-import { TreeSearchScreen } from '@/screens/TreeSearch/TreeSearch';
+import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
+import { TreeSpeciesSearchScreen } from '@/screens/TreeSpeciesSearch/TreeSpeciesSearch';
 import {
   BottomTabParamList,
   ContactStackParamList,
@@ -46,13 +46,19 @@ const LoginStackNavigator = () => {
 const HomeStackNavigator = () => {
   return (
     <HomeStack.Navigator
-      initialRouteName="TreeSearch"
+      initialRouteName="TreeSpeciesSearch"
       screenOptions={{ headerShown: false }}
     >
-      <HomeStack.Screen name="TreeSearch" component={TreeSearchScreen} />
+      <HomeStack.Screen
+        name="TreeSpeciesSearch"
+        component={TreeSpeciesSearchScreen}
+      />
       <HomeStack.Screen name="QRCodeScanner" component={QRCodeScanner} />
       <HomeStack.Screen name="TreeInfo" component={TreeInfoScreen} />
-      <HomeStack.Screen name="SpeciesInfo" component={SpeciesInfoScreen} />
+      <HomeStack.Screen
+        name="TreeSpeciesInfo"
+        component={TreeSpeciesInfoScreen}
+      />
     </HomeStack.Navigator>
   );
 };

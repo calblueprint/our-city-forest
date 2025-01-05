@@ -5,147 +5,149 @@ import { Dropdown } from '@/components/Dropdown/Dropdown';
 import { TreeSpeciesShape } from '@/types/tree_species';
 import { styles } from './styles';
 
-type TreeFilterModalProps = {
-  visible: boolean;
+type SearchFilterProps = {
+  isOpen: boolean;
   onClose: () => void;
-  filters: {
+  activeFilters: {
     height: string[];
     shape: string;
-    fruit: string[];
+    litter: string[];
     water: string[];
     other: string[];
   };
-  setFilters: React.Dispatch<
+  onActiveFilterChange: React.Dispatch<
     React.SetStateAction<{
       height: string[];
       shape: string;
-      fruit: string[];
+      litter: string[];
       water: string[];
       other: string[];
     }>
   >;
 };
 
-export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
-  visible,
+export const SearchFilter: React.FC<SearchFilterProps> = ({
+  isOpen,
   onClose,
-  filters,
-  setFilters,
+  activeFilters,
+  onActiveFilterChange,
 }) => {
   // Individual filter states
-  const [heightChecks, setHeightChecks] = useState({
-    small: filters.height.includes('small'),
-    medium: filters.height.includes('medium'),
-    large: filters.height.includes('large'),
+  const [activeHeightFilters, setActiveHeightFilters] = useState({
+    small: activeFilters.height.includes('small'),
+    medium: activeFilters.height.includes('medium'),
+    large: activeFilters.height.includes('large'),
   });
 
-  const [fruitChecks, setFruitChecks] = useState({
-    wet: filters.fruit.includes('wet'),
-    dry: filters.fruit.includes('dry'),
+  const [activeLitterFilters, setActiveLitterFilters] = useState({
+    wet: activeFilters.litter.includes('wet'),
+    dry: activeFilters.litter.includes('dry'),
   });
 
-  const [waterChecks, setWaterChecks] = useState({
-    less: filters.water.includes('less'),
-    moderate: filters.water.includes('moderate'),
-    more: filters.water.includes('more'),
+  const [activeWaterFilters, setActiveWaterFilters] = useState({
+    less: activeFilters.water.includes('less'),
+    moderate: activeFilters.water.includes('moderate'),
+    more: activeFilters.water.includes('more'),
   });
 
-  const [otherChecks, setOtherChecks] = useState({
-    native: filters.other.includes('native'),
-    evergreen: filters.other.includes('evergreen'),
-    powerline: filters.other.includes('powerline'),
-    lowroot: filters.other.includes('lowroot'),
+  const [activeOtherFilters, setActiveOtherFilters] = useState({
+    native: activeFilters.other.includes('native'),
+    evergreen: activeFilters.other.includes('evergreen'),
+    powerline: activeFilters.other.includes('powerline'),
+    lowroot: activeFilters.other.includes('lowroot'),
   });
 
-  const [treeShape, setTreeShape] = useState<string>(filters.shape);
+  const [selectedTreeShape, setSelectedTreeShape] = useState<string>(
+    activeFilters.shape,
+  );
 
   useEffect(() => {
-    setFilters({
-      height: Object.keys(heightChecks).filter(
-        key => heightChecks[key as keyof typeof heightChecks],
+    onActiveFilterChange({
+      height: Object.keys(activeHeightFilters).filter(
+        key => activeHeightFilters[key as keyof typeof activeHeightFilters],
       ) as string[],
-      shape: treeShape,
-      fruit: Object.keys(fruitChecks).filter(
-        key => fruitChecks[key as keyof typeof fruitChecks],
+      shape: selectedTreeShape,
+      litter: Object.keys(activeLitterFilters).filter(
+        key => activeLitterFilters[key as keyof typeof activeLitterFilters],
       ) as string[],
-      water: Object.keys(waterChecks).filter(
-        key => waterChecks[key as keyof typeof waterChecks],
+      water: Object.keys(activeWaterFilters).filter(
+        key => activeWaterFilters[key as keyof typeof activeWaterFilters],
       ) as string[],
-      other: Object.keys(otherChecks).filter(
-        key => otherChecks[key as keyof typeof otherChecks],
+      other: Object.keys(activeOtherFilters).filter(
+        key => activeOtherFilters[key as keyof typeof activeOtherFilters],
       ) as string[],
     });
   }, [
-    heightChecks,
-    treeShape,
-    fruitChecks,
-    waterChecks,
-    otherChecks,
-    setFilters,
+    activeHeightFilters,
+    selectedTreeShape,
+    activeLitterFilters,
+    activeWaterFilters,
+    activeOtherFilters,
+    onActiveFilterChange,
   ]);
 
   useEffect(() => {}, [
-    heightChecks,
-    fruitChecks,
-    waterChecks,
-    otherChecks,
-    treeShape,
+    activeHeightFilters,
+    activeLitterFilters,
+    activeWaterFilters,
+    activeOtherFilters,
+    selectedTreeShape,
   ]);
 
-  const handleHeightChange = (key: keyof typeof heightChecks) => {
-    setHeightChecks(prev => ({
+  const toggleHeightFilter = (key: keyof typeof activeHeightFilters) => {
+    setActiveHeightFilters(prev => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
 
-  const handleFruitChange = (key: keyof typeof fruitChecks) => {
-    setFruitChecks(prev => ({
+  const toggleLitterFilter = (key: keyof typeof activeLitterFilters) => {
+    setActiveLitterFilters(prev => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
 
-  const handleWaterChange = (key: keyof typeof waterChecks) => {
-    setWaterChecks(prev => ({
+  const toggleWaterFilter = (key: keyof typeof activeWaterFilters) => {
+    setActiveWaterFilters(prev => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
 
-  const handleOtherChange = (key: keyof typeof otherChecks) => {
-    setOtherChecks(prev => ({
+  const toggleOtherFilter = (key: keyof typeof activeOtherFilters) => {
+    setActiveOtherFilters(prev => ({
       ...prev,
       [key]: !prev[key],
     }));
   };
 
   const resetFilters = () => {
-    setHeightChecks({
+    setActiveHeightFilters({
       small: false,
       medium: false,
       large: false,
     });
-    setFruitChecks({
+    setActiveLitterFilters({
       wet: false,
       dry: false,
     });
-    setWaterChecks({
+    setActiveWaterFilters({
       less: false,
       moderate: false,
       more: false,
     });
-    setOtherChecks({
+    setActiveOtherFilters({
       native: false,
       evergreen: false,
       powerline: false,
       lowroot: false,
     });
-    setTreeShape('');
-    setFilters({
+    setSelectedTreeShape('');
+    onActiveFilterChange({
       height: [],
       shape: '',
-      fruit: [],
+      litter: [],
       water: [],
       other: [],
     });
@@ -155,7 +157,7 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
     <Modal
       animationType="slide"
       transparent={true}
-      visible={visible}
+      visible={isOpen}
       onRequestClose={onClose}
     >
       <View style={styles.filterBackground}>
@@ -175,22 +177,22 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={heightChecks.small}
-                    onChange={() => handleHeightChange('small')}
+                    isChecked={activeHeightFilters.small}
+                    onChange={() => toggleHeightFilter('small')}
                   />
                   <Text style={styles.checkboxLabel}>Small (&lt; 40')</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={heightChecks.medium}
-                    onChange={() => handleHeightChange('medium')}
+                    isChecked={activeHeightFilters.medium}
+                    onChange={() => toggleHeightFilter('medium')}
                   />
                   <Text style={styles.checkboxLabel}>Medium (40 - 60')</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={heightChecks.large}
-                    onChange={() => handleHeightChange('large')}
+                    isChecked={activeHeightFilters.large}
+                    onChange={() => toggleHeightFilter('large')}
                   />
                   <Text style={styles.checkboxLabel}>Large (60' +)</Text>
                 </View>
@@ -202,26 +204,26 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <Text style={styles.subheaderText}>Tree Shape</Text>
               <Dropdown
                 options={Object.values(TreeSpeciesShape)}
-                value={treeShape}
-                onChange={setTreeShape}
+                value={selectedTreeShape}
+                onChange={setSelectedTreeShape}
               />
             </View>
 
-            {/* Fruit Type */}
+            {/* Litter Type */}
             <View style={styles.filterProperties}>
-              <Text style={styles.subheaderText}>Fruit Type</Text>
+              <Text style={styles.subheaderText}>Litter Type</Text>
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={fruitChecks.wet}
-                    onChange={() => handleFruitChange('wet')}
+                    isChecked={activeLitterFilters.wet}
+                    onChange={() => toggleLitterFilter('wet')}
                   />
                   <Text style={styles.checkboxLabel}>Wet Fruit</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={fruitChecks.dry}
-                    onChange={() => handleFruitChange('dry')}
+                    isChecked={activeLitterFilters.dry}
+                    onChange={() => toggleLitterFilter('dry')}
                   />
                   <Text style={styles.checkboxLabel}>Dry Fruit</Text>
                 </View>
@@ -234,22 +236,22 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={waterChecks.less}
-                    onChange={() => handleWaterChange('less')}
+                    isChecked={activeWaterFilters.less}
+                    onChange={() => toggleWaterFilter('less')}
                   />
                   <Text style={styles.checkboxLabel}>Less</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={waterChecks.moderate}
-                    onChange={() => handleWaterChange('moderate')}
+                    isChecked={activeWaterFilters.moderate}
+                    onChange={() => toggleWaterFilter('moderate')}
                   />
                   <Text style={styles.checkboxLabel}>Moderate</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={waterChecks.more}
-                    onChange={() => handleWaterChange('more')}
+                    isChecked={activeWaterFilters.more}
+                    onChange={() => toggleWaterFilter('more')}
                   />
                   <Text style={styles.checkboxLabel}>More</Text>
                 </View>
@@ -262,29 +264,29 @@ export const TreeFilterModal: React.FC<TreeFilterModalProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={otherChecks.native}
-                    onChange={() => handleOtherChange('native')}
+                    isChecked={activeOtherFilters.native}
+                    onChange={() => toggleOtherFilter('native')}
                   />
                   <Text style={styles.checkboxLabel}>California native</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={otherChecks.evergreen}
-                    onChange={() => handleOtherChange('evergreen')}
+                    isChecked={activeOtherFilters.evergreen}
+                    onChange={() => toggleOtherFilter('evergreen')}
                   />
                   <Text style={styles.checkboxLabel}>Evergreen</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={otherChecks.powerline}
-                    onChange={() => handleOtherChange('powerline')}
+                    isChecked={activeOtherFilters.powerline}
+                    onChange={() => toggleOtherFilter('powerline')}
                   />
                   <Text style={styles.checkboxLabel}>Powerline friendly</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={otherChecks.lowroot}
-                    onChange={() => handleOtherChange('lowroot')}
+                    isChecked={activeOtherFilters.lowroot}
+                    onChange={() => toggleOtherFilter('lowroot')}
                   />
                   <Text style={styles.checkboxLabel}>Low root damage</Text>
                 </View>

@@ -20,12 +20,12 @@ import { Tree } from '@/types/tree';
 import { TreeSpecies } from '@/types/tree_species';
 import { styles } from './styles';
 
-type SpeciesInfoScreenProps = NativeStackScreenProps<
+type TreeSpeciesInfoScreenProps = NativeStackScreenProps<
   HomeStackParamList,
-  'SpeciesInfo'
+  'TreeSpeciesInfo'
 >;
 
-export const SpeciesInfoScreen: React.FC<SpeciesInfoScreenProps> = ({
+export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
   route,
   navigation,
 }) => {

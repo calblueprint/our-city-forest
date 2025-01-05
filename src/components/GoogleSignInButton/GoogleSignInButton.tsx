@@ -41,7 +41,7 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
           await setIsAuthenticated(true);
           navigation.navigate('BottomTabs', {
             screen: 'Home',
-            params: { screen: 'TreeSearch' },
+            params: { screen: 'TreeSpeciesSearch' },
           });
         } else {
           console.error('Authentication failed');

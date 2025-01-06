@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
 
   searchBarInput: {
     ...typography.normalRegular,
-    color: colors.gray3,
+    color: colors.gray2,
     flex: 1,
     height: 42,
     borderWidth: 1,

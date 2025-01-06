@@ -188,7 +188,7 @@ export const TreeSpeciesSearchScreen: React.FC<
         columnWrapperStyle={{ justifyContent: 'space-between', gap: 12 }}
         ListEmptyComponent={
           <Text style={styles.searchError}>
-            No trees found matching your search.
+            No tree species found matching your search.
           </Text>
         }
       />

@@ -66,7 +66,6 @@ export const styles = StyleSheet.create({
 
   searchError: {
     ...typography.normalRegular,
-    fontSize: width > 600 ? 16 : 14,
-    padding: 0,
+    color: colors.gray2,
   },
 });

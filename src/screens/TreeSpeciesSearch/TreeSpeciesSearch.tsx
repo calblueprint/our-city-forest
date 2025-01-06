@@ -139,7 +139,7 @@ export const TreeSpeciesSearchScreen: React.FC<
     >
       <ImageBackground
         source={{
-          uri: item.imageURL || 'https://example.com/placeholder.jpg',
+          uri: item.imageURL,
         }}
         style={styles.speciesImage}
       />

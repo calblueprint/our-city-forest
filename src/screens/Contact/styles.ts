@@ -63,7 +63,6 @@ export const styles = StyleSheet.create({
   contactText: {
     ...typography.normalRegular,
     color: colors.gray3,
-    paddingBottom: 40,
     textAlign: 'center',
   },
 
@@ -104,19 +103,12 @@ export const styles = StyleSheet.create({
     height: 30,
   },
 
-  logoutContainer: {
+  signOutContainer: {
     height: height / 10,
     width: '100%',
     position: 'absolute',
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  logoutText: {
-    ...typography.normalBold,
-    color: colors.primary,
-    paddingBottom: 40,
-    textAlign: 'center',
   },
 });

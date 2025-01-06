@@ -1,24 +1,22 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CommonActions } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { CommonActions, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAuth } from '@/context/AuthContext';
-import { ContactStackParamList } from '@/types/navigation';
+import { RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
-type SignOutButtonProps = NativeStackScreenProps<
-  ContactStackParamList,
-  'Contact'
->;
-
-export const SignOutButton: React.FC<SignOutButtonProps> = ({ navigation }) => {
+export const SignOutButton: React.FC = () => {
   const { setIsAuthenticated } = useAuth();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const signOut = async () => {
     try {
       await AsyncStorage.setItem('authStatus', 'false');
-      await setIsAuthenticated(false);
+      setIsAuthenticated(false);
+
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -31,8 +29,8 @@ export const SignOutButton: React.FC<SignOutButtonProps> = ({ navigation }) => {
   };
 
   return (
-    <TouchableOpacity style={styles.button} onPress={signOut}>
-      <Text style={styles.buttonText}>Sign out</Text>
+    <TouchableOpacity onPress={signOut}>
+      <Text style={styles.buttonText}>Sign Out</Text>
     </TouchableOpacity>
   );
 };

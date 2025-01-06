@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Scanner } from '@/icons';
 import {
@@ -10,8 +11,6 @@ import { HomeStackParamList } from '@/types/navigation';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { styles } from './styles';
-
-const isUserAdmin = false; // TODO: Update using auth context
 
 type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -54,6 +53,21 @@ export const TreeSpeciesSearchScreen: React.FC<
     water: [],
     other: [],
   });
+
+  const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchAuthStatus = async () => {
+      try {
+        const status = await AsyncStorage.getItem('authStatus');
+        setIsUserAdmin(status === 'true');
+      } catch (error) {
+        console.error('Error fetching auth status:', error);
+      }
+    };
+
+    fetchAuthStatus();
+  }, []);
 
   useEffect(() => {
     const loadTreeSpeciesData = async () => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { SignOutButton } from '@/components/SignOutButton/SignOutButton';
 import {
   ArrowRight,
   Call,
@@ -37,7 +38,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({
 }) => (
   <TouchableOpacity onPress={onPress} style={styles.linksButton}>
     <View style={styles.linksButtonContent}>
-      {icon}
+      <View style={styles.contactIcons}>{icon}</View>
       <Text style={styles.contactText}>{text}</Text>
       <ArrowRight style={styles.contactIcons} />
     </View>
@@ -99,25 +100,23 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
       </View>
 
       <ContactButton
-        icon={<Call style={styles.contactIcons} />}
+        icon={<Call />}
         text="Directory"
         onPress={() => navigation.navigate('Directory')}
       />
       <ContactButton
-        icon={<Website style={styles.contactIcons} />}
+        icon={<Website />}
         text="Website"
         onPress={() => openLink('https://www.ourcityforest.org/')}
       />
       <ContactButton
-        icon={<Location style={styles.contactIcons} />}
+        icon={<Location />}
         text="Visit Us"
         onPress={openLocation}
       />
 
-      <View style={styles.logoutContainer}>
-        <TouchableOpacity>
-          <Text style={styles.logoutText}>Log Out</Text>
-        </TouchableOpacity>
+      <View style={styles.signOutContainer}>
+        <SignOutButton />
       </View>
     </View>
   );

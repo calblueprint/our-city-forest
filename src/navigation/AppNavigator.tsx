@@ -80,20 +80,20 @@ const ContactStackNavigator = () => {
 const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeTab"
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: { paddingTop: 10 },
         tabBarIcon: ({ focused }) => {
-          if (route.name === 'Home') {
+          if (route.name === 'HomeTab') {
             return focused ? (
               <HomeSelected width={30} height={30} />
             ) : (
               <HomeUnselected width={30} height={30} />
             );
           }
-          if (route.name === 'Contact') {
+          if (route.name === 'ContactTab') {
             return focused ? (
               <ContactSelected width={30} height={30} />
             ) : (
@@ -104,8 +104,8 @@ const BottomTabNavigator = () => {
         },
       })}
     >
-      <BottomTab.Screen name="Home" component={HomeStackNavigator} />
-      <BottomTab.Screen name="Contact" component={ContactStackNavigator} />
+      <BottomTab.Screen name="HomeTab" component={HomeStackNavigator} />
+      <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
     </BottomTab.Navigator>
   );
 };
@@ -121,6 +121,7 @@ export const AppNavigator = () => {
           initialRouteName="BottomTabs"
           screenOptions={{ headerShown: false }}
         >
+          <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
           <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
         </RootStack.Navigator>
       ) : (

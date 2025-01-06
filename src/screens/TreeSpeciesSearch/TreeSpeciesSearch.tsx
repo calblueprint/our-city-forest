@@ -94,7 +94,7 @@ export const TreeSpeciesSearchScreen: React.FC<
       }
     };
     loadTreeSpeciesData();
-  }, []);
+  }, [isUserAdmin]);
 
   const applyFilters = (tree: treeSpeciesCard) => {
     if (activeFilters.height.length > 0) {

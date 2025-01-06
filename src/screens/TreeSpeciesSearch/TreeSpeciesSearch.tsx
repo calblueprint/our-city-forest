@@ -32,7 +32,7 @@ type treeSpeciesCard = {
   rootDamagePotential: string;
 };
 
-type FilterState = {
+type ActiveFilters = {
   height: string[];
   shape: string;
   litter: string[];
@@ -47,7 +47,7 @@ export const TreeSpeciesSearchScreen: React.FC<
     [],
   );
   const [searchText, setSearchText] = useState<string>('');
-  const [activeFilters, setActiveFilters] = useState<FilterState>({
+  const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
     height: [],
     shape: '',
     litter: [],
@@ -110,15 +110,18 @@ export const TreeSpeciesSearchScreen: React.FC<
     }
     if (activeFilters.other.length > 0) {
       const matchesOther = activeFilters.other.every(option => {
-        if (option === 'native') return tree.isCaliforniaNative || false;
+        if (option === 'californiaNative')
+          return tree.isCaliforniaNative || false;
         if (option === 'evergreen') return tree.isEvergreen || false;
-        if (option === 'powerline') return tree.isPowerlineFriendly || false;
-        if (option === 'lowroot') return tree.rootDamagePotential === 'low';
+        if (option === 'powerlineFriendly')
+          return tree.isPowerlineFriendly || false;
+        if (option === 'lowRootDamage')
+          return tree.rootDamagePotential === 'low';
         return false;
       });
       if (!matchesOther) return false;
     }
-    return true; // Pass all filters
+    return true;
   };
 
   const filteredTreeSpeciesCards = treeSpeciesCards.filter(

@@ -39,27 +39,27 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     large: activeFilters.height.includes('large'),
   });
 
+  const [selectedTreeShape, setSelectedTreeShape] = useState<string>(
+    activeFilters.shape,
+  );
+
   const [activeLitterFilters, setActiveLitterFilters] = useState({
     wet: activeFilters.litter.includes('wet'),
     dry: activeFilters.litter.includes('dry'),
   });
 
   const [activeWaterFilters, setActiveWaterFilters] = useState({
-    less: activeFilters.water.includes('less'),
+    low: activeFilters.water.includes('low'),
     moderate: activeFilters.water.includes('moderate'),
-    more: activeFilters.water.includes('more'),
+    high: activeFilters.water.includes('high'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({
-    native: activeFilters.other.includes('native'),
+    californiaNative: activeFilters.other.includes('californiaNative'),
     evergreen: activeFilters.other.includes('evergreen'),
-    powerline: activeFilters.other.includes('powerline'),
-    lowroot: activeFilters.other.includes('lowroot'),
+    powerlineFriendly: activeFilters.other.includes('powerlineFriendly'),
+    lowRootDamage: activeFilters.other.includes('lowRootDamage'),
   });
-
-  const [selectedTreeShape, setSelectedTreeShape] = useState<string>(
-    activeFilters.shape,
-  );
 
   useEffect(() => {
     onActiveFilterChange({
@@ -88,10 +88,10 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 
   useEffect(() => {}, [
     activeHeightFilters,
+    selectedTreeShape,
     activeLitterFilters,
     activeWaterFilters,
     activeOtherFilters,
-    selectedTreeShape,
   ]);
 
   const toggleHeightFilter = (key: keyof typeof activeHeightFilters) => {
@@ -128,22 +128,22 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
       medium: false,
       large: false,
     });
+    setSelectedTreeShape('');
     setActiveLitterFilters({
       wet: false,
       dry: false,
     });
     setActiveWaterFilters({
-      less: false,
+      low: false,
       moderate: false,
-      more: false,
+      high: false,
     });
     setActiveOtherFilters({
-      native: false,
+      californiaNative: false,
       evergreen: false,
-      powerline: false,
-      lowroot: false,
+      powerlineFriendly: false,
+      lowRootDamage: false,
     });
-    setSelectedTreeShape('');
     onActiveFilterChange({
       height: [],
       shape: '',
@@ -230,16 +230,16 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
               </View>
             </View>
 
-            {/* Water Amount  */}
+            {/* Water Use  */}
             <View style={styles.filterProperties}>
-              <Text style={styles.subheaderText}>Water Amount</Text>
+              <Text style={styles.subheaderText}>Water Use</Text>
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={activeWaterFilters.less}
-                    onChange={() => toggleWaterFilter('less')}
+                    isChecked={activeWaterFilters.low}
+                    onChange={() => toggleWaterFilter('low')}
                   />
-                  <Text style={styles.checkboxLabel}>Less</Text>
+                  <Text style={styles.checkboxLabel}>Low</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
@@ -250,10 +250,10 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={activeWaterFilters.more}
-                    onChange={() => toggleWaterFilter('more')}
+                    isChecked={activeWaterFilters.high}
+                    onChange={() => toggleWaterFilter('high')}
                   />
-                  <Text style={styles.checkboxLabel}>More</Text>
+                  <Text style={styles.checkboxLabel}>High</Text>
                 </View>
               </View>
             </View>
@@ -264,8 +264,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
               <View style={styles.checkboxGroup}>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={activeOtherFilters.native}
-                    onChange={() => toggleOtherFilter('native')}
+                    isChecked={activeOtherFilters.californiaNative}
+                    onChange={() => toggleOtherFilter('californiaNative')}
                   />
                   <Text style={styles.checkboxLabel}>California native</Text>
                 </View>
@@ -278,15 +278,15 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={activeOtherFilters.powerline}
-                    onChange={() => toggleOtherFilter('powerline')}
+                    isChecked={activeOtherFilters.powerlineFriendly}
+                    onChange={() => toggleOtherFilter('powerlineFriendly')}
                   />
                   <Text style={styles.checkboxLabel}>Powerline friendly</Text>
                 </View>
                 <View style={styles.checkboxContainer}>
                   <Checkbox
-                    isChecked={activeOtherFilters.lowroot}
-                    onChange={() => toggleOtherFilter('lowroot')}
+                    isChecked={activeOtherFilters.lowRootDamage}
+                    onChange={() => toggleOtherFilter('lowRootDamage')}
                   />
                   <Text style={styles.checkboxLabel}>Low root damage</Text>
                 </View>

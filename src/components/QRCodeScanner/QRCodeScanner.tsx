@@ -56,7 +56,7 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.safeContainer}>
       <View style={styles.iconFlex}>
         <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
           <FlashCircle />

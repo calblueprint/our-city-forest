@@ -2,11 +2,15 @@ import { Dimensions, StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+
   headerContainer: {
-    paddingTop: height * 0.1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

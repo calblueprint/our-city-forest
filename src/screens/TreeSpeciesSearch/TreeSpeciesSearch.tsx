@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, ImageBackground, Pressable, Text, View } from 'react-native';
+import {
+  FlatList,
+  ImageBackground,
+  Pressable,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Scanner } from '@/icons';
@@ -165,7 +172,7 @@ export const TreeSpeciesSearchScreen: React.FC<
   );
 
   return (
-    <>
+    <SafeAreaView style={styles.safeContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
           {isUserAdmin ? 'All Trees' : 'Available Trees'}
@@ -192,6 +199,6 @@ export const TreeSpeciesSearchScreen: React.FC<
           </Text>
         }
       />
-    </>
+    </SafeAreaView>
   );
 };

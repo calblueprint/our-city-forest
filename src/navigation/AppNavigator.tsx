@@ -53,7 +53,15 @@ const HomeStackNavigator = () => {
         name="TreeSpeciesSearch"
         component={TreeSpeciesSearchScreen}
       />
-      <HomeStack.Screen name="QRCodeScanner" component={QRCodeScanner} />
+      <HomeStack.Screen
+        name="QRCodeScanner"
+        component={QRCodeScanner}
+        options={{
+          headerShown: false,
+          presentation: 'fullScreenModal',
+          animation: 'fade',
+        }}
+      />
       <HomeStack.Screen name="TreeInfo" component={TreeInfoScreen} />
       <HomeStack.Screen
         name="TreeSpeciesInfo"

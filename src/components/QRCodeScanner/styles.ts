@@ -3,7 +3,7 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  container: {
+  safeContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   iconFlex: {
     flex: 0,
     width: '100%',
-    paddingHorizontal: 27,
+    paddingHorizontal: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

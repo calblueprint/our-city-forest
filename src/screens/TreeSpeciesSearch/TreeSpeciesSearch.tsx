@@ -172,7 +172,7 @@ export const TreeSpeciesSearchScreen: React.FC<
   );
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
           {isUserAdmin ? 'All Trees' : 'Available Trees'}

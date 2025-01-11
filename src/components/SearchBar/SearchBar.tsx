@@ -31,10 +31,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   activeFilters,
   onActiveFilterChange,
 }) => {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const openFilter = () => setIsFilterOpen(true);
-  const closeFilter = () => setIsFilterOpen(false);
+  const openFilter = () => setIsModalVisible(true);
+  const closeFilter = () => setIsModalVisible(false);
 
   return (
     <View style={styles.searchContainer}>
@@ -52,7 +52,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           </View>
         </TouchableOpacity>
         <SearchFilter
-          isOpen={isFilterOpen}
+          isModalVisible={isModalVisible}
           onClose={closeFilter}
           activeFilters={activeFilters}
           onActiveFilterChange={onActiveFilterChange}

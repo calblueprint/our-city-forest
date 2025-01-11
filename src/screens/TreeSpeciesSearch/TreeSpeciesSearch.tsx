@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
   FlatList,
-  ImageBackground,
-  Pressable,
+  Image,
   SafeAreaView,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -152,13 +152,13 @@ export const TreeSpeciesSearchScreen: React.FC<
   );
 
   const renderSpeciesCard = ({ item }: { item: treeSpeciesCard }) => (
-    <Pressable
+    <TouchableOpacity
       onPress={() =>
         navigation.push('TreeSpeciesInfo', { speciesName: item.name })
       }
       style={styles.speciesCard}
     >
-      <ImageBackground
+      <Image
         source={{
           uri: item.imageURL,
         }}
@@ -168,7 +168,7 @@ export const TreeSpeciesSearchScreen: React.FC<
         {item.name}
       </Text>
       <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 
   return (

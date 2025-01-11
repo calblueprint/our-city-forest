@@ -13,7 +13,7 @@ import { TreeSpeciesShape } from '@/types/tree_species';
 import { styles } from './styles';
 
 type SearchFilterProps = {
-  isOpen: boolean;
+  isModalVisible: boolean;
   onClose: () => void;
   activeFilters: {
     height: string[];
@@ -34,7 +34,7 @@ type SearchFilterProps = {
 };
 
 export const SearchFilter: React.FC<SearchFilterProps> = ({
-  isOpen,
+  isModalVisible,
   onClose,
   activeFilters,
   onActiveFilterChange,
@@ -67,6 +67,16 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     powerlineFriendly: activeFilters.other.includes('powerlineFriendly'),
     lowRootDamage: activeFilters.other.includes('lowRootDamage'),
   });
+
+  const anyFiltersActive = () => {
+    return (
+      Object.values(activeHeightFilters).some(Boolean) ||
+      !!selectedTreeShape ||
+      Object.values(activeLitterFilters).some(Boolean) ||
+      Object.values(activeWaterFilters).some(Boolean) ||
+      Object.values(activeOtherFilters).some(Boolean)
+    );
+  };
 
   useEffect(() => {
     onActiveFilterChange({
@@ -163,156 +173,163 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
   return (
     <SafeAreaView>
       <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isOpen}
+        visible={isModalVisible}
         onRequestClose={onClose}
+        animationType="slide"
+        presentationStyle="pageSheet"
       >
-        <View style={styles.filterBackground}>
-          <View style={styles.filterContainer}>
-            <View style={styles.grabber}></View>
-            <View style={styles.filterHeading}>
-              <Text style={styles.headerText}>Filter Trees</Text>
-              <TouchableOpacity
-                style={styles.resetButton}
-                onPress={resetFilters}
-              >
-                <Text style={styles.resetText}>Reset</Text>
-              </TouchableOpacity>
-            </View>
-
-            <ScrollView
-              horizontal={false}
-              showsHorizontalScrollIndicator={false}
+        <View style={styles.filterContainer}>
+          <View style={styles.grabber}></View>
+          <View style={styles.filterHeading}>
+            <Text style={styles.headerText}>Filter Trees</Text>
+            <TouchableOpacity
+              style={
+                anyFiltersActive()
+                  ? styles.resetButtonActive
+                  : styles.resetButtonInactive
+              }
+              onPress={resetFilters}
             >
-              {/* Height */}
-              <View style={styles.filterProperties}>
-                <Text style={styles.subheaderText}>Height</Text>
-                <View style={styles.checkboxGroup}>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeHeightFilters.small}
-                      onChange={() => toggleHeightFilter('small')}
-                    />
-                    <Text style={styles.checkboxLabel}>Small (&lt; 40')</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeHeightFilters.medium}
-                      onChange={() => toggleHeightFilter('medium')}
-                    />
-                    <Text style={styles.checkboxLabel}>Medium (40 - 60')</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeHeightFilters.large}
-                      onChange={() => toggleHeightFilter('large')}
-                    />
-                    <Text style={styles.checkboxLabel}>Large (60' +)</Text>
-                  </View>
-                </View>
-              </View>
-
-              {/* Tree Shape */}
-              <View style={styles.filterProperties}>
-                <Text style={styles.subheaderText}>Tree Shape</Text>
-                <Dropdown
-                  options={Object.values(TreeSpeciesShape)}
-                  value={selectedTreeShape}
-                  onChange={setSelectedTreeShape}
-                />
-              </View>
-
-              {/* Litter Type */}
-              <View style={styles.filterProperties}>
-                <Text style={styles.subheaderText}>Litter Type</Text>
-                <View style={styles.checkboxGroup}>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeLitterFilters.wet}
-                      onChange={() => toggleLitterFilter('wet')}
-                    />
-                    <Text style={styles.checkboxLabel}>Wet Fruit</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeLitterFilters.dry}
-                      onChange={() => toggleLitterFilter('dry')}
-                    />
-                    <Text style={styles.checkboxLabel}>Dry Fruit</Text>
-                  </View>
-                </View>
-              </View>
-
-              {/* Water Use  */}
-              <View style={styles.filterProperties}>
-                <Text style={styles.subheaderText}>Water Use</Text>
-                <View style={styles.checkboxGroup}>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeWaterFilters.low}
-                      onChange={() => toggleWaterFilter('low')}
-                    />
-                    <Text style={styles.checkboxLabel}>Low</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeWaterFilters.moderate}
-                      onChange={() => toggleWaterFilter('moderate')}
-                    />
-                    <Text style={styles.checkboxLabel}>Moderate</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeWaterFilters.high}
-                      onChange={() => toggleWaterFilter('high')}
-                    />
-                    <Text style={styles.checkboxLabel}>High</Text>
-                  </View>
-                </View>
-              </View>
-
-              {/* Other Properties */}
-              <View style={styles.filterProperties}>
-                <Text style={styles.subheaderText}>Other Properties</Text>
-                <View style={styles.checkboxGroup}>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeOtherFilters.californiaNative}
-                      onChange={() => toggleOtherFilter('californiaNative')}
-                    />
-                    <Text style={styles.checkboxLabel}>California native</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeOtherFilters.evergreen}
-                      onChange={() => toggleOtherFilter('evergreen')}
-                    />
-                    <Text style={styles.checkboxLabel}>Evergreen</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeOtherFilters.powerlineFriendly}
-                      onChange={() => toggleOtherFilter('powerlineFriendly')}
-                    />
-                    <Text style={styles.checkboxLabel}>Powerline friendly</Text>
-                  </View>
-                  <View style={styles.checkboxContainer}>
-                    <Checkbox
-                      isChecked={activeOtherFilters.lowRootDamage}
-                      onChange={() => toggleOtherFilter('lowRootDamage')}
-                    />
-                    <Text style={styles.checkboxLabel}>Low root damage</Text>
-                  </View>
-                </View>
-              </View>
-            </ScrollView>
-
-            {/* Complete Button */}
-            <TouchableOpacity style={styles.completeButton} onPress={onClose}>
-              <Text style={styles.completeButtonText}>Complete</Text>
+              <Text
+                style={
+                  anyFiltersActive()
+                    ? styles.resetTextActive
+                    : styles.resetTextInactive
+                }
+              >
+                Reset
+              </Text>
             </TouchableOpacity>
           </View>
+
+          <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
+            {/* Height */}
+            <View style={styles.filterProperties}>
+              <Text style={styles.subheaderText}>Height</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeHeightFilters.small}
+                    onChange={() => toggleHeightFilter('small')}
+                  />
+                  <Text style={styles.checkboxLabel}>Small (&lt; 40')</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeHeightFilters.medium}
+                    onChange={() => toggleHeightFilter('medium')}
+                  />
+                  <Text style={styles.checkboxLabel}>Medium (40 - 60')</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeHeightFilters.large}
+                    onChange={() => toggleHeightFilter('large')}
+                  />
+                  <Text style={styles.checkboxLabel}>Large (60' +)</Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Tree Shape */}
+            <View style={styles.filterProperties}>
+              <Text style={styles.subheaderText}>Tree Shape</Text>
+              <Dropdown
+                options={Object.values(TreeSpeciesShape)}
+                value={selectedTreeShape}
+                onChange={setSelectedTreeShape}
+              />
+            </View>
+
+            {/* Litter Type */}
+            <View style={styles.filterProperties}>
+              <Text style={styles.subheaderText}>Litter Type</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeLitterFilters.wet}
+                    onChange={() => toggleLitterFilter('wet')}
+                  />
+                  <Text style={styles.checkboxLabel}>Wet Fruit</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeLitterFilters.dry}
+                    onChange={() => toggleLitterFilter('dry')}
+                  />
+                  <Text style={styles.checkboxLabel}>Dry Fruit</Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Water Use  */}
+            <View style={styles.filterProperties}>
+              <Text style={styles.subheaderText}>Water Use</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeWaterFilters.low}
+                    onChange={() => toggleWaterFilter('low')}
+                  />
+                  <Text style={styles.checkboxLabel}>Low</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeWaterFilters.moderate}
+                    onChange={() => toggleWaterFilter('moderate')}
+                  />
+                  <Text style={styles.checkboxLabel}>Moderate</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeWaterFilters.high}
+                    onChange={() => toggleWaterFilter('high')}
+                  />
+                  <Text style={styles.checkboxLabel}>High</Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Other Properties */}
+            <View style={styles.filterProperties}>
+              <Text style={styles.subheaderText}>Other Properties</Text>
+              <View style={styles.checkboxGroup}>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeOtherFilters.californiaNative}
+                    onChange={() => toggleOtherFilter('californiaNative')}
+                  />
+                  <Text style={styles.checkboxLabel}>California native</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeOtherFilters.evergreen}
+                    onChange={() => toggleOtherFilter('evergreen')}
+                  />
+                  <Text style={styles.checkboxLabel}>Evergreen</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeOtherFilters.powerlineFriendly}
+                    onChange={() => toggleOtherFilter('powerlineFriendly')}
+                  />
+                  <Text style={styles.checkboxLabel}>Powerline friendly</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <Checkbox
+                    isChecked={activeOtherFilters.lowRootDamage}
+                    onChange={() => toggleOtherFilter('lowRootDamage')}
+                  />
+                  <Text style={styles.checkboxLabel}>Low root damage</Text>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+
+          {/* Complete Button */}
+          <TouchableOpacity style={styles.completeButton} onPress={onClose}>
+            <Text style={styles.completeButtonText}>Complete</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </SafeAreaView>

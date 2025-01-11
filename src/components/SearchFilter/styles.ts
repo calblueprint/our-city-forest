@@ -5,16 +5,9 @@ import { typography } from '@/styles/typography';
 const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  filterBackground: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.25)',
-  },
-
   filterContainer: {
     width: '100%',
-    height: height * 0.8,
+    height: height * 0.9,
     backgroundColor: colors.white,
     paddingHorizontal: 40,
     paddingBottom: 20,
@@ -24,10 +17,10 @@ export const styles = StyleSheet.create({
 
   grabber: {
     width: 128,
-    height: 6, // Height of the grabber
-    borderRadius: 4, // Rounded edges
+    height: 6,
+    borderRadius: 4,
     backgroundColor: colors.gray5,
-    alignSelf: 'center', // Center horizontally
+    alignSelf: 'center',
     marginVertical: 8,
   },
 
@@ -54,17 +47,32 @@ export const styles = StyleSheet.create({
     color: colors.gray2,
   },
 
-  resetButton: {
+  resetButtonActive: {
+    width: 86,
+    height: 34,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    backgroundColor: colors.primary,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+
+  resetTextActive: {
+    ...typography.mediumBold,
+    color: colors.white,
+  },
+
+  resetButtonInactive: {
     width: 86,
     height: 34,
     paddingVertical: 4,
     paddingHorizontal: 8,
     backgroundColor: colors.gray5,
-    borderRadius: 5,
+    borderRadius: 8,
     alignItems: 'center',
   },
 
-  resetText: {
+  resetTextInactive: {
     ...typography.mediumBold,
     color: colors.gray3,
   },

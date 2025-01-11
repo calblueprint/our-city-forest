@@ -28,17 +28,15 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     paddingVertical: 20,
     paddingHorizontal: 24,
-    gap: 12,
+    gap: 8,
   },
 
   speciesCard: {
-    flex: 1,
-    width: width > 600 ? '30%' : '48%',
+    width: width > 600 ? '30%' : '46%',
     marginBottom: width * 0.02,
     marginHorizontal: width * 0.01,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    borderRadius: 10,
     overflow: 'hidden',
   },
 
@@ -46,7 +44,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 150,
     flexShrink: 0,
-    borderRadius: 5,
+    borderRadius: 8,
     resizeMode: 'cover',
     backgroundColor: colors.gray4,
     marginBottom: 0,

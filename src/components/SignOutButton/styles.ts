@@ -4,7 +4,7 @@ import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   buttonText: {
-    ...typography.normalBold,
+    ...typography.mediumBold,
     color: colors.primary,
     paddingBottom: 40,
     textAlign: 'center',

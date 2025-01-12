@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
 
   loginText: {
-    ...typography.heading3,
+    ...typography.heading1,
     color: colors.primary,
   },
 

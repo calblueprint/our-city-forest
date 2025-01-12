@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
 
   headerText: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.primary,
     textAlign: 'left',
   },
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   },
 
   speciesName: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     fontSize: width > 600 ? 20 : 18,
     textAlign: 'left',
     flex: 1,
@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
   },
 
   searchError: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray2,
   },
 });

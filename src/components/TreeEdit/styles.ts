@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   },
 
   idText: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     flex: 0,
     textAlign: 'left',
     color: colors.white,
@@ -36,13 +36,13 @@ export const styles = StyleSheet.create({
   },
 
   header: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.gray1,
     paddingBottom: 10,
   },
 
   scientificName: {
-    ...typography.mediumRegular,
+    ...typography.largeRegular,
     color: colors.gray1,
   },
 
@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
   },
 
   label: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray2,
     marginBottom: 10,
   },
@@ -96,7 +96,7 @@ export const styles = StyleSheet.create({
   },
 
   doneEditingText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.white,
   },
 
@@ -109,7 +109,7 @@ export const styles = StyleSheet.create({
   },
 
   iconTextView: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -117,7 +117,7 @@ export const styles = StyleSheet.create({
   },
 
   displayText: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray3,
   },
 
@@ -126,7 +126,7 @@ export const styles = StyleSheet.create({
   },
 
   textInput: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     flex: 1,
     color: colors.gray3,
     borderWidth: 1,

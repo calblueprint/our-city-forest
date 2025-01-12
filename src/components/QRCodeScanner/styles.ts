@@ -41,13 +41,13 @@ export const styles = StyleSheet.create({
 
   header: {
     textAlign: 'center',
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.white,
   },
 
   subtext: {
     textAlign: 'center',
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.white,
   },
 
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
   },
 
   scanButtonText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.white,
   },
 });

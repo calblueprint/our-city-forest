@@ -39,12 +39,12 @@ export const styles = StyleSheet.create({
   },
 
   headerText: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.primary,
   },
 
   subheaderText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.gray2,
   },
 
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   },
 
   resetTextActive: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.white,
   },
 
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
   },
 
   resetTextInactive: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.gray3,
   },
 
@@ -93,7 +93,7 @@ export const styles = StyleSheet.create({
   },
 
   checkboxLabel: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray3,
   },
 
@@ -110,7 +110,7 @@ export const styles = StyleSheet.create({
   },
 
   completeButtonText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.white,
   },
 });

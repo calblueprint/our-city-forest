@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
 
   headerText: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.primary,
     paddingBottom: 30,
     textAlign: 'center',
@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
   },
 
   heading: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.black1,
   },
 

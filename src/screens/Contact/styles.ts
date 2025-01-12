@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
   },
 
   contactHeading: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.primary,
     paddingBottom: 30,
     textAlign: 'center',
@@ -61,13 +61,13 @@ export const styles = StyleSheet.create({
   },
 
   contactText: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray3,
     textAlign: 'center',
   },
 
   contactboldText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.black1,
     paddingBottom: 10,
     textAlign: 'center',

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.primary,
     marginBottom: 40,
   },
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   },
 
   label: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     marginBottom: 10,
     color: colors.gray1,
   },
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   },
 
   input: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     flex: 1,
     height: 50,
     paddingHorizontal: 15,
@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   },
 
   quantityButtonText: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.white,
   },
 
@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
   },
 
   completeButtonText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.white,
     textAlign: 'center',
   },

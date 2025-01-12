@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     color: colors.gray3,
   },
   funFact: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.primary,
   },
   separator: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.gray5,
   },
   header: {
-    ...typography.mediumRegular,
+    ...typography.largeRegular,
     color: colors.gray1,
   },
   textInput: {
@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   propertyText: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray3,
   },
 

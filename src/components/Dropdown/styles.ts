@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   },
 
   text: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray3,
     textTransform: 'capitalize',
     textAlign: 'left',

@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   },
 
   funFact: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.primary,
   },
 
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   },
 
   header: {
-    ...typography.mediumRegular,
+    ...typography.largeRegular,
     color: colors.gray1,
   },
 
@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
   },
 
   propertyText: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray3,
   },
 

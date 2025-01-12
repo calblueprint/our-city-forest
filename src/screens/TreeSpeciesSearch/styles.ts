@@ -42,19 +42,18 @@ export const styles = StyleSheet.create({
 
   speciesImage: {
     width: '100%',
-    height: 150,
+    height: 152,
     flexShrink: 0,
     borderRadius: 8,
     resizeMode: 'cover',
     backgroundColor: colors.gray4,
-    marginBottom: 0,
+    marginBottom: width * 0.01,
   },
 
   speciesName: {
     ...typography.mediumBold,
     fontSize: width > 600 ? 20 : 18,
     textAlign: 'left',
-    marginTop: width * 0.01,
     flex: 1,
     overflow: 'hidden',
   },

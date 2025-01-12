@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
+import { space } from '@/styles/space';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   main: {
     flexDirection: 'column',
-    marginTop: 25,
-    gap: 25,
-    paddingBottom: 25,
+    gap: space[300],
+    paddingBottom: space[300],
   },
 
   text: {
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 9,
+    gap: space[100],
   },
 
   properties: {
@@ -59,11 +59,11 @@ export const styles = StyleSheet.create({
   },
 
   property: {
-    marginTop: 15,
     width: '50%',
     flexDirection: 'row',
-    gap: 10,
+    gap: space[150],
     alignItems: 'center',
+    marginBottom: 15,
   },
 
   propertyText: {

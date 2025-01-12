@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
+import { space } from '@/styles/space';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
@@ -29,13 +30,13 @@ export const styles = StyleSheet.create({
     padding: 24,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    gap: 86,
+    gap: space[1000],
   },
 
   textFlex: {
     flex: 0,
     flexDirection: 'column',
-    gap: 8,
+    gap: space[100],
   },
 
   header: {

@@ -82,6 +82,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.gray5,
     marginTop: 10,
+    marginBottom: 25,
   },
 
   // Main body

@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
+import { space } from '@/styles/space';
 import { typography } from '@/styles/typography';
 
 const { height } = Dimensions.get('window');
@@ -26,7 +27,7 @@ export const styles = StyleSheet.create({
 
   filterProperties: {
     marginBottom: 23,
-    gap: 10,
+    gap: space[150],
   },
 
   filterHeading: {
@@ -79,7 +80,7 @@ export const styles = StyleSheet.create({
 
   checkboxGroup: {
     flexDirection: 'column',
-    gap: 16,
+    gap: space[200],
     borderTopColor: colors.gray5,
     borderTopWidth: 1,
     paddingTop: 12,
@@ -88,7 +89,7 @@ export const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 16,
+    gap: space[200],
   },
 
   checkboxLabel: {

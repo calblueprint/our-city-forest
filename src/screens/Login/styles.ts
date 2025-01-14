@@ -3,35 +3,29 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  loginContainer: {
-    padding: 40,
+  container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingHorizontal: 40,
+    paddingVertical: 160,
   },
 
-  loginText: {
+  headerText: {
     ...typography.heading1,
     color: colors.primary,
-  },
-
-  logoContainer: {
-    alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 70,
+    marginBottom: 32,
   },
 
   logo: {
-    height: 200,
-    marginTop: 20,
-    marginBottom: 70,
+    alignSelf: 'center',
+    marginBottom: 80,
   },
 
   button: {
-    backgroundColor: '#446127',
-    padding: 15,
-    borderRadius: 5,
+    backgroundColor: colors.primary,
+    padding: 16,
+    borderRadius: 6,
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 12,
   },
 
   buttonText: {
@@ -39,14 +33,12 @@ export const styles = StyleSheet.create({
     color: colors.white,
   },
 
-  adminLoginContainer: {
-    flex: 0,
+  adminContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingTop: 10,
   },
 
-  adminLoginText: {
+  adminText: {
     ...typography.smallBold,
     color: colors.gray3,
   },

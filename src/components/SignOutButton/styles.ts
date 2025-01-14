@@ -6,7 +6,5 @@ export const styles = StyleSheet.create({
   buttonText: {
     ...typography.mediumBold,
     color: colors.primary,
-    paddingBottom: 40,
-    textAlign: 'center',
   },
 });

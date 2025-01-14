@@ -8,23 +8,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: colors.gray5,
-    paddingTop: 5,
+    paddingTop: 6,
     paddingBottom: 20,
     paddingHorizontal: 24,
-  },
-
-  searchBarInput: {
-    ...typography.mediumRegular,
-    color: colors.gray2,
-    flex: 1,
-    height: 42,
-    borderWidth: 1,
-    borderRadius: 30,
-    paddingHorizontal: 10,
-    borderColor: colors.gray6,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
   },
 
   inputContainer: {
@@ -37,7 +23,21 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray6,
     backgroundColor: colors.gray6,
     borderRadius: 30,
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
+  },
+
+  searchBarInput: {
+    ...typography.mediumRegular,
+    color: colors.gray2,
+    flex: 1,
+    height: 42,
+    borderWidth: 1,
+    borderRadius: 30,
+    paddingHorizontal: 12,
+    borderColor: colors.gray6,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
   },
 
   filterIconContainer: {

@@ -1,7 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+
   checkbox: {
     width: 20,
     height: 20,
@@ -25,5 +32,10 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: colors.primary,
     transform: [{ rotate: '315deg' }],
+  },
+
+  checkboxLabel: {
+    ...typography.mediumRegular,
+    color: colors.gray3,
   },
 });

@@ -1,6 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
-import { space } from '@/styles/space';
 import { typography } from '@/styles/typography';
 
 const { height } = Dimensions.get('window');
@@ -12,8 +11,8 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     paddingHorizontal: 40,
     paddingBottom: 20,
-    borderTopLeftRadius: 44,
-    borderTopRightRadius: 44,
+    borderTopLeftRadius: 48,
+    borderTopRightRadius: 48,
   },
 
   grabber: {
@@ -23,11 +22,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.gray5,
     alignSelf: 'center',
     marginVertical: 8,
-  },
-
-  filterProperties: {
-    marginBottom: 23,
-    gap: space[150],
   },
 
   filterHeading: {
@@ -43,11 +37,6 @@ export const styles = StyleSheet.create({
     color: colors.primary,
   },
 
-  subheaderText: {
-    ...typography.largeBold,
-    color: colors.gray2,
-  },
-
   resetButtonActive: {
     width: 86,
     height: 34,
@@ -56,11 +45,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 8,
     alignItems: 'center',
-  },
-
-  resetTextActive: {
-    ...typography.largeBold,
-    color: colors.white,
   },
 
   resetButtonInactive: {
@@ -73,28 +57,32 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  resetTextActive: {
+    ...typography.largeBold,
+    color: colors.white,
+  },
+
   resetTextInactive: {
     ...typography.largeBold,
     color: colors.gray3,
   },
 
+  filterProperties: {
+    marginBottom: 24,
+    gap: 12,
+  },
+
+  subheaderText: {
+    ...typography.largeBold,
+    color: colors.gray2,
+  },
+
   checkboxGroup: {
     flexDirection: 'column',
-    gap: space[200],
+    gap: 16,
     borderTopColor: colors.gray5,
     borderTopWidth: 1,
     paddingTop: 12,
-  },
-
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: space[200],
-  },
-
-  checkboxLabel: {
-    ...typography.mediumRegular,
-    color: colors.gray3,
   },
 
   completeButton: {
@@ -105,8 +93,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5,
-    paddingBottom: 10,
+    padding: 6,
+    paddingBottom: 12,
   },
 
   completeButtonText: {

@@ -8,20 +8,40 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
 
-  imageBg: {
+  imageBackground: {
     flex: 1,
     height: 292,
+    backgroundColor: colors.gray5,
+  },
+
+  body: {
+    paddingHorizontal: 32,
+    paddingTop: 20,
+    marginBottom: 12,
+    marginTop: -16,
+    borderRadius: 20,
+    flex: 1,
+    backgroundColor: colors.white,
   },
 
   switch: { paddingBottom: 32 },
 
-  headerFlex: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    marginHorizontal: 30,
-    marginBottom: 21 + 16,
-    gap: 5,
+  header: {
+    ...typography.heading2,
+    color: colors.gray1,
+    paddingBottom: 12,
+  },
+
+  idPillFlex: {
+    flex: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  scientificName: {
+    ...typography.largeRegular,
+    color: colors.gray1,
   },
 
   idPill: {
@@ -36,111 +56,13 @@ export const styles = StyleSheet.create({
     flex: 0,
     textAlign: 'left',
     color: colors.white,
-    padding: 10,
+    padding: 12,
     paddingVertical: 6,
   },
 
-  idPillFlex: {
-    flex: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-
-  header: {
-    ...typography.heading2,
-    color: colors.gray1,
-    paddingBottom: 10,
-  },
-
-  additionalNotes: {
-    paddingBottom: 4,
-  },
-
-  scientificName: {
-    ...typography.largeRegular,
-    color: colors.gray1,
-  },
-
-  separator: {
+  divider: {
     borderBottomWidth: 1,
     borderBottomColor: colors.gray5,
-    marginTop: 10,
-  },
-
-  // Main body
-  body: {
-    paddingHorizontal: 42,
-    paddingTop: 20,
-    marginBottom: 10,
-    marginTop: -16,
-    borderRadius: 20,
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-
-  propertiesHeader: {
-    marginVertical: 30,
-  },
-
-  label: {
-    ...typography.mediumRegular,
-    color: colors.gray2,
-    marginBottom: 7,
-  },
-
-  propertiesFlex: {
-    flex: 1,
-    gap: 26,
-    marginBottom: 32,
-  },
-
-  editFlex: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-
-  editButton: {
-    alignSelf: 'center',
-    backgroundColor: colors.primary,
-    padding: 9,
-    paddingHorizontal: 10,
-    borderRadius: 10,
-  },
-
-  doneEditingText: {
-    ...typography.largeRegular,
-    color: colors.white,
-  },
-
-  locationInputView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexGrow: 1,
-    gap: 15,
-  },
-
-  textInput: {
-    ...typography.mediumRegular,
-    flex: 1,
-    color: colors.gray3,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: colors.gray5,
-    paddingVertical: 11,
-    paddingHorizontal: 20,
-  },
-
-  textArea: {
-    minHeight: 170,
-    paddingVertical: 20,
-    color: colors.gray3,
-  },
-
-  ownershipTextArea: {
-    marginTop: 14,
-    minHeight: 90,
+    marginTop: 12,
   },
 });

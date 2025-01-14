@@ -207,27 +207,21 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Height</Text>
               <View style={styles.checkboxGroup}>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeHeightFilters.small}
-                    onChange={() => toggleHeightFilter('small')}
-                  />
-                  <Text style={styles.checkboxLabel}>Small (&lt; 40')</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeHeightFilters.medium}
-                    onChange={() => toggleHeightFilter('medium')}
-                  />
-                  <Text style={styles.checkboxLabel}>Medium (40 - 60')</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeHeightFilters.large}
-                    onChange={() => toggleHeightFilter('large')}
-                  />
-                  <Text style={styles.checkboxLabel}>Large (60' +)</Text>
-                </View>
+                <Checkbox
+                  label="Small (&lt; 40')"
+                  isChecked={activeHeightFilters.small}
+                  onChange={() => toggleHeightFilter('small')}
+                />
+                <Checkbox
+                  label="Medium (40 - 60')"
+                  isChecked={activeHeightFilters.medium}
+                  onChange={() => toggleHeightFilter('medium')}
+                />
+                <Checkbox
+                  label="Large (60' +)"
+                  isChecked={activeHeightFilters.large}
+                  onChange={() => toggleHeightFilter('large')}
+                />
               </View>
             </View>
 
@@ -245,20 +239,16 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Litter Type</Text>
               <View style={styles.checkboxGroup}>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeLitterFilters.wet}
-                    onChange={() => toggleLitterFilter('wet')}
-                  />
-                  <Text style={styles.checkboxLabel}>Wet Fruit</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeLitterFilters.dry}
-                    onChange={() => toggleLitterFilter('dry')}
-                  />
-                  <Text style={styles.checkboxLabel}>Dry Fruit</Text>
-                </View>
+                <Checkbox
+                  label="Wet Fruit"
+                  isChecked={activeLitterFilters.wet}
+                  onChange={() => toggleLitterFilter('wet')}
+                />
+                <Checkbox
+                  label="Dry Fruit"
+                  isChecked={activeLitterFilters.dry}
+                  onChange={() => toggleLitterFilter('dry')}
+                />
               </View>
             </View>
 
@@ -266,27 +256,21 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Water Use</Text>
               <View style={styles.checkboxGroup}>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeWaterFilters.low}
-                    onChange={() => toggleWaterFilter('low')}
-                  />
-                  <Text style={styles.checkboxLabel}>Low</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeWaterFilters.moderate}
-                    onChange={() => toggleWaterFilter('moderate')}
-                  />
-                  <Text style={styles.checkboxLabel}>Moderate</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeWaterFilters.high}
-                    onChange={() => toggleWaterFilter('high')}
-                  />
-                  <Text style={styles.checkboxLabel}>High</Text>
-                </View>
+                <Checkbox
+                  label="Low"
+                  isChecked={activeWaterFilters.low}
+                  onChange={() => toggleWaterFilter('low')}
+                />
+                <Checkbox
+                  label="Moderate"
+                  isChecked={activeWaterFilters.moderate}
+                  onChange={() => toggleWaterFilter('moderate')}
+                />
+                <Checkbox
+                  label="High"
+                  isChecked={activeWaterFilters.high}
+                  onChange={() => toggleWaterFilter('high')}
+                />
               </View>
             </View>
 
@@ -294,34 +278,26 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Other Properties</Text>
               <View style={styles.checkboxGroup}>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeOtherFilters.californiaNative}
-                    onChange={() => toggleOtherFilter('californiaNative')}
-                  />
-                  <Text style={styles.checkboxLabel}>California native</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeOtherFilters.evergreen}
-                    onChange={() => toggleOtherFilter('evergreen')}
-                  />
-                  <Text style={styles.checkboxLabel}>Evergreen</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeOtherFilters.powerlineFriendly}
-                    onChange={() => toggleOtherFilter('powerlineFriendly')}
-                  />
-                  <Text style={styles.checkboxLabel}>Powerline friendly</Text>
-                </View>
-                <View style={styles.checkboxContainer}>
-                  <Checkbox
-                    isChecked={activeOtherFilters.lowRootDamage}
-                    onChange={() => toggleOtherFilter('lowRootDamage')}
-                  />
-                  <Text style={styles.checkboxLabel}>Low root damage</Text>
-                </View>
+                <Checkbox
+                  label="California native"
+                  isChecked={activeOtherFilters.californiaNative}
+                  onChange={() => toggleOtherFilter('californiaNative')}
+                />
+                <Checkbox
+                  label="Evergreen"
+                  isChecked={activeOtherFilters.evergreen}
+                  onChange={() => toggleOtherFilter('evergreen')}
+                />
+                <Checkbox
+                  label="Powerline friendly"
+                  isChecked={activeOtherFilters.powerlineFriendly}
+                  onChange={() => toggleOtherFilter('powerlineFriendly')}
+                />
+                <Checkbox
+                  label="Low root damage"
+                  isChecked={activeOtherFilters.lowRootDamage}
+                  onChange={() => toggleOtherFilter('lowRootDamage')}
+                />
               </View>
             </View>
           </ScrollView>

@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import TreeBg from '@/../assets/tree-info-bg.png';
 import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { TreeDisplay } from '@/components/TreeDisplay/TreeDisplay';
 import { TreeEdit } from '@/components/TreeEdit/TreeEdit';
@@ -28,7 +27,6 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({ route }) => {
   const [isSpecies, setIsSpecies] = useState(true);
   const [treeData, setTreeData] = useState<Tree | null>(null);
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);
-  const treeBgImage = treeData?.species?.image_url;
 
   useEffect(() => {
     (async () => {
@@ -50,8 +48,8 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({ route }) => {
       >
         <ScrollView style={styles.container}>
           <ImageBackground
-            source={treeBgImage ? { uri: treeBgImage } : TreeBg}
-            style={styles.imageBg}
+            source={{ uri: treeData?.species?.image_url }}
+            style={styles.imageBackground}
           ></ImageBackground>
           <View style={styles.body}>
             <View style={styles.switch}>
@@ -79,7 +77,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({ route }) => {
               </View>
             </View>
 
-            <View style={styles.separator}></View>
+            <View style={styles.divider}></View>
 
             {treeData ? (
               isSpecies ? (

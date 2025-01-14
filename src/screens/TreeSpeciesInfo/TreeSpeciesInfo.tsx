@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  ImageBackground,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
+import { ImageBackground, ScrollView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import TreeBg from '@/../assets/tree-info-bg.png';
-import { SpeciesDisplay } from '@/components/SpeciesDisplay/SpeciesDisplay';
+import { TreeSpeciesDisplay } from '@/components/TreeSpeciesDisplay/TreeSpeciesDisplay';
 import { BackArrow, ScanBarcode } from '@/icons';
-import { colors } from '@/styles/colors';
 import { getTreeSpecies } from '@/supabase/queries/tree_species';
 import { getAllTreesForSpecies } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
@@ -34,7 +25,6 @@ export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
     name: speciesName,
   });
   const [treeData, setTreeData] = useState<Tree[]>([]);
-  const treeBgImage = speciesData.image_url;
 
   useEffect(() => {
     (async () => {
@@ -49,49 +39,36 @@ export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
   }, [speciesName]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'position' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 70}
-      >
-        <ScrollView style={styles.container}>
-          <ImageBackground
-            source={treeBgImage ? { uri: treeBgImage } : TreeBg}
-            style={styles.imageBg}
-          >
-            <View style={styles.topBar}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <BackArrow />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.push('QRCodeScanner')}
-              >
-                <ScanBarcode />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.imageEmbed}>
-              <View style={styles.countPill}>
-                <Text style={styles.idText}>{treeData.length} left</Text>
-              </View>
-            </View>
-          </ImageBackground>
-          <View style={styles.body}>
-            <View>
-              <Text style={styles.header}>{speciesData.name ?? ''}</Text>
-              <View style={styles.idPillFlex}>
-                <Text style={styles.scientificName}>
-                  {speciesData.scientific_name ?? ''}
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.separator}></View>
-
-            <SpeciesDisplay speciesData={speciesData} treeData={treeData} />
+    <View style={styles.container}>
+      <ScrollView>
+        <ImageBackground
+          source={{ uri: speciesData.image_url }}
+          style={styles.imageBackground}
+        >
+          <View style={styles.topNavigation}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <BackArrow />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.push('QRCodeScanner')}>
+              <ScanBarcode />
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+          <View style={styles.pill}>
+            <Text style={styles.pillText}>{treeData.length} left</Text>
+          </View>
+        </ImageBackground>
+        <View style={styles.body}>
+          <View>
+            <Text style={styles.header}>{speciesData.name ?? ''}</Text>
+            <Text style={styles.scientificName}>
+              {speciesData.scientific_name ?? ''}
+            </Text>
+            <View style={styles.divider}></View>
+          </View>
+
+          <TreeSpeciesDisplay speciesData={speciesData} treeData={treeData} />
+        </View>
+      </ScrollView>
     </View>
   );
 };

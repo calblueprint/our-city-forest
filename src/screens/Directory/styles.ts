@@ -1,29 +1,16 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
-const { height } = Dimensions.get('window');
-
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: height * 0.07,
-    paddingLeft: 42,
-    paddingRight: 42,
-    paddingBottom: 42,
+    flex: 1,
   },
 
-  headerContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 40,
-  },
-
-  headerText: {
-    ...typography.heading2,
-    color: colors.primary,
-    paddingBottom: 30,
-    textAlign: 'center',
-    alignItems: 'center',
+  scrollView: {
+    paddingHorizontal: 40,
+    paddingTop: 16,
+    paddingBottom: 20,
   },
 
   backButton: {
@@ -36,19 +23,31 @@ export const styles = StyleSheet.create({
     height: 24,
   },
 
+  headerContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 40,
+  },
+
   callIcon: {
     width: 64,
     height: 64,
-    paddingTop: 45,
-    paddingBottom: 45,
+    paddingVertical: 48,
+  },
+
+  headerText: {
+    ...typography.heading2,
+    color: colors.primary,
+    textAlign: 'center',
+    alignItems: 'center',
   },
 
   content: {
-    gap: 29,
+    gap: 32,
   },
 
   detailsContainer: {
-    gap: 10,
+    gap: 12,
   },
 
   heading: {
@@ -61,13 +60,13 @@ export const styles = StyleSheet.create({
     color: colors.gray2,
   },
 
-  darkText: {
-    ...typography.smallRegular,
-    color: colors.black1,
-  },
-
   lightText: {
     ...typography.smallRegular,
     color: colors.gray3,
+  },
+
+  darkText: {
+    ...typography.smallRegular,
+    color: colors.black1,
   },
 });

@@ -92,7 +92,7 @@ const BottomTabNavigator = () => {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: { paddingTop: 10 },
+        tabBarStyle: { paddingTop: 12 },
         tabBarIcon: ({ focused }) => {
           if (route.name === 'HomeTab') {
             return focused ? (

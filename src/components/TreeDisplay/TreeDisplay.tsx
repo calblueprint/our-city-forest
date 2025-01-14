@@ -28,7 +28,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
       index === self.findIndex(u => u.bank === t.bank && u.row === t.row),
   );
   return (
-    <View style={styles.main}>
+    <View style={styles.container}>
       <Text style={styles.text}>{treeData.species?.description}</Text>
 
       <View style={styles.funFactHeader}>
@@ -44,7 +44,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         numberOfLines={4}
       />
 
-      <View style={styles.separator}></View>
+      <View style={styles.divider}></View>
 
       <Text style={styles.header}>Location</Text>
       <View style={styles.locations}>
@@ -54,7 +54,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
             key={`${location.bank}-${location.row}-${index}`}
           >
             <Location />
-            <Text style={styles.propertyText}>
+            <Text style={styles.subtext}>
               Bank #{location.bank} {'  '}|{'  '} Row #{location.row}
               {/* TODO: Needs to support range of rows */}
             </Text>
@@ -67,7 +67,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         {treeData.species.max_height_ft && (
           <View style={styles.property}>
             <Ruler />
-            <Text style={styles.propertyText}>
+            <Text style={styles.subtext}>
               {treeData.species?.max_height_ft} ft
             </Text>
           </View>
@@ -76,7 +76,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         {treeData.species.tree_shape && (
           <View style={styles.property}>
             <Shapes />
-            <Text style={styles.propertyText}>
+            <Text style={styles.subtext}>
               {formatEnumKey(treeData.species?.tree_shape)}
             </Text>
           </View>
@@ -85,7 +85,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         {treeData.species.water_use && (
           <View style={styles.property}>
             <WateringCan />
-            <Text style={styles.propertyText}>
+            <Text style={styles.subtext}>
               {formatEnumKey(treeData.species?.water_use)}
             </Text>
           </View>
@@ -94,7 +94,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         {treeData.species.root_damage_potential && (
           <View style={styles.property}>
             <Warning />
-            <Text style={styles.propertyText}>
+            <Text style={styles.subtext}>
               {formatEnumKey(treeData.species.root_damage_potential)}
             </Text>
           </View>
@@ -103,7 +103,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         {treeData.species.litter_type && (
           <View style={styles.property}>
             <Fruit />
-            <Text style={styles.propertyText}>
+            <Text style={styles.subtext}>
               {formatEnumKey(treeData.species.litter_type)} Fruit
             </Text>
           </View>
@@ -112,14 +112,14 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         {treeData.species.california_native && (
           <View style={styles.property}>
             <Bear />
-            <Text style={styles.propertyText}>CA Native</Text>
+            <Text style={styles.subtext}>CA Native</Text>
           </View>
         )}
 
         {treeData.species.foliage_type && (
           <View style={styles.property}>
             <Leaf />
-            <Text style={styles.propertyText}>
+            <Text style={styles.subtext}>
               {formatEnumKey(treeData.species.foliage_type)}
             </Text>
           </View>
@@ -128,7 +128,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
         {treeData.species.utility_friendly && (
           <View style={styles.property}>
             <Flash />
-            <Text style={styles.propertyText}>Powerline Friendly</Text>
+            <Text style={styles.subtext}>Powerline Friendly</Text>
           </View>
         )}
       </View>

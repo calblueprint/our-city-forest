@@ -172,7 +172,7 @@ export const TreeSpeciesSearchScreen: React.FC<
   );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
           {isUserAdmin ? 'All Trees' : 'Available Trees'}
@@ -192,7 +192,7 @@ export const TreeSpeciesSearchScreen: React.FC<
         renderItem={renderSpeciesCard}
         numColumns={2}
         contentContainerStyle={styles.speciesContainer}
-        columnWrapperStyle={{ justifyContent: 'space-between', gap: 12 }}
+        columnWrapperStyle={{ gap: 16 }}
         ListEmptyComponent={
           <Text style={styles.searchError}>
             No tree species found matching your search.

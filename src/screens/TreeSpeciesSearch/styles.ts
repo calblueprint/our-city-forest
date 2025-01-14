@@ -1,13 +1,10 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
-const { width } = Dimensions.get('window');
-
 export const styles = StyleSheet.create({
-  safeContainer: {
+  container: {
     flex: 1,
-    backgroundColor: colors.white,
   },
 
   headerContainer: {
@@ -15,7 +12,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 24,
-    paddingBottom: 10,
+    paddingTop: 16,
+    marginBottom: 8,
   },
 
   headerText: {
@@ -25,44 +23,35 @@ export const styles = StyleSheet.create({
   },
 
   speciesContainer: {
-    flexGrow: 1,
+    justifyContent: 'space-between',
     paddingVertical: 20,
     paddingHorizontal: 24,
-    gap: 8,
   },
 
   speciesCard: {
-    width: width > 600 ? '30%' : '46%',
-    marginBottom: width * 0.02,
-    marginHorizontal: width * 0.01,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    width: '48%',
+    marginBottom: 16,
     overflow: 'hidden',
   },
 
   speciesImage: {
+    backgroundColor: colors.gray5,
     width: '100%',
-    height: 152,
-    flexShrink: 0,
+    aspectRatio: 1.25,
     borderRadius: 8,
     resizeMode: 'cover',
-    backgroundColor: colors.gray4,
-    marginBottom: width * 0.01,
+    marginBottom: 6,
   },
 
   speciesName: {
     ...typography.largeBold,
-    fontSize: width > 600 ? 20 : 18,
-    textAlign: 'left',
-    flex: 1,
-    overflow: 'hidden',
+    color: colors.gray1,
+    marginBottom: 2,
   },
 
   speciesStock: {
     ...typography.smallRegular,
-    fontSize: width > 600 ? 16 : 14,
     color: colors.gray3,
-    textAlign: 'left',
   },
 
   searchError: {

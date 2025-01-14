@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
   },
 
   inputContainer: {
-    marginBottom: 30,
+    marginBottom: 32,
   },
 
   label: {
     ...typography.mediumRegular,
-    marginBottom: 10,
+    marginBottom: 12,
     color: colors.gray1,
   },
 
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     ...typography.mediumRegular,
     flex: 1,
     height: 50,
-    paddingHorizontal: 15,
+    paddingHorizontal: 16,
   },
 
   quantityContainer: {
@@ -63,13 +63,13 @@ export const styles = StyleSheet.create({
 
   quantityText: {
     ...typography.largeRegular,
-    marginHorizontal: 30,
+    marginHorizontal: 32,
     color: colors.gray1,
   },
 
   completeButton: {
     backgroundColor: colors.primary,
-    padding: 15,
+    padding: 16,
     borderRadius: 8,
     marginTop: 'auto',
     marginBottom: 20,

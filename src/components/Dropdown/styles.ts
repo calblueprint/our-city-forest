@@ -3,16 +3,15 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  textContainer: {
-    paddingHorizontal: 20,
-  },
-
-  selectedBar: {
-    borderLeftWidth: 8,
-    borderColor: colors.primary,
-    overflow: 'hidden',
-    paddingHorizontal: 20 - 8,
-    margin: 0,
+  dropdown: {
+    height: 47,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingRight: 12,
+    textAlign: 'left',
+    flex: 1,
+    alignItems: 'center',
+    borderColor: colors.gray5,
   },
 
   text: {
@@ -22,24 +21,8 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
   },
 
-  outer: {
-    position: 'relative',
-    zIndex: 1,
-  },
-
-  label: {
-    marginBottom: 8,
-  },
-
-  dropdown: {
-    height: 47,
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingRight: 10,
-    textAlign: 'left',
-    flex: 1,
-    alignItems: 'center',
-    borderColor: colors.gray5,
+  textContainer: {
+    paddingHorizontal: 20,
   },
 
   dropdownContainer: {
@@ -49,17 +32,20 @@ export const styles = StyleSheet.create({
     position: 'relative',
   },
 
-  itemContainer: {
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-  },
-
-  icon: {
-    marginRight: 5,
-  },
-
   iconStyle: {
     width: 20,
     height: 20,
+  },
+
+  itemContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+  },
+
+  selectedBar: {
+    borderLeftWidth: 8,
+    borderColor: colors.primary,
+    overflow: 'hidden',
+    paddingHorizontal: 12,
   },
 });

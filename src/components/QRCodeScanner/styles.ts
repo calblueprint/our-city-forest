@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
-import { space } from '@/styles/space';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
@@ -8,7 +7,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    paddingHorizontal: 44,
     backgroundColor: colors.primary,
   },
 
@@ -20,23 +18,18 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  icon: {
-    backgroundColor: colors.white,
-    padding: 8,
-  },
-
   mainFlex: {
     flex: 1,
     padding: 24,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    gap: space[1000],
+    gap: 80,
   },
 
   textFlex: {
     flex: 0,
     flexDirection: 'column',
-    gap: space[100],
+    gap: 8,
   },
 
   header: {
@@ -61,39 +54,32 @@ export const styles = StyleSheet.create({
     zIndex: 1,
   },
 
+  qrCodeFoundCamera: {
+    borderColor: colors.tertiary,
+  },
+
   camera: {
     flex: 1,
     borderRadius: 12,
     overflow: 'hidden',
   },
 
-  qrCodeFoundCamera: {
-    borderColor: colors.tertiary,
-  },
-
-  buttonContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-    margin: 64,
-  },
-
   scanButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 10,
     elevation: 3,
-    marginHorizontal: 44,
+    marginHorizontal: 48,
     marginBottom: 64,
-  },
-
-  scanButtonDisabled: {
-    backgroundColor: colors.gray4,
   },
 
   scanButtonEnabled: {
     backgroundColor: colors.tertiary,
+  },
+
+  scanButtonDisabled: {
+    backgroundColor: colors.gray4,
   },
 
   scanButtonText: {

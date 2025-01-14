@@ -3,19 +3,12 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  outer: {
+  container: {
     flexDirection: 'row',
     borderRadius: 30,
     backgroundColor: colors.gray6,
     alignSelf: 'center',
     padding: 2,
-  },
-
-  main: {
-    flexDirection: 'row',
-    borderRadius: 30,
-    backgroundColor: colors.gray6,
-    alignSelf: 'center',
     overflow: 'hidden',
   },
 

@@ -11,14 +11,12 @@ import { styles } from './styles';
 
 WebBrowser.maybeCompleteAuthSession();
 
-type GoogleSignInButtonProps = CompositeScreenProps<
+type SignInButtonProps = CompositeScreenProps<
   NativeStackScreenProps<LoginStackParamList, 'Login'>,
   NativeStackScreenProps<RootStackParamList, 'BottomTabs'>
 >;
 
-export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
-  navigation,
-}) => {
+export const SignInButton: React.FC<SignInButtonProps> = ({ navigation }) => {
   const { setIsAuthenticated } = useAuth();
   const [, response, promptAsync] = Google.useAuthRequest({
     webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -60,7 +58,7 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
 
   return (
     <TouchableOpacity onPress={() => promptAsync()}>
-      <Text style={styles.adminLoginLinkText}>Login Here</Text>
+      <Text style={styles.loginText}>Login Here</Text>
     </TouchableOpacity>
   );
 };

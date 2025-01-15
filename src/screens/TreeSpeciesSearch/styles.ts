@@ -7,13 +7,17 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
+  topContainer: {
+    paddingHorizontal: 24,
+    paddingTop: 16,
+    gap: 12,
+    marginBottom: 20,
+  },
+
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    marginBottom: 8,
   },
 
   headerText: {
@@ -22,15 +26,21 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
   },
 
+  divider: {
+    height: 1,
+    width: '100%',
+    backgroundColor: colors.gray5,
+  },
+
   speciesContainer: {
     justifyContent: 'space-between',
     paddingVertical: 20,
     paddingHorizontal: 24,
+    rowGap: 16,
   },
 
   speciesCard: {
     width: '48%',
-    marginBottom: 16,
     overflow: 'hidden',
   },
 
@@ -38,7 +48,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.gray5,
     width: '100%',
     aspectRatio: 1.25,
-    borderRadius: 8,
+    borderRadius: 10,
     resizeMode: 'cover',
     marginBottom: 6,
   },

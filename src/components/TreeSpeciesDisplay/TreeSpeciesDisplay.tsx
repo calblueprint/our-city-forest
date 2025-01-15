@@ -117,7 +117,7 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
 
       {treeData?.length > 0 && (
         <View style={styles.locationsContainer}>
-          <Text style={styles.header}>Location</Text>
+          <Text style={styles.header}>Locations</Text>
           <View style={styles.locations}>
             {uniqueLocations?.map((tree, index) => (
               <View

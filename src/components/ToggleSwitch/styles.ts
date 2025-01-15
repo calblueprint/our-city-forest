@@ -5,23 +5,29 @@ import { typography } from '@/styles/typography';
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderRadius: 30,
+    borderRadius: 48,
     backgroundColor: colors.gray6,
     alignSelf: 'center',
-    padding: 2,
     overflow: 'hidden',
+    padding: 4,
+  },
+
+  toggle: {
+    position: 'absolute',
+    height: '100%',
+    borderRadius: 48,
+    backgroundColor: colors.primary,
   },
 
   switch: {
     ...typography.smallRegular,
-    margin: 2,
-    padding: 8,
-    borderRadius: 30,
-    zIndex: 2,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 48,
     color: colors.primary,
   },
 
-  selected: {
+  selectedText: {
     ...typography.smallBold,
     color: colors.white,
   },

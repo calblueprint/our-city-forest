@@ -8,7 +8,6 @@ import {
   UIManager,
   View,
 } from 'react-native';
-import { colors } from '@/styles/colors';
 import { styles } from './styles';
 
 type ToggleSwitchProps = {
@@ -31,37 +30,49 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 
+  const [containerLayout, setContainerLayout] =
+    useState<LayoutRectangle | null>(null);
   const [trueLabelLayout, setTrueLabelLayout] =
     useState<LayoutRectangle | null>(null);
   const [falseLabelLayout, setFalseLabelLayout] =
     useState<LayoutRectangle | null>(null);
-  const translateAnimation = useRef(new Animated.Value(40)).current;
-  const scaleAnimation = useRef(new Animated.Value(0)).current;
+  const translateAnimation = useRef(new Animated.Value(0)).current;
+  const toggleWidth = useRef(new Animated.Value(0)).current;
 
   const runAnimations = useCallback(
     (newValue: boolean) => {
-      if (!trueLabelLayout || !falseLabelLayout) return;
+      if (!containerLayout || !trueLabelLayout || !falseLabelLayout) return;
+
+      const targetX = newValue ? trueLabelLayout.x : falseLabelLayout.x;
+
+      const targetWidth = newValue
+        ? trueLabelLayout.width
+        : falseLabelLayout.width;
 
       Animated.timing(translateAnimation, {
         duration: 100,
-        toValue: newValue
-          ? trueLabelLayout.x + trueLabelLayout.width / 2 - 2
-          : falseLabelLayout.x + falseLabelLayout.width / 2 + 2,
-        useNativeDriver: true,
+        toValue: targetX,
+        useNativeDriver: false,
       }).start();
 
-      Animated.timing(scaleAnimation, {
+      Animated.timing(toggleWidth, {
         duration: 100,
-        toValue:
-          (newValue ? trueLabelLayout.width : falseLabelLayout.width) ?? 0,
-        useNativeDriver: true,
+        toValue: targetWidth,
+        useNativeDriver: false,
       }).start();
     },
-    [trueLabelLayout, falseLabelLayout, translateAnimation, scaleAnimation],
+    [
+      containerLayout,
+      trueLabelLayout,
+      falseLabelLayout,
+      translateAnimation,
+      toggleWidth,
+    ],
   );
+
   useEffect(() => {
     runAnimations(value);
-  }, [trueLabelLayout, falseLabelLayout, value, runAnimations]);
+  }, [value, runAnimations]);
 
   const handlePress = (newValue: boolean) => {
     runAnimations(newValue);
@@ -69,32 +80,40 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Animated.View
-        style={[
-          {
-            transform: [
-              { translateX: translateAnimation },
-              { scaleX: scaleAnimation },
-            ],
-            backgroundColor: colors.primary,
-            width: 1,
-          },
-        ]}
-      />
+    <View
+      style={styles.container}
+      onLayout={event => setContainerLayout(event.nativeEvent.layout)}
+    >
+      {/** Green toggle */}
+      {containerLayout && (
+        <Animated.View
+          style={[
+            styles.toggle,
+            {
+              transform: [{ translateX: translateAnimation }],
+              width: toggleWidth,
+              top: containerLayout.height / 2 - 18,
+            },
+          ]}
+        />
+      )}
+
+      {/** True Label */}
       <TouchableOpacity
         onLayout={event => setTrueLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(true)}
       >
-        <Text style={[styles.switch, value && styles.selected]}>
+        <Text style={[styles.switch, value && styles.selectedText]}>
           {trueLabel}
         </Text>
       </TouchableOpacity>
+
+      {/** False Label */}
       <TouchableOpacity
         onLayout={event => setFalseLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(false)}
       >
-        <Text style={[styles.switch, !value && styles.selected]}>
+        <Text style={[styles.switch, !value && styles.selectedText]}>
           {falseLabel}
         </Text>
       </TouchableOpacity>

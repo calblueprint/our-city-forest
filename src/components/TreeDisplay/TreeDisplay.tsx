@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Text, View } from 'react-native';
 import {
   Bear,
   Flash,
@@ -31,106 +31,107 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
     <View style={styles.container}>
       <Text style={styles.text}>{treeData.species?.description}</Text>
 
-      <View style={styles.funFactHeader}>
-        <Lightbulb />
-        <Text style={styles.funFact}>Fun Fact</Text>
+      <View style={styles.funFactContainer}>
+        <View style={styles.funFactHeader}>
+          <Lightbulb />
+          <Text style={styles.funFact}>Fun Fact</Text>
+        </View>
+        <Text style={styles.funFactText}>
+          {treeData.species?.fun_fact ?? ''}
+        </Text>
       </View>
-
-      <TextInput
-        style={styles.textInput}
-        value={treeData.species?.fun_fact ?? ''}
-        editable={false}
-        multiline
-        numberOfLines={4}
-      />
 
       <View style={styles.divider}></View>
 
-      <Text style={styles.header}>Location</Text>
-      <View style={styles.locations}>
-        {uniqueLocations.map((location, index) => (
-          <View
-            style={styles.locationEntry}
-            key={`${location.bank}-${location.row}-${index}`}
-          >
-            <Location />
-            <Text style={styles.subtext}>
-              Bank #{location.bank} {'  '}|{'  '} Row #{location.row}
-              {/* TODO: Needs to support range of rows */}
-            </Text>
-          </View>
-        ))}
+      <View style={styles.locationsContainer}>
+        <Text style={styles.header}>Locations</Text>
+        <View style={styles.locations}>
+          {uniqueLocations.map((location, index) => (
+            <View
+              style={styles.locationEntry}
+              key={`${location.bank}-${location.row}-${index}`}
+            >
+              <Location />
+              <Text style={styles.propertyText}>
+                Bank #{location.bank} {'  '}|{'  '} Row #{location.row}
+                {/* TODO: Needs to support range of rows */}
+              </Text>
+            </View>
+          ))}
+        </View>
       </View>
 
-      <Text style={styles.header}>Properties</Text>
-      <View style={styles.properties}>
-        {treeData.species.max_height_ft && (
-          <View style={styles.property}>
-            <Ruler />
-            <Text style={styles.subtext}>
-              {treeData.species?.max_height_ft} ft
-            </Text>
-          </View>
-        )}
+      <View style={styles.propertiesContainer}>
+        <Text style={styles.header}>Properties</Text>
+        <View style={styles.properties}>
+          {treeData.species.max_height_ft && (
+            <View style={styles.property}>
+              <Ruler />
+              <Text style={styles.propertyText}>
+                {treeData.species?.max_height_ft} ft
+              </Text>
+            </View>
+          )}
 
-        {treeData.species.tree_shape && (
-          <View style={styles.property}>
-            <Shapes />
-            <Text style={styles.subtext}>
-              {formatEnumKey(treeData.species?.tree_shape)}
-            </Text>
-          </View>
-        )}
+          {treeData.species.tree_shape && (
+            <View style={styles.property}>
+              <Shapes />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(treeData.species?.tree_shape)}
+              </Text>
+            </View>
+          )}
 
-        {treeData.species.water_use && (
-          <View style={styles.property}>
-            <WateringCan />
-            <Text style={styles.subtext}>
-              {formatEnumKey(treeData.species?.water_use)}
-            </Text>
-          </View>
-        )}
+          {treeData.species.water_use && (
+            <View style={styles.property}>
+              <WateringCan />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(treeData.species?.water_use)}
+              </Text>
+            </View>
+          )}
 
-        {treeData.species.root_damage_potential && (
-          <View style={styles.property}>
-            <Warning />
-            <Text style={styles.subtext}>
-              {formatEnumKey(treeData.species.root_damage_potential)}
-            </Text>
-          </View>
-        )}
+          {treeData.species.root_damage_potential && (
+            <View style={styles.property}>
+              <Warning />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(treeData.species.root_damage_potential)}
+              </Text>
+            </View>
+          )}
 
-        {treeData.species.litter_type && (
-          <View style={styles.property}>
-            <Fruit />
-            <Text style={styles.subtext}>
-              {formatEnumKey(treeData.species.litter_type)} Fruit
-            </Text>
-          </View>
-        )}
+          {treeData.species.litter_type && (
+            <View style={styles.property}>
+              <Fruit />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(treeData.species.litter_type)} Fruit
+              </Text>
+            </View>
+          )}
 
-        {treeData.species.california_native && (
-          <View style={styles.property}>
-            <Bear />
-            <Text style={styles.subtext}>CA Native</Text>
-          </View>
-        )}
+          {treeData.species.california_native && (
+            <View style={styles.property}>
+              <Bear />
+              <Text style={styles.propertyText}>CA Native</Text>
+            </View>
+          )}
 
-        {treeData.species.foliage_type && (
-          <View style={styles.property}>
-            <Leaf />
-            <Text style={styles.subtext}>
-              {formatEnumKey(treeData.species.foliage_type)}
-            </Text>
-          </View>
-        )}
+          {treeData.species.foliage_type && (
+            <View style={styles.property}>
+              <Leaf />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(treeData.species.foliage_type)}
+              </Text>
+            </View>
+          )}
 
-        {treeData.species.utility_friendly && (
-          <View style={styles.property}>
-            <Flash />
-            <Text style={styles.subtext}>Powerline Friendly</Text>
-          </View>
-        )}
+          {treeData.species.utility_friendly && (
+            <View style={styles.property}>
+              <Flash />
+              <Text style={styles.propertyText}>Powerline Friendly</Text>
+            </View>
+          )}
+        </View>
       </View>
     </View>
   );

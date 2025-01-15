@@ -57,16 +57,17 @@ export const styles = StyleSheet.create({
 
   subheading: {
     ...typography.smallBold,
-    color: colors.gray2,
+    color: colors.gray3,
   },
 
   lightText: {
     ...typography.smallRegular,
-    color: colors.gray3,
+    color: colors.primary,
+    textDecorationLine: 'underline',
   },
 
   darkText: {
-    ...typography.smallRegular,
-    color: colors.black1,
+    ...typography.mediumBold,
+    color: colors.black3,
   },
 });

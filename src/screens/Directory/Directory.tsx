@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  Linking,
+  Platform,
   SafeAreaView,
   ScrollView,
   Text,
@@ -19,6 +21,18 @@ type DirectoryScreenProps = NativeStackScreenProps<
 export const DirectoryScreen: React.FC<DirectoryScreenProps> = ({
   navigation,
 }) => {
+  const handlePhonePress = (phone: string, extension?: string) => {
+    const formattedPhone = extension
+      ? `${phone}${Platform.OS === 'ios' ? ',' : ';'}${extension}`
+      : phone;
+
+    Linking.openURL(`tel:${formattedPhone}`);
+  };
+
+  const handleEmailPress = (email: string) => {
+    Linking.openURL(`mailto:${email}`);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
@@ -40,8 +54,18 @@ export const DirectoryScreen: React.FC<DirectoryScreenProps> = ({
             <Text style={styles.subheading}>
               For inventory and availability
             </Text>
-            <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
-            <Text style={styles.lightText}>treenursery@ourcityforest.org</Text>
+            <TouchableOpacity
+              onPress={() => handlePhonePress('4081232345', '123')}
+            >
+              <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleEmailPress('treenursery@ourcityforest.org')}
+            >
+              <Text style={styles.lightText}>
+                treenursery@ourcityforest.org
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.detailsContainer}>
@@ -49,36 +73,70 @@ export const DirectoryScreen: React.FC<DirectoryScreenProps> = ({
             <Text style={styles.subheading}>
               For delivery and planting status{' '}
             </Text>
-          </View>
-
-          <View style={styles.detailsContainer}>
             <Text style={styles.darkText}>San Jose</Text>
-            <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
-            <Text style={styles.lightText}>treenursery@ourcityforest.org </Text>
-          </View>
-
-          <View style={styles.detailsContainer}>
+            <TouchableOpacity
+              onPress={() => handlePhonePress('4081232345', '123')}
+            >
+              <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleEmailPress('treenursery@ourcityforest.org')}
+            >
+              <Text style={styles.lightText}>
+                treenursery@ourcityforest.org
+              </Text>
+            </TouchableOpacity>
             <Text style={styles.darkText}>
               Campbell, Morgan Hill, Saratoga, Gilroy
             </Text>
-            <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
-            <Text style={styles.lightText}>treenursery@ourcityforest.org </Text>
+            <TouchableOpacity
+              onPress={() => handlePhonePress('4081232345', '123')}
+            >
+              <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleEmailPress('treenursery@ourcityforest.org')}
+            >
+              <Text style={styles.lightText}>
+                treenursery@ourcityforest.org
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.detailsContainer}>
             <Text style={styles.heading}>Tree Care</Text>
             <Text style={styles.subheading}>
-              Inquiries of already-planted trees
+              For inquiries of already-planted trees
             </Text>
-            <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
-            <Text style={styles.lightText}>treenursery@ourcityforest.org </Text>
+            <TouchableOpacity
+              onPress={() => handlePhonePress('4081232345', '123')}
+            >
+              <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleEmailPress('treenursery@ourcityforest.org')}
+            >
+              <Text style={styles.lightText}>
+                treenursery@ourcityforest.org
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.detailsContainer}>
             <Text style={styles.heading}>Lawn Busters</Text>
-            <Text style={styles.subheading}>Lawn conversions</Text>
-            <Text style={styles.lightText}>408-123-2345 Ext: 123</Text>
-            <Text style={styles.lightText}>treenursery@ourcityforest.org </Text>
+            <Text style={styles.subheading}>For lawn conversions</Text>
+            <TouchableOpacity
+              onPress={() => handlePhonePress('4081232345', '107')}
+            >
+              <Text style={styles.lightText}>408-123-2345 Ext: 107</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleEmailPress('lawnbusters@ourcityforest.org')}
+            >
+              <Text style={styles.lightText}>
+                lawnbusters@ourcityforest.org
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

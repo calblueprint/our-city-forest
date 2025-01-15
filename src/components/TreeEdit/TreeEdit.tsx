@@ -34,14 +34,11 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.editFlex}>
-        <Text style={[styles.header, styles.propertiesHeader]}>Properties</Text>
+        <Text style={styles.header}>Properties</Text>
         {!isEditing && (
-          <TouchableOpacity
-            style={[styles.editButton, { backgroundColor: undefined }]}
-            onPress={() => setIsEditing(true)}
-          >
+          <TouchableOpacity onPress={() => setIsEditing(true)}>
             <EditPen />
           </TouchableOpacity>
         )}
@@ -54,7 +51,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
             <View style={styles.locationInputView}>
               <TextInput
                 style={styles.textInput}
-                placeholder="Bank #"
+                placeholder="Bank No."
                 placeholderTextColor={colors.gray4}
                 value={treeData?.bank?.toString() ?? ''}
                 keyboardType="numeric"
@@ -71,7 +68,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
               />
               <TextInput
                 style={styles.textInput}
-                placeholder="Row #"
+                placeholder="Row No."
                 placeholderTextColor={colors.gray4}
                 value={treeData?.row?.toString() ?? ''}
                 keyboardType="numeric"
@@ -159,14 +156,14 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
         </View>
 
         <View>
-          <Text style={styles.label}>Additional Notes</Text>
+          <Text style={styles.notesHeader}>Additional Notes</Text>
           <TextInput
-            style={[styles.textInput, styles.textArea]}
+            style={styles.notesTextBox}
             value={treeData.additional_notes ?? ''}
             onChangeText={newNotes =>
               setTreeData({ ...treeData, additional_notes: newNotes })
             }
-            placeholder="Type notes here..."
+            placeholder="Write here..."
             multiline
             editable={isEditing}
             numberOfLines={4}
@@ -174,8 +171,8 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
         </View>
       </View>
       {isEditing && (
-        <TouchableOpacity style={styles.editButton} onPress={saveTreeData}>
-          <Text style={styles.doneEditingText}>Save</Text>
+        <TouchableOpacity style={styles.button} onPress={saveTreeData}>
+          <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       )}
     </View>

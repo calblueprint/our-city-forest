@@ -56,48 +56,52 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
-      <View style={styles.iconFlex}>
-        <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
-          <FlashCircle />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <XButton />
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.mainFlex}>
-        <View style={styles.textFlex}>
-          <Text style={styles.header}>Scan QR Code</Text>
-          <Text style={styles.subtext}>Aim the camera at the tree's code</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.topActions}>
+          <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
+            <FlashCircle />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <XButton />
+          </TouchableOpacity>
         </View>
 
-        <View
-          style={[styles.cameraView, qrCodeFound && styles.qrCodeFoundCamera]}
+        <View style={styles.mainFlex}>
+          <View style={styles.textFlex}>
+            <Text style={styles.header}>Scan QR Code</Text>
+            <Text style={styles.subtext}>
+              Aim the camera at the tree's code
+            </Text>
+          </View>
+
+          <View
+            style={[styles.cameraView, qrCodeFound && styles.qrCodeFoundCamera]}
+          >
+            <CameraView
+              style={[styles.camera]}
+              onBarcodeScanned={handleBarcodeScanned}
+              barcodeScannerSettings={{
+                barcodeTypes: ['qr'],
+              }}
+              enableTorch={flashEnabled}
+            />
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={[
+            styles.scanButton,
+            qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
+          ]}
+          onPress={() =>
+            navigation.push('TreeInfo', { treeId: qrCodeData ?? '' })
+          }
+          disabled={!qrCodeFound}
         >
-          <CameraView
-            style={[styles.camera]}
-            onBarcodeScanned={handleBarcodeScanned}
-            barcodeScannerSettings={{
-              barcodeTypes: ['qr'],
-            }}
-            enableTorch={flashEnabled}
-          />
-        </View>
+          <Text style={styles.scanButtonText}>Scan</Text>
+        </TouchableOpacity>
       </View>
-
-      <TouchableOpacity
-        style={[
-          styles.scanButton,
-          qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
-        ]}
-        onPress={() =>
-          navigation.push('TreeInfo', { treeId: qrCodeData ?? '' })
-        }
-        disabled={!qrCodeFound}
-      >
-        <Text style={styles.scanButtonText}>Scan</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };

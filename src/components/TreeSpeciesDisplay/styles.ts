@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
   funFactHeader: {
     flexDirection: 'row',
     gap: 8,
-    alignItems: 'center',
   },
 
   funFact: {

@@ -3,7 +3,7 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  adminLoginLinkText: {
+  loginText: {
     ...typography.smallBold,
     color: colors.primary,
     textDecorationLine: 'underline',

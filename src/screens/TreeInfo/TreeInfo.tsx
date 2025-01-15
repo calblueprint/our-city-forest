@@ -5,13 +5,14 @@ import {
   Platform,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { TreeDisplay } from '@/components/TreeDisplay/TreeDisplay';
 import { TreeEdit } from '@/components/TreeEdit/TreeEdit';
-import { colors } from '@/styles/colors';
+import { XButton } from '@/icons';
 import { getAllTreesForSpecies, getTreeInfo } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { Tree } from '@/types/tree';
@@ -22,7 +23,10 @@ type TreeInfoScreenProps = NativeStackScreenProps<
   'TreeInfo'
 >;
 
-export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({ route }) => {
+export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
+  route,
+  navigation,
+}) => {
   const treeId = route.params?.treeId ?? '';
   const [isSpecies, setIsSpecies] = useState(true);
   const [treeData, setTreeData] = useState<Tree | null>(null);
@@ -40,17 +44,23 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({ route }) => {
   }, [treeData?.species?.name, treeId]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'position' : undefined}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 70}
       >
-        <ScrollView style={styles.container}>
+        <ScrollView>
           <ImageBackground
             source={{ uri: treeData?.species?.image_url }}
             style={styles.imageBackground}
-          ></ImageBackground>
+          >
+            <View style={styles.topNavigation}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <XButton />
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
           <View style={styles.body}>
             <View style={styles.switch}>
               <ToggleSwitch

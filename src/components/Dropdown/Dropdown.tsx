@@ -28,13 +28,12 @@ export const Dropdown = <T extends string[]>({
       <NativeDropdown
         mode="default"
         style={styles.dropdown}
-        placeholderStyle={[styles.text, styles.textContainer]}
-        selectedTextStyle={[styles.text, styles.textContainer]}
+        placeholderStyle={styles.text}
+        selectedTextStyle={styles.text}
         inputSearchStyle={styles.text}
         itemTextStyle={styles.text}
         containerStyle={styles.dropdownContainer}
         dropdownPosition="bottom"
-        iconStyle={styles.iconStyle}
         data={options.map((option: T[number], index: number) => {
           return { index, label: formatEnumKey(option), value: option };
         })}

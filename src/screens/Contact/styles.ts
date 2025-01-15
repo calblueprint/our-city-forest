@@ -7,8 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: 16,
-    paddingBottom: 20,
+    paddingVertical: 20,
     position: 'relative',
   },
 

@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { GoogleSignInButton } from '@/components/GoogleSignInButton/GoogleSignInButton';
+import { SignInButton } from '@/components/SignInButton/SignInButton';
 import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -39,7 +39,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
       <View style={styles.adminContainer}>
         <Text style={styles.adminText}>Are you an admin? </Text>
-        <GoogleSignInButton navigation={navigation} route={route} />
+        <SignInButton navigation={navigation} route={route} />
       </View>
     </SafeAreaView>
   );

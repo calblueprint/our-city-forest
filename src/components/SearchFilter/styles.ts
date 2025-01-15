@@ -6,13 +6,10 @@ const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   filterContainer: {
-    width: '100%',
     height: height * 0.9,
-    backgroundColor: colors.white,
     paddingHorizontal: 40,
     paddingBottom: 20,
-    borderTopLeftRadius: 48,
-    borderTopRightRadius: 48,
+    borderRadius: 48,
   },
 
   grabber: {
@@ -38,23 +35,17 @@ export const styles = StyleSheet.create({
   },
 
   resetButtonActive: {
-    width: 86,
-    height: 34,
+    paddingHorizontal: 16,
     paddingVertical: 4,
-    paddingHorizontal: 8,
     backgroundColor: colors.primary,
     borderRadius: 8,
-    alignItems: 'center',
   },
 
   resetButtonInactive: {
-    width: 86,
-    height: 34,
+    paddingHorizontal: 16,
     paddingVertical: 4,
-    paddingHorizontal: 8,
     backgroundColor: colors.gray5,
     borderRadius: 8,
-    alignItems: 'center',
   },
 
   resetTextActive: {
@@ -88,13 +79,9 @@ export const styles = StyleSheet.create({
   completeButton: {
     backgroundColor: colors.primary,
     borderRadius: 10,
-    height: 53,
-    width: '100%',
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 6,
-    paddingBottom: 12,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
   },
 
   completeButtonText: {

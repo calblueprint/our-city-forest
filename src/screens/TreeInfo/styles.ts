@@ -4,23 +4,27 @@ import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingBottom: 40,
-    backgroundColor: colors.white,
+    flex: 1,
   },
 
   imageBackground: {
-    flex: 1,
-    height: 292,
+    height: 320,
     backgroundColor: colors.gray5,
+  },
+
+  topNavigation: {
+    flexDirection: 'row',
+    marginTop: 64,
+    marginHorizontal: 24,
+    justifyContent: 'flex-end',
   },
 
   body: {
     paddingHorizontal: 32,
     paddingTop: 20,
-    marginBottom: 12,
-    marginTop: -16,
+    paddingBottom: 20,
+    marginTop: -24,
     borderRadius: 20,
-    flex: 1,
     backgroundColor: colors.white,
   },
 
@@ -29,14 +33,14 @@ export const styles = StyleSheet.create({
   header: {
     ...typography.heading2,
     color: colors.gray1,
-    paddingBottom: 12,
+    marginBottom: 8,
   },
 
   idPillFlex: {
-    flex: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: 16,
   },
 
   scientificName: {
@@ -45,24 +49,20 @@ export const styles = StyleSheet.create({
   },
 
   idPill: {
-    flex: 0,
-    alignSelf: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.gray5,
     borderRadius: 30,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
   },
 
   idText: {
     ...typography.mediumRegular,
-    flex: 0,
-    textAlign: 'left',
-    color: colors.white,
-    padding: 12,
-    paddingVertical: 6,
+    color: colors.gray2,
   },
 
   divider: {
     borderBottomWidth: 1,
     borderBottomColor: colors.gray5,
-    marginTop: 12,
+    marginBottom: 32,
   },
 });

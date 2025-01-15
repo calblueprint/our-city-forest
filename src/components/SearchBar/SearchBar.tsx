@@ -37,27 +37,25 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const closeFilter = () => setIsModalVisible(false);
 
   return (
-    <View style={styles.searchContainer}>
-      <View style={styles.inputContainer}>
-        <Search />
-        <TextInput
-          style={styles.searchBarInput}
-          placeholder="Find a species..."
-          value={searchText}
-          onChangeText={onSearchTextChange}
-        />
-        <TouchableOpacity onPress={openFilter}>
-          <View style={styles.filterIconContainer}>
-            <Filter />
-          </View>
-        </TouchableOpacity>
-        <SearchFilter
-          isModalVisible={isModalVisible}
-          onClose={closeFilter}
-          activeFilters={activeFilters}
-          onActiveFilterChange={onActiveFilterChange}
-        />
-      </View>
+    <View style={styles.searchBar}>
+      <Search />
+      <TextInput
+        style={styles.searchBarInput}
+        placeholder="Find a species..."
+        value={searchText}
+        onChangeText={onSearchTextChange}
+      />
+      <TouchableOpacity onPress={openFilter}>
+        <View style={styles.filterIconContainer}>
+          <Filter />
+        </View>
+      </TouchableOpacity>
+      <SearchFilter
+        isModalVisible={isModalVisible}
+        onClose={closeFilter}
+        activeFilters={activeFilters}
+        onActiveFilterChange={onActiveFilterChange}
+      />
     </View>
   );
 };

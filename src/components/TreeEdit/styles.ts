@@ -3,37 +3,23 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  editFlex: {
+  container: {
     flex: 1,
+  },
+
+  editFlex: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    marginBottom: 24,
   },
 
   header: {
     ...typography.heading2,
     color: colors.gray1,
-    paddingBottom: 12,
-  },
-
-  propertiesHeader: {
-    marginVertical: 32,
-  },
-
-  editButton: {
-    alignSelf: 'center',
-    backgroundColor: colors.primary,
-    paddingHorizontal: 40,
-    paddingVertical: 12,
-    width: '100%',
-    alignItems: 'center',
-    borderRadius: 10,
   },
 
   propertiesFlex: {
-    flex: 1,
     gap: 24,
-    marginBottom: 32,
   },
 
   label: {
@@ -43,7 +29,6 @@ export const styles = StyleSheet.create({
   },
 
   locationInputView: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexGrow: 1,
@@ -57,13 +42,12 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     borderColor: colors.gray5,
-    paddingVertical: 12,
     paddingHorizontal: 20,
+    paddingVertical: 12,
   },
 
   iconTextView: {
     ...typography.mediumRegular,
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
@@ -78,13 +62,32 @@ export const styles = StyleSheet.create({
     color: colors.primary,
   },
 
-  textArea: {
-    minHeight: 170,
-    paddingVertical: 20,
-    color: colors.gray3,
+  notesHeader: {
+    ...typography.heading2,
+    color: colors.gray1,
+    marginBottom: 24,
   },
 
-  doneEditingText: {
+  notesTextBox: {
+    ...typography.mediumRegular,
+    color: colors.gray3,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: colors.gray5,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    minHeight: 160,
+  },
+
+  button: {
+    backgroundColor: colors.primary,
+    paddingHorizontal: 40,
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+
+  buttonText: {
     ...typography.largeBold,
     color: colors.white,
   },

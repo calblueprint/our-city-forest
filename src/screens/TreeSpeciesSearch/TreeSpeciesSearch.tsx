@@ -173,18 +173,21 @@ export const TreeSpeciesSearchScreen: React.FC<
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>
-          {isUserAdmin ? 'All Trees' : 'Available Trees'}
-        </Text>
-        <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
+      <View style={styles.topContainer}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>
+            {isUserAdmin ? 'All Trees' : 'Available Trees'}
+          </Text>
+          <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
+        </View>
+        <SearchBar
+          searchText={searchText}
+          onSearchTextChange={setSearchText}
+          activeFilters={activeFilters}
+          onActiveFilterChange={setActiveFilters}
+        />
       </View>
-      <SearchBar
-        searchText={searchText}
-        onSearchTextChange={setSearchText}
-        activeFilters={activeFilters}
-        onActiveFilterChange={setActiveFilters}
-      />
+      <View style={styles.divider}></View>
 
       <FlatList
         data={filteredTreeSpeciesCards}

@@ -5,9 +5,7 @@ import { typography } from '@/styles/typography';
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    marginTop: 24,
     gap: 24,
-    paddingBottom: 24,
   },
 
   text: {
@@ -15,10 +13,14 @@ export const styles = StyleSheet.create({
     color: colors.gray3,
   },
 
+  funFactContainer: {
+    flexDirection: 'column',
+    gap: 12,
+  },
+
   funFactHeader: {
     flexDirection: 'row',
     gap: 8,
-    alignItems: 'center',
   },
 
   funFact: {
@@ -26,20 +28,24 @@ export const styles = StyleSheet.create({
     color: colors.primary,
   },
 
-  textInput: {
+  funFactText: {
     ...typography.smallRegular,
-    flex: 1,
     color: colors.gray3,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: colors.gray5,
+    paddingHorizontal: 24,
     paddingVertical: 12,
-    paddingHorizontal: 20,
+    borderWidth: 1,
+    borderRadius: 12,
+    borderColor: colors.gray5,
   },
 
   divider: {
     borderBottomWidth: 1,
     borderBottomColor: colors.gray5,
+  },
+
+  locationsContainer: {
+    flexDirection: 'column',
+    gap: 12,
   },
 
   header: {
@@ -48,32 +54,39 @@ export const styles = StyleSheet.create({
   },
 
   locations: {
+    paddingLeft: 16,
     flexDirection: 'column',
+    gap: 12,
   },
 
   locationEntry: {
-    paddingLeft: 12,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
 
-  subtext: {
+  propertiesContainer: {
+    flexDirection: 'column',
+    gap: 12,
+  },
+
+  propertyText: {
     ...typography.mediumRegular,
     color: colors.gray3,
   },
 
   properties: {
+    paddingLeft: 16,
     flexWrap: 'wrap',
     alignItems: 'center',
     flexDirection: 'row',
+    rowGap: 12,
   },
 
   property: {
-    marginTop: 16,
     width: '50%',
     flexDirection: 'row',
-    gap: 12,
+    gap: 8,
     alignItems: 'center',
   },
 });

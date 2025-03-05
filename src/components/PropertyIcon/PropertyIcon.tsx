@@ -22,8 +22,6 @@ type PropertyIconProps = {
   iconProps?: SvgProps;
 };
 
-
-
 export default function PropertyIcon({
   Icon,
   infoKey,

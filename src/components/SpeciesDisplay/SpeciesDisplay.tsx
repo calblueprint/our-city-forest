@@ -12,12 +12,14 @@ import SvgWarning2 from '@/icons/Warning2';
 import SvgWateringCan from '@/icons/WateringCan';
 import { displayValue, Tree } from '@/types/tree';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
+import PropertyIcon from '../PropertyIcon/PropertyIcon';
 import styles from './styles';
 
 type SpeciesDisplayProps = {
   speciesData: Partial<TreeSpecies>;
   treeData: Tree[];
 };
+
 export default function SpeciesDisplay({
   speciesData,
   treeData,
@@ -49,7 +51,7 @@ export default function SpeciesDisplay({
       <View style={styles.properties}>
         {speciesData.max_height_ft && (
           <View style={styles.property}>
-            <SvgRuler />
+            <PropertyIcon Icon={SvgRuler} infoKey="height" />
             <Text style={styles.propertyText}>
               {speciesData.max_height_ft} ft
             </Text>
@@ -58,7 +60,7 @@ export default function SpeciesDisplay({
 
         {speciesData.tree_shape && (
           <View style={styles.property}>
-            <SvgShapes />
+            <PropertyIcon Icon={SvgShapes} infoKey="shape" />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.tree_shape)}
             </Text>
@@ -67,7 +69,7 @@ export default function SpeciesDisplay({
 
         {speciesData.water_use && (
           <View style={styles.property}>
-            <SvgWateringCan />
+            <PropertyIcon Icon={SvgWateringCan} infoKey="water" />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.water_use)}
             </Text>
@@ -76,7 +78,7 @@ export default function SpeciesDisplay({
 
         {speciesData.root_damage_potential && (
           <View style={styles.property}>
-            <SvgWarning2 />
+            <PropertyIcon Icon={SvgWarning2} infoKey="root" />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.root_damage_potential)}
             </Text>
@@ -85,7 +87,7 @@ export default function SpeciesDisplay({
 
         {speciesData.litter_type && (
           <View style={styles.property}>
-            <SvgFruit />
+            <PropertyIcon Icon={SvgFruit} infoKey="fruit" />
             <Text style={styles.propertyText}>
               {displayValue(speciesData.litter_type)} Fruit
             </Text>
@@ -94,21 +96,21 @@ export default function SpeciesDisplay({
 
         {speciesData.california_native && (
           <View style={styles.property}>
-            <SvgBear />
+            <PropertyIcon Icon={SvgBear} infoKey="native" />
             <Text style={styles.propertyText}>CA Native</Text>
           </View>
         )}
 
         {speciesData.foliage_type === TreeSpeciesFoliageType.Evergreen && (
           <View style={styles.property}>
-            <SvgLeaf />
+            <PropertyIcon Icon={SvgLeaf} infoKey="foliage" />
             <Text style={styles.propertyText}>Evergreen</Text>
           </View>
         )}
 
         {speciesData.utility_friendly && (
           <View style={styles.property}>
-            <SvgFlash />
+            <PropertyIcon Icon={SvgFlash} infoKey="utility" />
             <Text style={styles.propertyText}>Powerline Friendly</Text>
           </View>
         )}
@@ -123,7 +125,7 @@ export default function SpeciesDisplay({
                 style={styles.locationEntry}
                 key={`${tree.bank}-${tree.row}-${index}`}
               >
-                <SvgLocationPin />
+                <PropertyIcon Icon={SvgLocationPin} infoKey="water" />
                 <Text style={styles.propertyText}>
                   Bank #{tree.bank ?? 0} {'  '}|{'  '} Row #{tree.row ?? 0}
                   {/* TODO: Needs to support range of rows */}

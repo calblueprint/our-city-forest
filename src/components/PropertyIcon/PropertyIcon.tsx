@@ -22,11 +22,13 @@ type PropertyIconProps = {
   iconProps?: SvgProps;
 };
 
-const PropertyIcon: React.FC<PropertyIconProps> = ({
+
+
+export default function PropertyIcon({
   Icon,
   infoKey,
   iconProps,
-}) => {
+}: PropertyIconProps) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -40,6 +42,4 @@ const PropertyIcon: React.FC<PropertyIconProps> = ({
       </TouchableOpacity>
     </View>
   );
-};
-
-export default PropertyIcon;
+}

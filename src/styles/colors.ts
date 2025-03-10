@@ -15,7 +15,7 @@ type Colors = {
   gray6: string;
 };
 
-const colors: Colors = {
+export const colors: Colors = {
   primary: '#446127',
   secondary: '#9BA964',
   tertiary: '#F9BD24',
@@ -31,5 +31,3 @@ const colors: Colors = {
   gray5: '#E0E0E0',
   gray6: '#F2F2F2',
 };
-
-export default colors;

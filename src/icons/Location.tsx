@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path, SvgProps } from 'react-native-svg';
 
-const SvgLocation = (props: SvgProps) => (
+export const Location = (props: SvgProps) => (
   <Svg width={29} height={29} fill="none" {...props}>
     <G clipPath="url(#location_svg__a)">
       <Path
@@ -16,4 +16,3 @@ const SvgLocation = (props: SvgProps) => (
     </Defs>
   </Svg>
 );
-export default SvgLocation;

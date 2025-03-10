@@ -1,34 +1,33 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
-export default StyleSheet.create({
-  outer: {
+export const styles = StyleSheet.create({
+  container: {
     flexDirection: 'row',
-    borderRadius: 30,
-    backgroundColor: colors.gray6,
-    alignSelf: 'center',
-    padding: 2,
-  },
-
-  main: {
-    flexDirection: 'row',
-    borderRadius: 30,
+    borderRadius: 48,
     backgroundColor: colors.gray6,
     alignSelf: 'center',
     overflow: 'hidden',
+    padding: 4,
+  },
+
+  toggle: {
+    position: 'absolute',
+    height: '100%',
+    borderRadius: 48,
+    backgroundColor: colors.primary,
   },
 
   switch: {
     ...typography.smallRegular,
-    margin: 2,
-    padding: 8,
-    borderRadius: 30,
-    zIndex: 2,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 48,
     color: colors.primary,
   },
 
-  selected: {
+  selectedText: {
     ...typography.smallBold,
     color: colors.white,
   },

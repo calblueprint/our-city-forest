@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import {
   BarcodeScanningResult,
@@ -6,18 +6,17 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import SvgFlashCircle from '@/icons/FlashCircle';
-import SvgXButton from '@/icons/XButton';
+import { FlashCircle, XButton } from '@/icons';
 import { HomeStackParamList } from '@/types/navigation';
-import styles from './styles';
+import { styles } from './styles';
 
 type QRCodeScannerProps = NativeStackScreenProps<
   HomeStackParamList,
   'QRCodeScanner'
 >;
 
-export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
-  const [permission, requestPermission] = useCameraPermissions();
+export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
+  const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [qrCodeFound, setQrCodeFound] = useState<boolean>(false);
   const [qrCodeData, setQrCodeData] = useState<string | null>(null);
   const [flashEnabled, setFlashEnabled] = useState<boolean>(false);
@@ -26,79 +25,83 @@ export default function QRCodeScanner({ navigation }: QRCodeScannerProps) {
     setQrCodeFound(false);
     setQrCodeData(null);
   };
-  let qrCodeFoundTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(
+  let qrCodeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   );
 
-  const onBarcodeScanned = (data: BarcodeScanningResult) => {
+  const handleBarcodeScanned = (data: BarcodeScanningResult) => {
     setQrCodeFound(true);
     setQrCodeData(data.data);
 
     // Reset the QR code found state after not seeing a QR for 100ms
-    clearTimeout(qrCodeFoundTimeout.current);
-    qrCodeFoundTimeout.current = setTimeout(resetQrCodeFound, 100);
+    clearTimeout(qrCodeTimeoutRef.current);
+    qrCodeTimeoutRef.current = setTimeout(resetQrCodeFound, 100);
   };
 
   useEffect(() => {
     // Request camera permissions if not granted on mount
-    if (!permission?.granted) {
-      requestPermission();
+    if (!cameraPermission?.granted) {
+      requestCameraPermission();
     }
-  }, [permission, requestPermission]);
+  }, [cameraPermission, requestCameraPermission]);
 
   // Camera permissions are still loading.
-  if (!permission) {
+  if (!cameraPermission) {
     return <View />;
   }
 
   // No perms :(
-  if (!permission.granted) {
+  if (!cameraPermission.granted) {
     return <Text>Permission for camera not granted.</Text>;
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.iconFlex}>
-        <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
-          <SvgFlashCircle />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <SvgXButton />
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.mainFlex}>
-        <View style={styles.textFlex}>
-          <Text style={styles.header}>Scan QR Code</Text>
-          <Text style={styles.subtext}>Aim the camera at the tree's code</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.topActions}>
+          <TouchableOpacity onPress={() => setFlashEnabled(!flashEnabled)}>
+            <FlashCircle />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <XButton />
+          </TouchableOpacity>
         </View>
 
-        <View
-          style={[styles.cameraView, qrCodeFound && styles.qrCodeFoundCamera]}
+        <View style={styles.mainFlex}>
+          <View style={styles.textFlex}>
+            <Text style={styles.header}>Scan QR Code</Text>
+            <Text style={styles.subtext}>
+              Aim the camera at the tree's code
+            </Text>
+          </View>
+
+          <View
+            style={[styles.cameraView, qrCodeFound && styles.qrCodeFoundCamera]}
+          >
+            <CameraView
+              style={[styles.camera]}
+              onBarcodeScanned={handleBarcodeScanned}
+              barcodeScannerSettings={{
+                barcodeTypes: ['qr'],
+              }}
+              enableTorch={flashEnabled}
+            />
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={[
+            styles.scanButton,
+            qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
+          ]}
+          onPress={() =>
+            navigation.push('TreeInfo', { treeId: qrCodeData ?? '' })
+          }
+          disabled={!qrCodeFound}
         >
-          <CameraView
-            style={[styles.camera]}
-            onBarcodeScanned={onBarcodeScanned}
-            barcodeScannerSettings={{
-              barcodeTypes: ['qr'],
-            }}
-            enableTorch={flashEnabled}
-          />
-        </View>
+          <Text style={styles.scanButtonText}>Scan</Text>
+        </TouchableOpacity>
       </View>
-
-      <TouchableOpacity
-        style={[
-          styles.scanButton,
-          qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
-        ]}
-        onPress={() =>
-          navigation.push('TreeInfo', { treeId: qrCodeData ?? '' })
-        }
-        disabled={!qrCodeFound}
-      >
-        <Text style={styles.scanButtonText}>Scan</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
-}
+};

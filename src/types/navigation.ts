@@ -5,10 +5,10 @@ export type LoginStackParamList = {
 };
 
 export type HomeStackParamList = {
-  TreeSearch: undefined;
+  TreeSpeciesSearch: undefined;
   QRCodeScanner: undefined;
   TreeInfo: { treeId: string };
-  SpeciesInfo: { speciesName: string };
+  TreeSpeciesInfo: { speciesName: string };
 };
 
 export type ContactStackParamList = {
@@ -17,8 +17,8 @@ export type ContactStackParamList = {
 };
 
 export type BottomTabParamList = {
-  Home: NavigatorScreenParams<HomeStackParamList>;
-  Contact: NavigatorScreenParams<ContactStackParamList>;
+  HomeTab: NavigatorScreenParams<HomeStackParamList>;
+  ContactTab: NavigatorScreenParams<ContactStackParamList>;
 };
 
 export type RootStackParamList = {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgFruit = (props: SvgProps) => (
+export const Fruit = (props: SvgProps) => (
   <Svg width={28} height={32} fill="none" {...props}>
     <G strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
       <Path
@@ -16,4 +16,3 @@ const SvgFruit = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgFruit;

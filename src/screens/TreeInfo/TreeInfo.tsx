@@ -1,34 +1,36 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import TreeBg from '@/../assets/tree-info-bg.png';
-import ToggleSwitch from '@/components/ToggleSwitch/ToggleSwitch';
-import TreeDisplay from '@/components/TreeDisplay/TreeDisplay';
-import TreeEdit from '@/components/TreeEdit/TreeEdit';
-import colors from '@/styles/colors';
+import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
+import { TreeDisplay } from '@/components/TreeDisplay/TreeDisplay';
+import { TreeEdit } from '@/components/TreeEdit/TreeEdit';
+import { XButton } from '@/icons';
 import { getAllTreesForSpecies, getTreeInfo } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { Tree } from '@/types/tree';
-import styles from './styles';
+import { styles } from './styles';
 
 type TreeInfoScreenProps = NativeStackScreenProps<
   HomeStackParamList,
   'TreeInfo'
 >;
 
-export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
+export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
+  route,
+  navigation,
+}) => {
   const treeId = route.params?.treeId ?? '';
   const [isSpecies, setIsSpecies] = useState(true);
   const [treeData, setTreeData] = useState<Tree | null>(null);
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);
-  const treeBgImage = treeData?.species?.image_url;
 
   useEffect(() => {
     (async () => {
@@ -42,17 +44,23 @@ export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
   }, [treeData?.species?.name, treeId]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'position' : undefined}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 70}
       >
-        <ScrollView style={styles.container}>
+        <ScrollView>
           <ImageBackground
-            source={treeBgImage ? { uri: treeBgImage } : TreeBg}
-            style={styles.imageBg}
-          ></ImageBackground>
+            source={{ uri: treeData?.species?.image_url }}
+            style={styles.imageBackground}
+          >
+            <View style={styles.topNavigation}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <XButton />
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
           <View style={styles.body}>
             <View style={styles.switch}>
               <ToggleSwitch
@@ -79,7 +87,7 @@ export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
               </View>
             </View>
 
-            <View style={styles.separator}></View>
+            <View style={styles.divider}></View>
 
             {treeData ? (
               isSpecies ? (
@@ -95,4 +103,4 @@ export default function TreeInfoPage({ route }: TreeInfoScreenProps) {
       </KeyboardAvoidingView>
     </View>
   );
-}
+};

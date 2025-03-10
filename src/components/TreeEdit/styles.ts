@@ -1,123 +1,60 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
-export default StyleSheet.create({
-  headerFlex: {
+export const styles = StyleSheet.create({
+  container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    marginHorizontal: 30,
-    marginBottom: 21 + 16,
-    gap: 5,
-  },
-
-  idPill: {
-    flex: 0,
-    alignSelf: 'center',
-    backgroundColor: colors.primary,
-    borderRadius: 30,
-  },
-
-  idText: {
-    ...typography.normalRegular,
-    flex: 0,
-    textAlign: 'left',
-    color: colors.white,
-    padding: 10,
-    paddingVertical: 6,
-  },
-
-  idPillFlex: {
-    flex: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-
-  header: {
-    ...typography.heading5,
-    color: colors.gray1,
-    paddingBottom: 10,
-  },
-
-  scientificName: {
-    ...typography.mediumRegular,
-    color: colors.gray1,
-  },
-
-  separator: {
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray5,
-    marginTop: 10,
-  },
-
-  body: {
-    paddingHorizontal: 42,
-    paddingTop: 20,
-    marginBottom: 10,
-    marginTop: -16,
-    borderRadius: 20,
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-
-  propertiesHeader: {
-    marginVertical: 30,
-  },
-
-  label: {
-    ...typography.normalRegular,
-    color: colors.gray2,
-    marginBottom: 10,
-  },
-
-  propertiesFlex: {
-    flex: 1,
-    gap: 26,
-    marginBottom: 32,
   },
 
   editFlex: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    marginBottom: 24,
   },
 
-  editButton: {
-    alignSelf: 'center',
-    backgroundColor: colors.primary,
-    paddingHorizontal: 37,
-    paddingVertical: 13,
-    width: '100%',
-    alignItems: 'center',
-    borderRadius: 10,
+  header: {
+    ...typography.heading2,
+    color: colors.gray1,
   },
 
-  doneEditingText: {
-    ...typography.mediumBold,
-    color: colors.white,
+  propertiesFlex: {
+    gap: 24,
+  },
+
+  label: {
+    ...typography.mediumRegular,
+    color: colors.gray2,
+    marginBottom: 12,
   },
 
   locationInputView: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexGrow: 1,
-    gap: 15,
+    gap: 16,
+  },
+
+  textInput: {
+    ...typography.mediumRegular,
+    flex: 1,
+    color: colors.gray3,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: colors.gray5,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
   },
 
   iconTextView: {
-    ...typography.normalRegular,
-    flex: 1,
+    ...typography.mediumRegular,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 9,
+    gap: 8,
   },
 
   displayText: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.gray3,
   },
 
@@ -125,25 +62,33 @@ export default StyleSheet.create({
     color: colors.primary,
   },
 
-  textInput: {
-    ...typography.normalRegular,
-    flex: 1,
+  notesHeader: {
+    ...typography.heading2,
+    color: colors.gray1,
+    marginBottom: 24,
+  },
+
+  notesTextBox: {
+    ...typography.mediumRegular,
     color: colors.gray3,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: colors.gray5,
-    paddingVertical: 11,
     paddingHorizontal: 20,
+    paddingVertical: 12,
+    minHeight: 160,
   },
 
-  textArea: {
-    minHeight: 170,
-    paddingVertical: 20,
-    color: colors.gray3,
+  button: {
+    backgroundColor: colors.primary,
+    paddingHorizontal: 40,
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 10,
   },
 
-  ownershipTextArea: {
-    marginTop: 14,
-    minHeight: 90,
+  buttonText: {
+    ...typography.largeBold,
+    color: colors.white,
   },
 });

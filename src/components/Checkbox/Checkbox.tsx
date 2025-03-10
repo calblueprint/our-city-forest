@@ -1,21 +1,24 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { styles } from './styles';
 
 type CheckboxProps = {
-  value: boolean;
-  onValueChange: () => void;
+  label: string;
+  isChecked: boolean;
+  onChange: () => void;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ value, onValueChange }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({
+  label,
+  isChecked,
+  onChange,
+}) => {
   return (
-    <TouchableOpacity
-      onPress={onValueChange}
-      style={[styles.checkbox, value && styles.checkboxChecked]}
-    >
-      {value && <View style={styles.checkmark} />}
-    </TouchableOpacity>
+    <Pressable onPress={onChange} style={styles.checkboxContainer}>
+      <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
+        {isChecked && <View style={styles.checkmark} />}
+      </View>
+      <Text style={styles.checkboxLabel}>{label}</Text>
+    </Pressable>
   );
 };
-
-export default Checkbox;

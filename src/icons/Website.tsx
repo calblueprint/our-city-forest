@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgGlobal = (props: SvgProps) => (
+export const Website = (props: SvgProps) => (
   <Svg width={29} height={29} fill="none" {...props}>
     <Path
       fill="#446127"
@@ -17,4 +17,3 @@ const SvgGlobal = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgGlobal;

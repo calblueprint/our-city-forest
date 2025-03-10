@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgScanBarcode = (props: SvgProps) => (
+export const Scanner = (props: SvgProps) => (
   <Svg width={37} height={37} fill="#446127" {...props}>
     <Path
       fill="#446127"
@@ -13,4 +13,3 @@ const SvgScanBarcode = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgScanBarcode;

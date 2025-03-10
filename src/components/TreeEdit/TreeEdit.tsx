@@ -1,28 +1,27 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import SvgEdit from '@/icons/EditPen';
-import SvgHeart from '@/icons/Heart';
-import SvgLocationPin from '@/icons/Location';
-import SvgRepeat from '@/icons/Repeat';
-import SvgUser from '@/icons/User';
-import colors from '@/styles/colors';
+import { EditPen, Heart, Location, Repeat, User } from '@/icons';
+import { colors } from '@/styles/colors';
 import { updateTree } from '@/supabase/queries/trees';
 import {
-  displayValue,
+  formatEnumKey,
   Tree,
   TreeHealthStatus,
   TreeOwnershipStatus,
   TreeProductionStatus,
 } from '@/types/tree';
-import Dropdown from '../Dropdown/Dropdown';
-import styles from './styles';
+import { Dropdown } from '../Dropdown/Dropdown';
+import { styles } from './styles';
 
 type TreeEditProps = {
   treeData: Tree;
   setTreeData: (treeData: Tree) => void;
 };
 
-export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
+export const TreeEdit: React.FC<TreeEditProps> = ({
+  treeData,
+  setTreeData,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const saveTreeData = async () => {
@@ -35,15 +34,12 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.editFlex}>
-        <Text style={[styles.header, styles.propertiesHeader]}>Properties</Text>
+        <Text style={styles.header}>Properties</Text>
         {!isEditing && (
-          <TouchableOpacity
-            style={[styles.editButton, { backgroundColor: undefined }]}
-            onPress={() => setIsEditing(true)}
-          >
-            <SvgEdit />
+          <TouchableOpacity onPress={() => setIsEditing(true)}>
+            <EditPen />
           </TouchableOpacity>
         )}
       </View>
@@ -55,7 +51,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             <View style={styles.locationInputView}>
               <TextInput
                 style={styles.textInput}
-                placeholder="Bank #"
+                placeholder="Bank No."
                 placeholderTextColor={colors.gray4}
                 value={treeData?.bank?.toString() ?? ''}
                 keyboardType="numeric"
@@ -72,7 +68,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
               />
               <TextInput
                 style={styles.textInput}
-                placeholder="Row #"
+                placeholder="Row No."
                 placeholderTextColor={colors.gray4}
                 value={treeData?.row?.toString() ?? ''}
                 keyboardType="numeric"
@@ -90,7 +86,7 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
             </View>
           ) : (
             <View style={styles.iconTextView}>
-              <SvgLocationPin />
+              <Location />
               <Text style={styles.displayText}>
                 Bank #{treeData.bank}
                 {'  '}|{'  '}Row #{treeData.row}
@@ -104,17 +100,16 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeHealthStatus)}
-              displayValue={displayValue}
-              setValue={value =>
+              onChange={value =>
                 setTreeData({ ...treeData, health_status: value })
               }
               value={treeData.health_status ?? ''}
             />
           ) : (
             <View style={styles.iconTextView}>
-              <SvgHeart />
+              <Heart />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.health_status ?? '')}
+                {formatEnumKey(treeData.health_status ?? '')}
               </Text>
             </View>
           )}
@@ -125,17 +120,16 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeProductionStatus)}
-              displayValue={displayValue}
-              setValue={value =>
+              onChange={value =>
                 setTreeData({ ...treeData, production_status: value })
               }
               value={treeData.production_status ?? ''}
             />
           ) : (
             <View style={styles.iconTextView}>
-              <SvgRepeat />
+              <Repeat />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.production_status ?? '')}
+                {formatEnumKey(treeData.production_status ?? '')}
               </Text>
             </View>
           )}
@@ -146,31 +140,30 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
           {isEditing ? (
             <Dropdown
               options={Object.values(TreeOwnershipStatus)}
-              displayValue={displayValue}
-              setValue={value =>
+              onChange={value =>
                 setTreeData({ ...treeData, ownership_status: value })
               }
               value={treeData.ownership_status ?? ''}
             />
           ) : (
             <View style={styles.iconTextView}>
-              <SvgUser />
+              <User />
               <Text style={[styles.displayText, styles.greenText]}>
-                {displayValue(treeData.ownership_status ?? '')}
+                {formatEnumKey(treeData.ownership_status ?? '')}
               </Text>
             </View>
           )}
         </View>
 
         <View>
-          <Text style={styles.label}>Additional Notes</Text>
+          <Text style={styles.notesHeader}>Additional Notes</Text>
           <TextInput
-            style={[styles.textInput, styles.textArea]}
+            style={styles.notesTextBox}
             value={treeData.additional_notes ?? ''}
             onChangeText={newNotes =>
               setTreeData({ ...treeData, additional_notes: newNotes })
             }
-            placeholder="Type notes here..."
+            placeholder="Write here..."
             multiline
             editable={isEditing}
             numberOfLines={4}
@@ -178,10 +171,10 @@ export default function TreeEdit({ treeData, setTreeData }: TreeEditProps) {
         </View>
       </View>
       {isEditing && (
-        <TouchableOpacity style={styles.editButton} onPress={saveTreeData}>
-          <Text style={styles.doneEditingText}>Save</Text>
+        <TouchableOpacity style={styles.button} onPress={saveTreeData}>
+          <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       )}
     </View>
   );
-}
+};

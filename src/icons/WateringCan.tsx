@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgWateringCan = (props: SvgProps) => (
+export const WateringCan = (props: SvgProps) => (
   <Svg width={30} height={26} fill="none" {...props}>
     <Path
       fill="#9BA98C"
@@ -9,4 +9,3 @@ const SvgWateringCan = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgWateringCan;

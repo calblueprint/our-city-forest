@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const SvgSearch = (props: SvgProps) => (
+export const Search = (props: SvgProps) => (
   <Svg width={30} height={30} fill="none" {...props}>
     <Path
       stroke="#4F4F4F"
@@ -11,4 +11,3 @@ const SvgSearch = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgSearch;

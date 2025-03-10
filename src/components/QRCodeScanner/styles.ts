@@ -1,102 +1,83 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
-export default StyleSheet.create({
-  container: {
+export const styles = StyleSheet.create({
+  safeArea: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    paddingHorizontal: 44,
     backgroundColor: colors.primary,
   },
 
-  iconFlex: {
-    flex: 0,
-    width: '100%',
-    paddingHorizontal: 27,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  container: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+    alignItems: 'center',
   },
 
-  icon: {
-    backgroundColor: colors.white,
-    padding: 8,
+  topActions: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 80,
   },
 
   mainFlex: {
     flex: 1,
-    padding: 24,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    gap: 86,
+    gap: 80,
   },
 
   textFlex: {
-    flex: 0,
-    flexDirection: 'column',
+    alignItems: 'center',
     gap: 8,
   },
 
   header: {
-    textAlign: 'center',
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.white,
   },
 
   subtext: {
-    textAlign: 'center',
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     color: colors.white,
   },
 
   cameraView: {
-    alignSelf: 'center',
-    width: 285,
-    height: 248,
+    width: 280,
+    height: 280,
     borderWidth: 2,
     borderColor: colors.secondary,
     borderRadius: 12,
-    zIndex: 1,
-  },
-
-  camera: {
-    flex: 1,
-    borderRadius: 12,
-    overflow: 'hidden',
   },
 
   qrCodeFoundCamera: {
     borderColor: colors.tertiary,
   },
 
-  buttonContainer: {
+  camera: {
     flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-    margin: 64,
+    borderRadius: 12,
   },
 
   scanButton: {
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 10,
+    paddingHorizontal: 120,
+    paddingVertical: 12,
     borderRadius: 10,
-    elevation: 3,
-    marginHorizontal: 44,
-    marginBottom: 64,
-  },
-
-  scanButtonDisabled: {
-    backgroundColor: colors.gray4,
+    marginBottom: 32,
   },
 
   scanButtonEnabled: {
     backgroundColor: colors.tertiary,
   },
 
+  scanButtonDisabled: {
+    backgroundColor: colors.gray4,
+  },
+
   scanButtonText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.white,
   },
 });

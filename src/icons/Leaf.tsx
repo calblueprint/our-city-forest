@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgLeaf = (props: SvgProps) => (
+export const Leaf = (props: SvgProps) => (
   <Svg width={25} height={28} fill="none" {...props}>
     <G fill="#446127">
       <Path
@@ -12,4 +12,3 @@ const SvgLeaf = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgLeaf;

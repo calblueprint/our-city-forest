@@ -1,43 +1,22 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  searchContainer: {
+  searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray5,
-    paddingTop: 5,
-    paddingBottom: 20,
-    paddingHorizontal: 24,
+    backgroundColor: colors.gray6,
+    borderRadius: 48,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
   },
 
   searchBarInput: {
-    ...typography.normalRegular,
-    color: colors.gray3,
+    ...typography.mediumRegular,
+    color: colors.gray2,
     flex: 1,
-    height: 42,
-    borderWidth: 1,
-    borderRadius: 30,
-    paddingHorizontal: 10,
-    borderColor: colors.gray6,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-  },
-
-  inputContainer: {
-    flex: 1,
-    height: 42,
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    position: 'relative',
-    borderColor: colors.gray6,
-    backgroundColor: colors.gray6,
-    borderRadius: 30,
-    paddingHorizontal: 10,
+    marginHorizontal: 8,
   },
 
   filterIconContainer: {
@@ -49,5 +28,3 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export default styles;

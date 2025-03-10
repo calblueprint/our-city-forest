@@ -1,18 +1,20 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import QRCodeScanner from '@/components/QRCodeScanner/QRCodeScanner';
+import { QRCodeScanner } from '@/components/QRCodeScanner/QRCodeScanner';
 import { useAuth } from '@/context/AuthContext';
-import SvgContactSelected from '@/icons/ContactSelected';
-import SvgContactUnselected from '@/icons/ContactUnselected';
-import SvgHomeSelected from '@/icons/HomeSelected';
-import SvgHomeUnselected from '@/icons/HomeUnselected';
-import ContactScreen from '@/screens/Contact/Contact';
-import DirectoryScreen from '@/screens/Directory/Directory';
-import LoginScreen from '@/screens/Login/Login';
-import SpeciesInfoScreen from '@/screens/SpeciesInfo/SpeciesInfo';
-import TreeInfoScreen from '@/screens/TreeInfo/TreeInfo';
-import TreeSearchScreen from '@/screens/TreeSearch/TreeSearch';
+import {
+  ContactSelected,
+  ContactUnselected,
+  HomeSelected,
+  HomeUnselected,
+} from '@/icons';
+import { ContactScreen } from '@/screens/Contact/Contact';
+import { DirectoryScreen } from '@/screens/Directory/Directory';
+import { LoginScreen } from '@/screens/Login/Login';
+import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
+import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
+import { TreeSpeciesSearchScreen } from '@/screens/TreeSpeciesSearch/TreeSpeciesSearch';
 import {
   BottomTabParamList,
   ContactStackParamList,
@@ -29,7 +31,7 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 // Login Stack Navigator
-function LoginStackNavigator() {
+const LoginStackNavigator = () => {
   return (
     <LoginStack.Navigator
       initialRouteName="Login"
@@ -38,25 +40,39 @@ function LoginStackNavigator() {
       <LoginStack.Screen name="Login" component={LoginScreen} />
     </LoginStack.Navigator>
   );
-}
+};
 
 // Home Stack Navigator
-function HomeStackNavigator() {
+const HomeStackNavigator = () => {
   return (
     <HomeStack.Navigator
-      initialRouteName="TreeSearch"
+      initialRouteName="TreeSpeciesSearch"
       screenOptions={{ headerShown: false }}
     >
-      <HomeStack.Screen name="TreeSearch" component={TreeSearchScreen} />
-      <HomeStack.Screen name="QRCodeScanner" component={QRCodeScanner} />
+      <HomeStack.Screen
+        name="TreeSpeciesSearch"
+        component={TreeSpeciesSearchScreen}
+      />
+      <HomeStack.Screen
+        name="QRCodeScanner"
+        component={QRCodeScanner}
+        options={{
+          headerShown: false,
+          presentation: 'fullScreenModal',
+          animation: 'fade',
+        }}
+      />
       <HomeStack.Screen name="TreeInfo" component={TreeInfoScreen} />
-      <HomeStack.Screen name="SpeciesInfo" component={SpeciesInfoScreen} />
+      <HomeStack.Screen
+        name="TreeSpeciesInfo"
+        component={TreeSpeciesInfoScreen}
+      />
     </HomeStack.Navigator>
   );
-}
+};
 
 // Contact Stack Navigator
-function ContactStackNavigator() {
+const ContactStackNavigator = () => {
   return (
     <ContactStack.Navigator
       initialRouteName="Contact"
@@ -66,44 +82,44 @@ function ContactStackNavigator() {
       <ContactStack.Screen name="Directory" component={DirectoryScreen} />
     </ContactStack.Navigator>
   );
-}
+};
 
 // Tab Navigator
-function BottomTabNavigator() {
+const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeTab"
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: { paddingTop: 10 },
+        tabBarStyle: { paddingTop: 12 },
         tabBarIcon: ({ focused }) => {
-          if (route.name === 'Home') {
+          if (route.name === 'HomeTab') {
             return focused ? (
-              <SvgHomeSelected width={30} height={30} />
+              <HomeSelected width={30} height={30} />
             ) : (
-              <SvgHomeUnselected width={30} height={30} />
+              <HomeUnselected width={30} height={30} />
             );
           }
-          if (route.name === 'Contact') {
+          if (route.name === 'ContactTab') {
             return focused ? (
-              <SvgContactSelected width={30} height={30} />
+              <ContactSelected width={30} height={30} />
             ) : (
-              <SvgContactUnselected width={30} height={30} />
+              <ContactUnselected width={30} height={30} />
             );
           }
           return null;
         },
       })}
     >
-      <BottomTab.Screen name="Home" component={HomeStackNavigator} />
-      <BottomTab.Screen name="Contact" component={ContactStackNavigator} />
+      <BottomTab.Screen name="HomeTab" component={HomeStackNavigator} />
+      <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
     </BottomTab.Navigator>
   );
-}
+};
 
 // Root Navigator
-export default function AppNavigator() {
+export const AppNavigator = () => {
   const { isAuthenticated } = useAuth();
 
   return (
@@ -113,6 +129,7 @@ export default function AppNavigator() {
           initialRouteName="BottomTabs"
           screenOptions={{ headerShown: false }}
         >
+          <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
           <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
         </RootStack.Navigator>
       ) : (
@@ -126,4 +143,4 @@ export default function AppNavigator() {
       )}
     </NavigationContainer>
   );
-}
+};

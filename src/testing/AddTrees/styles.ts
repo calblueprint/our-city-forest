@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import colors from '@/styles/colors';
-import typography from '@/styles/typography';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
@@ -10,18 +10,18 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.primary,
     marginBottom: 40,
   },
 
   inputContainer: {
-    marginBottom: 30,
+    marginBottom: 32,
   },
 
   label: {
-    ...typography.normalRegular,
-    marginBottom: 10,
+    ...typography.mediumRegular,
+    marginBottom: 12,
     color: colors.gray1,
   },
 
@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    ...typography.normalRegular,
+    ...typography.mediumRegular,
     flex: 1,
     height: 50,
-    paddingHorizontal: 15,
+    paddingHorizontal: 16,
   },
 
   quantityContainer: {
@@ -57,29 +57,27 @@ const styles = StyleSheet.create({
   },
 
   quantityButtonText: {
-    ...typography.heading5,
+    ...typography.heading2,
     color: colors.white,
   },
 
   quantityText: {
     ...typography.largeRegular,
-    marginHorizontal: 30,
+    marginHorizontal: 32,
     color: colors.gray1,
   },
 
   completeButton: {
     backgroundColor: colors.primary,
-    padding: 15,
+    padding: 16,
     borderRadius: 8,
     marginTop: 'auto',
     marginBottom: 20,
   },
 
   completeButtonText: {
-    ...typography.mediumBold,
+    ...typography.largeBold,
     color: colors.white,
     textAlign: 'center',
   },
 });
-
-export default styles;

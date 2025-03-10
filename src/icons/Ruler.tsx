@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
-const SvgRuler = (props: SvgProps) => (
+export const Ruler = (props: SvgProps) => (
   <Svg width={25} height={31} fill="none" {...props}>
     <G fill="#446127">
       <Path
@@ -12,4 +12,3 @@ const SvgRuler = (props: SvgProps) => (
     </G>
   </Svg>
 );
-export default SvgRuler;

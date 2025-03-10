@@ -1,42 +1,41 @@
+import React from 'react';
 import { Text, View } from 'react-native';
-import { Dropdown as DropdownElement } from 'react-native-element-dropdown';
+import { Dropdown as NativeDropdown } from 'react-native-element-dropdown';
 import { Icon } from 'react-native-elements';
-import colors from '@/styles/colors';
-import styles from './styles';
-
-type DropdownProps<T extends string[]> = {
-  options: T;
-  setValue: (value: T[number]) => unknown;
-  value: string;
-  displayValue?: (s: string) => string;
-};
+import { colors } from '@/styles/colors';
+import { formatEnumKey } from '@/types/tree';
+import { styles } from './styles';
 
 type Option = {
   label: string;
   value: string;
-  i: number;
+  index: number;
 };
 
-function Dropdown<T extends string[]>({
+type DropdownProps<T extends string[]> = {
+  options: T;
+  value: string;
+  onChange: (value: T[number]) => unknown;
+};
+
+export const Dropdown = <T extends string[]>({
   options,
-  setValue,
   value,
-  displayValue = s => s,
-}: DropdownProps<T>) {
+  onChange,
+}: DropdownProps<T>): React.JSX.Element => {
   return (
     <View>
-      <DropdownElement
+      <NativeDropdown
         mode="default"
         style={styles.dropdown}
-        placeholderStyle={[styles.text, styles.textContainer]}
-        selectedTextStyle={[styles.text, styles.textContainer]}
+        placeholderStyle={styles.text}
+        selectedTextStyle={styles.text}
         inputSearchStyle={styles.text}
         itemTextStyle={styles.text}
         containerStyle={styles.dropdownContainer}
         dropdownPosition="bottom"
-        iconStyle={styles.iconStyle}
-        data={options.map((option: T[number], i: number) => {
-          return { i, label: displayValue(option), value: option };
+        data={options.map((option: T[number], index: number) => {
+          return { index, label: formatEnumKey(option), value: option };
         })}
         maxHeight={400}
         labelField="label"
@@ -51,10 +50,10 @@ function Dropdown<T extends string[]>({
                 styles.itemContainer,
                 selected && styles.selectedBar,
                 { borderBottomLeftRadius: 0, borderTopLeftRadius: 0 },
-                item.i === 0 && {
+                item.index === 0 && {
                   borderTopLeftRadius: 5,
                 },
-                item.i === options.length - 1 && {
+                item.index === options.length - 1 && {
                   borderBottomLeftRadius: 5,
                 },
               ]}
@@ -63,8 +62,8 @@ function Dropdown<T extends string[]>({
             </Text>
           );
         }}
-        renderRightIcon={visible =>
-          visible ? (
+        renderRightIcon={isVisible =>
+          isVisible ? (
             <Icon
               name="arrow-drop-up"
               type="material"
@@ -81,11 +80,9 @@ function Dropdown<T extends string[]>({
           )
         }
         onChange={(item: Option) => {
-          setValue(item.value);
+          onChange(item.value);
         }}
       />
     </View>
   );
-}
-
-export default Dropdown;
+};

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Circle, Path, SvgProps } from 'react-native-svg';
 
-const SvgBackArrow = (props: SvgProps) => (
+export const BackArrow = (props: SvgProps) => (
   <Svg width={34} height={34} fill="none" {...props}>
     <Circle
       cx={16.665}
@@ -19,4 +19,3 @@ const SvgBackArrow = (props: SvgProps) => (
     />
   </Svg>
 );
-export default SvgBackArrow;

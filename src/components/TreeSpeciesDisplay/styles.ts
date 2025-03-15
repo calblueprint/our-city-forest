@@ -45,6 +45,7 @@ export const styles = StyleSheet.create({
 
   propertiesHeading: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 12,
   },
 

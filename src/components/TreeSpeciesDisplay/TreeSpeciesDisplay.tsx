@@ -6,6 +6,7 @@ import {
   Fruit,
   Leaf,
   Lightbulb,
+  InfoCircle,
   Location,
   Ruler,
   Shapes,
@@ -52,7 +53,7 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
         <View style={styles.propertiesHeading}>
           <Text style={styles.header}>Properties</Text>
           <Pressable onPress={() => setModalVisible(true)}>
-            <Fruit />
+            <InfoCircle />
           </Pressable>
           <TreesInformationCard
             visible={modalVisible}

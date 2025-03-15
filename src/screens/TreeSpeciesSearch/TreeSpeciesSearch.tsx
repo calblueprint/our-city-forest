@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Scanner } from '@/icons';
+import { Scanner, Bookmark } from '@/icons';
 import {
   getAllTreeSpecies,
   getAvailableTreeSpecies,
@@ -158,12 +158,17 @@ export const TreeSpeciesSearchScreen: React.FC<
       }
       style={styles.speciesCard}
     >
-      <Image
-        source={{
-          uri: item.imageURL,
-        }}
-        style={styles.speciesImage}
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          source={{
+            uri: item.imageURL,
+          }}
+          style={styles.speciesImage}
+        /> 
+        <View style={styles.overlaySvg}>
+          <Bookmark width={30} height={30}/>
+        </View>
+      </View>
       <Text style={styles.speciesName} numberOfLines={1}>
         {item.name}
       </Text>

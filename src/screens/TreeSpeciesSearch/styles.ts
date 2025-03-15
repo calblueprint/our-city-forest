@@ -32,6 +32,24 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.gray5,
   },
 
+  imageContainer: {
+    width: '100%',
+    height: 150,
+    borderRadius: 8,
+    overflow: 'hidden', 
+    position: 'relative',
+  },
+
+  overlaySvg: {
+    position: 'absolute',
+    top: 10, 
+    right: 10, 
+    width: 40, 
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+
   speciesContainer: {
     justifyContent: 'space-between',
     paddingVertical: 20,

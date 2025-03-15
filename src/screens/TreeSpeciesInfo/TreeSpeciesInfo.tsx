@@ -65,7 +65,6 @@ export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
             </Text>
             <View style={styles.divider}></View>
           </View>
-
           <TreeSpeciesDisplay speciesData={speciesData} treeData={treeData} />
         </View>
       </ScrollView>

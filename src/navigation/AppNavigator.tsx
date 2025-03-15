@@ -4,6 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { QRCodeScanner } from '@/components/QRCodeScanner/QRCodeScanner';
 import { useAuth } from '@/context/AuthContext';
 import {
+  BookmarksSelected,
+  BookmarksUnselected,
   ContactSelected,
   ContactUnselected,
   HomeSelected,
@@ -17,6 +19,7 @@ import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
 import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
 import { TreeSpeciesSearchScreen } from '@/screens/TreeSpeciesSearch/TreeSpeciesSearch';
 import {
+  BookmarksStackParamList,
   BottomTabParamList,
   ContactStackParamList,
   HomeStackParamList,
@@ -28,7 +31,7 @@ import {
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const ContactStack = createNativeStackNavigator<ContactStackParamList>();
-const BookmarksStack = createNativeStackNavigator<BottomTabParamList>();
+const BookmarksStack = createNativeStackNavigator<BookmarksStackParamList>();
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -88,9 +91,10 @@ const ContactStackNavigator = () => {
 const BookmarksStackNavigator = () => {
   return (
     <BookmarksStack.Navigator
-    initialRouteName="Bookmarks"
-      screenOptions={{ headerShown: false }}>
-        <ContactStack.Screen name="Contact" component={ContactScreen} />
+      initialRouteName="Contact"
+      screenOptions={{ headerShown: false }}
+    >
+      <BookmarksStack.Screen name="Contact" component={BookmarksScreen} />
     </BookmarksStack.Navigator>
   );
 };
@@ -131,8 +135,11 @@ const BottomTabNavigator = () => {
       })}
     >
       <BottomTab.Screen name="HomeTab" component={HomeStackNavigator} />
+      <BottomTab.Screen
+        name="BookmarksTab"
+        component={BookmarksStackNavigator}
+      />
       <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
-      <BottomTab.Screen name="BookmarksTab" component={BookmarksStackNavigator} />
     </BottomTab.Navigator>
   );
 };

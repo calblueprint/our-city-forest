@@ -1,6 +1,10 @@
+export { Add } from './Add';
 export { ArrowRight } from './ArrowRight';
 export { BackArrow } from './BackArrow';
 export { Bear } from './Bear';
+export { Bookmark } from './Bookmark';
+export { BookmarksSelected } from './BookmarksSelected';
+export { BookmarksUnselected } from './BookmarksUnselected';
 export { Call } from './Call';
 export { CallBig } from './CallBig';
 export { ContactSelected } from './ContactSelected';

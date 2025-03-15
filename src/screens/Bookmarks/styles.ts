@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     paddingVertical: 20,
     position: 'relative',
   },
@@ -15,68 +15,37 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  contactHeader: {
+  headerText: {
     ...typography.heading2,
     color: colors.primary,
-    marginBottom: 40,
+    textAlign: 'left',
   },
 
-  socialContainer: {
+  createText: {
+    fontWeight: 500,
+    fontSize: 18,
+    textAlign: 'left',
+  },
+
+  topContainer: {
+    paddingHorizontal: 27,
+    paddingTop: 16,
+    gap: 12,
+    marginBottom: 20,
+  },
+
+  createList: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 16,
-    flexWrap: 'wrap',
-    marginBottom: 64,
-  },
-
-  socialButtonContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 'auto',
-  },
-
-  socialButton: {
-    backgroundColor: colors.primary,
-    borderRadius: 24,
-    width: 48,
-    height: 48,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingTop: 9,
+    gap: 12,
+    marginBottom: 20,
   },
 
   divider: {
     height: 1,
     width: '100%',
     backgroundColor: colors.gray5,
-  },
-
-  linksButton: {
-    width: '100%',
-    height: 64,
-    justifyContent: 'center',
-  },
-
-  linksButtonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 24,
-  },
-
-  contactIcons: {
-    width: 28,
-    height: 28,
-  },
-
-  contactText: {
-    ...typography.mediumRegular,
-    color: colors.gray3,
-    textAlign: 'center',
-  },
-
-  signOutContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: 20,
   },
 });

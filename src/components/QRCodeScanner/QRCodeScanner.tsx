@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {
   BarcodeScanningResult,
   CameraView,
@@ -7,6 +13,7 @@ import {
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FlashCircle, XButton } from '@/icons';
+import { validateTreeExists } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -103,9 +110,29 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
             styles.scanButton,
             qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
           ]}
-          onPress={() =>
-            navigation.push('TreeInfo', { treeId: qrCodeData ?? '' })
-          }
+          onPress={async () => {
+            if (!qrCodeData) return;
+
+            try {
+              const exists = await validateTreeExists(qrCodeData);
+
+              if (exists) {
+                navigation.push('TreeInfo', { treeId: qrCodeData });
+              } else {
+                Alert.alert(
+                  'Invalid QR Code',
+                  'This QR code is not associated with any tree in our database.',
+                  [{ text: 'OK' }],
+                );
+              }
+            } catch {
+              Alert.alert(
+                'Error',
+                'Failed to validate the QR code. Please try again.',
+                [{ text: 'OK' }],
+              );
+            }
+          }}
           disabled={!qrCodeFound}
         >
           <Text style={styles.scanButtonText}>Scan</Text>

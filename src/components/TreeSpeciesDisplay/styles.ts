@@ -43,6 +43,11 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.gray5,
   },
 
+  propertiesHeading: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+
   propertiesContainer: {
     flexDirection: 'column',
     gap: 12,

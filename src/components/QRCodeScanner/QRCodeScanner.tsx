@@ -21,22 +21,31 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
   const [qrCodeData, setQrCodeData] = useState<string | null>(null);
   const [flashEnabled, setFlashEnabled] = useState<boolean>(false);
 
+  const lastQrDetectionTimeRef = useRef<number>(0); // timestamp ref
+
   const resetQrCodeFound = () => {
     setQrCodeFound(false);
     setQrCodeData(null);
   };
-  let qrCodeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
-    undefined,
-  );
 
   const handleBarcodeScanned = (data: BarcodeScanningResult) => {
     setQrCodeFound(true);
     setQrCodeData(data.data);
 
-    // Reset the QR code found state after not seeing a QR for 100ms
-    clearTimeout(qrCodeTimeoutRef.current);
-    qrCodeTimeoutRef.current = setTimeout(resetQrCodeFound, 100);
+    // store timestamp for when barcode is detected
+    lastQrDetectionTimeRef.current = Date.now();
   };
+
+  // reset status when qr code absent for too long
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (qrCodeFound && Date.now() - lastQrDetectionTimeRef.current > 500) {
+        resetQrCodeFound();
+      }
+    }, 200);
+
+    return () => clearInterval(intervalId);
+  }, [qrCodeFound]);
 
   useEffect(() => {
     // Request camera permissions if not granted on mount

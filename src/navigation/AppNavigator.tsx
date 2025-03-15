@@ -9,6 +9,7 @@ import {
   HomeSelected,
   HomeUnselected,
 } from '@/icons';
+import { BookmarksScreen } from '@/screens/Bookmarks/Bookmarks';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { LoginScreen } from '@/screens/Login/Login';
@@ -27,6 +28,7 @@ import {
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const ContactStack = createNativeStackNavigator<ContactStackParamList>();
+const BookmarksStack = createNativeStackNavigator<BottomTabParamList>();
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -82,6 +84,17 @@ const ContactStackNavigator = () => {
   );
 };
 
+// Bookmarks Stack Navigator
+const BookmarksStackNavigator = () => {
+  return (
+    <BookmarksStack.Navigator
+    initialRouteName="Bookmarks"
+      screenOptions={{ headerShown: false }}>
+        <ContactStack.Screen name="Contact" component={ContactScreen} />
+    </BookmarksStack.Navigator>
+  );
+};
+
 // Tab Navigator
 const BottomTabNavigator = () => {
   return (
@@ -106,12 +119,20 @@ const BottomTabNavigator = () => {
               <ContactUnselected width={30} height={30} />
             );
           }
+          if (route.name === 'BookmarksTab') {
+            return focused ? (
+              <BookmarksSelected width={30} height={30} />
+            ) : (
+              <BookmarksUnselected width={30} height={30} />
+            );
+          }
           return null;
         },
       })}
     >
       <BottomTab.Screen name="HomeTab" component={HomeStackNavigator} />
       <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
+      <BottomTab.Screen name="BookmarksTab" component={BookmarksStackNavigator} />
     </BottomTab.Navigator>
   );
 };

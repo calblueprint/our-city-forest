@@ -16,9 +16,14 @@ export type ContactStackParamList = {
   Directory: undefined;
 };
 
+export type BookmarksStackParamList = {
+  Contact: undefined;
+};
+
 export type BottomTabParamList = {
   HomeTab: NavigatorScreenParams<HomeStackParamList>;
   ContactTab: NavigatorScreenParams<ContactStackParamList>;
+  BookmarksTab: NavigatorScreenParams<BookmarksStackParamList>;
 };
 
 export type RootStackParamList = {

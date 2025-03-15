@@ -188,6 +188,52 @@ export const styles = StyleSheet.create({
 >>>>>>> 10d645f (recognize new icons)
   },
 
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 20,
+    color: '#999',
+    fontSize: 14,
+  },
+
+  speciesContainer: {
+    justifyContent: 'space-between',
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    rowGap: 16,
+  },
+
+  speciesImage: {
+    backgroundColor: colors.gray5,
+    width: '100%',
+    aspectRatio: 1.25,
+    borderRadius: 10,
+    resizeMode: 'cover',
+    marginBottom: 6,
+  },
+
+  folderCard: {
+    width: '48%',
+    overflow: 'hidden',
+  },
+
+  imageContainer: {
+    width: '100%',
+    overflow: 'hidden',
+    position: 'relative',
+  },
+
+  removeButton: {
+    padding: 8,
+    borderRadius: 20,
+    color: colors.black1,
+  },
+
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.primary,
+  },
+
   divider: {
     height: 1,
     width: '100%',

@@ -134,6 +134,7 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
 import React from 'react';
 import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SignOutButton } from '@/components/SignOutButton/SignOutButton';
 import {

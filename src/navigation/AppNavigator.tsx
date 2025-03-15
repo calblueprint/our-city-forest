@@ -7,6 +7,8 @@ import { useAuth } from '@/context/AuthContext';
 import {
   BookmarksSelected,
   BookmarksUnselected,
+  BookmarksSelected,
+  BookmarksUnselected,
   ContactSelected,
   ContactUnselected,
   HistorySelected,
@@ -182,6 +184,10 @@ const BottomTabNavigator = () => {
       {isAuthenticated && (
         <BottomTab.Screen name="HistoryTab" component={HistoryStackNavigator} />
       )}
+      <BottomTab.Screen
+        name="BookmarksTab"
+        component={BookmarksStackNavigator}
+      />
       <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
       <BottomTab.Screen
         name="BookmarksTab"

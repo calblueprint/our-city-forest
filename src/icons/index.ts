@@ -1,5 +1,6 @@
 export { AddIcon } from './AddIcon';
 export { ArrowLeft } from './ArrowLeft';
+export { Add } from './Add';
 export { ArrowRight } from './ArrowRight';
 export { BackArrow } from './BackArrow';
 export { Bear } from './Bear';

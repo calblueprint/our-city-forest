@@ -50,6 +50,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     activeFilters.shape,
   );
 
+  const treeShapeOptions = ['Any', ...Object.values(TreeSpeciesShape)];
+
   const [activeLitterFilters, setActiveLitterFilters] = useState({
     wet: activeFilters.litter.includes('wet'),
     dry: activeFilters.litter.includes('dry'),
@@ -83,7 +85,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
       height: Object.keys(activeHeightFilters).filter(
         key => activeHeightFilters[key as keyof typeof activeHeightFilters],
       ) as string[],
-      shape: selectedTreeShape,
+      shape: selectedTreeShape === 'Any' ? '' : selectedTreeShape,
       litter: Object.keys(activeLitterFilters).filter(
         key => activeLitterFilters[key as keyof typeof activeLitterFilters],
       ) as string[],
@@ -229,8 +231,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Tree Shape</Text>
               <Dropdown
-                options={Object.values(TreeSpeciesShape)}
-                value={selectedTreeShape}
+                options={treeShapeOptions}
+                value={selectedTreeShape || 'Any'}
                 onChange={setSelectedTreeShape}
               />
             </View>

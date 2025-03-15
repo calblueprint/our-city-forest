@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   modalView: {
     margin: 20,
     backgroundColor: 'white',
-    borderRadius: 20,
+    borderRadius: 33,
     padding: 35,
     alignItems: 'center',
     shadowColor: '#000',
@@ -36,14 +36,19 @@ export const styles = StyleSheet.create({
   },
 
   textStyle: {
+    fontFamily: 'SF Pro Display',
+    fontSize: 16,
     color: 'black',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: 400,
+    lineHeight: 0,
   },
 
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
+  headingBlock: {
+    paddingTop: 30,
+    paddingBottom: 27,
+    paddingRight: 21,
+    paddingLeft: 20,
+    gap: 15,
   },
 
   headingStyle: {
@@ -56,31 +61,33 @@ export const styles = StyleSheet.create({
 
   iconBlock: {
     flexDirection: 'row',
-    paddingHorizontal: 10,
     alignItems: 'center',
-    gap: 16,
+    paddingRight: 10,
+    gap: 10,
   },
 
   allIcons: {
-    padding: 10,
     flexDirection: 'column',
+    gap: 10,
   },
 
   allText: {
-    padding: 10,
     flexDirection: 'column',
+    justifyContent: 'center',
+    marginLeft: 6,
+    gap: 10,
   },
 
   item: {
     width: 60,
-    height: 60,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   itemText: {
-    width: 80,
-    height: 60,
+    width: 300,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },

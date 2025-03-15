@@ -4,9 +4,9 @@ import {
   Bear,
   Flash,
   Fruit,
+  InfoCircle,
   Leaf,
   Lightbulb,
-  InfoCircle,
   Location,
   Ruler,
   Shapes,
@@ -27,7 +27,6 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
   speciesData,
   treeData,
 }) => {
-  // ✅ Move useState inside the component body
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const uniqueLocations = treeData.filter(

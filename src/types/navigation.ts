@@ -9,6 +9,7 @@ export type HomeStackParamList = {
   QRCodeScanner: undefined;
   TreeInfo: { treeId: string };
   TreeSpeciesInfo: { speciesName: string };
+  ShrubSpeciesInfo: { speciesName: string };
 };
 
 export type ContactStackParamList = {

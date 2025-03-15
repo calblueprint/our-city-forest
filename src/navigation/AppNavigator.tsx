@@ -22,6 +22,8 @@ import {
   LoginStackParamList,
   RootStackParamList,
 } from '@/types/navigation';
+import { ShrubSearch } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
+import { ShrubSpeciesInfo } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
 
 // Stack and Tab Navigators
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();

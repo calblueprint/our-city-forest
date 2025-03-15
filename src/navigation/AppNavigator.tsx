@@ -183,6 +183,10 @@ const BottomTabNavigator = () => {
         <BottomTab.Screen name="HistoryTab" component={HistoryStackNavigator} />
       )}
       <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
+      <BottomTab.Screen
+        name="BookmarksTab"
+        component={BookmarksStackNavigator}
+      />
     </BottomTab.Navigator>
   );
 };

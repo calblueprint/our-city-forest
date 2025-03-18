@@ -6,6 +6,7 @@ export type LoginStackParamList = {
 
 export type HomeStackParamList = {
   TreeSpeciesSearch: undefined;
+  ShrubSpeciesSearch: undefined;
   QRCodeScanner: undefined;
   TreeInfo: { treeId: string };
   TreeSpeciesInfo: { speciesName: string };

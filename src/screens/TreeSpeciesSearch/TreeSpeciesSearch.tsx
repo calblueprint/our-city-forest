@@ -18,6 +18,7 @@ import { HomeStackParamList } from '@/types/navigation';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { styles } from './styles';
+import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 
 type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -62,6 +63,8 @@ export const TreeSpeciesSearchScreen: React.FC<
   });
 
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
+  
+  const [isTreeSpecies, setIsTreeSpecies] = useState(true);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -186,7 +189,18 @@ export const TreeSpeciesSearchScreen: React.FC<
           activeFilters={activeFilters}
           onActiveFilterChange={setActiveFilters}
         />
+
+      <View style={styles.treeShrubToggle}>
+      <ToggleSwitch
+        value={isTreeSpecies}
+        onValueChange={setIsTreeSpecies}
+        trueLabel="Trees"
+        falseLabel="Shrubs"
+      
+      />
       </View>
+      </View>
+
       <View style={styles.divider}></View>
 
       <FlatList

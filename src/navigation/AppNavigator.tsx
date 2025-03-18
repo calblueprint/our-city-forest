@@ -25,8 +25,8 @@ import {
   LoginStackParamList,
   RootStackParamList,
 } from '@/types/navigation';
-import { ShrubSearch } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
-import { ShrubSpeciesInfo } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
+import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
+import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
 
 // Stack and Tab Navigators
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();
@@ -53,8 +53,14 @@ const HomeStackNavigator = () => {
     <HomeStack.Navigator
       initialRouteName="Home"
       screenOptions={{ headerShown: false }}
+
     >
       <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen
+        name="ShrubSpeciesSearch"
+        component={ShrubSpeciesSearchScreen}
+      />
+
       <HomeStack.Screen
         name="TreeSpeciesSearch"
         component={TreeSpeciesSearchScreen}
@@ -80,6 +86,8 @@ const HomeStackNavigator = () => {
         component={ShrubSpeciesInfoScreen}
       />
     </HomeStack.Navigator>
+
+
   );
 };
 

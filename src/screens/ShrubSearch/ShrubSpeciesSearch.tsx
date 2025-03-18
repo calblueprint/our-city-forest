@@ -11,6 +11,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Scanner } from '@/icons';
 import {
   getAllShrubSpecies,
+  getAvailableShrubSpecies,
 } from '@/supabase/queries/shrub_species';
 import { HomeStackParamList } from '@/types/navigation';
 import { ShrubSpecies } from '@/types/shrub_species';
@@ -27,17 +28,22 @@ type shrubSpeciesCard = {
   name: string;
   imageURL: string;
   availableStock: number;
-
-  
+  isEvergreen: boolean;
+  dimension: string;
+  bloomType: string;
+  sunExposure: string;
+  soilNeeds: string;
+  growthRate: string;
   waterUse: string;
   isCaliforniaNative: boolean;
 };
 
 type ActiveFilters = {
-  height: string[];
-  shape: string;
-  litter: string[];
-  water: string[];
+  max_height: string[];
+  bloom: string[];
+  sun_exposure: string[];
+  water_use: string[];
+  growth_rate: string[];    
   other: string[];
 };
 
@@ -49,10 +55,11 @@ export const ShrubSpeciesSearchScreen: React.FC<
   );
   const [searchText, setSearchText] = useState<string>('');
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
-    height: [],
-    shape: '',
-    litter: [],
-    water: [],
+    max_height: [],
+    bloom: [],
+    sun_exposure: [],
+    water_use: [],
+    growth_rate: [],
     other: [],
   });
   
@@ -104,28 +111,28 @@ export const ShrubSpeciesSearchScreen: React.FC<
   }, [isUserAdmin]);
 
   const applyFilters = (shrub: shrubSpeciesCard) => {
-    if (activeFilters.height.length > 0) {
-      const maxHeight = parseFloat(shrub.maxHeight);
-      const matchesHeight = activeFilters.height.some(filter => {
-        if (filter === 'small') return maxHeight < 40;
-        if (filter === 'medium') return maxHeight >= 40 && maxHeight <= 60;
-        if (filter === 'large') return maxHeight > 60;
+    if (activeFilters.max_height.length > 0) {
+      const height = Number(shrub.dimension.split("x", 1)[0]);
+      const matchesHeight = activeFilters.max_height.some(filter => {
+        if (filter === 'low growing') return height < 2;
+        if (filter === 'not low growing') return height >= 2;
         return false; // If filter is null or invalid
       });
       if (!matchesHeight) return false;
     }
-    if (activeFilters.shape && activeFilters.shape !== shrub.shrubShape) {
+    if (activeFilters.bloom.length > 0 && !activeFilters.bloom.includes(shrub.bloomType)) {
+      return false;
+    }
+    if (activeFilters.sun_exposure.length > 0 && !activeFilters.sun_exposure.includes(shrub.sunExposure)) {
       return false;
     }
     if (
-      activeFilters.litter.length > 0 &&
-      !activeFilters.litter.includes(shrub.litterType)
+      activeFilters.water_use.length > 0 && !activeFilters.water_use.includes(shrub.waterUse)
     ) {
       return false;
     }
     if (
-      activeFilters.water.length > 0 &&
-      !activeFilters.water.includes(shrub.waterUse)
+      activeFilters.growth_rate.length > 0 && !activeFilters.growth_rate.includes(shrub.growthRate)
     ) {
       return false;
     }
@@ -134,11 +141,6 @@ export const ShrubSpeciesSearchScreen: React.FC<
         if (option === 'californiaNative')
           return shrub.isCaliforniaNative || false;
         if (option === 'evergreen') return shrub.isEvergreen || false;
-        if (option === 'powerlineFriendly')
-          return shrub.isPowerlineFriendly || false;
-        if (option === 'lowRootDamage')
-          return shrub.rootDamagePotential === 'low';
-        return false;
       });
       if (!matchesOther) return false;
     }

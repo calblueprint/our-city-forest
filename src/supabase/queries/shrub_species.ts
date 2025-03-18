@@ -33,6 +33,18 @@ export const getAllShrubSpecies = async (): Promise<ShrubSpecies[]> => {
   return data as ShrubSpecies[];
 };
 
+export const getAvailableShrubSpecies = async () => {
+  const { data, error } = await supabase.rpc('get_available_shrub_species');
+
+  if (error) {
+    throw new Error(
+      `Error retrieving available shrub species: ${error.message}`,
+    );
+  }
+
+  return data;
+};
+
 export const getShrubSpecies = async (
   speciesName: string,
 ): Promise<ShrubSpecies> => {

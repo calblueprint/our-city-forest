@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Add } from '@/icons'; 
+import { Add } from '@/icons';
 import { BookmarksStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -26,13 +26,13 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
       </View>
       <View style={styles.divider}></View>
       <View style={styles.createList}>
-      <TouchableOpacity
-        style={styles.createList}
-        onPress={handleCreateNewFolder} 
-      >
-        <Add />
-        <Text style={styles.createText}>Create new list</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.createList}
+          onPress={handleCreateNewFolder}
+        >
+          <Add />
+          <Text style={styles.createText}>Create new list</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

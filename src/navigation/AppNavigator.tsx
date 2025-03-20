@@ -91,10 +91,10 @@ const ContactStackNavigator = () => {
 const BookmarksStackNavigator = () => {
   return (
     <BookmarksStack.Navigator
-      initialRouteName="Contact"
+      initialRouteName="BookmarkButton"
       screenOptions={{ headerShown: false }}
     >
-      <BookmarksStack.Screen name="Contact" component={BookmarksScreen} />
+      <BookmarksStack.Screen name="BookmarkButton" component={BookmarksScreen} />
     </BookmarksStack.Navigator>
   );
 };

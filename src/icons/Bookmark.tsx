@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Svg, { Rect, Path, SvgProps } from 'react-native-svg';
+import Svg, { Path, Rect, SvgProps } from 'react-native-svg';
 
 export const Bookmark = (props: SvgProps) => (
   <Svg width={31} height={31} viewBox="0 0 31 31" fill="none" {...props}>

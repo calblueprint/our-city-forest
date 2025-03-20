@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Scanner, Bookmark } from '@/icons';
+import { Bookmark, Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
   getAvailableTreeSpecies,
@@ -62,6 +62,7 @@ export const TreeSpeciesSearchScreen: React.FC<
   });
 
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -102,6 +103,7 @@ export const TreeSpeciesSearchScreen: React.FC<
     };
     loadTreeSpeciesData();
   }, [isUserAdmin]);
+
 
   const applyFilters = (tree: treeSpeciesCard) => {
     if (activeFilters.height.length > 0) {
@@ -164,9 +166,13 @@ export const TreeSpeciesSearchScreen: React.FC<
             uri: item.imageURL,
           }}
           style={styles.speciesImage}
-        /> 
+        />
         <View style={styles.overlaySvg}>
-          <Bookmark width={30} height={30}/>
+        <TouchableOpacity onPress={() => setModalVisible(true)}> 
+            <Bookmark width={30} height={30} />
+          </TouchableOpacity>
+
+          {/* <BookmarkModal visible={modalVisible} onClose={() => setModalVisible(false)} /> */}
         </View>
       </View>
       <Text style={styles.speciesName} numberOfLines={1}>

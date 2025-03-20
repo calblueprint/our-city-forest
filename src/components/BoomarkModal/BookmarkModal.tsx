@@ -192,3 +192,5 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
     </Modal>
   );
 };
+
+export default BottomSheet;

@@ -154,7 +154,6 @@ export const TreeSpeciesSearchScreen: React.FC<
     loadTreeSpeciesData();
   }, [isUserAdmin]);
 
-
   const applyFilters = (tree: treeSpeciesCard) => {
     if (activeFilters.height.length > 0) {
       const maxHeight = parseFloat(tree.maxHeight);
@@ -270,11 +269,11 @@ export const TreeSpeciesSearchScreen: React.FC<
           style={styles.speciesImage}
         />
         <View style={styles.overlaySvg}>
-        <TouchableOpacity onPress={() => setModalVisible(true)}> 
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <Bookmark width={30} height={30} />
           </TouchableOpacity>
 
-          {/* <BookmarkModal visible={modalVisible} onClose={() => setModalVisible(false)} /> */}
+          <BookmarkModal visible={modalVisible} onClose={() => setModalVisible(false)} />
         </View>
       </View>
       <Text style={styles.speciesName} numberOfLines={1}>

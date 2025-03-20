@@ -1,9 +1,10 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
 import {
   Bear,
   Flash,
   Fruit,
+  InfoCircle,
   Leaf,
   Lightbulb,
   Location,
@@ -14,20 +15,25 @@ import {
 } from '@/icons';
 import { formatEnumKey, Tree } from '@/types/tree';
 import { TreeSpecies } from '@/types/tree_species';
+import TreesInformationCard from '../TreesInformationCard/TreesInformationCard';
 import { styles } from './styles';
 
 type TreeSpeciesDisplayProps = {
   speciesData: Partial<TreeSpecies>;
   treeData: Tree[];
 };
+
 export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
   speciesData,
   treeData,
 }) => {
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+
   const uniqueLocations = treeData.filter(
     (tree, index, self) =>
       index === self.findIndex(t => t.bank === tree.bank && t.row === tree.row),
   );
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{speciesData.description}</Text>
@@ -43,7 +49,17 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
       <View style={styles.divider}></View>
 
       <View style={styles.propertiesContainer}>
-        <Text style={styles.header}>Properties</Text>
+        <View style={styles.propertiesHeading}>
+          <Text style={styles.header}>Properties</Text>
+          <Pressable onPress={() => setModalVisible(true)}>
+            <InfoCircle />
+          </Pressable>
+          <TreesInformationCard
+            visible={modalVisible}
+            onClose={() => setModalVisible(false)}
+          ></TreesInformationCard>
+        </View>
+
         <View style={styles.properties}>
           {speciesData.max_height_ft && (
             <View style={styles.property}>
@@ -127,7 +143,6 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
                 <Location />
                 <Text style={styles.propertyText}>
                   Bank #{tree.bank ?? 0} {'  '}|{'  '} Row #{tree.row ?? 0}
-                  {/* TODO: Needs to support range of rows */}
                 </Text>
               </View>
             ))}

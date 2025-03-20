@@ -94,7 +94,10 @@ const BookmarksStackNavigator = () => {
       initialRouteName="BookmarkButton"
       screenOptions={{ headerShown: false }}
     >
-      <BookmarksStack.Screen name="BookmarkButton" component={BookmarksScreen} />
+      <BookmarksStack.Screen
+        name="BookmarkButton"
+        component={BookmarksScreen}
+      />
     </BookmarksStack.Navigator>
   );
 };

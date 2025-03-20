@@ -1,22 +1,108 @@
-import React from "react";
-import { Modal, View, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useRef } from 'react';
+import {
+  Animated,
+  Dimensions,
+  Modal,
+  PanResponder,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
+import { styles } from './styles';
+import { AddIcon } from '@/icons';
 
-interface BookmarkModalProps {
+interface BottomSheetProps {
+  onClose: () => void; 
   visible: boolean;
-  onClose: () => void;
+  children?: React.ReactNode; 
 }
 
-export const BookmarkModal: React.FC<BookmarkModalProps> = ({ visible, onClose }) => {
+const BottomSheet: React.FC<BottomSheetProps> = ({ onClose, visible, children }) => {
+  const screenHeight = Dimensions.get('screen').height;
+  const panY = useRef(new Animated.Value(screenHeight)).current;
+
+  useEffect(() => {
+    if (visible) {
+      Animated.timing(panY, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [visible]);
+
+  const closeAnim = Animated.timing(panY, {
+    toValue: screenHeight,
+    duration: 100,
+    useNativeDriver: true,
+  });
+
+  const handleDismiss = () => {
+    closeAnim.start(() => onClose());
+  };
+
+  const handleCreateNewFolder = () => {
+    console.log('Creating a new bookmark folder...');
+    ///create a new modal
+  };
+
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderMove: (_, gestureState) => {
+      if (gestureState.dy > 0) {
+        panY.setValue(gestureState.dy);
+      }
+    },
+    onPanResponderRelease: (_, gestureState) => {
+      if (gestureState.dy > 100) {
+        handleDismiss();
+      } else {
+        Animated.timing(panY, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      }
+    },
+  });
+
   return (
-    <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "rgba(0,0,0,0.5)" }}>
-        <View style={{ width: 300, padding: 20, backgroundColor: "white", borderRadius: 10 }}>
-          <Text>Bookmarks Modal</Text>
-          <TouchableOpacity onPress={onClose}>
-            <Text>Close</Text>
-          </TouchableOpacity>
+    <Modal
+      animationType="fade"
+      visible={visible}
+      transparent
+      onRequestClose={handleDismiss}
+    >
+      <TouchableWithoutFeedback onPress={handleDismiss}>
+        <View style={styles.overlay}>
+          <Animated.View
+            style={{ ...styles.container, transform: [{ translateY: panY }] }}
+            {...panResponder.panHandlers}
+          >
+            <View style={styles.sliderIndicatorRow}>
+              <View style={styles.sliderIndicator} />
+            </View>
+            <View> 
+              <Text style = {styles.saveText}>Save to Bookmarks</Text>
+            </View>
+            <View style={styles.foldersList}>
+              <View style={styles.createList}>
+                      <TouchableOpacity
+                        style={styles.createList}
+                        onPress={handleCreateNewFolder}
+                      >
+                        <AddIcon />
+                        <Text style={styles.createText}>Create new list</Text>
+                      </TouchableOpacity>
+            </View>
+            </View>
+          </Animated.View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
+
+export default BottomSheet;

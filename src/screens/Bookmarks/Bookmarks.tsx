@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Add } from '@/icons';
+import { AddIcon } from '@/icons';
 import { BookmarksStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -30,7 +30,7 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
           style={styles.createList}
           onPress={handleCreateNewFolder}
         >
-          <Add />
+          <AddIcon />
           <Text style={styles.createText}>Create new list</Text>
         </TouchableOpacity>
       </View>

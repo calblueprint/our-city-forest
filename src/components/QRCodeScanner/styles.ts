@@ -49,6 +49,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.secondary,
     borderRadius: 12,
+    overflow: 'hidden',
   },
 
   qrCodeFoundCamera: {

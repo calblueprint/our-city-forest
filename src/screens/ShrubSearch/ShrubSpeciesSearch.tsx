@@ -15,9 +15,12 @@ import {
 } from '@/supabase/queries/shrub_species';
 import { HomeStackParamList } from '@/types/navigation';
 import { ShrubSpecies } from '@/types/shrub_species';
-import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { ShrubSearchBar } from '../../components/ShrubSearchBar/ShrubSearchBar';
 import { styles } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
+
+
 
 type ShrubSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -36,6 +39,7 @@ type shrubSpeciesCard = {
   growthRate: string;
   waterUse: string;
   isCaliforniaNative: boolean;
+  isLowGrowing: boolean;
 };
 
 type ActiveFilters = {
@@ -64,6 +68,9 @@ export const ShrubSpeciesSearchScreen: React.FC<
   });
   
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
+
+  const [isShrubSpecies, setIsShrubSpecies] = useState(true);
+  
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -144,6 +151,7 @@ export const ShrubSpeciesSearchScreen: React.FC<
       });
       if (!matchesOther) return false;
     }
+
     return true;
   };
 
@@ -157,6 +165,7 @@ export const ShrubSpeciesSearchScreen: React.FC<
     <TouchableOpacity
       onPress={() =>
         navigation.push('ShrubSpeciesInfo', { speciesName: item.name })
+        
       }
       style={styles.speciesCard}
     >
@@ -182,7 +191,7 @@ export const ShrubSpeciesSearchScreen: React.FC<
           </Text>
           <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
         </View>
-        <SearchBar
+        <ShrubSearchBar
           searchText={searchText}
           onSearchTextChange={setSearchText}
           activeFilters={activeFilters}
@@ -190,6 +199,23 @@ export const ShrubSpeciesSearchScreen: React.FC<
         />
       </View>
       <View style={styles.divider}></View>
+      <View style={styles.treeShrubToggle}>
+            <ToggleSwitch
+              value={isShrubSpecies}
+              onValueChange={(newValue) => {
+                setIsShrubSpecies(newValue);
+                if (newValue) {
+                  navigation.navigate('TreeSearchFilter');
+                  //navigation.navigate('TreeSpeciesInfo', { TreeSpeciesInfoScreen }); // Navigates back to this page but with tree-specific view
+                } else {
+                  navigation.navigate('ShrubSearchFilter'); // Replace with the actual screen name
+                }
+              }}
+              trueLabel="Trees"
+              falseLabel="Shrubs"
+              
+            />
+      </View>
 
       <FlatList
         data={filteredShrubSpeciesCards}
@@ -204,6 +230,7 @@ export const ShrubSpeciesSearchScreen: React.FC<
           </Text>
         }
       />
+
     </SafeAreaView>
   );
 };

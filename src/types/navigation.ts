@@ -11,6 +11,8 @@ export type HomeStackParamList = {
   TreeInfo: { treeId: string };
   TreeSpeciesInfo: { speciesName: string };
   ShrubSpeciesInfo: { speciesName: string };
+  ShrubSearchFilter: undefined;
+  TreeSearchFilter: undefined;
 };
 
 export type ContactStackParamList = {

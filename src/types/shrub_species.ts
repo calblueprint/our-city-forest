@@ -10,7 +10,7 @@ export type ShrubSpecies = {
   dormancy: string;
   flower_color?: string;
   bloom: ShrubSpeciesBloomType;
-  growth_rate: string;
+  growth_rate: ShrubSpeciesGrowthType;
   sun_exposure: ShrubSpeciesSunExposure;
   soil_needs: ShrubSpeciesSoilNeeds;
   water_use: ShrubSpeciesWaterUse;
@@ -49,6 +49,12 @@ export enum ShrubSpeciesWaterUse {
   Low = 'low',
   Moderate = 'moderate',
   High = 'high',
+}
+
+export enum ShrubSpeciesGrowthType {
+  Slow = 'slow',
+  Moderate = 'moderate',
+  Fast = 'fast'
 }
 
 export const toTitleCase = (str: string) =>

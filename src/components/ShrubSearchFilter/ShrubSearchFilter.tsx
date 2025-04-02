@@ -9,31 +9,32 @@ import {
 } from 'react-native';
 import { Checkbox } from '@/components/Checkbox/Checkbox';
 import { Dropdown } from '@/components/Dropdown/Dropdown';
-import { TreeSpeciesShape } from '@/types/tree_species';
 import { styles } from './styles';
 
-type SearchFilterProps = {
+type ShrubSearchFilterProps = {
   isModalVisible: boolean;
   onClose: () => void;
   activeFilters: {
-    height: string[];
-    shape: string;
-    litter: string[];
-    water: string[];
+    max_height: string[];
+    bloom: string[];
+    sun_exposure: string[];
+    water_use: string[];
+    growth_rate: string[];    
     other: string[];
   };
   onActiveFilterChange: React.Dispatch<
     React.SetStateAction<{
-      height: string[];
-      shape: string;
-      litter: string[];
-      water: string[];
+      max_height: string[];
+      bloom: string[];
+      sun_exposure: string[];
+      water_use: string[];
+      growth_rate: string[];    
       other: string[];
     }>
   >;
 };
 
-export const SearchFilter: React.FC<SearchFilterProps> = ({
+export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
   isModalVisible,
   onClose,
   activeFilters,
@@ -41,56 +42,68 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 }) => {
   // Individual filter states
   const [activeHeightFilters, setActiveHeightFilters] = useState({
-    small: activeFilters.height.includes('small'),
-    medium: activeFilters.height.includes('medium'),
-    large: activeFilters.height.includes('large'),
+    lowGrowing: activeFilters.max_height.includes('low growing'),
+    notLowGrowing: activeFilters.max_height.includes('not low growing'),
   });
 
-  const [selectedTreeShape, setSelectedTreeShape] = useState<string>(
-    activeFilters.shape,
+  const [activeBloomFilters, setActiveBloomFilters] = useState({
+    winter: activeFilters.bloom.includes('winter'),
+    spring: activeFilters.bloom.includes('spring'),
+    summer: activeFilters.bloom.includes('summer'),
+    fall: activeFilters.bloom.includes('fall')
+  }
   );
 
-  const treeShapeOptions = ['Any', ...Object.values(TreeSpeciesShape)];
-
-  const [activeLitterFilters, setActiveLitterFilters] = useState({
-    wet: activeFilters.litter.includes('wet'),
-    dry: activeFilters.litter.includes('dry'),
+  const [activeSunFilters, setActiveSunFilters] = useState({
+    fullSun: activeFilters.sun_exposure.includes('full sun'),
+    partialShade: activeFilters.sun_exposure.includes('partial shade'),
+    coarseGrained: activeFilters.sun_exposure.includes('coarse-grained')
   });
 
   const [activeWaterFilters, setActiveWaterFilters] = useState({
-    low: activeFilters.water.includes('low'),
-    moderate: activeFilters.water.includes('moderate'),
-    high: activeFilters.water.includes('high'),
+    low: activeFilters.water_use.includes('low'),
+    moderate: activeFilters.water_use.includes('moderate'),
+    high: activeFilters.water_use.includes('high'),
+  });
+
+  const [activeGrowthFilters, setActiveGrowthFilters] = useState({
+    low: activeFilters.water_use.includes('slow'),
+    moderate: activeFilters.water_use.includes('moderate'),
+    high: activeFilters.water_use.includes('fast'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({
     californiaNative: activeFilters.other.includes('californiaNative'),
     evergreen: activeFilters.other.includes('evergreen'),
-    powerlineFriendly: activeFilters.other.includes('powerlineFriendly'),
-    lowRootDamage: activeFilters.other.includes('lowRootDamage'),
   });
 
   const anyFiltersActive = () => {
     return (
       Object.values(activeHeightFilters).some(Boolean) ||
-      !!selectedTreeShape ||
-      Object.values(activeLitterFilters).some(Boolean) ||
+      Object.values(activeSunFilters).some(Boolean) ||
+      Object.values(activeBloomFilters).some(Boolean) ||
       Object.values(activeWaterFilters).some(Boolean) ||
+      Object.values(activeGrowthFilters).some(Boolean) ||
       Object.values(activeOtherFilters).some(Boolean)
     );
   };
 
   useEffect(() => {
     onActiveFilterChange({
-      height: Object.keys(activeHeightFilters).filter(
+      max_height: Object.keys(activeHeightFilters).filter(
         key => activeHeightFilters[key as keyof typeof activeHeightFilters],
       ) as string[],
-      shape: selectedTreeShape === 'Any' ? '' : selectedTreeShape,
-      litter: Object.keys(activeLitterFilters).filter(
-        key => activeLitterFilters[key as keyof typeof activeLitterFilters],
+      bloom: Object.keys(activeBloomFilters).filter(
+        key => activeBloomFilters[key as keyof typeof activeBloomFilters],
       ) as string[],
-      water: Object.keys(activeWaterFilters).filter(
+      sun_exposure: Object.keys(activeSunFilters).filter(
+        key => activeSunFilters[key as keyof typeof activeSunFilters],
+      ) as string[],
+      water_use: Object.keys(activeWaterFilters).filter(
         key => activeWaterFilters[key as keyof typeof activeWaterFilters],
+      ) as string[],
+      growth_rate: Object.keys(activeGrowthFilters).filter(
+        key => activeGrowthFilters[key as keyof typeof activeGrowthFilters],
       ) as string[],
       other: Object.keys(activeOtherFilters).filter(
         key => activeOtherFilters[key as keyof typeof activeOtherFilters],
@@ -98,8 +111,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     });
   }, [
     activeHeightFilters,
-    selectedTreeShape,
-    activeLitterFilters,
+    activeBloomFilters,
+    activeSunFilters,
     activeWaterFilters,
     activeOtherFilters,
     onActiveFilterChange,
@@ -107,8 +120,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 
   useEffect(() => {}, [
     activeHeightFilters,
-    selectedTreeShape,
-    activeLitterFilters,
+    activeBloomFilters,
+    activeSunFilters,
     activeWaterFilters,
     activeOtherFilters,
   ]);
@@ -120,8 +133,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     }));
   };
 
-  const toggleLitterFilter = (key: keyof typeof activeLitterFilters) => {
-    setActiveLitterFilters(prev => ({
+  const toggleBloomFilter = (key: keyof typeof activeBloomFilters) => {
+    setActiveBloomFilters(prev => ({
       ...prev,
       [key]: !prev[key],
     }));
@@ -143,14 +156,14 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 
   const resetFilters = () => {
     setActiveHeightFilters({
-      small: false,
-      medium: false,
-      large: false,
+      lowGrowing: false,
+      notLowGrowing: false
     });
-    setSelectedTreeShape('');
-    setActiveLitterFilters({
-      wet: false,
-      dry: false,
+    setActiveBloomFilters({
+      winter: false,
+      spring: false,
+      summer: false,
+      fall: false,
     });
     setActiveWaterFilters({
       low: false,
@@ -160,14 +173,13 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     setActiveOtherFilters({
       californiaNative: false,
       evergreen: false,
-      powerlineFriendly: false,
-      lowRootDamage: false,
     });
     onActiveFilterChange({
-      height: [],
-      shape: '',
-      litter: [],
-      water: [],
+      max_height: [],
+      bloom: [],
+      sun_exposure: [],
+      water_use: [],
+      growth_rate: [],
       other: [],
     });
   };
@@ -210,46 +222,14 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
               <Text style={styles.subheaderText}>Height</Text>
               <View style={styles.checkboxGroup}>
                 <Checkbox
-                  label="Small (&lt; 40')"
-                  isChecked={activeHeightFilters.small}
-                  onChange={() => toggleHeightFilter('small')}
+                  label="Low Growing (&lt; 2')"
+                  isChecked={activeHeightFilters.lowGrowing}
+                  onChange={() => toggleHeightFilter('lowGrowing')}
                 />
                 <Checkbox
-                  label="Medium (40 - 60')"
-                  isChecked={activeHeightFilters.medium}
-                  onChange={() => toggleHeightFilter('medium')}
-                />
-                <Checkbox
-                  label="Large (60' +)"
-                  isChecked={activeHeightFilters.large}
-                  onChange={() => toggleHeightFilter('large')}
-                />
-              </View>
-            </View>
-
-            {/* Tree Shape */}
-            <View style={styles.filterProperties}>
-              <Text style={styles.subheaderText}>Tree Shape</Text>
-              <Dropdown
-                options={treeShapeOptions}
-                value={selectedTreeShape || 'Any'}
-                onChange={setSelectedTreeShape}
-              />
-            </View>
-
-            {/* Litter Type */}
-            <View style={styles.filterProperties}>
-              <Text style={styles.subheaderText}>Litter Type</Text>
-              <View style={styles.checkboxGroup}>
-                <Checkbox
-                  label="Wet Fruit"
-                  isChecked={activeLitterFilters.wet}
-                  onChange={() => toggleLitterFilter('wet')}
-                />
-                <Checkbox
-                  label="Dry Fruit"
-                  isChecked={activeLitterFilters.dry}
-                  onChange={() => toggleLitterFilter('dry')}
+                  label="Not Low Growing (2' +)"
+                  isChecked={activeHeightFilters.notLowGrowing}
+                  onChange={() => toggleHeightFilter('notLowGrowing')}
                 />
               </View>
             </View>
@@ -289,16 +269,6 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                   label="Evergreen"
                   isChecked={activeOtherFilters.evergreen}
                   onChange={() => toggleOtherFilter('evergreen')}
-                />
-                <Checkbox
-                  label="Powerline friendly"
-                  isChecked={activeOtherFilters.powerlineFriendly}
-                  onChange={() => toggleOtherFilter('powerlineFriendly')}
-                />
-                <Checkbox
-                  label="Low root damage"
-                  isChecked={activeOtherFilters.lowRootDamage}
-                  onChange={() => toggleOtherFilter('lowRootDamage')}
                 />
               </View>
             </View>

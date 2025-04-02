@@ -16,7 +16,7 @@ import {
 } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
-import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { TreeSearchBar } from '../../components/TreeSearchBar/TreeSearchBar';
 import { styles } from './styles';
 import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 
@@ -183,7 +183,7 @@ export const TreeSpeciesSearchScreen: React.FC<
           </Text>
           <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
         </View>
-        <SearchBar
+        <TreeSearchBar
           searchText={searchText}
           onSearchTextChange={setSearchText}
           activeFilters={activeFilters}

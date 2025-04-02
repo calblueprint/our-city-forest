@@ -49,7 +49,7 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
       if (qrCodeFound && Date.now() - lastQrDetectionTimeRef.current > 500) {
         resetQrCodeFound();
       }
-    }, 200);
+    }, 500);
 
     return () => clearInterval(intervalId);
   }, [qrCodeFound]);

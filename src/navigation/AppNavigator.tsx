@@ -24,6 +24,7 @@ import {
 } from '@/types/navigation';
 import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
 import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
+import { HistorySpecies } from '@/screens/HistorySpecies/HistorySpecies';
 
 // Stack and Tab Navigators
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();

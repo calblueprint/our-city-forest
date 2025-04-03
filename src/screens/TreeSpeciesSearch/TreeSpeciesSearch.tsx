@@ -192,11 +192,21 @@ export const TreeSpeciesSearchScreen: React.FC<
 
       <View style={styles.treeShrubToggle}>
       <ToggleSwitch
+        //value={isTreeSpecies}
+        //onValueChange={setIsTreeSpecies}
+        //trueLabel="Trees"
+        //falseLabel="Shrubs"
         value={isTreeSpecies}
-        onValueChange={setIsTreeSpecies}
-        trueLabel="Trees"
-        falseLabel="Shrubs"
-      
+              onValueChange={(newValue) => {
+                setIsTreeSpecies(newValue);
+                if (newValue) {
+                  navigation.navigate('TreeSpeciesSearch');
+                } else {
+                  navigation.navigate('ShrubSpeciesSearch'); // Replace with the actual screen name
+                }
+              }}
+              trueLabel="Trees"
+              falseLabel="Shrubs"
       />
       </View>
       </View>

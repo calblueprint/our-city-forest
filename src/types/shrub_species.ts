@@ -63,4 +63,7 @@ export const toTitleCase = (str: string) =>
     text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
   );
 
-export const formatEnumKey = (s: string) => toTitleCase(s.replace(/_/g, ' '));
+export const formatEnumKey = (s?: string) => {
+  if (typeof s !== 'string') return '';
+  return s.replace(/_/g, ' ').toLowerCase();
+};

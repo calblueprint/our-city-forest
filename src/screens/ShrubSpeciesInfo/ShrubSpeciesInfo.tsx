@@ -3,7 +3,7 @@ import { ImageBackground, ScrollView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ShrubSpeciesDisplay } from '@/components/ShrubSpeciesDisplay/ShrubSpeciesDisplay';
-import { BackArrow, ScanBarcode } from '@/icons';
+import { BackArrow } from '@/icons';
 import { getShrubSpecies } from '@/supabase/queries/shrub_species';
 import { HomeStackParamList } from '@/types/navigation';
 import { ShrubSpecies } from '@/types/shrub_species';

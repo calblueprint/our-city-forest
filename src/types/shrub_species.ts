@@ -19,31 +19,29 @@ export type ShrubSpecies = {
   image_url?: string;
 };
 
-
 export enum ShrubSpeciesStemType {
-  MultiStem = "multi-stem",
-  SingleStem = "single-stem",
+  MultiStem = 'multi-stem',
+  SingleStem = 'single-stem',
 }
 
 export enum ShrubSpeciesBloomType {
-  Spring = "spring",
-  Summer = "summer",
-  Fall = "fall",
-  Winter = "winter",
+  Spring = 'spring',
+  Summer = 'summer',
+  Fall = 'fall',
+  Winter = 'winter',
 }
 
 export enum ShrubSpeciesSunExposure {
-  FullSun = "full sun",
-  PartialShade = "partial shade",
-  Shade = "shade",
+  FullSun = 'full sun',
+  PartialShade = 'partial shade',
+  Shade = 'shade',
 }
 
 export enum ShrubSpeciesSoilNeeds {
-  WellDraining = "well-draining",
-  Clay = "clay",
-  CoarseGrained = "coarse-grained",
+  WellDraining = 'well-draining',
+  Clay = 'clay',
+  CoarseGrained = 'coarse-grained',
 }
-
 
 export enum ShrubSpeciesWaterUse {
   Low = 'low',
@@ -54,7 +52,7 @@ export enum ShrubSpeciesWaterUse {
 export enum ShrubSpeciesGrowthType {
   Slow = 'slow',
   Moderate = 'moderate',
-  Fast = 'fast'
+  Fast = 'fast',
 }
 
 export const toTitleCase = (str: string) =>

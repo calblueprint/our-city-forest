@@ -27,7 +27,8 @@ export const ShrubSpeciesInfoScreen: React.FC<ShrubSpeciesInfoScreenProps> = ({
     (async () => {
       const data = await getShrubSpecies(speciesName);
       setSpeciesData(data);
-    })();})
+    })();
+  });
 
   return (
     <View style={styles.container}>
@@ -42,7 +43,9 @@ export const ShrubSpeciesInfoScreen: React.FC<ShrubSpeciesInfoScreenProps> = ({
             </TouchableOpacity>
           </View>
           <View style={styles.pill}>
-            <Text style={styles.pillText}>{speciesData.available_stock} left</Text>
+            <Text style={styles.pillText}>
+              {speciesData.available_stock} left
+            </Text>
           </View>
         </ImageBackground>
         <View style={styles.body}>

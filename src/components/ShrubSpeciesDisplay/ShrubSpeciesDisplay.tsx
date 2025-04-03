@@ -11,7 +11,7 @@ import {
   Warning,
   WateringCan,
 } from '@/icons';
-import { ShrubSpecies, formatEnumKey } from '@/types/shrub_species';
+import { formatEnumKey, ShrubSpecies } from '@/types/shrub_species';
 import { styles } from './styles';
 
 type ShrubSpeciesDisplayProps = {
@@ -21,7 +21,6 @@ type ShrubSpeciesDisplayProps = {
 export const ShrubSpeciesDisplay: React.FC<ShrubSpeciesDisplayProps> = ({
   speciesData,
 }) => {
-  
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{speciesData.description}</Text>
@@ -128,8 +127,6 @@ export const ShrubSpeciesDisplay: React.FC<ShrubSpeciesDisplayProps> = ({
           )}
         </View>
       </View>
-
-      
     </View>
   );
 };

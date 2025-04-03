@@ -65,7 +65,9 @@ export const getShrubSpecies = async (
   return data[0] as ShrubSpecies;
 };
 
-export const deleteShrubSpecies = async (speciesName: string): Promise<void> => {
+export const deleteShrubSpecies = async (
+  speciesName: string,
+): Promise<void> => {
   const { error } = await supabase
     .from('shrub_species')
     .delete()

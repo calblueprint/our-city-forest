@@ -78,7 +78,6 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
     runAnimations(newValue);
     onValueChange(newValue);
   };
-  
 
   return (
     <View

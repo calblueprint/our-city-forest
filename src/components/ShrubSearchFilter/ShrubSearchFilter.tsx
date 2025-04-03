@@ -19,7 +19,7 @@ type ShrubSearchFilterProps = {
     bloom: string[];
     sun_exposure: string[];
     water_use: string[];
-    growth_rate: string[];    
+    growth_rate: string[];
     other: string[];
   };
   onActiveFilterChange: React.Dispatch<
@@ -28,7 +28,7 @@ type ShrubSearchFilterProps = {
       bloom: string[];
       sun_exposure: string[];
       water_use: string[];
-      growth_rate: string[];    
+      growth_rate: string[];
       other: string[];
     }>
   >;
@@ -50,14 +50,13 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
     winter: activeFilters.bloom.includes('winter'),
     spring: activeFilters.bloom.includes('spring'),
     summer: activeFilters.bloom.includes('summer'),
-    fall: activeFilters.bloom.includes('fall')
-  }
-  );
+    fall: activeFilters.bloom.includes('fall'),
+  });
 
   const [activeSunFilters, setActiveSunFilters] = useState({
     fullSun: activeFilters.sun_exposure.includes('full sun'),
     partialShade: activeFilters.sun_exposure.includes('partial shade'),
-    coarseGrained: activeFilters.sun_exposure.includes('coarse-grained')
+    coarseGrained: activeFilters.sun_exposure.includes('coarse-grained'),
   });
 
   const [activeWaterFilters, setActiveWaterFilters] = useState({
@@ -157,7 +156,7 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
   const resetFilters = () => {
     setActiveHeightFilters({
       lowGrowing: false,
-      notLowGrowing: false
+      notLowGrowing: false,
     });
     setActiveBloomFilters({
       winter: false,

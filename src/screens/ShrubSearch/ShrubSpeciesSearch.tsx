@@ -69,7 +69,7 @@ export const ShrubSpeciesSearchScreen: React.FC<
   
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
 
-  const [isShrubSpecies, setIsShrubSpecies] = useState(true);
+  const [isTreeSpecies, setIsTreeSpecies] = useState(false);
   
 
   useEffect(() => {
@@ -201,14 +201,14 @@ export const ShrubSpeciesSearchScreen: React.FC<
       <View style={styles.divider}></View>
       <View style={styles.treeShrubToggle}>
             <ToggleSwitch
-              value={isShrubSpecies}
+              value={isTreeSpecies}
               onValueChange={(newValue) => {
-                setIsShrubSpecies(newValue);
+                setIsTreeSpecies(newValue);
                 if (newValue) {
-                  navigation.navigate('TreeSearchFilter');
+                  navigation.navigate('TreeSpeciesSearch');
                   //navigation.navigate('TreeSpeciesInfo', { TreeSpeciesInfoScreen }); // Navigates back to this page but with tree-specific view
                 } else {
-                  navigation.navigate('ShrubSearchFilter'); // Replace with the actual screen name
+                  navigation.navigate('ShrubSpeciesSearch'); // Replace with the actual screen name
                 }
               }}
               trueLabel="Trees"

@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { Scanner } from '@/icons';
 import {
   getAllTreeSpecies,

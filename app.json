@@ -32,12 +32,17 @@
       "bundleIdentifier": "org.calblueprint.ourcityforest",
       "supportsTablet": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "This app requires access to the camera to scan QR codes for tree information."
+        "NSCameraUsageDescription": "This app requires access to the camera to scan QR codes for tree information.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
       "package": "org.calblueprint.ourcityforest",
-      "permissions": ["CAMERA"],
+      "permissions": [
+        "CAMERA",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/bp-adaptive-icon.png",
         "backgroundColor": "#ffffff"

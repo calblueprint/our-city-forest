@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {ScrollView, Text, View } from 'react-native';
-import { ImageBackground } from 'expo-image';
+import { ScrollView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ImageBackground } from 'expo-image';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ShrubSpeciesDisplay } from '@/components/ShrubSpeciesDisplay/ShrubSpeciesDisplay';
 import { BackArrow, ScanBarcode } from '@/icons';
@@ -28,7 +28,8 @@ export const ShrubSpeciesInfoScreen: React.FC<ShrubSpeciesInfoScreenProps> = ({
     (async () => {
       const data = await getShrubSpecies(speciesName);
       setSpeciesData(data);
-    })();})
+    })();
+  });
 
   return (
     <View style={styles.container}>
@@ -43,7 +44,9 @@ export const ShrubSpeciesInfoScreen: React.FC<ShrubSpeciesInfoScreenProps> = ({
             </TouchableOpacity>
           </View>
           <View style={styles.pill}>
-            <Text style={styles.pillText}>{speciesData.available_stock} left</Text>
+            <Text style={styles.pillText}>
+              {speciesData.available_stock} left
+            </Text>
           </View>
         </ImageBackground>
         <View style={styles.body}>

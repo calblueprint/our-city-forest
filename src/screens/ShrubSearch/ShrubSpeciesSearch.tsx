@@ -8,7 +8,9 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { Scanner } from '@/icons';
 import {
   getAllShrubSpecies,
@@ -18,10 +20,6 @@ import { HomeStackParamList } from '@/types/navigation';
 import { ShrubSpecies } from '@/types/shrub_species';
 import { ShrubSearchBar } from '../../components/ShrubSearchBar/ShrubSearchBar';
 import { styles } from './styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
-
-
 
 type ShrubSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -48,16 +46,16 @@ type ActiveFilters = {
   bloom: string[];
   sun_exposure: string[];
   water_use: string[];
-  growth_rate: string[];    
+  growth_rate: string[];
   other: string[];
 };
 
 export const ShrubSpeciesSearchScreen: React.FC<
   ShrubSpeciesSearchScreenProps
 > = ({ navigation }) => {
-  const [shrubSpeciesCards, setShrubSpeciesCards] = useState<shrubSpeciesCard[]>(
-    [],
-  );
+  const [shrubSpeciesCards, setShrubSpeciesCards] = useState<
+    shrubSpeciesCard[]
+  >([]);
   const [searchText, setSearchText] = useState<string>('');
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
     max_height: [],
@@ -67,11 +65,10 @@ export const ShrubSpeciesSearchScreen: React.FC<
     growth_rate: [],
     other: [],
   });
-  
+
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
 
   const [isTreeSpecies, setIsTreeSpecies] = useState(false);
-  
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -86,7 +83,6 @@ export const ShrubSpeciesSearchScreen: React.FC<
     fetchAuthStatus();
   }, []);
 
-
   useEffect(() => {
     const loadShrubSpeciesData = async () => {
       const shrubSpecies = isUserAdmin
@@ -94,7 +90,7 @@ export const ShrubSpeciesSearchScreen: React.FC<
         : await getAvailableShrubSpecies();
       if (shrubSpecies) {
         const cards: shrubSpeciesCard[] = shrubSpecies.map(
-          (ts: ShrubSpecies ) => ({
+          (ts: ShrubSpecies) => ({
             name: ts.name,
             imageURL: ts.image_url || 'https://example.com/placeholder.jpg',
             funFact: ts.fun_fact,
@@ -120,7 +116,7 @@ export const ShrubSpeciesSearchScreen: React.FC<
 
   const applyFilters = (shrub: shrubSpeciesCard) => {
     if (activeFilters.max_height.length > 0) {
-      const height = Number(shrub.dimension.split("x", 1)[0]);
+      const height = Number(shrub.dimension.split('x', 1)[0]);
       const matchesHeight = activeFilters.max_height.some(filter => {
         if (filter === 'low growing') return height < 2;
         if (filter === 'not low growing') return height >= 2;
@@ -128,19 +124,27 @@ export const ShrubSpeciesSearchScreen: React.FC<
       });
       if (!matchesHeight) return false;
     }
-    if (activeFilters.bloom.length > 0 && !activeFilters.bloom.includes(shrub.bloomType)) {
-      return false;
-    }
-    if (activeFilters.sun_exposure.length > 0 && !activeFilters.sun_exposure.includes(shrub.sunExposure)) {
-      return false;
-    }
     if (
-      activeFilters.water_use.length > 0 && !activeFilters.water_use.includes(shrub.waterUse)
+      activeFilters.bloom.length > 0 &&
+      !activeFilters.bloom.includes(shrub.bloomType)
     ) {
       return false;
     }
     if (
-      activeFilters.growth_rate.length > 0 && !activeFilters.growth_rate.includes(shrub.growthRate)
+      activeFilters.sun_exposure.length > 0 &&
+      !activeFilters.sun_exposure.includes(shrub.sunExposure)
+    ) {
+      return false;
+    }
+    if (
+      activeFilters.water_use.length > 0 &&
+      !activeFilters.water_use.includes(shrub.waterUse)
+    ) {
+      return false;
+    }
+    if (
+      activeFilters.growth_rate.length > 0 &&
+      !activeFilters.growth_rate.includes(shrub.growthRate)
     ) {
       return false;
     }
@@ -166,7 +170,6 @@ export const ShrubSpeciesSearchScreen: React.FC<
     <TouchableOpacity
       onPress={() =>
         navigation.push('ShrubSpeciesInfo', { speciesName: item.name })
-        
       }
       style={styles.speciesCard}
     >
@@ -201,21 +204,20 @@ export const ShrubSpeciesSearchScreen: React.FC<
       </View>
       <View style={styles.divider}></View>
       <View style={styles.treeShrubToggle}>
-            <ToggleSwitch
-              value={isTreeSpecies}
-              onValueChange={(newValue) => {
-                setIsTreeSpecies(newValue);
-                if (newValue) {
-                  navigation.navigate('TreeSpeciesSearch');
-                  //navigation.navigate('TreeSpeciesInfo', { TreeSpeciesInfoScreen }); // Navigates back to this page but with tree-specific view
-                } else {
-                  navigation.navigate('ShrubSpeciesSearch'); // Replace with the actual screen name
-                }
-              }}
-              trueLabel="Trees"
-              falseLabel="Shrubs"
-              
-            />
+        <ToggleSwitch
+          value={isTreeSpecies}
+          onValueChange={newValue => {
+            setIsTreeSpecies(newValue);
+            if (newValue) {
+              navigation.navigate('TreeSpeciesSearch');
+              //navigation.navigate('TreeSpeciesInfo', { TreeSpeciesInfoScreen }); // Navigates back to this page but with tree-specific view
+            } else {
+              navigation.navigate('ShrubSpeciesSearch'); // Replace with the actual screen name
+            }
+          }}
+          trueLabel="Trees"
+          falseLabel="Shrubs"
+        />
       </View>
 
       <FlatList
@@ -231,7 +233,6 @@ export const ShrubSpeciesSearchScreen: React.FC<
           </Text>
         }
       />
-
     </SafeAreaView>
   );
 };

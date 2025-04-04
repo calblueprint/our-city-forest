@@ -12,6 +12,8 @@ import {
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { LoginScreen } from '@/screens/Login/Login';
+import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
+import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
 import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
 import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
 import { TreeSpeciesSearchScreen } from '@/screens/TreeSpeciesSearch/TreeSpeciesSearch';
@@ -22,9 +24,6 @@ import {
   LoginStackParamList,
   RootStackParamList,
 } from '@/types/navigation';
-import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
-import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
-import { HistorySpecies } from '@/screens/HistorySpecies/HistorySpecies';
 
 // Stack and Tab Navigators
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();
@@ -51,7 +50,6 @@ const HomeStackNavigator = () => {
     <HomeStack.Navigator
       initialRouteName="TreeSpeciesSearch"
       screenOptions={{ headerShown: false }}
-
     >
       <HomeStack.Screen
         name="ShrubSpeciesSearch"
@@ -81,8 +79,6 @@ const HomeStackNavigator = () => {
         component={ShrubSpeciesInfoScreen}
       />
     </HomeStack.Navigator>
-
-
   );
 };
 

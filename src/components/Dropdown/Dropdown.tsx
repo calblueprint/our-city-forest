@@ -82,6 +82,8 @@ export const Dropdown = <T extends string[]>({
         onChange={(item: Option) => {
           onChange(item.value);
         }}
+        keyboardAvoiding={true}
+        autoScroll={false}
       />
     </View>
   );

@@ -3,41 +3,33 @@ import { ScrollView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ImageBackground } from 'expo-image';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { TreeSpeciesDisplay } from '@/components/TreeSpeciesDisplay/TreeSpeciesDisplay';
+import { ShrubSpeciesDisplay } from '@/components/ShrubSpeciesDisplay/ShrubSpeciesDisplay';
 import { BackArrow, ScanBarcode } from '@/icons';
-import { getTreeSpecies } from '@/supabase/queries/tree_species';
-import { getAllTreesForSpecies } from '@/supabase/queries/trees';
+import { getShrubSpecies } from '@/supabase/queries/shrub_species';
 import { HomeStackParamList } from '@/types/navigation';
-import { Tree } from '@/types/tree';
-import { TreeSpecies } from '@/types/tree_species';
+import { ShrubSpecies } from '@/types/shrub_species';
 import { styles } from './styles';
 
-type TreeSpeciesInfoScreenProps = NativeStackScreenProps<
+type ShrubSpeciesInfoScreenProps = NativeStackScreenProps<
   HomeStackParamList,
-  'TreeSpeciesInfo'
+  'ShrubSpeciesInfo'
 >;
 
-export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
+export const ShrubSpeciesInfoScreen: React.FC<ShrubSpeciesInfoScreenProps> = ({
   route,
   navigation,
 }) => {
   const speciesName = route.params?.speciesName ?? '';
-  const [speciesData, setSpeciesData] = useState<Partial<TreeSpecies>>({
+  const [speciesData, setSpeciesData] = useState<Partial<ShrubSpecies>>({
     name: speciesName,
   });
-  const [treeData, setTreeData] = useState<Tree[]>([]);
 
   useEffect(() => {
     (async () => {
-      const data = await getTreeSpecies(speciesName);
+      const data = await getShrubSpecies(speciesName);
       setSpeciesData(data);
     })();
-
-    (async () => {
-      const data = await getAllTreesForSpecies(speciesName);
-      setTreeData(data);
-    })();
-  }, [speciesName]);
+  });
 
   return (
     <View style={styles.container}>
@@ -50,12 +42,11 @@ export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <BackArrow />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.push('QRCodeScanner')}>
-              <ScanBarcode />
-            </TouchableOpacity>
           </View>
           <View style={styles.pill}>
-            <Text style={styles.pillText}>{treeData.length} left</Text>
+            <Text style={styles.pillText}>
+              {speciesData.available_stock} left
+            </Text>
           </View>
         </ImageBackground>
         <View style={styles.body}>
@@ -67,7 +58,7 @@ export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
             <View style={styles.divider}></View>
           </View>
 
-          <TreeSpeciesDisplay speciesData={speciesData} treeData={treeData} />
+          <ShrubSpeciesDisplay speciesData={speciesData} />
         </View>
       </ScrollView>
     </View>

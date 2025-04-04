@@ -12,6 +12,8 @@ import {
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { LoginScreen } from '@/screens/Login/Login';
+import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
+import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
 import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
 import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
 import { TreeSpeciesSearchScreen } from '@/screens/TreeSpeciesSearch/TreeSpeciesSearch';
@@ -50,6 +52,11 @@ const HomeStackNavigator = () => {
       screenOptions={{ headerShown: false }}
     >
       <HomeStack.Screen
+        name="ShrubSpeciesSearch"
+        component={ShrubSpeciesSearchScreen}
+      />
+
+      <HomeStack.Screen
         name="TreeSpeciesSearch"
         component={TreeSpeciesSearchScreen}
       />
@@ -64,6 +71,10 @@ const HomeStackNavigator = () => {
       <HomeStack.Screen
         name="TreeSpeciesInfo"
         component={TreeSpeciesInfoScreen}
+      />
+      <HomeStack.Screen
+        name="ShrubSpeciesInfo"
+        component={ShrubSpeciesInfoScreen}
       />
     </HomeStack.Navigator>
   );

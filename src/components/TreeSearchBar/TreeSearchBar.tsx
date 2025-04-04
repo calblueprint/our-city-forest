@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
-import { SearchFilter } from '@/components/SearchFilter/SearchFilter';
+import { TreeSearchFilter } from '@/components/TreeSearchFilter/TreeSearchFilter';
 import { Filter, Search } from '@/icons';
 import { styles } from './styles';
 
-type SearchBarProps = {
+type TreeSearchBarProps = {
   searchText: string;
   onSearchTextChange: (text: string) => void;
   activeFilters: {
@@ -25,7 +25,7 @@ type SearchBarProps = {
   >;
 };
 
-export const SearchBar: React.FC<SearchBarProps> = ({
+export const TreeSearchBar: React.FC<TreeSearchBarProps> = ({
   searchText,
   onSearchTextChange,
   activeFilters,
@@ -50,7 +50,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <Filter />
         </View>
       </TouchableOpacity>
-      <SearchFilter
+      <TreeSearchFilter
         isModalVisible={isModalVisible}
         onClose={closeFilter}
         activeFilters={activeFilters}

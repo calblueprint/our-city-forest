@@ -1,20 +1,21 @@
 {
   "cli": {
-    "version": ">= 12.6.1",
-    "appVersionSource": "remote"
+    "version": ">= 16.2.1",
+    "appVersionSource": "remote",
+    "requireCommit": true
   },
   "build": {
     "development": {
+      "developmentClient": true,
       "distribution": "internal",
-      "developmentClient": true
+      "ios": {
+        "simulator": true
+      }
     },
     "preview": {
-      "distribution": "internal",
-      "developmentClient": false
+      "distribution": "internal"
     },
     "production": {
-      "distribution": "store",
-      "developmentClient": false,
       "autoIncrement": true
     }
   },

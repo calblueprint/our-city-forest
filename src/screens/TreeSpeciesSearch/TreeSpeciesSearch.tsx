@@ -10,6 +10,7 @@ import {
 import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
@@ -19,7 +20,6 @@ import { HomeStackParamList } from '@/types/navigation';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
 import { TreeSearchBar } from '../../components/TreeSearchBar/TreeSearchBar';
 import { styles } from './styles';
-import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 
 type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -64,7 +64,7 @@ export const TreeSpeciesSearchScreen: React.FC<
   });
 
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
-  
+
   const [isTreeSpecies, setIsTreeSpecies] = useState(true);
 
   useEffect(() => {
@@ -191,25 +191,25 @@ export const TreeSpeciesSearchScreen: React.FC<
           onActiveFilterChange={setActiveFilters}
         />
 
-      <View style={styles.treeShrubToggle}>
-      <ToggleSwitch
-        //value={isTreeSpecies}
-        //onValueChange={setIsTreeSpecies}
-        //trueLabel="Trees"
-        //falseLabel="Shrubs"
-        value={isTreeSpecies}
-              onValueChange={(newValue) => {
-                setIsTreeSpecies(newValue);
-                if (newValue) {
-                  navigation.navigate('TreeSpeciesSearch');
-                } else {
-                  navigation.navigate('ShrubSpeciesSearch'); // Replace with the actual screen name
-                }
-              }}
-              trueLabel="Trees"
-              falseLabel="Shrubs"
-      />
-      </View>
+        <View style={styles.treeShrubToggle}>
+          <ToggleSwitch
+            //value={isTreeSpecies}
+            //onValueChange={setIsTreeSpecies}
+            //trueLabel="Trees"
+            //falseLabel="Shrubs"
+            value={isTreeSpecies}
+            onValueChange={newValue => {
+              setIsTreeSpecies(newValue);
+              if (newValue) {
+                navigation.navigate('TreeSpeciesSearch');
+              } else {
+                navigation.navigate('ShrubSpeciesSearch'); // Replace with the actual screen name
+              }
+            }}
+            trueLabel="Trees"
+            falseLabel="Shrubs"
+          />
+        </View>
       </View>
 
       <View style={styles.divider}></View>

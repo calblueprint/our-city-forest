@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { ImageBackground } from 'expo-image';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ImageBackground } from 'expo-image';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TreeSpeciesDisplay } from '@/components/TreeSpeciesDisplay/TreeSpeciesDisplay';
 import { BackArrow, ScanBarcode } from '@/icons';

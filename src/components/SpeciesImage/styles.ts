@@ -3,8 +3,5 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  image: {
-    
-  }
-
-})
+  image: {},
+});

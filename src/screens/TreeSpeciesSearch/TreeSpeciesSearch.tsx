@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import BookmarkModal from '@/components/BoomarkModal/BookmarkModal';
 import { Bookmark, Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
@@ -17,7 +18,6 @@ import {
 import { HomeStackParamList } from '@/types/navigation';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
-import BookmarkModal from '@/components/BoomarkModal/BookmarkModal';
 import { styles } from './styles';
 
 type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
@@ -172,7 +172,10 @@ export const TreeSpeciesSearchScreen: React.FC<
             <Bookmark width={30} height={30} />
           </TouchableOpacity>
 
-          <BookmarkModal visible={modalVisible} onClose={() => setModalVisible(false)} />
+          <BookmarkModal
+            visible={modalVisible}
+            onClose={() => setModalVisible(false)}
+          />
         </View>
       </View>
       <Text style={styles.speciesName} numberOfLines={1}>

@@ -53,7 +53,6 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'left',
     paddingTop: 20,
-    paddingLeft: 20, 
+    paddingLeft: 20,
   },
-
 });

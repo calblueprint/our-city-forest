@@ -9,16 +9,20 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { styles } from './styles';
 import { AddIcon } from '@/icons';
+import { styles } from './styles';
 
 interface BottomSheetProps {
-  onClose: () => void; 
+  onClose: () => void;
   visible: boolean;
-  children?: React.ReactNode; 
+  children?: React.ReactNode;
 }
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ onClose, visible, children }) => {
+const BottomSheet: React.FC<BottomSheetProps> = ({
+  onClose,
+  visible,
+  children,
+}) => {
   const screenHeight = Dimensions.get('screen').height;
   const panY = useRef(new Animated.Value(screenHeight)).current;
 
@@ -34,7 +38,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ onClose, visible, children })
 
   const closeAnim = Animated.timing(panY, {
     toValue: screenHeight,
-    duration: 100,
+    duration: 300,
     useNativeDriver: true,
   });
 
@@ -84,19 +88,19 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ onClose, visible, children })
             <View style={styles.sliderIndicatorRow}>
               <View style={styles.sliderIndicator} />
             </View>
-            <View> 
-              <Text style = {styles.saveText}>Save to Bookmarks</Text>
+            <View>
+              <Text style={styles.saveText}>Save to Bookmarks</Text>
             </View>
             <View style={styles.foldersList}>
               <View style={styles.createList}>
-                      <TouchableOpacity
-                        style={styles.createList}
-                        onPress={handleCreateNewFolder}
-                      >
-                        <AddIcon />
-                        <Text style={styles.createText}>Create new list</Text>
-                      </TouchableOpacity>
-            </View>
+                <TouchableOpacity
+                  style={styles.createList}
+                  onPress={handleCreateNewFolder}
+                >
+                  <AddIcon />
+                  <Text style={styles.createText}>Create new list</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </Animated.View>
         </View>

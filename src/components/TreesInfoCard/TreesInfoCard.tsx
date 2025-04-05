@@ -13,7 +13,7 @@ type TreesInformationCardProps = {
   visible: boolean;
   onClose: () => void;
   children?: ReactNode;
-}
+};
 
 export const TreesInfoCard: React.FC<TreesInformationCardProps> = ({
   visible,

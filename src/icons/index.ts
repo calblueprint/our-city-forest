@@ -40,3 +40,4 @@ export { Website } from './Website';
 export { X } from './X';
 export { XButton } from './XButton';
 export { Youtube } from './Youtube';
+export { InfoCircle } from './InfoCircle';

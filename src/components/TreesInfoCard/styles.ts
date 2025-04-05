@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  headingStyle: {
+    ...typography.heading2,
+    paddingTop: 25,
+    paddingBottom: 20,
   },
 
   modalBackground: {
@@ -14,80 +16,36 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 33,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: 'white',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-
-  button: {
+  modalContent: {
+    backgroundColor: colors.white,
+    paddingTop: 20,
+    paddingBottom: 30,
+    paddingLeft: 40,
     borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-
-  textStyle: {
-    fontSize: 16,
-    color: 'black',
-    fontWeight: 400,
-    lineHeight: 0,
-  },
-
-  headingBlock: {
-    paddingTop: 30,
-    paddingBottom: 27,
-    paddingRight: 21,
-    paddingLeft: 20,
+    width: '80%',
     gap: 15,
   },
 
-  headingStyle: {
-    color: 'black',
-    fontSize: 24,
-    fontWeight: '700',
-    lineHeight: 26.4,
+  modalInfo: {
+    gap: 15,
   },
 
-  iconBlock: {
+  modalRow: {
     flexDirection: 'row',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingRight: 10,
-    gap: 10,
+    gap: 15,
   },
 
-  allIcons: {
-    flexDirection: 'column',
-    gap: 10,
-  },
-
-  allText: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginLeft: 6,
-    gap: 10,
-  },
-
-  item: {
-    width: 60,
+  iconItem: {
+    width: 50,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
-  itemText: {
-    width: 300,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+  textStyle: {
+    ...typography.mediumRegular,
+    maxWidth: 150,
   },
 });

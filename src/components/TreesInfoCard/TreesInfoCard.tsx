@@ -25,65 +25,48 @@ export const TreesInfoCard: React.FC<TreesInformationCardProps> = ({
       <TouchableWithoutFeedback onPress={onClose}>
         <View style={styles.modalBackground}>
           <TouchableWithoutFeedback>
-            <View
-              style={{
-                backgroundColor: 'white',
-                padding: 20,
-                borderRadius: 20,
-                width: '80%',
-              }}
-            >
-              <View style={styles.allIcons}>
-                <View style={styles.headingBlock}>
-                  <Text style={styles.headingStyle}> Property Key </Text>
+            <View style={styles.modalContent}>
+              <Text style={styles.headingStyle}>Properties Key</Text>
 
-                  <View style={styles.iconBlock}>
-                    <View style={styles.allIcons}>
-                      <View style={styles.item}>
-                        <Ruler />
-                      </View>
-                      <View style={styles.item}>
-                        <WateringCan />
-                      </View>
-                      <View style={styles.item}>
-                        <Fruit />
-                      </View>
-                      <View style={styles.item}>
-                        <Shapes />
-                      </View>
-                      <View style={styles.item}>
-                        <Warning />
-                      </View>
-                      <View style={styles.item}>
-                        <Leaf />
-                      </View>
-                    </View>
-
-                    <View style={styles.allText}>
-                      <View style={styles.itemText}>
-                        <Text style={styles.textStyle}>Height</Text>
-                      </View>
-                      <View style={styles.itemText}>
-                        <Text style={styles.textStyle}>Water</Text>
-                      </View>
-                      <View style={styles.itemText}>
-                        <Text style={styles.textStyle}>Fruit</Text>
-                      </View>
-                      <View style={styles.itemText}>
-                        <Text style={styles.textStyle}>Shape</Text>
-                      </View>
-                      <View style={styles.itemText}>
-                        <Text style={styles.textStyle}>
-                          Utility Friendliness
-                        </Text>
-                      </View>
-                      <View style={styles.itemText}>
-                        <Text style={styles.textStyle}>Leaf</Text>
-                      </View>
-                    </View>
+              <View style={styles.modalInfo}>
+                <View style={styles.modalRow}>
+                  <View style={styles.iconItem}>
+                    <Ruler />
                   </View>
+                  <Text style={styles.textStyle}>Height</Text>
+                </View>
+                <View style={styles.modalRow}>
+                  <View style={styles.iconItem}>
+                    <Shapes />
+                  </View>
+                  <Text style={styles.textStyle}>Shape</Text>
+                </View>
+                <View style={styles.modalRow}>
+                  <View style={styles.iconItem}>
+                    <WateringCan />
+                  </View>
+                  <Text style={styles.textStyle}>Water usage</Text>
+                </View>
+                <View style={styles.modalRow}>
+                  <View style={styles.iconItem}>
+                    <Warning />
+                  </View>
+                  <Text style={styles.textStyle}>Root damage potential</Text>
+                </View>
+                <View style={styles.modalRow}>
+                  <View style={styles.iconItem}>
+                    <Fruit />
+                  </View>
+                  <Text style={styles.textStyle}>Litter type</Text>
+                </View>
+                <View style={styles.modalRow}>
+                  <View style={styles.iconItem}>
+                    <Leaf />
+                  </View>
+                  <Text style={styles.textStyle}>Foliage type</Text>
                 </View>
               </View>
+
               {children}
               <Pressable onPress={onClose}></Pressable>
             </View>

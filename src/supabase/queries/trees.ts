@@ -359,3 +359,21 @@ export const generateQRImage = async (treeId: string): Promise<void> => {
     throw error;
   }
 };
+
+// Validate existence of tree entry (when QR is scanned)
+export const validateTreeExists = async (treeId: string): Promise<boolean> => {
+  try {
+    const uuidRegex =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(treeId)) {
+      console.log('Invalid UUID format');
+      return false;
+    }
+    // use the existing getTreeInfo function to check if the tree exists
+    const tree = await getTreeInfo(treeId);
+    return !!tree && typeof tree === 'object';
+  } catch {
+    // if getTreeInfo throws an error, the tree doesn't exist
+    return false;
+  }
+};

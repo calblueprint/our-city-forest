@@ -15,7 +15,7 @@ import {
 } from '@/icons';
 import { formatEnumKey, Tree } from '@/types/tree';
 import { TreeSpecies } from '@/types/tree_species';
-import TreesInformationCard from '../TreesInformationCard/TreesInformationCard';
+import { TreesInfoCard } from '../TreesInfoCard/TreesInfoCard';
 import { styles } from './styles';
 
 type TreeSpeciesDisplayProps = {
@@ -54,10 +54,10 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
           <Pressable onPress={() => setModalVisible(true)}>
             <InfoCircle />
           </Pressable>
-          <TreesInformationCard
+          <TreesInfoCard
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
-          ></TreesInformationCard>
+          ></TreesInfoCard>
         </View>
 
         <View style={styles.properties}>

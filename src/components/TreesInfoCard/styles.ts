@@ -6,13 +6,21 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+
   modalView: {
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 33,
     padding: 35,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: 'white',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -21,20 +29,14 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+
   button: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
   },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
 
   textStyle: {
-    fontFamily: 'SF Pro Display',
     fontSize: 16,
     color: 'black',
     fontWeight: 400,
@@ -51,7 +53,6 @@ export const styles = StyleSheet.create({
 
   headingStyle: {
     color: 'black',
-    fontFamily: 'SF Pro Display',
     fontSize: 24,
     fontWeight: '700',
     lineHeight: 26.4,

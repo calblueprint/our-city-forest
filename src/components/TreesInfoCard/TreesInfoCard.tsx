@@ -9,13 +9,13 @@ import {
 import { Fruit, Leaf, Ruler, Shapes, Warning, WateringCan } from '@/icons';
 import { styles } from './styles';
 
-interface TreesInformationCardProps {
+type TreesInformationCardProps = {
   visible: boolean;
   onClose: () => void;
   children?: ReactNode;
 }
 
-const TreesInformationCard: React.FC<TreesInformationCardProps> = ({
+export const TreesInfoCard: React.FC<TreesInformationCardProps> = ({
   visible,
   onClose,
   children,
@@ -23,14 +23,7 @@ const TreesInformationCard: React.FC<TreesInformationCardProps> = ({
   return (
     <Modal visible={visible} transparent animationType="fade">
       <TouchableWithoutFeedback onPress={onClose}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          }}
-        >
+        <View style={styles.modalBackground}>
           <TouchableWithoutFeedback>
             <View
               style={{
@@ -90,33 +83,6 @@ const TreesInformationCard: React.FC<TreesInformationCardProps> = ({
                     </View>
                   </View>
                 </View>
-
-                {/*
-                <View style={styles.iconBlock}>
-                  <Ruler />
-                  <Text>Height</Text>
-                </View>
-                <View style={styles.iconBlock}>
-                  <WateringCan />
-                  <Text>Water</Text> 
-                </View>
-                <View style={styles.iconBlock}>
-                  <Fruit />
-                  <Text>Fruit</Text> 
-                </View>
-                <View style={styles.iconBlock}>
-                  <Shapes />
-                  <Text>Shape</Text> 
-                </View>
-                <View style={styles.iconBlock}>
-                  <Warning />
-                  <Text>Utility Friendliness</Text> 
-                </View>
-                <View style={styles.iconBlock}>
-                  <Leaf />
-                  <Text>Leaf</Text> 
-                </View>
-                */}
               </View>
               {children}
               <Pressable onPress={onClose}></Pressable>
@@ -127,5 +93,3 @@ const TreesInformationCard: React.FC<TreesInformationCardProps> = ({
     </Modal>
   );
 };
-
-export default TreesInformationCard;

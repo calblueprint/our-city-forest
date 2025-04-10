@@ -11,12 +11,12 @@ import {
   Ruler,
   Shapes,
   Warning,
-  WateringCan,
+  Water,
 } from '@/icons';
 import { formatEnumKey, Tree } from '@/types/tree';
 import { TreeSpecies } from '@/types/tree_species';
-import { TreesInfoCard } from '../TreesInfoCard/TreesInfoCard';
 import { styles } from './styles';
+import { TreeInfoCard } from '../TreeInfoCard/TreeInfoCard';
 
 type TreeSpeciesDisplayProps = {
   speciesData: Partial<TreeSpecies>;
@@ -54,10 +54,10 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
           <Pressable onPress={() => setModalVisible(true)}>
             <InfoCircle />
           </Pressable>
-          <TreesInfoCard
+          <TreeInfoCard
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
-          ></TreesInfoCard>
+          ></TreeInfoCard>
         </View>
 
         <View style={styles.properties}>
@@ -81,7 +81,7 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
 
           {speciesData.water_use && (
             <View style={styles.property}>
-              <WateringCan />
+              <Water />
               <Text style={styles.propertyText}>
                 {formatEnumKey(speciesData.water_use)}
               </Text>

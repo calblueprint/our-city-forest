@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, SafeAreaView, Text, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { TreeCard, treeSpeciesCard } from '@/components/TreeCard/TreeCard';
 import { Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
@@ -17,6 +23,20 @@ type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
   'TreeSpeciesSearch'
 >;
+
+type treeSpeciesCard = {
+  name: string;
+  imageURL: string;
+  stockCount: number;
+  maxHeight: string;
+  treeShape: string;
+  litterType: string;
+  waterUse: string;
+  isCaliforniaNative: boolean;
+  isEvergreen: boolean;
+  isPowerlineFriendly: boolean;
+  rootDamagePotential: string;
+};
 
 type ActiveFilters = {
   height: string[];
@@ -131,25 +151,25 @@ export const TreeSpeciesSearchScreen: React.FC<
       applyFilters(ts),
   );
 
-  // const renderSpeciesCard = ({ item }: { item: treeSpeciesCard }) => (
-  //   <TouchableOpacity
-  //     onPress={() =>
-  //       navigation.push('TreeSpeciesInfo', { speciesName: item.name })
-  //     }
-  //     style={styles.speciesCard}
-  //   >
-  //     <Image
-  //       source={{
-  //         uri: item.imageURL,
-  //       }}
-  //       style={styles.speciesImage}
-  //     />
-  //     <Text style={styles.speciesName} numberOfLines={1}>
-  //       {item.name}
-  //     </Text>
-  //     <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
-  //   </TouchableOpacity>
-  // );
+  const renderSpeciesCard = ({ item }: { item: treeSpeciesCard }) => (
+    <TouchableOpacity
+      onPress={() =>
+        navigation.push('TreeSpeciesInfo', { speciesName: item.name })
+      }
+      style={styles.speciesCard}
+    >
+      <Image
+        source={{
+          uri: item.imageURL,
+        }}
+        style={styles.speciesImage}
+      />
+      <Text style={styles.speciesName} numberOfLines={1}>
+        {item.name}
+      </Text>
+      <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -167,14 +187,12 @@ export const TreeSpeciesSearchScreen: React.FC<
           onActiveFilterChange={setActiveFilters}
         />
       </View>
-
       <View style={styles.divider}></View>
 
       <FlatList
         data={filteredTreeSpeciesCards}
         keyExtractor={item => item.name}
-        //renderItem={renderSpeciesCard}
-        renderItem={TreeCard}
+        renderItem={renderSpeciesCard}
         numColumns={2}
         contentContainerStyle={styles.speciesContainer}
         columnWrapperStyle={{ gap: 16 }}

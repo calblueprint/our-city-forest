@@ -41,7 +41,7 @@ export const ShrubSpeciesDisplay: React.FC<ShrubSpeciesDisplayProps> = ({
       <View style={styles.divider}></View>
 
       <View style={styles.propertiesContainer}>
-      <View style={styles.propertiesHeading}>
+        <View style={styles.propertiesHeading}>
           <Text style={styles.header}>Properties</Text>
           <Pressable onPress={() => setModalVisible(true)}>
             <InfoCircle />

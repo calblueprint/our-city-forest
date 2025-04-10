@@ -1,30 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Scanner } from '@/icons';
-import {
-  getAllShrubSpecies,
-  getAvailableShrubSpecies,
-} from '@/supabase/queries/shrub_species';
-import { HomeStackParamList } from '@/types/navigation';
-import { ShrubSpecies } from '@/types/shrub_species';
-import { ShrubSearchBar } from '../../components/ShrubSearchBar/ShrubSearchBar';
-//import { navigation } from 'react-navigation';
-import { styles } from './styles';
+import { Image, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { HomeStackParamList } from '@/types/navigation';
+import { styles } from './styles';
 
-type NavigationProp = NativeStackNavigationProp<HomeStackParamList,'Home'>;
-
+type NavigationProp = NativeStackNavigationProp<HomeStackParamList, 'Home'>;
 
 export type treeSpeciesCard = {
   name: string;
@@ -40,8 +20,7 @@ export type treeSpeciesCard = {
   rootDamagePotential: string;
 };
 
-
-export function TreeCard({ item }: { item: treeSpeciesCard }) { 
+export function TreeCard({ item }: { item: treeSpeciesCard }) {
   const navigation = useNavigation<NavigationProp>();
 
   return (
@@ -62,7 +41,5 @@ export function TreeCard({ item }: { item: treeSpeciesCard }) {
       </Text>
       <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
     </TouchableOpacity>
-  )
-
-  ;
-} 
+  );
+}

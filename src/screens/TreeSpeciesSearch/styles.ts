@@ -68,5 +68,4 @@ export const styles = StyleSheet.create({
     ...typography.mediumRegular,
     color: colors.gray2,
   },
-
 });

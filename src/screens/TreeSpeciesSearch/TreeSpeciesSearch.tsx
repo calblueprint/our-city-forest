@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { FlatList, SafeAreaView, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { TreeCard, treeSpeciesCard } from '@/components/TreeCard/TreeCard';
 import { Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
@@ -19,14 +13,10 @@ import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
 import { TreeSearchBar } from '../../components/TreeSearchBar/TreeSearchBar';
 import { styles } from './styles';
 
-import { TreeCard, treeSpeciesCard } from '@/components/TreeCard/TreeCard';
-
-
 type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
   'TreeSpeciesSearch'
 >;
-
 
 type ActiveFilters = {
   height: string[];

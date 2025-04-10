@@ -40,7 +40,6 @@ type shrubSpeciesCard = {
 };
 
 type ActiveFilters = {
-  max_height: string[];
   bloom: string[];
   sun_exposure: string[];
   water_use: string[];
@@ -56,7 +55,6 @@ export const ShrubSpeciesSearchScreen: React.FC<
   >([]);
   const [searchText, setSearchText] = useState<string>('');
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
-    max_height: [],
     bloom: [],
     sun_exposure: [],
     water_use: [],
@@ -140,20 +138,15 @@ export const ShrubSpeciesSearchScreen: React.FC<
         if (option === 'californiaNative')
           return shrub.isCaliforniaNative || false;
 
-        if (activeFilters.max_height.length > 0) {
-          
-          if (typeof shrub.dimension === 'string' && shrub.dimension.toLowerCase().includes('x')) {
-            const heightStr = shrub.dimension.split(/x/i)[0];
-            const height = Number(heightStr);
-        
-            const matchesHeight = activeFilters.max_height.some(filter => {
-              if (filter === 'low growing') return height < 2;
-              if (filter === 'not low growing') return height >= 2;
-              return false; // If filter is null or invalid
-            });
+        if (option === 'lowGrowing') {
+          if (
+            typeof shrub.dimension === 'string' &&
+            shrub.dimension.toLowerCase().includes('x')
+          ) {
+            const height = Number(shrub.dimension.split(/x/i)[0]);
+            return height <= 2 || false;
           }
         }
-
       });
       if (!matchesOther) return false;
     }

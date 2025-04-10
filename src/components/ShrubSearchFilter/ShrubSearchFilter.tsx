@@ -14,7 +14,6 @@ type ShrubSearchFilterProps = {
   isModalVisible: boolean;
   onClose: () => void;
   activeFilters: {
-    max_height: string[];
     bloom: string[];
     sun_exposure: string[];
     water_use: string[];
@@ -23,7 +22,6 @@ type ShrubSearchFilterProps = {
   };
   onActiveFilterChange: React.Dispatch<
     React.SetStateAction<{
-      max_height: string[];
       bloom: string[];
       sun_exposure: string[];
       water_use: string[];
@@ -82,9 +80,6 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
 
   useEffect(() => {
     onActiveFilterChange({
-      max_height: Object.keys(activeOtherFilters).filter(
-        key => activeBloomFilters[key as keyof typeof activeBloomFilters],
-      ) as string[],
       bloom: Object.keys(activeBloomFilters).filter(
         key => activeBloomFilters[key as keyof typeof activeBloomFilters],
       ) as string[],
@@ -95,8 +90,8 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
         key => activeWaterFilters[key as keyof typeof activeWaterFilters],
       ) as string[],
       growth_rate: Object.keys(activeGrowthFilters).filter(
-         key => activeGrowthFilters[key as keyof typeof activeGrowthFilters],
-       ) as string[],
+        key => activeGrowthFilters[key as keyof typeof activeGrowthFilters],
+      ) as string[],
       other: Object.keys(activeOtherFilters).filter(
         key => activeOtherFilters[key as keyof typeof activeOtherFilters],
       ) as string[],
@@ -180,7 +175,6 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
       lowGrowing: false,
     });
     onActiveFilterChange({
-      max_height: [],
       bloom: [],
       sun_exposure: [],
       water_use: [],
@@ -324,7 +318,7 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
                   isChecked={activeOtherFilters.californiaNative}
                   onChange={() => toggleOtherFilter('californiaNative')}
                 />
-                
+
                 <Checkbox
                   label="Low growing"
                   isChecked={activeOtherFilters.lowGrowing}

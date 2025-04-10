@@ -30,7 +30,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         onPress={() =>
           navigation.navigate('BottomTabs', {
             screen: 'HomeTab',
-            params: { screen: 'TreeSpeciesSearch' },
+            params: { screen: 'Home' },
           })
         }
       >

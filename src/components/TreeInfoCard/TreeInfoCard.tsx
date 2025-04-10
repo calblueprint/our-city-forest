@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { Fruit, Leaf, Ruler, Shapes, Warning, WateringCan } from '@/icons';
+import { Fruit, Leaf, Ruler, Shapes, Warning, Water } from '@/icons';
 import { styles } from './styles';
 
 type TreesInformationCardProps = {
@@ -15,7 +15,7 @@ type TreesInformationCardProps = {
   children?: ReactNode;
 };
 
-export const TreesInfoCard: React.FC<TreesInformationCardProps> = ({
+export const TreeInfoCard: React.FC<TreesInformationCardProps> = ({
   visible,
   onClose,
   children,
@@ -43,7 +43,7 @@ export const TreesInfoCard: React.FC<TreesInformationCardProps> = ({
                 </View>
                 <View style={styles.modalRow}>
                   <View style={styles.iconItem}>
-                    <WateringCan />
+                    <Water />
                   </View>
                   <Text style={styles.textStyle}>Water usage</Text>
                 </View>

@@ -2,37 +2,29 @@ import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import {
   Bear,
-  Flash,
-  Fruit,
+  Flower,
+  Growth,
   InfoCircle,
   Leaf,
   Lightbulb,
-  Location,
   Ruler,
-  Shapes,
+  Soil,
+  Sun,
   Warning,
   Water,
 } from '@/icons';
-import { formatEnumKey, Tree } from '@/types/tree';
-import { TreeSpecies } from '@/types/tree_species';
-import { TreeInfoCard } from '../TreeInfoCard/TreeInfoCard';
+import { formatEnumKey, ShrubSpecies } from '@/types/shrub_species';
+import { ShrubInfoCard } from '../ShrubInfoCard/ShrubInfoCard';
 import { styles } from './styles';
 
-type TreeSpeciesDisplayProps = {
-  speciesData: Partial<TreeSpecies>;
-  treeData: Tree[];
+type ShrubSpeciesDisplayProps = {
+  speciesData: Partial<ShrubSpecies>;
 };
 
-export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
+export const ShrubSpeciesDisplay: React.FC<ShrubSpeciesDisplayProps> = ({
   speciesData,
-  treeData,
 }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-
-  const uniqueLocations = treeData.filter(
-    (tree, index, self) =>
-      index === self.findIndex(t => t.bank === tree.bank && t.row === tree.row),
-  );
 
   return (
     <View style={styles.container}>
@@ -54,27 +46,81 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
           <Pressable onPress={() => setModalVisible(true)}>
             <InfoCircle />
           </Pressable>
-          <TreeInfoCard
+          <ShrubInfoCard
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
-          ></TreeInfoCard>
+          ></ShrubInfoCard>
         </View>
-
         <View style={styles.properties}>
-          {speciesData.max_height_ft && (
+          {speciesData.dimensions && (
             <View style={styles.property}>
               <Ruler />
               <Text style={styles.propertyText}>
-                {speciesData.max_height_ft} ft
+                {speciesData.dimensions} ft
               </Text>
             </View>
           )}
 
-          {speciesData.tree_shape && (
+          {speciesData.dormancy && (
+            <View style={styles.property}>
+              <Warning />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(speciesData.dormancy)}
+              </Text>
+            </View>
+          )}
+
+          {/*Need to confirm whether stem is a property */}
+          {/* {speciesData.stem && (
             <View style={styles.property}>
               <Shapes />
               <Text style={styles.propertyText}>
-                {formatEnumKey(speciesData.tree_shape)}
+                {formatEnumKey(speciesData.stem)}
+              </Text>
+            </View>
+          )} */}
+
+          {speciesData.flower_color && (
+            <View style={styles.property}>
+              <Flower />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(speciesData.flower_color)}
+              </Text>
+            </View>
+          )}
+
+          {speciesData.bloom && (
+            <View style={styles.property}>
+              <Leaf />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(speciesData.bloom)}
+              </Text>
+            </View>
+          )}
+
+          {speciesData.growth_rate && (
+            <View style={styles.property}>
+              <Growth />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(speciesData.growth_rate)}
+              </Text>
+            </View>
+          )}
+
+          {speciesData.sun_exposure && (
+            <View style={styles.property}>
+              <Sun />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(speciesData.sun_exposure)}
+              </Text>
+            </View>
+          )}
+
+          {speciesData.soil_needs && (
+            <View style={styles.property}>
+              <Soil />
+              <Text style={styles.propertyText}>
+                {formatEnumKey(speciesData.soil_needs)}
               </Text>
             </View>
           )}
@@ -88,67 +134,14 @@ export const TreeSpeciesDisplay: React.FC<TreeSpeciesDisplayProps> = ({
             </View>
           )}
 
-          {speciesData.root_damage_potential && (
-            <View style={styles.property}>
-              <Warning />
-              <Text style={styles.propertyText}>
-                {formatEnumKey(speciesData.root_damage_potential)}
-              </Text>
-            </View>
-          )}
-
-          {speciesData.litter_type && (
-            <View style={styles.property}>
-              <Fruit />
-              <Text style={styles.propertyText}>
-                {formatEnumKey(speciesData.litter_type)} Fruit
-              </Text>
-            </View>
-          )}
-
           {speciesData.california_native && (
             <View style={styles.property}>
               <Bear />
               <Text style={styles.propertyText}>CA Native</Text>
             </View>
           )}
-
-          {speciesData.foliage_type && (
-            <View style={styles.property}>
-              <Leaf />
-              <Text style={styles.propertyText}>
-                {formatEnumKey(speciesData.foliage_type)}
-              </Text>
-            </View>
-          )}
-
-          {speciesData.utility_friendly && (
-            <View style={styles.property}>
-              <Flash />
-              <Text style={styles.propertyText}>Powerline Friendly</Text>
-            </View>
-          )}
         </View>
       </View>
-
-      {treeData?.length > 0 && (
-        <View style={styles.locationsContainer}>
-          <Text style={styles.header}>Locations</Text>
-          <View style={styles.locations}>
-            {uniqueLocations?.map((tree, index) => (
-              <View
-                style={styles.locationEntry}
-                key={`${tree.bank}-${tree.row}-${index}`}
-              >
-                <Location />
-                <Text style={styles.propertyText}>
-                  Bank #{tree.bank ?? 0} {'  '}|{'  '} Row #{tree.row ?? 0}
-                </Text>
-              </View>
-            ))}
-          </View>
-        </View>
-      )}
     </View>
   );
 };

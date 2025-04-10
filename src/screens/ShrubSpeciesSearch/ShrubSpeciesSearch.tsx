@@ -11,53 +11,54 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Scanner } from '@/icons';
 import {
-  getAllTreeSpecies,
-  getAvailableTreeSpecies,
-} from '@/supabase/queries/trees';
+  getAllShrubSpecies,
+  getAvailableShrubSpecies,
+} from '@/supabase/queries/shrub_species';
 import { HomeStackParamList } from '@/types/navigation';
-import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
-import { TreeSearchBar } from '../../components/TreeSearchBar/TreeSearchBar';
+import { ShrubSpecies } from '@/types/shrub_species';
+import { ShrubSearchBar } from '../../components/ShrubSearchBar/ShrubSearchBar';
 import { styles } from './styles';
 
-type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
+type ShrubSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
-  'TreeSpeciesSearch'
+  'ShrubSpeciesSearch'
 >;
 
-type treeSpeciesCard = {
+type shrubSpeciesCard = {
   name: string;
   imageURL: string;
-  stockCount: number;
-  maxHeight: string;
-  treeShape: string;
-  litterType: string;
+  availableStock: number;
+  dormancy: string;
+  dimension: string;
+  bloomType: string;
+  sunExposure: string;
+  soilNeeds: string;
+  growthRate: string;
   waterUse: string;
   isCaliforniaNative: boolean;
-  isEvergreen: boolean;
-  isPowerlineFriendly: boolean;
-  rootDamagePotential: string;
+  isLowGrowing: boolean;
 };
 
 type ActiveFilters = {
-  height: string[];
-  shape: string;
-  litter: string[];
-  water: string[];
+  bloom: string[];
+  sun_exposure: string[];
+  water_use: string[];
+  growth_rate: string[];
   other: string[];
 };
 
-export const TreeSpeciesSearchScreen: React.FC<
-  TreeSpeciesSearchScreenProps
+export const ShrubSpeciesSearchScreen: React.FC<
+  ShrubSpeciesSearchScreenProps
 > = ({ navigation }) => {
-  const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>(
-    [],
-  );
+  const [shrubSpeciesCards, setShrubSpeciesCards] = useState<
+    shrubSpeciesCard[]
+  >([]);
   const [searchText, setSearchText] = useState<string>('');
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
-    height: [],
-    shape: '',
-    litter: [],
-    water: [],
+    bloom: [],
+    sun_exposure: [],
+    water_use: [],
+    growth_rate: [],
     other: [],
   });
 
@@ -77,84 +78,91 @@ export const TreeSpeciesSearchScreen: React.FC<
   }, []);
 
   useEffect(() => {
-    const loadTreeSpeciesData = async () => {
-      const treeSpecies = isUserAdmin
-        ? await getAllTreeSpecies()
-        : await getAvailableTreeSpecies();
-      if (treeSpecies) {
-        const cards: treeSpeciesCard[] = treeSpecies.map(
-          (ts: TreeSpecies & { count: number }) => ({
+    const loadShrubSpeciesData = async () => {
+      const shrubSpecies = isUserAdmin
+        ? await getAllShrubSpecies()
+        : await getAvailableShrubSpecies();
+      if (shrubSpecies) {
+        const cards: shrubSpeciesCard[] = shrubSpecies.map(
+          (ts: ShrubSpecies) => ({
             name: ts.name,
             imageURL: ts.image_url || 'https://example.com/placeholder.jpg',
-            stockCount: ts.count,
-            maxHeight: ts.max_height_ft,
-            treeShape: ts.tree_shape,
-            litterType: ts.litter_type,
+            funFact: ts.fun_fact,
             waterUse: ts.water_use,
             californiaNative: ts.california_native,
-            isEvergreen: ts.foliage_type === TreeSpeciesFoliageType.Evergreen,
-            isPowerlineFriendly: ts.utility_friendly,
-            rootDamagePotential: ts.root_damage_potential,
+            dimensions: ts.dimensions,
+            stem: ts.stem,
+            dormancy: ts.dormancy,
+            flowerColor: ts.flower_color,
+            bloom: ts.bloom,
+            growthRate: ts.growth_rate,
+            sunExposure: ts.sun_exposure,
+            soilNeeds: ts.soil_needs,
+            totalStock: ts.total_stock,
+            availableStock: ts.available_stock,
           }),
         );
-        setTreeSpeciesCards(cards);
+        setShrubSpeciesCards(cards);
       }
     };
-    loadTreeSpeciesData();
+    loadShrubSpeciesData();
   }, [isUserAdmin]);
 
-  const applyFilters = (tree: treeSpeciesCard) => {
-    if (activeFilters.height.length > 0) {
-      const maxHeight = parseFloat(tree.maxHeight);
-      const matchesHeight = activeFilters.height.some(filter => {
-        if (filter === 'small') return maxHeight < 40;
-        if (filter === 'medium') return maxHeight >= 40 && maxHeight <= 60;
-        if (filter === 'large') return maxHeight > 60;
-        return false; // If filter is null or invalid
-      });
-      if (!matchesHeight) return false;
-    }
-    if (activeFilters.shape && activeFilters.shape !== tree.treeShape) {
-      return false;
-    }
+  const applyFilters = (shrub: shrubSpeciesCard) => {
     if (
-      activeFilters.litter.length > 0 &&
-      !activeFilters.litter.includes(tree.litterType)
+      activeFilters.bloom.length > 0 &&
+      !activeFilters.bloom.includes(shrub.bloomType)
     ) {
       return false;
     }
     if (
-      activeFilters.water.length > 0 &&
-      !activeFilters.water.includes(tree.waterUse)
+      activeFilters.sun_exposure.length > 0 &&
+      !activeFilters.sun_exposure.includes(shrub.sunExposure)
+    ) {
+      return false;
+    }
+    if (
+      activeFilters.water_use.length > 0 &&
+      !activeFilters.water_use.includes(shrub.waterUse)
+    ) {
+      return false;
+    }
+    if (
+      activeFilters.growth_rate.length > 0 &&
+      !activeFilters.growth_rate.includes(shrub.growthRate)
     ) {
       return false;
     }
     if (activeFilters.other.length > 0) {
       const matchesOther = activeFilters.other.every(option => {
         if (option === 'californiaNative')
-          return tree.isCaliforniaNative || false;
-        if (option === 'evergreen') return tree.isEvergreen || false;
-        if (option === 'powerlineFriendly')
-          return tree.isPowerlineFriendly || false;
-        if (option === 'lowRootDamage')
-          return tree.rootDamagePotential === 'low';
-        return false;
+          return shrub.isCaliforniaNative || false;
+
+        if (option === 'lowGrowing') {
+          if (
+            typeof shrub.dimension === 'string' &&
+            shrub.dimension.toLowerCase().includes('x')
+          ) {
+            const height = Number(shrub.dimension.split(/x/i)[0]);
+            return height <= 2 || false;
+          }
+        }
       });
       if (!matchesOther) return false;
     }
     return true;
   };
 
-  const filteredTreeSpeciesCards = treeSpeciesCards.filter(
+  const filteredShrubSpeciesCards = shrubSpeciesCards.filter(
     ts =>
       ts.name.toLowerCase().includes(searchText.toLowerCase()) &&
       applyFilters(ts),
   );
 
-  const renderSpeciesCard = ({ item }: { item: treeSpeciesCard }) => (
+  const renderSpeciesCard = ({ item }: { item: shrubSpeciesCard }) => (
     <TouchableOpacity
       onPress={() =>
-        navigation.push('TreeSpeciesInfo', { speciesName: item.name })
+        navigation.push('ShrubSpeciesInfo', { speciesName: item.name })
       }
       style={styles.speciesCard}
     >
@@ -167,7 +175,7 @@ export const TreeSpeciesSearchScreen: React.FC<
       <Text style={styles.speciesName} numberOfLines={1}>
         {item.name}
       </Text>
-      <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
+      <Text style={styles.speciesStock}>{item.availableStock} in stock</Text>
     </TouchableOpacity>
   );
 
@@ -176,11 +184,11 @@ export const TreeSpeciesSearchScreen: React.FC<
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>
-            {isUserAdmin ? 'All Trees' : 'Available Trees'}
+            {isUserAdmin ? 'All Shrubs' : 'Available Shrubs'}
           </Text>
           <Scanner onPress={() => navigation.navigate('QRCodeScanner')} />
         </View>
-        <TreeSearchBar
+        <ShrubSearchBar
           searchText={searchText}
           onSearchTextChange={setSearchText}
           activeFilters={activeFilters}
@@ -190,7 +198,7 @@ export const TreeSpeciesSearchScreen: React.FC<
       <View style={styles.divider}></View>
 
       <FlatList
-        data={filteredTreeSpeciesCards}
+        data={filteredShrubSpeciesCards}
         keyExtractor={item => item.name}
         renderItem={renderSpeciesCard}
         numColumns={2}
@@ -198,7 +206,7 @@ export const TreeSpeciesSearchScreen: React.FC<
         columnWrapperStyle={{ gap: 16 }}
         ListEmptyComponent={
           <Text style={styles.searchError}>
-            No tree species found matching your search.
+            No shrub species found matching your search.
           </Text>
         }
       />

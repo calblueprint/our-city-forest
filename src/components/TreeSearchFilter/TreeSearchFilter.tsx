@@ -12,7 +12,7 @@ import { Dropdown } from '@/components/Dropdown/Dropdown';
 import { TreeSpeciesShape } from '@/types/tree_species';
 import { styles } from './styles';
 
-type SearchFilterProps = {
+type TreeSearchFilterProps = {
   isModalVisible: boolean;
   onClose: () => void;
   activeFilters: {
@@ -33,7 +33,7 @@ type SearchFilterProps = {
   >;
 };
 
-export const SearchFilter: React.FC<SearchFilterProps> = ({
+export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
   isModalVisible,
   onClose,
   activeFilters,

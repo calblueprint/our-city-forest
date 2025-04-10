@@ -48,6 +48,12 @@ export const styles = StyleSheet.create({
     gap: 12,
   },
 
+  propertiesHeading: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+
   header: {
     ...typography.largeRegular,
     color: colors.gray1,

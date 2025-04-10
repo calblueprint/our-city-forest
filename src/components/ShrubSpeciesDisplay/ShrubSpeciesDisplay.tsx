@@ -14,8 +14,8 @@ import {
   Water,
 } from '@/icons';
 import { formatEnumKey, ShrubSpecies } from '@/types/shrub_species';
-import { styles } from './styles';
 import { ShrubInfoCard } from '../ShrubInfoCard/ShrubInfoCard';
+import { styles } from './styles';
 
 type ShrubSpeciesDisplayProps = {
   speciesData: Partial<ShrubSpecies>;
@@ -41,14 +41,16 @@ export const ShrubSpeciesDisplay: React.FC<ShrubSpeciesDisplayProps> = ({
       <View style={styles.divider}></View>
 
       <View style={styles.propertiesContainer}>
-        <Text style={styles.header}>Properties</Text>
-        <Pressable onPress={() => setModalVisible(true)}>
+      <View style={styles.propertiesHeading}>
+          <Text style={styles.header}>Properties</Text>
+          <Pressable onPress={() => setModalVisible(true)}>
             <InfoCircle />
           </Pressable>
           <ShrubInfoCard
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
           ></ShrubInfoCard>
+        </View>
         <View style={styles.properties}>
           {speciesData.dimensions && (
             <View style={styles.property}>

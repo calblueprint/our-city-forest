@@ -15,8 +15,8 @@ import {
 } from '@/icons';
 import { formatEnumKey, Tree } from '@/types/tree';
 import { TreeSpecies } from '@/types/tree_species';
-import { styles } from './styles';
 import { TreeInfoCard } from '../TreeInfoCard/TreeInfoCard';
+import { styles } from './styles';
 
 type TreeSpeciesDisplayProps = {
   speciesData: Partial<TreeSpecies>;

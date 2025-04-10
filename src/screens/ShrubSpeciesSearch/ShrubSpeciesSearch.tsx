@@ -28,7 +28,7 @@ type shrubSpeciesCard = {
   name: string;
   imageURL: string;
   availableStock: number;
-  isEvergreen: boolean;
+  dormancy: string;
   dimension: string;
   bloomType: string;
   sunExposure: string;
@@ -111,15 +111,6 @@ export const ShrubSpeciesSearchScreen: React.FC<
   }, [isUserAdmin]);
 
   const applyFilters = (shrub: shrubSpeciesCard) => {
-    if (activeFilters.max_height.length > 0) {
-      const height = Number(shrub.dimension.split('x', 1)[0]);
-      const matchesHeight = activeFilters.max_height.some(filter => {
-        if (filter === 'low growing') return height < 2;
-        if (filter === 'not low growing') return height >= 2;
-        return false; // If filter is null or invalid
-      });
-      if (!matchesHeight) return false;
-    }
     if (
       activeFilters.bloom.length > 0 &&
       !activeFilters.bloom.includes(shrub.bloomType)
@@ -148,11 +139,24 @@ export const ShrubSpeciesSearchScreen: React.FC<
       const matchesOther = activeFilters.other.every(option => {
         if (option === 'californiaNative')
           return shrub.isCaliforniaNative || false;
-        if (option === 'evergreen') return shrub.isEvergreen || false;
+
+        if (activeFilters.max_height.length > 0) {
+          
+          if (typeof shrub.dimension === 'string' && shrub.dimension.toLowerCase().includes('x')) {
+            const heightStr = shrub.dimension.split(/x/i)[0];
+            const height = Number(heightStr);
+        
+            const matchesHeight = activeFilters.max_height.some(filter => {
+              if (filter === 'low growing') return height < 2;
+              if (filter === 'not low growing') return height >= 2;
+              return false; // If filter is null or invalid
+            });
+          }
+        }
+
       });
       if (!matchesOther) return false;
     }
-
     return true;
   };
 

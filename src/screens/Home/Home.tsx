@@ -2,6 +2,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '@/types/navigation';
 import { styles } from './styles';
+import { TreeCard } from '@/components/TreeCard/TreeCard';
 
 type HomeScreenProps = NativeStackScreenProps<HomeStackParamList, 'Home'>;
 

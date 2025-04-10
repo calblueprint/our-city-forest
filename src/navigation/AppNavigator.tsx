@@ -13,7 +13,7 @@ import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { HomeScreen } from '@/screens/Home/Home';
 import { LoginScreen } from '@/screens/Login/Login';
-import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSearch/ShrubSpeciesSearch';
+import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSpeciesSearch/ShrubSpeciesSearch';
 import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
 import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
 import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';

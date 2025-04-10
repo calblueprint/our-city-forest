@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import { Checkbox } from '@/components/Checkbox/Checkbox';
-import { Dropdown } from '@/components/Dropdown/Dropdown';
 import { styles } from './styles';
 
 type ShrubSearchFilterProps = {
@@ -41,11 +40,6 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
   onActiveFilterChange,
 }) => {
   // Individual filter states
-  const [activeHeightFilters, setActiveHeightFilters] = useState({
-    lowGrowing: activeFilters.max_height.includes('low growing'),
-    notLowGrowing: activeFilters.max_height.includes('not low growing'),
-  });
-
   const [activeBloomFilters, setActiveBloomFilters] = useState({
     winter: activeFilters.bloom.includes('winter'),
     spring: activeFilters.bloom.includes('spring'),
@@ -56,7 +50,7 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
   const [activeSunFilters, setActiveSunFilters] = useState({
     fullSun: activeFilters.sun_exposure.includes('full sun'),
     partialShade: activeFilters.sun_exposure.includes('partial shade'),
-    coarseGrained: activeFilters.sun_exposure.includes('coarse-grained'),
+    shade: activeFilters.sun_exposure.includes('shade'),
   });
 
   const [activeWaterFilters, setActiveWaterFilters] = useState({
@@ -66,19 +60,18 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
   });
 
   const [activeGrowthFilters, setActiveGrowthFilters] = useState({
-    low: activeFilters.water_use.includes('slow'),
+    slow: activeFilters.water_use.includes('slow'),
     moderate: activeFilters.water_use.includes('moderate'),
-    high: activeFilters.water_use.includes('fast'),
+    fast: activeFilters.water_use.includes('fast'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({
     californiaNative: activeFilters.other.includes('californiaNative'),
-    evergreen: activeFilters.other.includes('evergreen'),
+    lowGrowing: activeFilters.other.includes('lowGrowing'),
   });
 
   const anyFiltersActive = () => {
     return (
-      Object.values(activeHeightFilters).some(Boolean) ||
       Object.values(activeSunFilters).some(Boolean) ||
       Object.values(activeBloomFilters).some(Boolean) ||
       Object.values(activeWaterFilters).some(Boolean) ||
@@ -89,8 +82,8 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
 
   useEffect(() => {
     onActiveFilterChange({
-      max_height: Object.keys(activeHeightFilters).filter(
-        key => activeHeightFilters[key as keyof typeof activeHeightFilters],
+      max_height: Object.keys(activeOtherFilters).filter(
+        key => activeBloomFilters[key as keyof typeof activeBloomFilters],
       ) as string[],
       bloom: Object.keys(activeBloomFilters).filter(
         key => activeBloomFilters[key as keyof typeof activeBloomFilters],
@@ -102,35 +95,28 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
         key => activeWaterFilters[key as keyof typeof activeWaterFilters],
       ) as string[],
       growth_rate: Object.keys(activeGrowthFilters).filter(
-        key => activeGrowthFilters[key as keyof typeof activeGrowthFilters],
-      ) as string[],
+         key => activeGrowthFilters[key as keyof typeof activeGrowthFilters],
+       ) as string[],
       other: Object.keys(activeOtherFilters).filter(
         key => activeOtherFilters[key as keyof typeof activeOtherFilters],
       ) as string[],
     });
   }, [
-    activeHeightFilters,
     activeBloomFilters,
     activeSunFilters,
     activeWaterFilters,
     activeOtherFilters,
+    activeGrowthFilters,
     onActiveFilterChange,
   ]);
 
   useEffect(() => {}, [
-    activeHeightFilters,
     activeBloomFilters,
     activeSunFilters,
     activeWaterFilters,
     activeOtherFilters,
+    activeGrowthFilters,
   ]);
-
-  const toggleHeightFilter = (key: keyof typeof activeHeightFilters) => {
-    setActiveHeightFilters(prev => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
 
   const toggleBloomFilter = (key: keyof typeof activeBloomFilters) => {
     setActiveBloomFilters(prev => ({
@@ -139,8 +125,22 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
     }));
   };
 
+  const toggleSunFilter = (key: keyof typeof activeSunFilters) => {
+    setActiveSunFilters(prev => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
   const toggleWaterFilter = (key: keyof typeof activeWaterFilters) => {
     setActiveWaterFilters(prev => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const toggleGrowthFilter = (key: keyof typeof activeGrowthFilters) => {
+    setActiveGrowthFilters(prev => ({
       ...prev,
       [key]: !prev[key],
     }));
@@ -154,24 +154,30 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
   };
 
   const resetFilters = () => {
-    setActiveHeightFilters({
-      lowGrowing: false,
-      notLowGrowing: false,
-    });
     setActiveBloomFilters({
       winter: false,
       spring: false,
       summer: false,
       fall: false,
     });
+    setActiveSunFilters({
+      fullSun: false,
+      partialShade: false,
+      shade: false,
+    });
     setActiveWaterFilters({
       low: false,
       moderate: false,
       high: false,
     });
+    setActiveGrowthFilters({
+      slow: false,
+      moderate: false,
+      fast: false,
+    });
     setActiveOtherFilters({
       californiaNative: false,
-      evergreen: false,
+      lowGrowing: false,
     });
     onActiveFilterChange({
       max_height: [],
@@ -194,7 +200,7 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
         <View style={styles.filterContainer}>
           <View style={styles.grabber}></View>
           <View style={styles.filterHeading}>
-            <Text style={styles.headerText}>Filter Trees</Text>
+            <Text style={styles.headerText}>Filter Shrubs</Text>
             <TouchableOpacity
               style={
                 anyFiltersActive()
@@ -216,19 +222,73 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
           </View>
 
           <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
-            {/* Height */}
+            {/* Growth Rate  */}
             <View style={styles.filterProperties}>
-              <Text style={styles.subheaderText}>Height</Text>
+              <Text style={styles.subheaderText}>Growth Rate</Text>
               <View style={styles.checkboxGroup}>
                 <Checkbox
-                  label="Low Growing (&lt; 2')"
-                  isChecked={activeHeightFilters.lowGrowing}
-                  onChange={() => toggleHeightFilter('lowGrowing')}
+                  label="Slow"
+                  isChecked={activeGrowthFilters.slow}
+                  onChange={() => toggleGrowthFilter('slow')}
                 />
                 <Checkbox
-                  label="Not Low Growing (2' +)"
-                  isChecked={activeHeightFilters.notLowGrowing}
-                  onChange={() => toggleHeightFilter('notLowGrowing')}
+                  label="Moderate"
+                  isChecked={activeGrowthFilters.moderate}
+                  onChange={() => toggleGrowthFilter('moderate')}
+                />
+                <Checkbox
+                  label="Fast"
+                  isChecked={activeGrowthFilters.fast}
+                  onChange={() => toggleGrowthFilter('fast')}
+                />
+              </View>
+            </View>
+
+            {/* Sun Exposure  */}
+            <View style={styles.filterProperties}>
+              <Text style={styles.subheaderText}>Sun Exposure</Text>
+              <View style={styles.checkboxGroup}>
+                <Checkbox
+                  label="Full Sun"
+                  isChecked={activeSunFilters.fullSun}
+                  onChange={() => toggleSunFilter('fullSun')}
+                />
+                <Checkbox
+                  label="Partial Shade"
+                  isChecked={activeSunFilters.partialShade}
+                  onChange={() => toggleSunFilter('partialShade')}
+                />
+                <Checkbox
+                  label="Shade"
+                  isChecked={activeSunFilters.shade}
+                  onChange={() => toggleSunFilter('shade')}
+                />
+              </View>
+            </View>
+
+            {/* Bloom  */}
+            <View style={styles.filterProperties}>
+              <Text style={styles.subheaderText}>Bloom Season</Text>
+              <View style={styles.checkboxGroup}>
+                <Checkbox
+                  label="Spring"
+                  isChecked={activeBloomFilters.spring}
+                  onChange={() => toggleBloomFilter('spring')}
+                />
+                <Checkbox
+                  label="Summer"
+                  isChecked={activeBloomFilters.summer}
+                  onChange={() => toggleBloomFilter('summer')}
+                />
+                <Checkbox
+                  label="Fall"
+                  isChecked={activeBloomFilters.fall}
+                  onChange={() => toggleBloomFilter('fall')}
+                />
+                <Checkbox
+                  label="Winter"
+                  isChecked={activeBloomFilters.winter}
+                  onChange={() => toggleBloomFilter('winter')}
                 />
               </View>
             </View>
@@ -264,10 +324,11 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
                   isChecked={activeOtherFilters.californiaNative}
                   onChange={() => toggleOtherFilter('californiaNative')}
                 />
+                
                 <Checkbox
-                  label="Evergreen"
-                  isChecked={activeOtherFilters.evergreen}
-                  onChange={() => toggleOtherFilter('evergreen')}
+                  label="Low growing"
+                  isChecked={activeOtherFilters.lowGrowing}
+                  onChange={() => toggleOtherFilter('lowGrowing')}
                 />
               </View>
             </View>

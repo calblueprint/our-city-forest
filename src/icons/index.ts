@@ -22,7 +22,6 @@ export { Lightbulb } from './Lightbulb';
 export { Location } from './Location';
 export { LogOut } from './LogOut';
 export { Nuts } from './Nuts';
-export { PaintBucket } from './PaintBucket';
 export { Repeat } from './Repeat';
 export { Ruler } from './Ruler';
 export { ScanBarcode } from './ScanBarcode';

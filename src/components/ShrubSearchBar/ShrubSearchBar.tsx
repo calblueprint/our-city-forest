@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
-import { SearchFilter } from '@/components/SearchFilter/SearchFilter';
+import { ShrubSearchFilter } from '@/components/ShrubSearchFilter/ShrubSearchFilter';
 import { Filter, Search } from '@/icons';
 import { styles } from './styles';
 
-type SearchBarProps = {
+type ShrubSearchBarProps = {
   searchText: string;
   onSearchTextChange: (text: string) => void;
   activeFilters: {
-    height: string[];
-    shape: string;
-    litter: string[];
-    water: string[];
+    bloom: string[];
+    sun_exposure: string[];
+    water_use: string[];
+    growth_rate: string[];
     other: string[];
   };
   onActiveFilterChange: React.Dispatch<
     React.SetStateAction<{
-      height: string[];
-      shape: string;
-      litter: string[];
-      water: string[];
+      bloom: string[];
+      sun_exposure: string[];
+      water_use: string[];
+      growth_rate: string[];
       other: string[];
     }>
   >;
 };
 
-export const SearchBar: React.FC<SearchBarProps> = ({
+export const ShrubSearchBar: React.FC<ShrubSearchBarProps> = ({
   searchText,
   onSearchTextChange,
   activeFilters,
@@ -50,7 +50,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <Filter />
         </View>
       </TouchableOpacity>
-      <SearchFilter
+      <ShrubSearchFilter
         isModalVisible={isModalVisible}
         onClose={closeFilter}
         activeFilters={activeFilters}

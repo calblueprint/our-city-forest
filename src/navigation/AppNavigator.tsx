@@ -11,7 +11,10 @@ import {
 } from '@/icons';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
+import { HomeScreen } from '@/screens/Home/Home';
 import { LoginScreen } from '@/screens/Login/Login';
+import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
+import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSpeciesSearch/ShrubSpeciesSearch';
 import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
 import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
 import { TreeSpeciesSearchScreen } from '@/screens/TreeSpeciesSearch/TreeSpeciesSearch';
@@ -46,12 +49,17 @@ const LoginStackNavigator = () => {
 const HomeStackNavigator = () => {
   return (
     <HomeStack.Navigator
-      initialRouteName="TreeSpeciesSearch"
+      initialRouteName="Home"
       screenOptions={{ headerShown: false }}
     >
+      <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen
         name="TreeSpeciesSearch"
         component={TreeSpeciesSearchScreen}
+      />
+      <HomeStack.Screen
+        name="ShrubSpeciesSearch"
+        component={ShrubSpeciesSearchScreen}
       />
       <HomeStack.Screen
         name="QRCodeScanner"
@@ -64,6 +72,10 @@ const HomeStackNavigator = () => {
       <HomeStack.Screen
         name="TreeSpeciesInfo"
         component={TreeSpeciesInfoScreen}
+      />
+      <HomeStack.Screen
+        name="ShrubSpeciesInfo"
+        component={ShrubSpeciesInfoScreen}
       />
     </HomeStack.Navigator>
   );

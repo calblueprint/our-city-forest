@@ -10,7 +10,7 @@ import {
   Ruler,
   Shapes,
   Warning,
-  WateringCan,
+  Water,
 } from '@/icons';
 import { formatEnumKey, Tree } from '@/types/tree';
 import { styles } from './styles';
@@ -84,7 +84,7 @@ export const TreeDisplay: React.FC<TreeDisplayProps> = ({
 
           {treeData.species.water_use && (
             <View style={styles.property}>
-              <WateringCan />
+              <Water />
               <Text style={styles.propertyText}>
                 {formatEnumKey(treeData.species?.water_use)}
               </Text>

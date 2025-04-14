@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
   FlatList,
-  Image,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Scanner } from '@/icons';

@@ -47,7 +47,6 @@ export const styles = StyleSheet.create({
   },
 
   iconTextView: {
-    ...typography.mediumRegular,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,

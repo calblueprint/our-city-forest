@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  ImageBackground,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -8,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { ImageBackground } from 'expo-image';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { TreeDisplay } from '@/components/TreeDisplay/TreeDisplay';

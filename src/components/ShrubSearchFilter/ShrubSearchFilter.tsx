@@ -18,7 +18,6 @@ type ShrubSearchFilterProps = {
     sun_exposure: string[];
     water_use: string[];
     growth_rate: string[];
-    growth_rate: string[];
     other: string[];
   };
   onActiveFilterChange: React.Dispatch<

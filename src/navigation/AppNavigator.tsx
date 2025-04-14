@@ -54,11 +54,6 @@ const HomeStackNavigator = () => {
     >
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen
-        name="ShrubSpeciesSearch"
-        component={ShrubSpeciesSearchScreen}
-      />
-
-      <HomeStack.Screen
         name="TreeSpeciesSearch"
         component={TreeSpeciesSearchScreen}
       />

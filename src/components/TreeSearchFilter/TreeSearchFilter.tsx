@@ -204,7 +204,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
             </TouchableOpacity>
           </View>
 
-          <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
+          <ScrollView showsVerticalScrollIndicator={false}>
             {/* Height */}
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Height</Text>

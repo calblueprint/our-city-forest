@@ -74,9 +74,19 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  signOutContainer: {
+  logOutContainer: {
     position: 'absolute',
     bottom: 0,
     marginBottom: 20,
+  },
+
+  adminContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+
+  adminText: {
+    ...typography.smallBold,
+    color: colors.gray3,
   },
 });

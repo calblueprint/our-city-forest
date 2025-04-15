@@ -68,9 +68,4 @@ export const styles = StyleSheet.create({
     ...typography.mediumRegular,
     color: colors.gray2,
   },
-
-  treeShrubToggle: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
 });

@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Image } from 'expo-image';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { useAuth } from '@/context/AuthContext';
 import { Scanner } from '@/icons';
 import {
@@ -61,8 +60,6 @@ export const TreeSpeciesSearchScreen: React.FC<
     water: [],
     other: [],
   });
-
-  const [isTreeSpecies, setIsTreeSpecies] = useState(true);
 
   const { isAuthenticated } = useAuth();
   const isUserAdmin = isAuthenticated;
@@ -177,22 +174,6 @@ export const TreeSpeciesSearchScreen: React.FC<
           activeFilters={activeFilters}
           onActiveFilterChange={setActiveFilters}
         />
-
-        <View style={styles.treeShrubToggle}>
-          <ToggleSwitch
-            value={isTreeSpecies}
-            onValueChange={newValue => {
-              setIsTreeSpecies(newValue);
-              if (newValue) {
-                navigation.navigate('TreeSpeciesSearch');
-              } else {
-                navigation.navigate('ShrubSpeciesSearch');
-              }
-            }}
-            trueLabel="Trees"
-            falseLabel="Shrubs"
-          />
-        </View>
       </View>
 
       <View style={styles.divider}></View>

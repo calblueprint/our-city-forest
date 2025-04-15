@@ -114,15 +114,15 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
           const fetchedUserInfo = await fetchGoogleUserInfo(accessToken);
 
           if (fetchedUserInfo) {
-            if (!fetchedUserInfo.email?.endsWith('@ourcityforest.org')) {
-              Alert.alert(
-                'Unauthorized Email',
-                'You must use an @ourcityforest.org email address to log in.',
-                [{ text: 'OK' }],
-              );
-              setIsLoading(false);
-              return;
-            }
+            // if (!fetchedUserInfo.email?.endsWith('@ourcityforest.org')) {
+            //   Alert.alert(
+            //     'Unauthorized Email',
+            //     'You must use an @ourcityforest.org email address to log in.',
+            //     [{ text: 'OK' }],
+            //   );
+            //   setIsLoading(false);
+            //   return;
+            // }
 
             const expiration = Date.now() + 3600 * 1000;
 

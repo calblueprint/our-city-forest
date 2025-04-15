@@ -7,9 +7,9 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
+import { useAuth } from '@/context/AuthContext';
 import { Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
@@ -62,22 +62,10 @@ export const TreeSpeciesSearchScreen: React.FC<
     other: [],
   });
 
-  const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
-
   const [isTreeSpecies, setIsTreeSpecies] = useState(true);
 
-  useEffect(() => {
-    const fetchAuthStatus = async () => {
-      try {
-        const status = await AsyncStorage.getItem('authStatus');
-        setIsUserAdmin(status === 'true');
-      } catch (error) {
-        console.error('Error fetching auth status:', error);
-      }
-    };
-
-    fetchAuthStatus();
-  }, []);
+  const { isAuthenticated } = useAuth();
+  const isUserAdmin = isAuthenticated;
 
   useEffect(() => {
     const loadTreeSpeciesData = async () => {
@@ -192,17 +180,13 @@ export const TreeSpeciesSearchScreen: React.FC<
 
         <View style={styles.treeShrubToggle}>
           <ToggleSwitch
-            //value={isTreeSpecies}
-            //onValueChange={setIsTreeSpecies}
-            //trueLabel="Trees"
-            //falseLabel="Shrubs"
             value={isTreeSpecies}
             onValueChange={newValue => {
               setIsTreeSpecies(newValue);
               if (newValue) {
                 navigation.navigate('TreeSpeciesSearch');
               } else {
-                navigation.navigate('ShrubSpeciesSearch'); // Replace with the actual screen name
+                navigation.navigate('ShrubSpeciesSearch');
               }
             }}
             trueLabel="Trees"

@@ -22,7 +22,7 @@ export const LogOutButton: React.FC = () => {
             name: 'BottomTabs',
             params: {
               screen: 'HomeTab',
-              params: { screen: 'TreeSpeciesSearch' },
+              params: { screen: 'Home' },
             },
           },
         ],

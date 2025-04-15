@@ -23,7 +23,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     setHasLaunched(true);
     navigation.navigate('BottomTabs', {
       screen: 'HomeTab',
-      params: { screen: 'TreeSpeciesSearch' },
+      params: { screen: 'Home' },
     });
   };
 

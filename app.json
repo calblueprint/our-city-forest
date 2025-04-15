@@ -1,8 +1,7 @@
 {
   "expo": {
-    "name": "Our City Forest",
+    "name": "OCF",
     "slug": "our-city-forest",
-    "newArchEnabled": true,
     "owner": "ocfdev",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -20,7 +19,8 @@
         {
           "launchMode": "most-recent"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "splash": {
       "image": "./assets/bp-splash.png",
@@ -31,13 +31,22 @@
     "ios": {
       "bundleIdentifier": "org.calblueprint.ourcityforest",
       "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      },
       "infoPlist": {
-        "NSCameraUsageDescription": "This app requires access to the camera to scan QR codes for tree information."
-      }
+        "NSCameraUsageDescription": "This app uses the camera to scan QR codes on nursery trees.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "appleTeamId": "DYK7943D24"
     },
     "android": {
       "package": "org.calblueprint.ourcityforest",
-      "permissions": ["CAMERA"],
+      "permissions": [
+        "CAMERA",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/bp-adaptive-icon.png",
         "backgroundColor": "#ffffff"

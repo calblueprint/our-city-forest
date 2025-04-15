@@ -12,8 +12,9 @@ import {
   useCameraPermissions,
 } from 'expo-camera';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useAuth } from '@/context/AuthContext';
 import { FlashCircle, XButton } from '@/icons';
-import { validateTreeExists } from '@/supabase/queries/trees';
+import { getTreeInfo, validateTreeExists } from '@/supabase/queries/trees';
 import { HomeStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -23,12 +24,14 @@ type QRCodeScannerProps = NativeStackScreenProps<
 >;
 
 export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
+  const { isAuthenticated } = useAuth();
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [qrCodeFound, setQrCodeFound] = useState<boolean>(false);
   const [qrCodeData, setQrCodeData] = useState<string | null>(null);
   const [flashEnabled, setFlashEnabled] = useState<boolean>(false);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
-  const lastQrDetectionTimeRef = useRef<number>(0); // timestamp ref
+  const lastQrDetectionTimeRef = useRef<number>(0); // Timestamp ref
 
   const resetQrCodeFound = () => {
     setQrCodeFound(false);
@@ -39,11 +42,11 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
     setQrCodeFound(true);
     setQrCodeData(data.data);
 
-    // store timestamp for when barcode is detected
+    // Store timestamp for when barcode is detected
     lastQrDetectionTimeRef.current = Date.now();
   };
 
-  // reset status when qr code absent for too long
+  // Reset status when qr code absent for too long
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (qrCodeFound && Date.now() - lastQrDetectionTimeRef.current > 500) {
@@ -61,12 +64,52 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
     }
   }, [cameraPermission, requestCameraPermission]);
 
+  const handleScan = async () => {
+    if (!qrCodeData || isProcessing) return;
+
+    try {
+      setIsProcessing(true);
+      const exists = await validateTreeExists(qrCodeData);
+
+      if (exists) {
+        if (isAuthenticated) {
+          navigation.push('TreeInfo', { treeId: qrCodeData });
+        } else {
+          const treeData = await getTreeInfo(qrCodeData);
+          if (treeData && treeData.species?.name) {
+            navigation.push('TreeSpeciesInfo', {
+              speciesName: treeData.species.name,
+            });
+          } else {
+            Alert.alert(
+              'Error',
+              'Could not retrieve tree species information.',
+              [{ text: 'OK' }],
+            );
+          }
+        }
+      } else {
+        Alert.alert(
+          'Invalid QR Code',
+          'This QR code is not associated with any tree in our database.',
+          [{ text: 'OK' }],
+        );
+      }
+    } catch {
+      Alert.alert('Error', 'Failed to process the QR code. Please try again.', [
+        { text: 'OK' },
+      ]);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   // Camera permissions are still loading.
   if (!cameraPermission) {
     return <View />;
   }
 
-  // No perms :(
+  // Permission not granted.
   if (!cameraPermission.granted) {
     return <Text>Permission for camera not granted.</Text>;
   }
@@ -109,31 +152,10 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
           style={[
             styles.scanButton,
             qrCodeFound ? styles.scanButtonEnabled : styles.scanButtonDisabled,
+            isProcessing && { opacity: 0.7 },
           ]}
-          onPress={async () => {
-            if (!qrCodeData) return;
-
-            try {
-              const exists = await validateTreeExists(qrCodeData);
-
-              if (exists) {
-                navigation.push('TreeInfo', { treeId: qrCodeData });
-              } else {
-                Alert.alert(
-                  'Invalid QR Code',
-                  'This QR code is not associated with any tree in our database.',
-                  [{ text: 'OK' }],
-                );
-              }
-            } catch {
-              Alert.alert(
-                'Error',
-                'Failed to validate the QR code. Please try again.',
-                [{ text: 'OK' }],
-              );
-            }
-          }}
-          disabled={!qrCodeFound}
+          onPress={handleScan}
+          disabled={!qrCodeFound || isProcessing}
         >
           <Text style={styles.scanButtonText}>Scan</Text>
         </TouchableOpacity>

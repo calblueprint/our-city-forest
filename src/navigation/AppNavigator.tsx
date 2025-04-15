@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
 import { QRCodeScanner } from '@/components/QRCodeScanner/QRCodeScanner';
 import { useAuth } from '@/context/AuthContext';
 import {
@@ -130,27 +131,21 @@ const BottomTabNavigator = () => {
 
 // Root Navigator
 export const AppNavigator = () => {
-  const { isAuthenticated } = useAuth();
+  const { isLoading, hasLaunched } = useAuth();
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <NavigationContainer>
-      {isAuthenticated ? (
-        <RootStack.Navigator
-          initialRouteName="BottomTabs"
-          screenOptions={{ headerShown: false }}
-        >
-          <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
-          <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
-        </RootStack.Navigator>
-      ) : (
-        <RootStack.Navigator
-          initialRouteName="LoginStack"
-          screenOptions={{ headerShown: false }}
-        >
-          <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
-          <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
-        </RootStack.Navigator>
-      )}
+      <RootStack.Navigator
+        initialRouteName={hasLaunched ? 'BottomTabs' : 'LoginStack'}
+        screenOptions={{ headerShown: false }}
+      >
+        <RootStack.Screen name="LoginStack" component={LoginStackNavigator} />
+        <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };

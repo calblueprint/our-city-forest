@@ -2,7 +2,9 @@ import React from 'react';
 import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { SignOutButton } from '@/components/SignOutButton/SignOutButton';
+import { LogInButton } from '@/components/LogInButton/LogInButton';
+import { LogOutButton } from '@/components/LogOutButton/LogOutButton';
+import { useAuth } from '@/context/AuthContext';
 import {
   ArrowRight,
   Call,
@@ -53,6 +55,8 @@ const ContactButton: React.FC<ContactButtonProps> = ({
 );
 
 export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
+  const { isAuthenticated } = useAuth();
+
   const openLink = async (url: string) => {
     try {
       const supported = await Linking.canOpenURL(url);
@@ -122,8 +126,15 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
       />
       <View style={styles.divider} />
 
-      <View style={styles.signOutContainer}>
-        <SignOutButton />
+      <View style={styles.logOutContainer}>
+        {isAuthenticated ? (
+          <LogOutButton />
+        ) : (
+          <View style={styles.adminContainer}>
+            <Text style={styles.adminText}>Are you an admin? </Text>
+            <LogInButton />
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );

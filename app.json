@@ -19,7 +19,8 @@
         {
           "launchMode": "most-recent"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "splash": {
       "image": "./assets/bp-splash.png",
@@ -30,8 +31,12 @@
     "ios": {
       "bundleIdentifier": "org.calblueprint.ourcityforest",
       "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      },
       "infoPlist": {
-        "NSCameraUsageDescription": "This app requires access to the camera to scan QR codes for tree information."
+        "NSCameraUsageDescription": "This app uses the camera to scan QR codes on nursery trees.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {

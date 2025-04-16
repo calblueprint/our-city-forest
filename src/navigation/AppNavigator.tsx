@@ -10,6 +10,7 @@ import {
   HomeSelected,
   HomeUnselected,
 } from '@/icons';
+import { linking } from '@/linking';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { HomeScreen } from '@/screens/Home/Home';
@@ -138,7 +139,7 @@ export const AppNavigator = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <RootStack.Navigator
         initialRouteName={hasLaunched ? 'BottomTabs' : 'LoginStack'}
         screenOptions={{ headerShown: false }}

@@ -7,7 +7,7 @@ import { RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
 export const LogOutButton: React.FC = () => {
-  const { logout } = useAuth();
+  const { logOut: logout } = useAuth();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 

@@ -58,9 +58,9 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
   });
 
   const [activeGrowthFilters, setActiveGrowthFilters] = useState({
-    slow: activeFilters.water_use.includes('slow'),
-    moderate: activeFilters.water_use.includes('moderate'),
-    fast: activeFilters.water_use.includes('fast'),
+    slow: activeFilters.growth_rate.includes('slow'),
+    moderate: activeFilters.growth_rate.includes('moderate'),
+    fast: activeFilters.growth_rate.includes('fast'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({
@@ -103,14 +103,6 @@ export const ShrubSearchFilter: React.FC<ShrubSearchFilterProps> = ({
     activeOtherFilters,
     activeGrowthFilters,
     onActiveFilterChange,
-  ]);
-
-  useEffect(() => {}, [
-    activeBloomFilters,
-    activeSunFilters,
-    activeWaterFilters,
-    activeOtherFilters,
-    activeGrowthFilters,
   ]);
 
   const toggleBloomFilter = (key: keyof typeof activeBloomFilters) => {

@@ -130,10 +130,17 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
         {isAuthenticated ? (
           <LogOutButton />
         ) : (
-          <View style={styles.adminContainer}>
-            <Text style={styles.adminText}>Are you an admin? </Text>
-            <LogInButton />
-          </View>
+          // <View style={styles.adminContainer}>
+          //   <Text style={styles.adminText}>Are you an admin? </Text>
+          //   <LogInButton />
+          // </View>
+
+          <TouchableOpacity style={styles.logOutButton}> 
+            <Text style={styles.buttonText}> 
+              Login as admin
+            </Text>
+          </TouchableOpacity>
+
         )}
       </View>
     </SafeAreaView>

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 50,
     position: 'relative',
   },
 
@@ -75,9 +75,9 @@ export const styles = StyleSheet.create({
   },
 
   logOutContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: 20,
+    marginTop: 25, 
+    width: '100%', 
+    alignItems: 'center', 
   },
 
   adminContainer: {
@@ -89,4 +89,20 @@ export const styles = StyleSheet.create({
     ...typography.smallBold,
     color: colors.gray3,
   },
+
+  logOutButton: {
+    padding: 15,
+    paddingHorizontal: 130, 
+    borderRadius: 30,
+    backgroundColor: colors.gray6,
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    ...typography.mediumRegular,
+    color: colors.primary,
+    textAlign: 'center', 
+  },
+
+
 });

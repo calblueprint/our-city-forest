@@ -7,9 +7,11 @@ import {
   Modal,
   PanResponder,
   Text,
+  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+  FlatList,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TreeSpeciesCardItem } from '@/components/TreeSpeciesCard/TreeSpeciesCard';
@@ -192,5 +194,3 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
     </Modal>
   );
 };
-
-export default BottomSheet;

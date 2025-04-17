@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  FlatList,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TreeSpeciesCardItem } from '@/components/TreeSpeciesCard/TreeSpeciesCard';

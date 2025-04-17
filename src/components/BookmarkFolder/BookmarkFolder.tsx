@@ -1,5 +1,5 @@
-import { Text, View, Image, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AddIcon } from '@/icons';
 import { styles } from './styles';
@@ -15,22 +15,18 @@ const loadAllBookmarks = async () => {
   let folderData: { [key: string]: string[] } = {};
   for (const folder of allFolders) {
     const storedTrees = await AsyncStorage.getItem(folder);
-    folderData[folder] = JSON.parse(storedTrees || '[]'); 
+    folderData[folder] = JSON.parse(storedTrees || '[]');
   }
-  setBookmarks(folderData); 
+  setBookmarks(folderData);
   console.log(folderData);
 };
 
 type BookmarkFolderProps = {
-  treeSpecies: string; 
+  treeSpecies: string;
   folderName: string;
 };
 
-
-const saveBookmark = async (
-  folderName: string, 
-  treeSpecies: string, 
-) => {
+const saveBookmark = async (folderName: string, treeSpecies: string) => {
   try {
     // Make a copy of the current state to avoid mutating it directly
     let updatedBookmarks = { ...bookmarks };
@@ -41,29 +37,38 @@ const saveBookmark = async (
     }
 
     // Check if the tree species already exists in the folder
-    const isBookmarked = updatedBookmarks[folderName].some(tree => tree === treeSpecies);
+    const isBookmarked = updatedBookmarks[folderName].some(
+      tree => tree === treeSpecies,
+    );
 
     if (isBookmarked) {
       // Remove the tree from the folder
-      updatedBookmarks[folderName] = updatedBookmarks[folderName].filter(tree => tree !== treeSpecies);
+      updatedBookmarks[folderName] = updatedBookmarks[folderName].filter(
+        tree => tree !== treeSpecies,
+      );
     } else {
       // Add the tree to the folder
       updatedBookmarks[folderName].push(treeSpecies);
     }
 
     // Update AsyncStorage and UI state
-    await AsyncStorage.setItem(folderName, JSON.stringify(updatedBookmarks[folderName]));
-    setBookmarks(updatedBookmarks); 
-
+    await AsyncStorage.setItem(
+      folderName,
+      JSON.stringify(updatedBookmarks[folderName]),
+    );
+    setBookmarks(updatedBookmarks);
   } catch (error) {
     console.error('Error saving bookmark:', error);
   }
 };
 
-export const BookmarkFolder: React.FC<BookmarkFolderProps> = ({folderName, treeSpecies}) => {
+export const BookmarkFolder: React.FC<BookmarkFolderProps> = ({
+  folderName,
+  treeSpecies,
+}) => {
   return (
     <View style={styles.foldersList}>
-      <Text>{treeSpecies}</Text> 
+      <Text>{treeSpecies}</Text>
       <Image
         source={{
           uri: 'https://example.com/placeholder.jpg',
@@ -71,7 +76,7 @@ export const BookmarkFolder: React.FC<BookmarkFolderProps> = ({folderName, treeS
       />
       <TouchableOpacity
         style={styles.createList}
-        onPress={() => saveBookmark(folderName, treeSpecies)} 
+        onPress={() => saveBookmark(folderName, treeSpecies)}
       >
         <AddIcon />
       </TouchableOpacity>

@@ -14,5 +14,4 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 22,
   },
-  
 });

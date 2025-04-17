@@ -21,6 +21,8 @@ type User = {
   name: string;
   picture?: string;
 };
+import { User } from '@supabase/supabase-js';
+import { supabase } from '../supabase/client';
 
 type AuthState = {
   user: User | null;

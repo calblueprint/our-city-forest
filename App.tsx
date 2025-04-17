@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
 import { AuthContextProvider } from '@/context/AuthContext';
+import { BookmarkProvider } from '@/context/BookmarksContext'; // <-- 👈 Import this!
 import { AppNavigator } from '@/navigation/AppNavigator';
 import { colors } from '@/styles/colors';
 
@@ -28,7 +29,9 @@ export const App: React.FC = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <AuthContextProvider>
-        <AppNavigator />
+        <BookmarkProvider>
+          <AppNavigator />
+        </BookmarkProvider>
       </AuthContextProvider>
     </GestureHandlerRootView>
   );

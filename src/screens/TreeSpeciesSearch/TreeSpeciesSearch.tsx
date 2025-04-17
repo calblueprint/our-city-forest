@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import BookmarkModal from '@/components/BoomarkModal/BookmarkModal';
+import { BookmarkModal } from '@/components/BoomarkModal/BookmarkModal';
 import { Bookmark, Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
@@ -175,6 +175,7 @@ export const TreeSpeciesSearchScreen: React.FC<
           <BookmarkModal
             visible={modalVisible}
             onClose={() => setModalVisible(false)}
+            tree={item.name}
           />
         </View>
       </View>

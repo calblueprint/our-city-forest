@@ -26,6 +26,23 @@ export const styles = StyleSheet.create({
     backgroundColor: '#CECECE',
     height: 4,
     width: 45,
+    borderRadius: 2,
+  },
+
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
+
+  saveText: {
+    fontWeight: '700',
+    fontSize: 20,
+    textAlign: 'left',
+    paddingTop: 20,
+    paddingLeft: 20,
   },
 
   foldersList: {
@@ -40,19 +57,72 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 22,
+    padding: 20,
   },
 
   createText: {
-    fontWeight: 500,
+    fontWeight: '500',
     fontSize: 18,
     textAlign: 'left',
   },
 
-  saveText: {
-    fontWeight: 700,
-    fontSize: 20,
-    textAlign: 'left',
+  folderItem: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+  },
+
+  emptyText: {
+    textAlign: 'center',
+    color: '#888',
+    marginTop: 20,
+    fontSize: 16,
+  },
+
+  addFolderContainer: {
+    paddingHorizontal: 20,
     paddingTop: 20,
-    paddingLeft: 20,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: "flex-start",
+  },
+
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 16,
+    marginBottom: 12,
+  },
+
+  addFolderButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  button: {
+    flex: 1,
+    paddingVertical: 12,
+    marginHorizontal: 5,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+
+  cancelButton: {
+    backgroundColor: '#f0f0f0',
+  },
+
+  createButton: {
+    backgroundColor: '#007bff',
+  },
+
+  disabledButton: {
+    backgroundColor: '#b0c4de',
+  },
+
+  buttonText: {
+    color: 'white',
+    fontWeight: '600',
   },
 });

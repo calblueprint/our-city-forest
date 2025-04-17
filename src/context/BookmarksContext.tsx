@@ -1,22 +1,26 @@
 // BookmarkContext.tsx
 import React, {
   createContext,
-  useState,
-  useEffect,
-  useContext,
   useCallback,
+  useContext,
+  useEffect,
+  useState,
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { v4 as uuidv4 } from 'uuid';
-import { BookmarkFolder, BookmarkContextType } from '@/types/bookmarks';
 import { useAuth } from '@/context/AuthContext';
+import { BookmarkContextType, BookmarkFolder } from '@/types/bookmarks';
 import { supabase } from '../supabase/client';
 
-const BookmarkContext = createContext<BookmarkContextType | undefined>(undefined);
+const BookmarkContext = createContext<BookmarkContextType | undefined>(
+  undefined,
+);
 
 const BOOKMARKS_KEY = 'bookmarkFolders';
 
-export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [folders, setFolders] = useState<BookmarkFolder[]>([]);
   const { isAuthenticated, user } = useAuth();
 
@@ -48,15 +52,13 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const saveFolders = useCallback(async () => {
     try {
       if (isAuthenticated && user) {
-        const { error } = await supabase
-          .from('user_bookmarks')
-          .upsert(
-            {
-              user_id: user.id,
-              bookmarks: folders,
-            },
-            { onConflict: 'user_id' }
-          );
+        const { error } = await supabase.from('user_bookmarks').upsert(
+          {
+            user_id: user.id,
+            bookmarks: folders,
+          },
+          { onConflict: 'user_id' },
+        );
 
         if (error) {
           console.error('Error saving bookmarks to Supabase:', error);
@@ -74,7 +76,7 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       name,
       bookmarks: [],
     };
-    setFolders((prev) => [...prev, newFolder]);
+    setFolders(prev => [...prev, newFolder]);
   }, []);
 
   const addBookmark = async (folderName: string, bookmarkId: string) => {
@@ -92,7 +94,7 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       console.warn(`Bookmark with id ${bookmarkId} not found.`);
       return;
     }
-    
+
     setFolders(prev =>
       prev.map(folder =>
         folder.name === folderName
@@ -100,8 +102,8 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
               ...folder,
               bookmarks: [...folder.bookmarks, { ...bookmarkToAdd }],
             }
-          : folder
-      )
+          : folder,
+      ),
     );
   };
 
@@ -111,16 +113,16 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         folder.name === folderName
           ? {
               ...folder,
-              bookmarks: folder.bookmarks.filter(b => b.id !== bookmarkId)
+              bookmarks: folder.bookmarks.filter(b => b.id !== bookmarkId),
             }
-          : folder
-      )
+          : folder,
+      ),
     );
   };
 
   const isBookmarked = (speciesName: string): boolean => {
-    return folders.some(folder => 
-      folder.bookmarks.some(b => b.speciesName === speciesName)
+    return folders.some(folder =>
+      folder.bookmarks.some(b => b.speciesName === speciesName),
     );
   };
 
@@ -134,16 +136,16 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   return (
     <BookmarkContext.Provider
-    value={{
-      folders,
-      setFolders,
-      loadFolders,
-      saveFolders,
-      addFolder,
-      addBookmark,
-      removeBookmark,
-      isBookmarked,
-    }}
+      value={{
+        folders,
+        setFolders,
+        loadFolders,
+        saveFolders,
+        addFolder,
+        addBookmark,
+        removeBookmark,
+        isBookmarked,
+      }}
     >
       {children}
     </BookmarkContext.Provider>
@@ -153,7 +155,9 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 export const useBookmarks = () => {
   const context = useContext(BookmarkContext);
   if (!context) {
-    throw new Error('useBookmarkContext must be used within a BookmarkProvider');
+    throw new Error(
+      'useBookmarkContext must be used within a BookmarkProvider',
+    );
   }
   return context;
 };

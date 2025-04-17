@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Dimensions,
+  FlatList,
   Modal,
   PanResponder,
   Text,
@@ -9,7 +10,6 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  FlatList,
 } from 'react-native';
 import { useBookmarks } from '@/context/BookmarksContext';
 import { AddIcon, XButton } from '@/icons';
@@ -29,13 +29,8 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
   const screenHeight = Dimensions.get('screen').height;
   const panY = useRef(new Animated.Value(screenHeight)).current;
 
-  const {
-    folders,
-    addFolder,
-    addBookmark,
-    removeBookmark,
-    isBookmarked,
-  } = useBookmarks();
+  const { folders, addFolder, addBookmark, removeBookmark, isBookmarked } =
+    useBookmarks();
 
   const [newFolderName, setNewFolderName] = useState('');
   const [showAddFolder, setShowAddFolder] = useState(false);
@@ -123,7 +118,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
 
             <FlatList
               data={folders}
-              keyExtractor={(item) => item.name}
+              keyExtractor={item => item.name}
               renderItem={({ item }) => (
                 <View style={styles.folderItem}>
                   <Text>{item.name}</Text>

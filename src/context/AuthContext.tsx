@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { supabase } from '../supabase/client';
 import { User } from '@supabase/supabase-js';
+import { supabase } from '../supabase/client';
 
 type AuthState = {
   isAuthenticated: boolean;
@@ -55,7 +55,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated: setAuthenticated, user}}
+      value={{ isAuthenticated, setIsAuthenticated: setAuthenticated, user }}
     >
       {children}
     </AuthContext.Provider>

@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     flex: 1,
     alignItems: 'center',
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
   },
 
   input: {

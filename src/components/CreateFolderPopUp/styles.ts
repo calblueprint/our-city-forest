@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'flex-end',
   },
-  
+
   popupContainer: {
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
@@ -119,7 +119,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  
+
   button: {
     flex: 1,
     paddingVertical: 12,
@@ -127,18 +127,17 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
   },
-  
+
   cancelButton: {
-    backgroundColor: colors.gray1, 
+    backgroundColor: colors.gray1,
   },
 
   createButton: {
-    backgroundColor: colors.primary, 
+    backgroundColor: colors.primary,
   },
 
   buttonText: {
-    color: colors.white, 
+    color: colors.white,
     fontWeight: '600',
   },
-  
-})
+});

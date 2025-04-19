@@ -101,6 +101,7 @@ export const TreeSpeciesSearchScreen: React.FC<
 =======
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [selectedTree, setSelectedTree] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -176,6 +177,7 @@ export const TreeSpeciesSearchScreen: React.FC<
       });
       if (!matchesHeight) return false;
     }
+
     if (activeFilters.shape && activeFilters.shape !== tree.treeShape) {
       return false;
     }
@@ -269,7 +271,13 @@ export const TreeSpeciesSearchScreen: React.FC<
           style={styles.speciesImage}
         />
         <View style={styles.overlaySvg}>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <TouchableOpacity
+            onPress={() => {
+              console.log('Opening modal for:', item.name);
+              setSelectedTree(item.name);
+              setModalVisible(true);
+            }}
+          >
             <Bookmark width={30} height={30} />
           </TouchableOpacity>
 

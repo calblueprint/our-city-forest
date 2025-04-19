@@ -19,6 +19,7 @@ import {
 import { linking } from '@/linking';
 import { BookmarkDisplayScreen } from '@/screens/BookmarkDisplay/BookmarkDisplay';
 import { BookmarksScreen } from '@/screens/Bookmarks/Bookmarks';
+import { BookmarkDisplayScreen } from '@/screens/BookmarkDisplay/BookmarkDisplay';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { HistoryScreen } from '@/screens/History/History';

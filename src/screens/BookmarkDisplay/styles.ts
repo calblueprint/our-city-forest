@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
-import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   container: {
@@ -95,6 +94,20 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     zIndex: 10,
+  },
+
+  popupBox: {
+    width: '100%',
+    height: '30%',
+    backgroundColor: 'white',
+    borderRadius: 33,
+    padding: 20,
+    justifyContent: 'space-evenly',
+  },
+
+  nameText: {
+    color: colors.gray3,
+    fontStyle: 'normal',
   },
 
   popupBox: {

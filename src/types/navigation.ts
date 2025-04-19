@@ -18,6 +18,7 @@ export type ContactStackParamList = {
 
 export type BookmarksStackParamList = {
   BookmarkButton: undefined;
+  BookmarkDisplay: { folderName: string };
 };
 
 export type BottomTabParamList = {

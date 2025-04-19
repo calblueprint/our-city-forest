@@ -1,65 +1,106 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
-import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
 
-  imageBackground: {
-    height: 320,
-    backgroundColor: colors.gray5,
+  topContainer: {
+    paddingHorizontal: 24,
+    paddingTop: 16,
+    gap: 12,
+    marginBottom: 20,
   },
 
-  topNavigation: {
-    flex: 1,
+  emptyText: {
+    textAlign: 'center',
+    marginTop: 20,
+    color: '#999',
+    fontSize: 14,
+  },
+
+  bookmarkItem: {
     flexDirection: 'row',
-    marginTop: 64,
-    marginHorizontal: 24,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  
+  bookmarkText: {
+    fontSize: 16,
+    flex: 1,
+  },
+  
+  removeButton: {
+    backgroundColor: '#FF5A5F',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
+  
+  removeButtonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '600',
+  },  
+
+  folderItem: {
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+    borderBottomWidth: 1,
+    borderColor: '#eee',
+    flexDirection: 'row',
     justifyContent: 'space-between',
   },
 
-  pill: {
-    backgroundColor: colors.primary,
-    borderRadius: 48,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    marginHorizontal: 24,
-    marginBottom: 40,
-    alignSelf: 'flex-start',
-  },
-
-  pillText: {
-    ...typography.mediumBold,
-    color: colors.white,
-  },
-
-  body: {
-    paddingHorizontal: 32,
-    paddingTop: 64,
-    paddingBottom: 20,
-    marginTop: -24,
-    borderRadius: 20,
-    backgroundColor: colors.white,
-  },
-
-  header: {
-    ...typography.heading2,
-    color: colors.gray1,
-    marginBottom: 8,
-  },
-
-  scientificName: {
-    ...typography.largeRegular,
-    color: colors.gray1,
-    marginBottom: 16,
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.primary,
   },
 
   divider: {
     height: 1,
     width: '100%',
     backgroundColor: colors.gray5,
-    marginBottom: 20,
   },
+
+  createText: {
+    marginLeft: 8,
+    fontSize: 16,
+    fontWeight: '500',
+    color: colors.primary,
+  },
+
+  popupOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    zIndex: 10,
+  },
+
+  popupBox: {
+    width: '100%',
+    height: '30%',
+    backgroundColor: 'white',
+    borderRadius: 33,
+    padding: 20,
+    justifyContent: 'space-evenly',
+  },
+
+  nameText: {
+    color: colors.gray3,
+    fontStyle: 'normal',
+  },
+
 });

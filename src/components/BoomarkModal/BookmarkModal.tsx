@@ -12,7 +12,7 @@ import {
   View,
 } from 'react-native';
 import { useBookmarks } from '@/context/BookmarksContext';
-import { AddIcon, XButton } from '@/icons';
+import { AddIcon, Bookmark } from '@/icons'; 
 import { styles } from './styles';
 
 type BookmarkModalProps = {
@@ -29,7 +29,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
   const screenHeight = Dimensions.get('screen').height;
   const panY = useRef(new Animated.Value(screenHeight)).current;
 
-  const { folders, addFolder, addBookmark, removeBookmark, isBookmarked } =
+  const { folders, addFolder, addBookmark, removeFolder } =
     useBookmarks();
 
   const [newFolderName, setNewFolderName] = useState('');
@@ -84,6 +84,10 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
     },
   });
 
+  const handleRemoveFolder = (folderName: string) => {
+    removeFolder(folderName);
+  };
+
   return (
     <Modal
       animationType="fade"
@@ -100,29 +104,33 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
             <View style={styles.sliderIndicatorRow}>
               <View style={styles.sliderIndicator} />
             </View>
-            <View style={styles.header}>
-              <Text style={styles.saveText}>Save to Folder</Text>
-              <TouchableOpacity onPress={handleDismiss}>
-                <XButton />
-              </TouchableOpacity>
-            </View>
 
-            {/* Move this section above FlatList */}
             <TouchableOpacity
               style={styles.createList}
               onPress={() => setShowAddFolder(true)}
             >
               <AddIcon />
-              <Text style={styles.createText}>Create new list</Text>
+              <Text style={styles.createText}>Create New Folder</Text>
             </TouchableOpacity>
-
             <FlatList
               data={folders}
-              keyExtractor={item => item.name}
+              keyExtractor={(item) => item.name}
               renderItem={({ item }) => (
-                <View style={styles.folderItem}>
-                  <Text>{item.name}</Text>
-                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    addBookmark(item.name, tree); 
+                  }}
+                >
+                  <View style={styles.folderItem}>
+                    <Text>{item.name}</Text>
+                    <TouchableOpacity
+                      onPress={() => handleRemoveFolder(item.name)}
+                      style={styles.removeButton}
+                    >
+                      <Bookmark />  
+                    </TouchableOpacity>
+                  </View>
+                </TouchableOpacity>
               )}
               ListEmptyComponent={
                 <Text style={styles.emptyText}>
@@ -130,41 +138,54 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
                 </Text>
               }
             />
-
-            {showAddFolder ? (
-              <View style={styles.addFolderContainer}>
-                <TextInput
-                  style={styles.input}
-                  value={newFolderName}
-                  onChangeText={setNewFolderName}
-                  placeholder="Folder name"
-                  autoFocus
-                />
-                <View style={styles.addFolderButtons}>
-                  <TouchableOpacity
-                    style={[styles.button, styles.cancelButton]}
-                    onPress={() => {
-                      setShowAddFolder(false);
-                      setNewFolderName('');
-                    }}
-                  >
-                    <Text style={styles.buttonText}>Cancel</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={[
-                      styles.button,
-                      styles.createButton,
-                      !newFolderName.trim() && styles.disabledButton,
-                    ]}
-                    onPress={handleAddFolder}
-                    disabled={!newFolderName.trim()}
-                  >
-                    <Text style={styles.buttonText}>Create</Text>
-                  </TouchableOpacity>
+          </Animated.View>
+          {showAddFolder && (
+              <View style={styles.popupOverlay}>
+                <View style={styles.popupBox}>
+                  <View style={styles.popupHeader}>
+                    <Text style={styles.popupTitle}>Create new list</Text>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setShowAddFolder(false);
+                        setNewFolderName('');
+                      }}
+                    >
+                      <Bookmark />
+                    </TouchableOpacity>
+                  </View>
+                  <Text style={styles.nameText}>Name</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={newFolderName}
+                    onChangeText={setNewFolderName}
+                    placeholder="Folder name"
+                    maxLength={20}
+                  />
+                  <Text style={styles.charactersText}> {newFolderName.length} / 20 characters</Text>
+                  <View style={styles.addFolderButtons}>
+                    <TouchableOpacity
+                      style={styles.clearButton}
+                      onPress={() => {
+                        setShowAddFolder(true);
+                        setNewFolderName('');
+                      }}
+                    >
+                      <Text style={styles.clearButtonText}>Clear</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[
+                        styles.button,
+                        styles.createButton,
+                      ]}
+                      onPress={handleAddFolder}
+                      disabled={!newFolderName.trim()}
+                    >
+                      <Text style={styles.buttonText}>Create</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-            ) : null}
-          </Animated.View>
+            )}
         </View>
       </TouchableWithoutFeedback>
     </Modal>

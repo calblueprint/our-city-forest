@@ -1,4 +1,3 @@
-// BookmarkContext.tsx
 import React, {
   createContext,
   useCallback,
@@ -7,9 +6,8 @@ import React, {
   useState,
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '@/context/AuthContext';
-import { BookmarkContextType, BookmarkFolder } from '@/types/bookmarks';
+import { BookmarkContextType, BookmarkFolder, Bookmark } from '@/types/bookmarks';
 import { supabase } from '../supabase/client';
 
 const BookmarkContext = createContext<BookmarkContextType | undefined>(
@@ -79,33 +77,39 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
     setFolders(prev => [...prev, newFolder]);
   }, []);
 
-  const addBookmark = async (folderName: string, bookmarkId: string) => {
-    let bookmarkToAdd;
-
-    for (const folder of folders) {
-      const found = folder.bookmarks.find(b => b.id === bookmarkId);
-      if (found) {
-        bookmarkToAdd = found;
-        break;
-      }
-    }
-
-    if (!bookmarkToAdd) {
-      console.warn(`Bookmark with id ${bookmarkId} not found.`);
-      return;
-    }
-
-    setFolders(prev =>
-      prev.map(folder =>
-        folder.name === folderName
-          ? {
-              ...folder,
-              bookmarks: [...folder.bookmarks, { ...bookmarkToAdd }],
-            }
-          : folder,
-      ),
+  const addBookmark = (folderName: string, speciesName: string) => {
+    setFolders(prevFolders =>
+      prevFolders.map(folder => {
+        if (folder.name === folderName) {
+          const alreadyExists = folder.bookmarks.some(
+            bookmark => bookmark.id === speciesName
+          );
+  
+          if (alreadyExists) {
+            console.log(`"${speciesName}" already exists in "${folderName}"`);
+            return folder;
+          }
+  
+          const newBookmark: Bookmark = {
+            id: speciesName,
+            speciesName,
+          };
+  
+          return {
+            ...folder,
+            bookmarks: [...folder.bookmarks, newBookmark],
+          };
+        }
+  
+        return folder;
+      })
     );
-  };
+  };  
+  
+
+  const removeFolder = useCallback((folderName: string) => {
+    setFolders(prev => prev.filter(folder => folder.name !== folderName));
+  }, []);
 
   const removeBookmark = async (folderName: string, bookmarkId: string) => {
     setFolders(prev =>
@@ -145,6 +149,7 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
         addBookmark,
         removeBookmark,
         isBookmarked,
+        removeFolder,
       }}
     >
       {children}

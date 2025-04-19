@@ -47,9 +47,9 @@ type ActiveFilters = {
   other: string[];
 };
 
-export const TreeSpeciesSearchScreen: React.FC<
-  TreeSpeciesSearchScreenProps
-> = ({ navigation }) => {
+export const TreeSpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
+  navigation,
+}) => {
   const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>(
     [],
   );
@@ -64,6 +64,7 @@ export const TreeSpeciesSearchScreen: React.FC<
 
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [selectedTree, setSelectedTree] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -93,7 +94,7 @@ export const TreeSpeciesSearchScreen: React.FC<
             treeShape: ts.tree_shape,
             litterType: ts.litter_type,
             waterUse: ts.water_use,
-            californiaNative: ts.california_native,
+            isCaliforniaNative: ts.california_native,
             isEvergreen: ts.foliage_type === TreeSpeciesFoliageType.Evergreen,
             isPowerlineFriendly: ts.utility_friendly,
             rootDamagePotential: ts.root_damage_potential,
@@ -112,38 +113,41 @@ export const TreeSpeciesSearchScreen: React.FC<
         if (filter === 'small') return maxHeight < 40;
         if (filter === 'medium') return maxHeight >= 40 && maxHeight <= 60;
         if (filter === 'large') return maxHeight > 60;
-        return false; // If filter is null or invalid
+        return false;
       });
       if (!matchesHeight) return false;
     }
+
     if (activeFilters.shape && activeFilters.shape !== tree.treeShape) {
       return false;
     }
+
     if (
       activeFilters.litter.length > 0 &&
       !activeFilters.litter.includes(tree.litterType)
     ) {
       return false;
     }
+
     if (
       activeFilters.water.length > 0 &&
       !activeFilters.water.includes(tree.waterUse)
     ) {
       return false;
     }
+
     if (activeFilters.other.length > 0) {
       const matchesOther = activeFilters.other.every(option => {
-        if (option === 'californiaNative')
-          return tree.isCaliforniaNative || false;
-        if (option === 'evergreen') return tree.isEvergreen || false;
-        if (option === 'powerlineFriendly')
-          return tree.isPowerlineFriendly || false;
+        if (option === 'californiaNative') return tree.isCaliforniaNative;
+        if (option === 'evergreen') return tree.isEvergreen;
+        if (option === 'powerlineFriendly') return tree.isPowerlineFriendly;
         if (option === 'lowRootDamage')
           return tree.rootDamagePotential === 'low';
         return false;
       });
       if (!matchesOther) return false;
     }
+
     return true;
   };
 
@@ -168,15 +172,15 @@ export const TreeSpeciesSearchScreen: React.FC<
           style={styles.speciesImage}
         />
         <View style={styles.overlaySvg}>
-          <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <TouchableOpacity
+            onPress={() => {
+              console.log('Opening modal for:', item.name);
+              setSelectedTree(item.name);
+              setModalVisible(true);
+            }}
+          >
             <Bookmark width={30} height={30} />
           </TouchableOpacity>
-
-          <BookmarkModal
-            visible={modalVisible}
-            onClose={() => setModalVisible(false)}
-            tree={item.name}
-          />
         </View>
       </View>
       <Text style={styles.speciesName} numberOfLines={1}>
@@ -217,6 +221,14 @@ export const TreeSpeciesSearchScreen: React.FC<
           </Text>
         }
       />
+
+      {selectedTree && (
+        <BookmarkModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          tree={selectedTree}
+        />
+      )}
     </SafeAreaView>
   );
 };

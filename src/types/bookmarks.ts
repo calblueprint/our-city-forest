@@ -4,15 +4,15 @@ export type BookmarkContextType = {
   loadFolders: () => Promise<void>;
   saveFolders: () => Promise<void>;
   addFolder: (name: string) => void;
-  addBookmark: (folderId: string, bookmarkId: string) => Promise<void>;
-  removeBookmark: (folderId: string, bookmarkId: string) => Promise<void>;
+  addBookmark: (folderName: string, speciesName: string) => void;
+  removeBookmark: (folderName: string, bookmarkId: string) => void;
   isBookmarked: (speciesName: string) => boolean;
+  removeFolder: (folderName: string) => void;
 };
 
 export type Bookmark = {
   id: string;
   speciesName: string;
-  speciesImageUrl: string;
 };
 
 export type BookmarkFolder = {

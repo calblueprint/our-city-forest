@@ -12,6 +12,7 @@ import {
   HomeUnselected,
 } from '@/icons';
 import { BookmarksScreen } from '@/screens/Bookmarks/Bookmarks';
+import { BookmarkDisplayScreen } from '@/screens/BookmarkDisplay/BookmarkDisplay';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { LoginScreen } from '@/screens/Login/Login';
@@ -97,6 +98,10 @@ const BookmarksStackNavigator = () => {
       <BookmarksStack.Screen
         name="BookmarkButton"
         component={BookmarksScreen}
+      />
+      <BookmarksStack.Screen
+        name="BookmarkDisplay"
+        component={BookmarkDisplayScreen}
       />
     </BookmarksStack.Navigator>
   );

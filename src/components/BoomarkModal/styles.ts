@@ -1,99 +1,75 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '@/styles/colors';
 
 export const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
     flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'flex-end',
   },
 
   container: {
-    backgroundColor: 'white',
-    paddingTop: 12,
-    paddingHorizontal: 12,
-    borderRadius: 22,
-    minHeight: 400,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    maxHeight: '85%',
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 30,
+    height: 500,
   },
 
   sliderIndicatorRow: {
-    flexDirection: 'row',
-    marginBottom: 4,
     alignItems: 'center',
-    justifyContent: 'center',
+    marginBottom: 10,
   },
 
   sliderIndicator: {
-    backgroundColor: '#CECECE',
+    width: 40,
     height: 4,
-    width: 45,
+    backgroundColor: '#ccc',
     borderRadius: 2,
-  },
-
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    marginTop: 10,
-  },
-
-  saveText: {
-    fontWeight: '700',
-    fontSize: 20,
-    textAlign: 'left',
-    paddingTop: 20,
-    paddingLeft: 20,
-  },
-
-  foldersList: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 25,
-    paddingTop: 40,
-    gap: 12,
   },
 
   createList: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 22,
-    padding: 20,
+    paddingVertical: 12,
+    
   },
 
   createText: {
+    marginLeft: 8,
+    fontSize: 16,
     fontWeight: '500',
-    fontSize: 18,
-    textAlign: 'left',
+    color: colors.primary,
   },
 
   folderItem: {
-    paddingVertical: 8,
-    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderColor: '#eee',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   emptyText: {
     textAlign: 'center',
-    color: '#888',
     marginTop: 20,
-    fontSize: 16,
-  },
-
-  addFolderContainer: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    color: '#999',
+    fontSize: 14,
   },
 
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    fontSize: 16,
-    marginBottom: 12,
+    padding: 10,
+  },
+
+  nameText: {
+    color: colors.gray3,
+    fontStyle: "normal",
   },
 
   addFolderButtons: {
@@ -102,19 +78,32 @@ export const styles = StyleSheet.create({
   },
 
   button: {
-    flex: 1,
-    paddingVertical: 12,
-    marginHorizontal: 5,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
     borderRadius: 8,
-    alignItems: 'center',
+    marginLeft: 10,
+  },
+
+  clearButtonText: {
+    color: colors.gray2,
+    textDecorationLine: 'underline',
+    justifyContent: 'center',
+  },
+
+  clearButton: {
+    justifyContent: 'center',
+  },
+
+  charactersText: {
+    color: colors.gray3,
   },
 
   cancelButton: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: colors.secondary,
   },
-
+  
   createButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: colors.primary,
   },
 
   disabledButton: {
@@ -122,7 +111,47 @@ export const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: 'white',
+    color: colors.offWhite,
     fontWeight: '600',
+  },
+
+  popupOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    zIndex: 10,
+  },
+
+  popupHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  popupBox: {
+    width: '100%',
+    height: '30%',
+    backgroundColor: 'white',
+    borderRadius: 33,
+    padding: 20,
+    justifyContent: 'space-evenly'
+  },
+
+  popupTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: colors.primary,
+  },
+    
+  removeButton: {
+    padding: 8,
+    borderRadius: 20,
+    color: colors.black1,
   },
 });

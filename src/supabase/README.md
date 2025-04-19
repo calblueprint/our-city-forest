@@ -3,7 +3,8 @@
 We interact with Supabase through Database Functions, Edge Functions, and Storage.
 
 #### Development
-The supabase client is defined in `src/supabase/client.ts` and can be imported to directly interact with the Supabase API. Wrapper functions for common interactions against the database are defined in various files under `src/supabase`. For interactions against the `trees` table and the `qr-generate` Edge Function, exported functions are defined in `src/supabase/queries.ts`. 
+
+The supabase client is defined in `src/supabase/client.ts` and can be imported to directly interact with the Supabase API. Wrapper functions for common interactions against the database are defined in various files under `src/supabase`. For interactions against the `trees` table and the `qr-generate` Edge Function, exported functions are defined in `src/supabase/queries.ts`.
 
 #### Working with Edge Functions
 
@@ -12,9 +13,10 @@ We generate QR images through Edge Functions defined under `src/supabase/functio
 `generateQRImage()` in `src/supabase/queries.ts` is a wrapper function that calls the `qr-generate` Edge Function to generate a QR image. The function takes in a `treeId` as argument and generates and stores the QR to Supabase storage.
 
 For debugging, import relevant Error types with `import { FunctionsHttpError, FunctionsRelayError, FunctionsFetchError } from '@supabase/supabase-js'`. The below snippet may be helpful in debugging:
-``` typescript
+
+```typescript
 const { data, error } = await supabase.functions.invoke('qr-generate', {
-      body: { tree_id: treeId },
+  body: { tree_id: treeId },
 });
 
 if (error instanceof FunctionsHttpError) {

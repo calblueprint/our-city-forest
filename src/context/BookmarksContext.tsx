@@ -7,7 +7,11 @@ import React, {
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from '@/context/AuthContext';
-import { BookmarkContextType, BookmarkFolder, Bookmark } from '@/types/bookmarks';
+import {
+  Bookmark,
+  BookmarkContextType,
+  BookmarkFolder,
+} from '@/types/bookmarks';
 import { supabase } from '../supabase/client';
 
 const BookmarkContext = createContext<BookmarkContextType | undefined>(
@@ -82,30 +86,29 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
       prevFolders.map(folder => {
         if (folder.name === folderName) {
           const alreadyExists = folder.bookmarks.some(
-            bookmark => bookmark.id === speciesName
+            bookmark => bookmark.id === speciesName,
           );
-  
+
           if (alreadyExists) {
             console.log(`"${speciesName}" already exists in "${folderName}"`);
             return folder;
           }
-  
+
           const newBookmark: Bookmark = {
             id: speciesName,
             speciesName,
           };
-  
+
           return {
             ...folder,
             bookmarks: [...folder.bookmarks, newBookmark],
           };
         }
-  
+
         return folder;
-      })
+      }),
     );
-  };  
-  
+  };
 
   const removeFolder = useCallback((folderName: string) => {
     setFolders(prev => prev.filter(folder => folder.name !== folderName));

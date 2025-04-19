@@ -29,24 +29,24 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
-  
+
   bookmarkText: {
     fontSize: 16,
     flex: 1,
   },
-  
+
   removeButton: {
     backgroundColor: '#FF5A5F',
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 8,
   },
-  
+
   removeButtonText: {
     color: 'white',
     fontSize: 14,
     fontWeight: '600',
-  },  
+  },
 
   folderItem: {
     paddingVertical: 12,
@@ -102,5 +102,4 @@ export const styles = StyleSheet.create({
     color: colors.gray3,
     fontStyle: 'normal',
   },
-
 });

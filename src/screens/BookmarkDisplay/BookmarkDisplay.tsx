@@ -1,22 +1,19 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { BookmarksStackParamList } from '@/types/navigation';
 import { useBookmarks } from '@/context/BookmarksContext';
 import { Bookmark } from '@/icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { BookmarksStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
-type Props = NativeStackScreenProps<
-  BookmarksStackParamList,
-  'BookmarkDisplay'
->;
+type Props = NativeStackScreenProps<BookmarksStackParamList, 'BookmarkDisplay'>;
 
 export const BookmarkDisplayScreen: React.FC<Props> = ({ route }) => {
   const { folderName } = route.params;
   const { folders, removeBookmark } = useBookmarks();
 
-  const folder = folders.find((f) => f.name === folderName);
+  const folder = folders.find(f => f.name === folderName);
 
   if (!folder) {
     return (
@@ -35,7 +32,7 @@ export const BookmarkDisplayScreen: React.FC<Props> = ({ route }) => {
         <View style={styles.divider} />
         <FlatList
           data={folder.bookmarks}
-          keyExtractor={(item) => item.id}
+          keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <View style={styles.bookmarkItem}>
               <Text style={styles.bookmarkText}>{item.speciesName}</Text>

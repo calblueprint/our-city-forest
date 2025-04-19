@@ -11,8 +11,8 @@ import {
   HomeSelected,
   HomeUnselected,
 } from '@/icons';
-import { BookmarksScreen } from '@/screens/Bookmarks/Bookmarks';
 import { BookmarkDisplayScreen } from '@/screens/BookmarkDisplay/BookmarkDisplay';
+import { BookmarksScreen } from '@/screens/Bookmarks/Bookmarks';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { LoginScreen } from '@/screens/Login/Login';

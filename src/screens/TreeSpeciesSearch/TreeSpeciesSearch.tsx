@@ -47,9 +47,9 @@ type ActiveFilters = {
   other: string[];
 };
 
-export const TreeSpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
-  navigation,
-}) => {
+export const TreeSpeciesSearchScreen: React.FC<
+  TreeSpeciesSearchScreenProps
+> = ({ navigation }) => {
   const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>(
     [],
   );

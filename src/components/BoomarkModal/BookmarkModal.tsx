@@ -12,7 +12,7 @@ import {
   View,
 } from 'react-native';
 import { useBookmarks } from '@/context/BookmarksContext';
-import { AddIcon, Bookmark } from '@/icons'; 
+import { AddIcon, Bookmark } from '@/icons';
 import { styles } from './styles';
 
 type BookmarkModalProps = {
@@ -29,8 +29,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
   const screenHeight = Dimensions.get('screen').height;
   const panY = useRef(new Animated.Value(screenHeight)).current;
 
-  const { folders, addFolder, addBookmark, removeFolder } =
-    useBookmarks();
+  const { folders, addFolder, addBookmark, removeFolder } = useBookmarks();
 
   const [newFolderName, setNewFolderName] = useState('');
   const [showAddFolder, setShowAddFolder] = useState(false);
@@ -114,11 +113,11 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
             </TouchableOpacity>
             <FlatList
               data={folders}
-              keyExtractor={(item) => item.name}
+              keyExtractor={item => item.name}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   onPress={() => {
-                    addBookmark(item.name, tree); 
+                    addBookmark(item.name, tree);
                   }}
                 >
                   <View style={styles.folderItem}>
@@ -127,7 +126,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
                       onPress={() => handleRemoveFolder(item.name)}
                       style={styles.removeButton}
                     >
-                      <Bookmark />  
+                      <Bookmark />
                     </TouchableOpacity>
                   </View>
                 </TouchableOpacity>
@@ -140,52 +139,52 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
             />
           </Animated.View>
           {showAddFolder && (
-              <View style={styles.popupOverlay}>
-                <View style={styles.popupBox}>
-                  <View style={styles.popupHeader}>
-                    <Text style={styles.popupTitle}>Create new list</Text>
-                    <TouchableOpacity
-                      onPress={() => {
-                        setShowAddFolder(false);
-                        setNewFolderName('');
-                      }}
-                    >
-                      <Bookmark />
-                    </TouchableOpacity>
-                  </View>
-                  <Text style={styles.nameText}>Name</Text>
-                  <TextInput
-                    style={styles.input}
-                    value={newFolderName}
-                    onChangeText={setNewFolderName}
-                    placeholder="Folder name"
-                    maxLength={20}
-                  />
-                  <Text style={styles.charactersText}> {newFolderName.length} / 20 characters</Text>
-                  <View style={styles.addFolderButtons}>
-                    <TouchableOpacity
-                      style={styles.clearButton}
-                      onPress={() => {
-                        setShowAddFolder(true);
-                        setNewFolderName('');
-                      }}
-                    >
-                      <Text style={styles.clearButtonText}>Clear</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={[
-                        styles.button,
-                        styles.createButton,
-                      ]}
-                      onPress={handleAddFolder}
-                      disabled={!newFolderName.trim()}
-                    >
-                      <Text style={styles.buttonText}>Create</Text>
-                    </TouchableOpacity>
-                  </View>
+            <View style={styles.popupOverlay}>
+              <View style={styles.popupBox}>
+                <View style={styles.popupHeader}>
+                  <Text style={styles.popupTitle}>Create new list</Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setShowAddFolder(false);
+                      setNewFolderName('');
+                    }}
+                  >
+                    <Bookmark />
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.nameText}>Name</Text>
+                <TextInput
+                  style={styles.input}
+                  value={newFolderName}
+                  onChangeText={setNewFolderName}
+                  placeholder="Folder name"
+                  maxLength={20}
+                />
+                <Text style={styles.charactersText}>
+                  {' '}
+                  {newFolderName.length} / 20 characters
+                </Text>
+                <View style={styles.addFolderButtons}>
+                  <TouchableOpacity
+                    style={styles.clearButton}
+                    onPress={() => {
+                      setShowAddFolder(true);
+                      setNewFolderName('');
+                    }}
+                  >
+                    <Text style={styles.clearButtonText}>Clear</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.button, styles.createButton]}
+                    onPress={handleAddFolder}
+                    disabled={!newFolderName.trim()}
+                  >
+                    <Text style={styles.buttonText}>Create</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
-            )}
+            </View>
+          )}
         </View>
       </TouchableWithoutFeedback>
     </Modal>

@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AddIcon, Bookmark } from '@/icons';
 import { useBookmarks } from '@/context/BookmarksContext';
+import { AddIcon, Bookmark } from '@/icons';
 import { BookmarksStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -87,7 +93,7 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
 
       <FlatList
         data={folders}
-        keyExtractor={(item) => item.name}
+        keyExtractor={item => item.name}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
@@ -95,7 +101,7 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
                 folderName: item.name,
               });
             }}
-            >
+          >
             <View style={styles.folderItem}>
               <Text>{item.name}</Text>
               <TouchableOpacity

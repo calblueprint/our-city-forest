@@ -35,7 +35,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 12,
-    
   },
 
   createText: {
@@ -69,7 +68,7 @@ export const styles = StyleSheet.create({
 
   nameText: {
     color: colors.gray3,
-    fontStyle: "normal",
+    fontStyle: 'normal',
   },
 
   addFolderButtons: {
@@ -101,7 +100,7 @@ export const styles = StyleSheet.create({
   cancelButton: {
     backgroundColor: colors.secondary,
   },
-  
+
   createButton: {
     backgroundColor: colors.primary,
   },
@@ -129,8 +128,8 @@ export const styles = StyleSheet.create({
   },
 
   popupHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   popupBox: {
@@ -139,7 +138,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 33,
     padding: 20,
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
 
   popupTitle: {
@@ -148,7 +147,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     color: colors.primary,
   },
-    
+
   removeButton: {
     padding: 8,
     borderRadius: 20,

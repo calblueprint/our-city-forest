@@ -6,8 +6,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
   TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 import { useBookmarks } from '@/context/BookmarksContext';
 import { AddIcon } from '@/icons';
@@ -86,14 +86,13 @@ export const BookmarkPopup: React.FC<BookmarkPopupProps> = ({
     <TouchableWithoutFeedback onPress={onClose}>
       <View style={styles.popupOverlay}>
         <Animated.View
-          style={[
-            styles.popupContainer,
-            { transform: [{ translateY }] },
-          ]}
+          style={[styles.popupContainer, { transform: [{ translateY }] }]}
         >
           <FlatList
             data={[{ type: 'create' }, ...folders]}
-            keyExtractor={(item, index) => 'name' in item ? item.name : `create-${index}`}
+            keyExtractor={(item, index) =>
+              'name' in item ? item.name : `create-${index}`
+            }
             renderItem={renderItem}
             ListEmptyComponent={
               <Text style={styles.emptyText}>

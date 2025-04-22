@@ -42,7 +42,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
         useNativeDriver: true,
       }).start();
     }
-  }, [visible]);
+  }, [visible, panY]);
 
   const closeAnim = Animated.timing(panY, {
     toValue: screenHeight,

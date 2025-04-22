@@ -21,7 +21,7 @@ type BookmarksScreenProps = NativeStackScreenProps<
 export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
   navigation,
 }) => {
-  const { folders, addFolder, addBookmark, removeFolder } = useBookmarks();
+  const { folders, addFolder, removeFolder } = useBookmarks();
 
   const [showAddFolder, setShowAddFolder] = useState(false);
   const [newFolderName, setNewFolderName] = useState('');

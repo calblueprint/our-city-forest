@@ -19,6 +19,8 @@ type BookmarkPopupProps = {
   tree: string;
 };
 
+type FolderItem = { name: string } | { type: 'create' };
+
 export const BookmarkPopup: React.FC<BookmarkPopupProps> = ({
   onClose,
   visible,
@@ -47,7 +49,7 @@ export const BookmarkPopup: React.FC<BookmarkPopupProps> = ({
         useNativeDriver: true,
       }).start(() => onClose());
     }
-  }, [visible]);
+  }, [visible, onClose, screenHeight, translateY]);
 
   const handleAddFolder = () => {
     if (newFolderName.trim()) {
@@ -57,26 +59,26 @@ export const BookmarkPopup: React.FC<BookmarkPopupProps> = ({
     }
   };
 
-  const renderItem = ({ item }: { item: any }) => {
-    if (item.type === 'create') {
+  const renderItem = ({ item }: { item: FolderItem }) => {
+    if ('name' in item) {
       return (
-        <TouchableOpacity
-          style={styles.createList}
-          onPress={() => {
-            setShowAddFolder(true);
-            inputRef.current?.focus(); // Focus the input when creating a new folder
-          }}
-        >
-          <AddIcon />
-          <Text style={styles.createText}>Create New Folder</Text>
-        </TouchableOpacity>
+        <View style={styles.folderItem}>
+          <Text>{item.name}</Text>
+        </View>
       );
     }
 
     return (
-      <View style={styles.folderItem}>
-        <Text>{item.name}</Text>
-      </View>
+      <TouchableOpacity
+        style={styles.createList}
+        onPress={() => {
+          setShowAddFolder(true);
+          inputRef.current?.focus();
+        }}
+      >
+        <AddIcon />
+        <Text style={styles.createText}>Create New Folder</Text>
+      </TouchableOpacity>
     );
   };
 

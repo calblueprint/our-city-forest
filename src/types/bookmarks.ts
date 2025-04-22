@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type BookmarkContextType = {
   folders: BookmarkFolder[];
   setFolders: React.Dispatch<React.SetStateAction<BookmarkFolder[]>>;

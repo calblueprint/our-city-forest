@@ -3,10 +3,6 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
   imageBackground: {
     height: 320,
     backgroundColor: colors.gray5,
@@ -15,13 +11,13 @@ export const styles = StyleSheet.create({
   topNavigation: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: 64,
-    marginHorizontal: 24,
+    paddingTop: 64,
+    paddingHorizontal: 24,
     justifyContent: 'space-between',
   },
 
   pill: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.white,
     borderRadius: 48,
     paddingHorizontal: 12,
     paddingVertical: 6,
@@ -32,14 +28,14 @@ export const styles = StyleSheet.create({
 
   pillText: {
     ...typography.mediumBold,
-    color: colors.white,
+    color: colors.primary,
   },
 
   body: {
-    paddingHorizontal: 32,
-    paddingTop: 64,
-    paddingBottom: 20,
     marginTop: -24,
+    paddingHorizontal: 32,
+    paddingTop: 50,
+    paddingBottom: 20,
     borderRadius: 20,
     backgroundColor: colors.white,
   },
@@ -47,19 +43,12 @@ export const styles = StyleSheet.create({
   header: {
     ...typography.heading2,
     color: colors.gray1,
-    marginBottom: 8,
+    paddingBottom: 8,
   },
 
   scientificName: {
-    ...typography.largeRegular,
+    ...typography.largeBold,
     color: colors.gray1,
-    marginBottom: 16,
-  },
-
-  divider: {
-    height: 1,
-    width: '100%',
-    backgroundColor: colors.gray5,
-    marginBottom: 20,
+    paddingBottom: 30,
   },
 });

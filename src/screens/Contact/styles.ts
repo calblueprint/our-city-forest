@@ -7,18 +7,18 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 50,
     position: 'relative',
   },
 
-  imageContainer: {
-    marginBottom: 16,
+  logo: {
+    paddingBottom: 16,
   },
 
   contactHeader: {
     ...typography.heading2,
     color: colors.primary,
-    marginBottom: 40,
+    paddingBottom: 40,
   },
 
   socialContainer: {
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 16,
     flexWrap: 'wrap',
-    marginBottom: 64,
+    paddingBottom: 64,
   },
 
   socialButtonContainer: {
@@ -74,10 +74,10 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  logOutContainer: {
-    position: 'absolute',
-    bottom: 0,
-    marginBottom: 20,
+  authContainer: {
+    paddingTop: 25,
+    width: '100%',
+    alignItems: 'center',
   },
 
   adminContainer: {
@@ -88,5 +88,29 @@ export const styles = StyleSheet.create({
   adminText: {
     ...typography.smallBold,
     color: colors.gray3,
+  },
+
+  logOutButton: {
+    paddingVertical: 15,
+    paddingHorizontal: 110,
+    borderRadius: 30,
+    backgroundColor: colors.gray6,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  logInButton: {
+    paddingVertical: 15,
+    paddingHorizontal: 110,
+    borderRadius: 30,
+    backgroundColor: colors.gray6,
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    ...typography.mediumRegular,
+    color: colors.primary,
+    textAlign: 'center',
+    paddingHorizontal: 10,
   },
 });

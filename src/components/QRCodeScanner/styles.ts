@@ -28,6 +28,11 @@ export const styles = StyleSheet.create({
     gap: 80,
   },
 
+  subFlex: {
+    flex: 1,
+    gap: 40,
+  },
+
   textFlex: {
     alignItems: 'center',
     gap: 8,
@@ -44,8 +49,8 @@ export const styles = StyleSheet.create({
   },
 
   cameraView: {
-    width: 280,
-    height: 280,
+    width: 290,
+    height: 290,
     borderWidth: 2,
     borderColor: colors.secondary,
     borderRadius: 12,
@@ -54,6 +59,7 @@ export const styles = StyleSheet.create({
 
   qrCodeFoundCamera: {
     borderColor: colors.tertiary,
+    borderWidth: 4,
   },
 
   camera: {
@@ -63,10 +69,10 @@ export const styles = StyleSheet.create({
 
   scanButton: {
     alignItems: 'center',
-    paddingHorizontal: 120,
+    paddingHorizontal: 130,
     paddingVertical: 12,
     borderRadius: 10,
-    marginBottom: 32,
+    marginBottom: 10,
   },
 
   scanButtonEnabled: {

@@ -38,14 +38,14 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 4,
     backgroundColor: colors.primary,
-    borderRadius: 8,
+    borderRadius: 30,
   },
 
   resetButtonInactive: {
     paddingHorizontal: 16,
     paddingVertical: 4,
     backgroundColor: colors.gray5,
-    borderRadius: 8,
+    borderRadius: 30,
   },
 
   resetTextActive: {

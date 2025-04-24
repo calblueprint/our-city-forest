@@ -73,11 +73,11 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
 
       if (exists) {
         if (isAuthenticated) {
-          navigation.push('TreeInfo', { treeId: qrCodeData });
+          navigation.replace('TreeInfo', { treeId: qrCodeData });
         } else {
           const treeData = await getTreeInfo(qrCodeData);
           if (treeData && treeData.species?.name) {
-            navigation.push('TreeSpeciesInfo', {
+            navigation.replace('TreeSpeciesInfo', {
               speciesName: treeData.species.name,
             });
           } else {
@@ -127,24 +127,29 @@ export const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ navigation }) => {
         </View>
 
         <View style={styles.mainFlex}>
-          <View style={styles.textFlex}>
-            <Text style={styles.header}>Scan QR Code</Text>
-            <Text style={styles.subtext}>
-              Aim the camera at the tree's code
-            </Text>
-          </View>
+          <View style={styles.subFlex}>
+            <View style={styles.textFlex}>
+              <Text style={styles.header}>Scan QR Code</Text>
+              <Text style={styles.subtext}>
+                Aim the camera at the tree's code
+              </Text>
+            </View>
 
-          <View
-            style={[styles.cameraView, qrCodeFound && styles.qrCodeFoundCamera]}
-          >
-            <CameraView
-              style={[styles.camera]}
-              onBarcodeScanned={handleBarcodeScanned}
-              barcodeScannerSettings={{
-                barcodeTypes: ['qr'],
-              }}
-              enableTorch={flashEnabled}
-            />
+            <View
+              style={[
+                styles.cameraView,
+                qrCodeFound && styles.qrCodeFoundCamera,
+              ]}
+            >
+              <CameraView
+                style={[styles.camera]}
+                onBarcodeScanned={handleBarcodeScanned}
+                barcodeScannerSettings={{
+                  barcodeTypes: ['qr'],
+                }}
+                enableTorch={flashEnabled}
+              />
+            </View>
           </View>
         </View>
 

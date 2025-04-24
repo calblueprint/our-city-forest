@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { EditPen, Heart, Location, Repeat, User } from '@/icons';
+import { Heart, Repeat, User } from '@/icons';
 import { colors } from '@/styles/colors';
 import { updateTree } from '@/supabase/queries/trees';
 import {
@@ -34,12 +34,15 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.editFlex}>
-        <Text style={styles.header}>Properties</Text>
+        <Text style={styles.header}>Information</Text>
         {!isEditing && (
-          <TouchableOpacity onPress={() => setIsEditing(true)}>
-            <EditPen />
+          <TouchableOpacity
+            onPress={() => setIsEditing(true)}
+            style={styles.editButton}
+          >
+            <Text style={styles.editText}>Edit</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -55,6 +58,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
                 placeholderTextColor={colors.gray4}
                 value={treeData?.bank?.toString() ?? ''}
                 keyboardType="numeric"
+                maxLength={1}
                 onChangeText={newBank => {
                   if (!isNaN(+newBank) && newBank.length > 0) {
                     setTreeData({ ...treeData, bank: +newBank });
@@ -72,6 +76,7 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
                 placeholderTextColor={colors.gray4}
                 value={treeData?.row?.toString() ?? ''}
                 keyboardType="numeric"
+                maxLength={3}
                 onChangeText={newRow => {
                   if (!isNaN(+newRow) && newRow.length > 0) {
                     setTreeData({ ...treeData, row: +newRow });
@@ -85,12 +90,13 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
               />
             </View>
           ) : (
-            <View style={styles.iconTextView}>
-              <Location />
-              <Text style={styles.displayText}>
-                Bank #{treeData.bank}
-                {'  '}|{'  '}Row #{treeData.row}
-              </Text>
+            <View style={styles.location}>
+              <View style={styles.bankPill}>
+                <Text style={styles.bankText}>Bank #{treeData.bank ?? 0}</Text>
+              </View>
+              <View style={styles.rowPill}>
+                <Text style={styles.rowText}>Row #{treeData.row ?? 0}</Text>
+              </View>
             </View>
           )}
         </View>
@@ -154,22 +160,23 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
             </View>
           )}
         </View>
-
-        <View>
-          <Text style={styles.notesHeader}>Additional Notes</Text>
-          <TextInput
-            style={styles.notesTextBox}
-            value={treeData.additional_notes ?? ''}
-            onChangeText={newNotes =>
-              setTreeData({ ...treeData, additional_notes: newNotes })
-            }
-            placeholder="Write here..."
-            multiline
-            editable={isEditing}
-            numberOfLines={4}
-          />
-        </View>
       </View>
+
+      <View style={styles.notes}>
+        <Text style={styles.notesHeader}>Additional Notes</Text>
+        <TextInput
+          style={styles.notesTextBox}
+          value={treeData.additional_notes ?? ''}
+          onChangeText={newNotes =>
+            setTreeData({ ...treeData, additional_notes: newNotes })
+          }
+          placeholder="Write here..."
+          multiline
+          editable={isEditing}
+          numberOfLines={4}
+        />
+      </View>
+
       {isEditing && (
         <TouchableOpacity style={styles.button} onPress={saveTreeData}>
           <Text style={styles.buttonText}>Save</Text>

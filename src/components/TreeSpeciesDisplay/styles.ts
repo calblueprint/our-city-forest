@@ -29,13 +29,13 @@ export const styles = StyleSheet.create({
   },
 
   funFactText: {
+    backgroundColor: colors.gray6,
     ...typography.smallRegular,
     color: colors.gray3,
-    paddingHorizontal: 24,
+    textAlign: 'center',
+    paddingHorizontal: 10,
     paddingVertical: 12,
-    borderWidth: 1,
     borderRadius: 12,
-    borderColor: colors.gray5,
   },
 
   divider: {
@@ -43,56 +43,97 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.gray5,
   },
 
-  propertiesHeading: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-
-  propertiesContainer: {
+  subContainer: {
     flexDirection: 'column',
     gap: 12,
   },
 
   header: {
-    ...typography.largeRegular,
+    ...typography.largeBold,
     color: colors.gray1,
   },
 
-  properties: {
-    paddingLeft: 16,
-    flexWrap: 'wrap',
-    alignItems: 'center',
+  production: {
     flexDirection: 'row',
+    columnGap: 20,
+    alignItems: 'center',
+  },
+
+  productionText: {
+    ...typography.mediumRegular,
+    color: colors.primary,
+  },
+
+  productionPill: {
+    backgroundColor: colors.gray6,
+    borderRadius: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 6,
+  },
+
+  productionQuantity: {
+    ...typography.mediumRegular,
+    color: colors.black1,
+  },
+
+  properties: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
     rowGap: 12,
   },
 
   property: {
-    width: '50%',
     flexDirection: 'row',
-    gap: 8,
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 
-  propertyText: {
+  propertyName: {
     ...typography.mediumRegular,
     color: colors.gray3,
   },
 
-  locationsContainer: {
-    flexDirection: 'column',
-    gap: 12,
+  propertyText: {
+    ...typography.mediumRegular,
+    color: colors.black1,
   },
 
   locations: {
-    paddingLeft: 16,
     flexDirection: 'column',
     gap: 12,
   },
 
   locationEntry: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: 8,
+  },
+
+  bankPill: {
+    backgroundColor: colors.gray4,
+    borderRadius: 48,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginBottom: 40,
+    alignSelf: 'flex-start',
+  },
+
+  bankText: {
+    color: colors.white,
+    ...typography.mediumRegular,
+  },
+
+  rowPill: {
+    backgroundColor: colors.gray6,
+    borderRadius: 48,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginBottom: 40,
+    alignSelf: 'flex-start',
+  },
+
+  rowText: {
+    color: colors.gray2,
+    ...typography.mediumRegular,
   },
 });

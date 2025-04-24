@@ -306,7 +306,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
 
           {/* Complete Button */}
           <TouchableOpacity style={styles.completeButton} onPress={onClose}>
-            <Text style={styles.completeButtonText}>Complete</Text>
+            <Text style={styles.completeButtonText}>Apply</Text>
           </TouchableOpacity>
         </View>
       </Modal>

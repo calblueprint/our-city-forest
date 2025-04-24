@@ -28,7 +28,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
   navigation,
 }) => {
   const treeId = route.params?.treeId ?? '';
-  const [isSpecies, setIsSpecies] = useState(true);
+  const [isTree, setIsTree] = useState(false);
   const [treeData, setTreeData] = useState<Tree | null>(null);
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);
 
@@ -60,12 +60,15 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
                 <XButton />
               </TouchableOpacity>
             </View>
+            <View style={styles.pill}>
+              <Text style={styles.pillText}>{allTreesData.length} total</Text>
+            </View>
           </ImageBackground>
           <View style={styles.body}>
             <View style={styles.switch}>
               <ToggleSwitch
-                value={isSpecies}
-                onValueChange={setIsSpecies}
+                value={isTree}
+                onValueChange={setIsTree}
                 trueLabel="This tree"
                 falseLabel="Species"
               />
@@ -73,11 +76,17 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
             <View>
               <Text style={styles.header}>{treeData?.species?.name ?? ''}</Text>
               <View style={styles.idPillFlex}>
-                <Text style={styles.scientificName}>
+                <Text
+                  style={
+                    isTree
+                      ? styles.scientificNameTree
+                      : styles.scientificNameSpecies
+                  }
+                >
                   {treeData?.species?.scientific_name ?? ''}
                 </Text>
 
-                {isSpecies && (
+                {isTree && (
                   <View style={styles.idPill}>
                     <Text style={styles.idText}>
                       BR-{treeData?.bank}-{treeData?.row}
@@ -90,7 +99,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
             <View style={styles.divider}></View>
 
             {treeData ? (
-              isSpecies ? (
+              isTree ? (
                 <TreeEdit treeData={treeData} setTreeData={setTreeData} />
               ) : (
                 <TreeDisplay treeData={treeData} allTreesData={allTreesData} />

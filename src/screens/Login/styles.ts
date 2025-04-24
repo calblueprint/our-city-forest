@@ -6,18 +6,19 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 40,
-    paddingVertical: 160,
+    justifyContent: 'center',
   },
 
   headerText: {
     ...typography.heading1,
     color: colors.primary,
-    marginBottom: 32,
+    paddingBottom: 32,
+    textAlign: 'center',
   },
 
   logo: {
     alignSelf: 'center',
-    marginBottom: 80,
+    paddingBottom: 40,
   },
 
   button: {

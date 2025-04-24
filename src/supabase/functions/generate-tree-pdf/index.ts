@@ -109,7 +109,8 @@ Deno.serve(async req => {
     // Function to create a QR code using an external service
     async function createQRCode(text) {
       try {
-        const url = `https://quickchart.io/qr?text=${encodeURIComponent(text)}&size=120&margin=1&format=png`;
+        // Further increased QR code size from 180 to 250
+        const url = `https://quickchart.io/qr?text=${encodeURIComponent(text)}&size=250&margin=1&format=png`;
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -156,10 +157,11 @@ Deno.serve(async req => {
     );
 
     // Constants for tag layout - EXACTLY 8 tags per page
+    // Use landscape orientation (swap width and height)
+    const pageWidth = 792; // Letter size height (11 inches * 72 points/inch)
+    const pageHeight = 612; // Letter size width (8.5 inches * 72 points/inch)
     const tagsPerPage = 8;
-    const tagHeight = 792 / tagsPerPage; // Letter size paper height divided by 8 tags
-    const pageWidth = 612; // Letter size width (8.5 inches * 72 points/inch)
-    const pageHeight = 792; // Letter size height (11 inches * 72 points/inch)
+    const tagHeight = pageHeight / tagsPerPage; // Height of each tag in landscape
 
     // Calculate how many pages we need
     const totalPages = Math.ceil(unprintedTrees.length / tagsPerPage);
@@ -172,7 +174,7 @@ Deno.serve(async req => {
 
     // Process trees and create pages
     for (let pageIndex = 0; pageIndex < totalPages; pageIndex++) {
-      // Create a new page for tags
+      // Create a new page with landscape orientation
       const page = pdfDoc.addPage([pageWidth, pageHeight]);
 
       addDebugLine(`Creating page ${pageIndex + 1} of ${totalPages}`);
@@ -196,7 +198,7 @@ Deno.serve(async req => {
           `Processing tree ${treeIndex + 1}: ${tree.tree_id} (Tag ${tagIndex + 1} on page ${pageIndex + 1})`,
         );
 
-        // Calculate position for this tag
+        // Calculate position for this tag (horizontal layout)
         const tagY = pageHeight - (tagIndex + 1) * tagHeight;
 
         // Draw tag content
@@ -211,15 +213,7 @@ Deno.serve(async req => {
           speciesMap,
         );
 
-        // Draw horizontal divider line (except for the last tag on the page)
-        if (tagIndex < tagsPerPage - 1 && treeIndex < endTreeIndex - 1) {
-          page.drawLine({
-            start: { x: 0, y: tagY },
-            end: { x: pageWidth, y: tagY },
-            thickness: 1,
-            color: PDFLib.rgb(0.8, 0.8, 0.8),
-          });
-        }
+        // No divider lines as requested
       }
     }
 
@@ -234,17 +228,17 @@ Deno.serve(async req => {
       qrCodeCache,
       speciesMap,
     ) {
-      // Calculate the total width of content to center everything
-      const usableWidth = width * 0.9; // Use 90% of the width
-      const marginX = (width - usableWidth) / 2; // Center the content horizontally
-      const marginY = 10;
-      const contentX = x + marginX;
+      // Adjust content placement to move everything more to the right
+      // Leave even more whitespace on the left
+      const leftMarginPercent = 0.35; // 35% of the width as left margin
+      const contentWidth = width * 0.55; // Use 55% of the width for content
+      const contentX = x + width * leftMarginPercent; // Start content at 35% from left
 
       // Vertical center of the tag area
       const centerY = y + height / 2;
 
-      // Logo dimensions - preserve aspect ratio
-      const logoHeight = height * 0.6;
+      // Logo dimensions - preserve aspect ratio but make slightly smaller to fit larger QR code
+      const logoHeight = height * 0.55; // Reduced from 0.6 to 0.55
       const logoWidth = logoHeight * 1.3; // Based on logo aspect ratio
       const logoY = centerY - logoHeight / 2;
 
@@ -307,21 +301,22 @@ Deno.serve(async req => {
         }
       }
 
-      // Calculate the layout for perfect centering
-      const textStartX = contentX + logoWidth + 20;
+      // Calculate the layout for text
+      const textStartX = contentX + logoWidth + 15; // Reduced spacing from 20 to 15
 
-      // Calculate space for text area
-      const qrCodeSize = height * 0.8;
-      const tagIdWidth = 90; // Approximate width for the tag ID
-      const availableTextWidth =
-        usableWidth - logoWidth - qrCodeSize - tagIdWidth - 40; // 40 is spacing
+      // Calculate the rightmost position for content
+      const contentEndX = contentX + contentWidth;
 
-      // QR code position
-      const qrCodeX = contentX + usableWidth - qrCodeSize;
+      // QR code dimensions - significantly increased size to almost touch across rows
+      const qrCodeSize = height * 0.97; // Increased from 0.85 to 0.97
+
+      // QR code position - align to right side of content area
+      // const qrCodeX = contentEndX - qrCodeSize - 5; // Reduced margin from 10 to 5
+      const qrCodeX = textStartX + 220;
       const qrCodeY = centerY - qrCodeSize / 2;
 
-      // Tag ID position (centered between text and QR code)
-      const tagIdX = qrCodeX - tagIdWidth - 10; // 10px before QR code
+      // Tag ID position - closer to QR code and adjusted to make room for larger QR
+      const tagIdX = textStartX + 150;
 
       // Draw scientific name in italics (first line)
       if (scientificName) {

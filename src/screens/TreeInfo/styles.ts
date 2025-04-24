@@ -10,13 +10,30 @@ export const styles = StyleSheet.create({
   imageBackground: {
     height: 320,
     backgroundColor: colors.gray5,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
 
   topNavigation: {
     flexDirection: 'row',
-    marginTop: 64,
-    marginHorizontal: 24,
+    paddingTop: 64,
+    paddingHorizontal: 24,
     justifyContent: 'flex-end',
+  },
+
+  pill: {
+    backgroundColor: colors.white,
+    borderRadius: 48,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginHorizontal: 24,
+    marginBottom: 40,
+    alignSelf: 'flex-start',
+  },
+
+  pillText: {
+    ...typography.mediumBold,
+    color: colors.primary,
   },
 
   body: {
@@ -33,19 +50,27 @@ export const styles = StyleSheet.create({
   header: {
     ...typography.heading2,
     color: colors.gray1,
-    marginBottom: 8,
+    paddingBottom: 8,
   },
 
   idPillFlex: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 16,
+    paddingBottom: 16,
   },
 
-  scientificName: {
-    ...typography.largeRegular,
+  scientificNameSpecies: {
+    ...typography.largeBold,
     color: colors.gray1,
+    wordWrap: 'true',
+  },
+
+  scientificNameTree: {
+    ...typography.largeBold,
+    color: colors.gray1,
+    width: '70%',
+    wordWrap: 'true',
   },
 
   idPill: {

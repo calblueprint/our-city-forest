@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 6,
     alignItems: 'center',
-    paddingBottom: 12,
+    marginBottom: 12,
   },
 
   buttonText: {

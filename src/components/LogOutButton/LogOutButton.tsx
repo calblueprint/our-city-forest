@@ -8,12 +8,13 @@ import { RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
 export const LogOutButton: React.FC = () => {
-  const { logout } = useAuth();
+  const { logout, setHasLaunched } = useAuth();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleLogOut = async () => {
     await logout();
+    setHasLaunched(false);
 
     navigation.dispatch(
       CommonActions.reset({

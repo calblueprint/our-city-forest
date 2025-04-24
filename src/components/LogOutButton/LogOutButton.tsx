@@ -3,6 +3,7 @@ import { Text, TouchableOpacity } from 'react-native';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAuth } from '@/context/AuthContext';
+import { LogOut } from '@/icons';
 import { RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -17,21 +18,14 @@ export const LogOutButton: React.FC = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [
-          {
-            name: 'BottomTabs',
-            params: {
-              screen: 'HomeTab',
-              params: { screen: 'TreeSpeciesSearch' },
-            },
-          },
-        ],
+        routes: [{ name: 'LoginStack' }],
       }),
     );
   };
 
   return (
-    <TouchableOpacity onPress={handleLogOut}>
+    <TouchableOpacity onPress={handleLogOut} style={styles.button}>
+      <LogOut />
       <Text style={styles.buttonText}>Log out</Text>
     </TouchableOpacity>
   );

@@ -66,6 +66,8 @@ const HomeStackNavigator = () => {
         name="QRCodeScanner"
         component={QRCodeScanner}
         options={{
+          presentation: 'fullScreenModal',
+          animation: 'fade',
           headerShown: false,
         }}
       />

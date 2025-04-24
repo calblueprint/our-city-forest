@@ -29,13 +29,13 @@ export const styles = StyleSheet.create({
   },
 
   funFactText: {
+    backgroundColor: colors.gray6,
     ...typography.smallRegular,
     color: colors.gray3,
+    textAlign: 'center',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderWidth: 1,
     borderRadius: 12,
-    borderColor: colors.gray5,
   },
 
   divider: {
@@ -48,51 +48,30 @@ export const styles = StyleSheet.create({
     gap: 12,
   },
 
-  propertiesHeading: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-
   header: {
-    ...typography.largeRegular,
+    ...typography.largeBold,
     color: colors.gray1,
   },
 
   properties: {
-    paddingLeft: 16,
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: 'column',
+    alignItems: 'stretch',
     rowGap: 12,
   },
 
   property: {
-    width: '50%',
     flexDirection: 'row',
-    gap: 8,
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 
-  propertyText: {
+  propertyName: {
     ...typography.mediumRegular,
     color: colors.gray3,
   },
 
-  locationsContainer: {
-    flexDirection: 'column',
-    gap: 12,
-  },
-
-  locations: {
-    paddingLeft: 16,
-    flexDirection: 'column',
-    gap: 12,
-  },
-
-  locationEntry: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  propertyText: {
+    ...typography.mediumRegular,
+    color: colors.black1,
   },
 });

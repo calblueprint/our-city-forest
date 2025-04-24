@@ -1,10 +1,11 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LogInButton } from '@/components/LogInButton/LogInButton';
 import { useAuth } from '@/context/AuthContext';
+import { LogoBig } from '@/icons';
 import { LoginStackParamList, RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
@@ -29,12 +30,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerText}>I am a...</Text>
+      <Text style={styles.headerText}>Our City Forest</Text>
 
-      <Image
-        style={styles.logo}
-        source={require('~/assets/ocf-logo-big.png')}
-      />
+      <View style={styles.logo}>
+        <LogoBig />
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleGuestPress}>
         <Text style={styles.buttonText}>Guest</Text>

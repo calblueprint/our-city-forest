@@ -9,7 +9,7 @@ import {
 import { Image } from 'expo-image';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAuth } from '@/context/AuthContext';
-import { Scanner } from '@/icons';
+import { SadFace, Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
   getAvailableTreeSpecies,
@@ -178,19 +178,35 @@ export const TreeSpeciesSearchScreen: React.FC<
 
       <View style={styles.divider}></View>
 
-      <FlatList
-        data={filteredTreeSpeciesCards}
-        keyExtractor={item => item.name}
-        renderItem={renderSpeciesCard}
-        numColumns={2}
-        contentContainerStyle={styles.speciesContainer}
-        columnWrapperStyle={{ gap: 16 }}
-        ListEmptyComponent={
-          <Text style={styles.searchError}>
-            No tree species found matching your search.
-          </Text>
-        }
-      />
+      <View style={styles.listContainer}>
+        <FlatList
+          data={filteredTreeSpeciesCards}
+          keyExtractor={item => item.name}
+          renderItem={renderSpeciesCard}
+          numColumns={2}
+          contentContainerStyle={styles.speciesContainer}
+          columnWrapperStyle={{ gap: 16 }}
+          ListEmptyComponent={
+            <View style={styles.searchErrorBody}>
+              <View style={styles.sadFaceAndText}>
+                <View style={styles.sadFace}>
+                  <SadFace />
+                </View>
+                <Text style={styles.searchError}>
+                  No tree species found matching your search.
+                </Text>
+              </View>
+                <TouchableOpacity
+                  style={styles.resetFilter}
+                  onPress={() => alert('Button Pressed!')}
+                >
+                  <Text style={styles.buttonText}>Reset Filters</Text>
+                </TouchableOpacity>
+            
+            </View>
+          }
+        />
+      </View>
     </SafeAreaView>
   );
 };

@@ -90,8 +90,30 @@ export const styles = StyleSheet.create({
     color: colors.gray3,
   },
 
+  userInfoContainer:{
+    display: "flex",
+    width: 410,
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 12,
+  },
+  emailContainer:{
+    display: "flex",
+    width: 246,
+    height: 24,
+    flexDirection: "column",
+    justifyContent: "center",
+    color: "#828282",
+    alignItems: "center",
+    /* normal text regular */
+    fontFamily: "SF Pro Display",
+    fontSize: 16,
+    fontStyle: "normal",
+    fontWeight: 400,
+    lineHeight: 25, /* 156.25% */
+  },
   logOutButton: {
-    paddingVertical: 15,
+    paddingVertical: 0,
     paddingHorizontal: 110,
     borderRadius: 30,
     backgroundColor: colors.gray6,

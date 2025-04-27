@@ -20,6 +20,7 @@ export { LogoSmall } from './LogoSmall';
 export { LogOut } from './LogOut';
 export { Production } from './Production';
 export { Repeat } from './Repeat';
+export { SadFace } from './SadFace';
 export { ScanBarcode } from './ScanBarcode';
 export { Scanner } from './Scanner';
 export { Search } from './Search';

@@ -1,5 +1,6 @@
 {
   "expo": {
+    "newArchEnabled": true,
     "name": "OCF",
     "slug": "our-city-forest",
     "owner": "ocfdev",

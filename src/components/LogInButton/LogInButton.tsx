@@ -21,7 +21,7 @@ export const LogInButton: React.FC<LogInButtonProps> = ({ navigation }) => {
       setHasLaunched(true);
       navigation.navigate('BottomTabs', {
         screen: 'HomeTab',
-        params: { screen: 'TreeSpeciesSearch' },
+        params: { screen: 'SpeciesSearch' },
       });
     }
   }, [isAuthenticated, setHasLaunched, navigation]);

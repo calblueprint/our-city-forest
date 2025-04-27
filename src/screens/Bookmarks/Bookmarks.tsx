@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FlatList,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
+  Image,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useBookmarks } from '@/context/BookmarksContext';
-import { AddIcon, Bookmark } from '@/icons';
+import { AddIcon, Bookmark, Paintbucket} from '@/icons';
 import { BookmarksStackParamList } from '@/types/navigation';
+import { CreateFolderModal } from '@/components/CreateFolderModal/CreateFolderModal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from './styles';
 
 type BookmarksScreenProps = NativeStackScreenProps<
@@ -18,107 +21,190 @@ type BookmarksScreenProps = NativeStackScreenProps<
   'BookmarkButton'
 >;
 
+type EnhancedFolder = {
+  name: string;
+  folderImage?: string;
+};
+
 export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
   navigation,
 }) => {
   const { folders, addFolder, removeFolder } = useBookmarks();
+  const [showCreateFolderModal, setShowCreateFolderModal] = useState(false);
+  const [enhancedFolders, setEnhancedFolders] = useState<EnhancedFolder[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [editMode, setEditMode] = useState(false);
 
-  const [showAddFolder, setShowAddFolder] = useState(false);
-  const [newFolderName, setNewFolderName] = useState('');
+  const defaultImage = 'https://reactnative.dev/img/tiny_logo.png';
 
-  const handleAddNewFolder = () => {
-    if (newFolderName.trim()) {
-      addFolder(newFolderName.trim());
-      setNewFolderName('');
-      setShowAddFolder(false);
+  useEffect(() => {
+    loadFolderImages();
+  }, [folders]);
+
+  const loadFolderImages = async () => {
+    setIsLoading(true);
+    try {
+      const enhanced = await Promise.all(
+        folders.map(async (folder) => {
+          const storedData = await AsyncStorage.getItem(folder.name);
+          
+          if (storedData) {
+            try {
+              const parsedData = JSON.parse(storedData);
+              
+              if (parsedData && typeof parsedData === 'object' && !Array.isArray(parsedData) && parsedData.folderImage) {
+                return {
+                  ...folder,
+                  folderImage: parsedData.folderImage,
+                };
+              }
+            } catch (error) {
+              console.error('Error parsing folder data:', error);
+            }
+          }
+          return folder;
+        })
+      );
+      
+      setEnhancedFolders(enhanced);
+    } catch (error) {
+      console.error('Error loading folder images:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleRemoveFolder = (folderName: string) => {
-    removeFolder(folderName);
+  const handleCreateFolder = (folderName: string) => {
+    addFolder(folderName);
+    setShowCreateFolderModal(false);
+  };
+
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+  };
+
+  const renderFolderCard = ({ item }: { item: EnhancedFolder }) => {
+    if (item.name === '__create_new__') {
+      return (
+        <TouchableOpacity
+          style={[styles.folderCard, styles.createFolderCard]}
+          onPress={() => setShowCreateFolderModal(true)}
+        >
+          <View style={styles.folderItem}>
+            <View style={[styles.imageContainer, styles.createImageContainer]}>
+              <AddIcon />
+            </View>
+            <Text style={styles.folderName}>
+              Create new list
+            </Text>
+          </View>
+        </TouchableOpacity>
+      );
+    }
+    
+    return (
+      <TouchableOpacity
+        style={styles.folderCard}
+        onPress={() => {
+          if (!editMode) {
+            navigation.navigate('BookmarkDisplay', {
+              folderName: item.name,
+            });
+          }
+        }}
+      >
+        <View style={styles.folderItem}>
+          <View style={styles.imageContainer}>
+            <Image 
+              source={{ uri: item.folderImage || defaultImage }} 
+              style={styles.speciesImage}
+            />
+          </View>
+          <Text style={styles.folderName}>
+            {item.name}
+          </Text>
+          
+          {editMode && (
+            <View style={styles.overlaySvg}>
+              <TouchableOpacity
+                onPress={() => removeFolder(item.name)}
+                style={styles.deleteButton}
+              >
+                <Text style={styles.deleteButtonText}>✕</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+      </TouchableOpacity>
+    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.headerText}>Bookmarked</Text>
+        <TouchableOpacity 
+          onPress={toggleEditMode}
+          style={[
+            styles.editButton,
+            editMode ? styles.editButtonActive : null
+          ]}
+        >
+          <Text style={[
+            styles.editButtonText,
+            editMode ? styles.editButtonTextActive : null
+          ]}>
+            {editMode ? 'Done' : 'Edit'}
+          </Text>
+        </TouchableOpacity>
       </View>
-
       <View style={styles.divider} />
 
-      {!showAddFolder ? (
-        <View style={styles.createList}>
-          <TouchableOpacity
-            style={styles.createList}
-            onPress={() => setShowAddFolder(true)}
-          >
-            <AddIcon />
-            <Text style={styles.createText}>Create new list</Text>
-          </TouchableOpacity>
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <Text>Loading folders...</Text>
         </View>
       ) : (
-        <View style={styles.popupBox}>
-          <Text style={styles.popupTitle}>Create new list</Text>
-          <Text style={styles.nameText}>Name</Text>
-          <TextInput
-            style={styles.input}
-            value={newFolderName}
-            onChangeText={setNewFolderName}
-            placeholder="Folder name"
-            maxLength={20}
-          />
-          <Text style={styles.charactersText}>
-            {newFolderName.length} / 20 characters
-          </Text>
-          <View style={styles.addFolderButtons}>
-            <TouchableOpacity
-              style={styles.clearButton}
-              onPress={() => {
-                setNewFolderName('');
-                setShowAddFolder(false);
-              }}
-            >
-              <Text style={styles.clearButtonText}>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, styles.createButton]}
-              onPress={handleAddNewFolder}
-              disabled={!newFolderName.trim()}
-            >
-              <Text style={styles.buttonText}>Create</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <FlatList
+          data={
+            editMode
+              ? [{ name: '__create_new__' }, ...enhancedFolders]
+              : enhancedFolders
+          }
+          keyExtractor={item => item.name}
+          renderItem={renderFolderCard}
+          numColumns={2}
+          contentContainerStyle={styles.speciesContainer}
+          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          ListEmptyComponent={
+            <Text style={styles.emptyText}>
+              {editMode 
+                ? 'No folders yet. Exit edit mode to create a folder.'
+                : 'No folders yet. Create your first folder!'}
+            </Text>
+          }
+        />
       )}
 
-      <FlatList
-        data={folders}
-        keyExtractor={item => item.name}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('BookmarkDisplay', {
-                folderName: item.name,
-              });
-            }}
-          >
-            <View style={styles.folderItem}>
-              <Text>{item.name}</Text>
-              <TouchableOpacity
-                onPress={() => handleRemoveFolder(item.name)}
-                style={styles.removeButton}
-              >
-                <Bookmark />
-              </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-        )}
-        ListEmptyComponent={
-          <Text style={styles.emptyText}>
-            No folders yet. Create your first folder!
-          </Text>
-        }
+      <CreateFolderModal
+        visible={showCreateFolderModal}
+        onClose={() => setShowCreateFolderModal(false)}
+        onCreate={handleCreateFolder}
       />
     </SafeAreaView>
   );
+};
+
+// Add these styles to the styles.js file
+export const additionalStyles = {
+  overlaySvg: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    width: 40,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+ 
 };

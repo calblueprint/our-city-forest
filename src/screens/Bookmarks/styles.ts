@@ -11,6 +11,91 @@ export const styles = StyleSheet.create({
     paddingTop: 16,
     gap: 12,
     marginBottom: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  createFolderCard: {
+    backgroundColor: '#f5f5f5',
+  },
+
+  createImageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#e0e0e0',
+  },
+
+  editButton: {
+    width: 74,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+  },
+
+  editButtonActive: {
+    backgroundColor: colors.primary,  
+    borderWidth: 0,
+  },
+
+  editButtonText: {
+    color: colors.primary, 
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  editButtonTextActive: {
+    color: 'white',
+  },
+  deleteButton: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255, 0, 0, 0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  deleteButtonText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+
+  overlaySvg: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    width: 40,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+
+  folderThumbnail: {
+    width: 50,
+    height: 50,
+    borderRadius: 4,
+    marginRight: 16,
+  },
+
+  folderName: {
+    flex: 1,
+    fontSize: 16,
+    color: colors.primary,
+    alignItems: 'flex-start'
+  },
+
+  folderItem: {
+    flexDirection: 'column',
+  },
+
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   emptyText: {
@@ -20,19 +105,37 @@ export const styles = StyleSheet.create({
     fontSize: 14,
   },
 
+  speciesContainer: {
+    justifyContent: 'space-between',
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    rowGap: 16,
+  },
+
+  speciesImage: {
+    backgroundColor: colors.gray5,
+    width: '100%',
+    aspectRatio: 1.25,
+    borderRadius: 10,
+    resizeMode: 'cover',
+    marginBottom: 6,
+  },
+
+  folderCard: {
+    width: '48%',
+    overflow: 'hidden',
+  },
+
+  imageContainer: {
+    width: '100%',
+    overflow: 'hidden',
+    position: 'relative',
+  },
+
   removeButton: {
     padding: 8,
     borderRadius: 20,
     color: colors.black1,
-  },
-
-  folderItem: {
-    paddingVertical: 12,
-    paddingHorizontal: 15,
-    borderBottomWidth: 1,
-    borderColor: '#eee',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
 
   headerText: {
@@ -139,9 +242,5 @@ export const styles = StyleSheet.create({
 
   createButton: {
     backgroundColor: colors.primary,
-  },
-
-  disabledButton: {
-    backgroundColor: '#b0c4de',
   },
 });

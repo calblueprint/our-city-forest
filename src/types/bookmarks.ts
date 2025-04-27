@@ -5,7 +5,7 @@ export type BookmarkContextType = {
   setFolders: React.Dispatch<React.SetStateAction<BookmarkFolder[]>>;
   loadFolders: () => Promise<void>;
   saveFolders: () => Promise<void>;
-  addFolder: (name: string) => void;
+  addFolder: (name: string, imageUrl?: string) => void;
   addBookmark: (folderName: string, speciesName: string) => void;
   removeBookmark: (folderName: string, bookmarkId: string) => void;
   isBookmarked: (speciesName: string) => boolean;
@@ -13,13 +13,16 @@ export type BookmarkContextType = {
 };
 
 export type Bookmark = {
+  imageUrl: string | null;
   id: string;
   speciesName: string;
 };
 
 export type BookmarkFolder = {
+  folderImage: string;
   name: string;
   bookmarks: Bookmark[];
+  image?: string;
 };
 
 export type UserBookmarks = {

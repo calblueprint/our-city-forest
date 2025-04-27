@@ -73,38 +73,56 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [folders, isAuthenticated, user]);
 
-  const addFolder = useCallback((name: string) => {
+  const addFolder = useCallback((name: string, imageUrl?: string) => {
+    const folderExists = folders.some(folder => folder.name === name);
+    
+    if (folderExists) {
+      console.log(`Folder "${name}" already exists!`);
+      return false;
+    }
+    
     const newFolder: BookmarkFolder = {
       name,
       bookmarks: [],
+      image: imageUrl,
+      folderImage: 'https://reactnative.dev/img/tiny_logo.png',
     };
+    
     setFolders(prev => [...prev, newFolder]);
-  }, []);
+    return true;
+  }, [folders]);
 
-  const addBookmark = (folderName: string, speciesName: string) => {
+  const addBookmark = (folderName: string, speciesName: string, imageUrl?: string) => {
     setFolders(prevFolders =>
       prevFolders.map(folder => {
         if (folder.name === folderName) {
           const alreadyExists = folder.bookmarks.some(
             bookmark => bookmark.id === speciesName,
           );
-
+  
           if (alreadyExists) {
             console.log(`"${speciesName}" already exists in "${folderName}"`);
             return folder;
           }
-
+  
           const newBookmark: Bookmark = {
             id: speciesName,
             speciesName,
+            imageUrl: imageUrl || 'https://reactnative.dev/img/tiny_logo.png',
           };
-
-          return {
+  
+          const updatedFolder = {
             ...folder,
             bookmarks: [...folder.bookmarks, newBookmark],
           };
+          
+          if (!folder.image && imageUrl) {
+            updatedFolder.image = imageUrl;
+          }
+  
+          return updatedFolder;
         }
-
+  
         return folder;
       }),
     );

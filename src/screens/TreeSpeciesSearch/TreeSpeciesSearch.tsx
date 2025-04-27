@@ -10,6 +10,8 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BookmarkModal } from '@/components/BoomarkModal/BookmarkModal';
+import { CreateFolderModal } from '@/components/CreateFolderModal/CreateFolderModal';
+import { useBookmarks } from '@/context/BookmarksContext';
 import { Bookmark, Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
@@ -47,12 +49,13 @@ type ActiveFilters = {
   other: string[];
 };
 
+type ModalState = 'none' | 'bookmark' | 'createFolder';
+
 export const TreeSpeciesSearchScreen: React.FC<
   TreeSpeciesSearchScreenProps
 > = ({ navigation }) => {
-  const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>(
-    [],
-  );
+  const { addFolder } = useBookmarks();
+  const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>([]);
   const [searchText, setSearchText] = useState<string>('');
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
     height: [],
@@ -62,9 +65,10 @@ export const TreeSpeciesSearchScreen: React.FC<
     other: [],
   });
 
+  const [modalState, setModalState] = useState<ModalState>('none');
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [selectedTree, setSelectedTree] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -84,6 +88,7 @@ export const TreeSpeciesSearchScreen: React.FC<
       const treeSpecies = isUserAdmin
         ? await getAllTreeSpecies()
         : await getAvailableTreeSpecies();
+
       if (treeSpecies) {
         const cards: treeSpeciesCard[] = treeSpecies.map(
           (ts: TreeSpecies & { count: number }) => ({
@@ -103,6 +108,7 @@ export const TreeSpeciesSearchScreen: React.FC<
         setTreeSpeciesCards(cards);
       }
     };
+
     loadTreeSpeciesData();
   }, [isUserAdmin]);
 
@@ -157,6 +163,25 @@ export const TreeSpeciesSearchScreen: React.FC<
       applyFilters(ts),
   );
 
+  const handleBookmarkPress = (treeName: string, imageURL: string) => {
+    setSelectedTree(treeName);
+    setSelectedImage(imageURL);
+    setModalState('bookmark');
+  };
+
+  const handleCreateFolder = () => {
+    setModalState('createFolder');
+  };
+  
+  const handleCreateFolderComplete = (folderName: string) => {
+    addFolder(folderName);
+    setModalState('none');
+  };
+
+  const handleCloseModal = () => {
+    setModalState('none');
+  };
+
   const renderSpeciesCard = ({ item }: { item: treeSpeciesCard }) => (
     <TouchableOpacity
       onPress={() =>
@@ -165,19 +190,10 @@ export const TreeSpeciesSearchScreen: React.FC<
       style={styles.speciesCard}
     >
       <View style={styles.imageContainer}>
-        <Image
-          source={{
-            uri: item.imageURL,
-          }}
-          style={styles.speciesImage}
-        />
+        <Image source={{ uri: item.imageURL }} style={styles.speciesImage} />
         <View style={styles.overlaySvg}>
           <TouchableOpacity
-            onPress={() => {
-              console.log('Opening modal for:', item.name);
-              setSelectedTree(item.name);
-              setModalVisible(true);
-            }}
+            onPress={() => handleBookmarkPress(item.name, item.imageURL)}
           >
             <Bookmark width={30} height={30} />
           </TouchableOpacity>
@@ -222,11 +238,21 @@ export const TreeSpeciesSearchScreen: React.FC<
         }
       />
 
-      {selectedTree && (
+      {modalState === 'bookmark' && selectedTree && (
         <BookmarkModal
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
+          visible={true}
+          onClose={handleCloseModal}
           tree={selectedTree}
+          imageUrl={selectedImage || 'https://example.com/placeholder.jpg'}
+          onCreateFolder={handleCreateFolder}
+        />
+      )}
+
+      {modalState === 'createFolder' && (
+        <CreateFolderModal
+          visible={true}
+          onClose={handleCloseModal}
+          onCreate={handleCreateFolderComplete}
         />
       )}
     </SafeAreaView>

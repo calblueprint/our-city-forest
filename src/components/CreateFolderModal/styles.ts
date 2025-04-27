@@ -5,7 +5,9 @@ export const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.3)',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
+    paddingTop: 100, 
+    paddingHorizontal: 10,
   },
 
   container: {
@@ -22,14 +24,6 @@ export const styles = StyleSheet.create({
   sliderIndicatorRow: {
     alignItems: 'center',
     marginBottom: 10,
-  },
-
-  folderImage: {
-    width: 40,
-    height: 38,
-    borderRadius: 10,
-    marginRight: 12,
-    backgroundColor: '#F0F0F0',
   },
 
   sliderIndicator: {
@@ -54,11 +48,10 @@ export const styles = StyleSheet.create({
 
   folderItem: {
     paddingVertical: 12,
-    gap: 25,
     borderBottomWidth: 1,
     borderColor: '#eee',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
   },
 
   treeImage: {
@@ -83,11 +76,8 @@ export const styles = StyleSheet.create({
   },
 
   nameText: {
-    color: colors.gray2,
-    justifyContent: 'flex-start',
-    alignSelf: 'center',
-    fontSize: 18,
-    fontWeight: '500',
+    color: colors.gray3,
+    fontStyle: 'normal',
   },
 
   addFolderButtons: {
@@ -140,9 +130,10 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: 'rgba(0,0,0,0.4)',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 20,
+    paddingTop: 100, 
     zIndex: 10,
   },
 
@@ -152,12 +143,13 @@ export const styles = StyleSheet.create({
   },
 
   popupBox: {
-    width: '100%',
-    height: '30%',
     backgroundColor: 'white',
-    borderRadius: 33,
+    borderRadius: 20, 
     padding: 20,
-    justifyContent: 'space-evenly',
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+    position: 'relative',
+    marginTop: 20,
   },
 
   popupTitle: {
@@ -172,4 +164,13 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     color: colors.black1,
   },
+  
+  closeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    padding: 8,
+    zIndex: 10,
+  },
+  
 });

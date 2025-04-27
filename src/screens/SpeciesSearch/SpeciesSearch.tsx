@@ -34,7 +34,8 @@ type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
 type treeSpeciesCard = {
   name: string;
   imageURL: string;
-  stockCount: number;
+  availableCount: number;
+  totalCount: number;
   maxHeight: string;
   treeShape: string;
   litterType: string;
@@ -56,8 +57,8 @@ type treeFilters = {
 type shrubSpeciesCard = {
   name: string;
   imageURL: string;
-  //availableStock: number;
-  stockCount: number;
+  availableCount: number;
+  totalCount: number;
   dormancy: string;
   dimension: string;
   bloomType: string;
@@ -87,7 +88,7 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
     shrubSpeciesCard[]
   >([]);
   const [searchText, setSearchText] = useState<string>('');
-  const [isTreeSpecies, setIsTreeSpecies] = useState(true); // ADDED DURING SPRINT
+  const [isTreeSpecies, setIsTreeSpecies] = useState(true);
   const [treeFilters, setTreeFilters] = useState<treeFilters>({
     height: [],
     shape: '',
@@ -96,7 +97,6 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
     other: [],
   });
   const [shrubFilters, setShrubFilters] = useState<shrubFilters>({
-    //max_height: [],
     bloom: [],
     sun_exposure: [],
     water_use: [],
@@ -105,18 +105,10 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
   });
 
   const { isAuthenticated } = useAuth();
-  const isUserAdmin = isAuthenticated;
-
-  <ToggleSwitch // ADDED DURING SPRINT
-    value={isTreeSpecies}
-    onValueChange={setIsTreeSpecies}
-    trueLabel="Trees"
-    falseLabel="Shrubs"
-  />;
 
   useEffect(() => {
     const loadTreeSpeciesData = async () => {
-      const treeSpecies = isUserAdmin
+      const treeSpecies = isAuthenticated
         ? await getAllTreeSpecies()
         : await getAvailableTreeSpecies();
       if (treeSpecies) {
@@ -124,7 +116,8 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
           (ts: TreeSpecies & { count: number }) => ({
             name: ts.name,
             imageURL: ts.image_url || 'https://example.com/placeholder.jpg',
-            stockCount: ts.count,
+            availableCount: ts.count,
+            totalCount: ts.count,
             maxHeight: ts.max_height_ft,
             treeShape: ts.tree_shape,
             litterType: ts.litter_type,
@@ -140,7 +133,7 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
     };
 
     const loadShrubSpeciesData = async () => {
-      const shrubSpecies = isUserAdmin
+      const shrubSpecies = isAuthenticated
         ? await getAllShrubSpecies()
         : await getAvailableShrubSpecies();
       if (shrubSpecies) {
@@ -148,7 +141,8 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
           (ss: ShrubSpecies & { count: number }) => ({
             name: ss.name,
             imageURL: ss.image_url,
-            availableStock: ss.available_stock,
+            availableCount: ss.available_stock,
+            totalCount: ss.total_stock,
             dormancy: ss.dormancy,
             dimension: ss.dimensions,
             bloomType: ss.bloom,
@@ -169,7 +163,7 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
     } else {
       loadShrubSpeciesData();
     }
-  }, [isUserAdmin]);
+  }, [isAuthenticated, isTreeSpecies]);
 
   const applyTreeFilters = (tree: treeSpeciesCard) => {
     if (treeFilters.height.length > 0) {
@@ -214,19 +208,6 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
   };
 
   const applyShrubFilters = (shrub: shrubSpeciesCard) => {
-    // if (shrubFilters.height.length > 0) {
-    //   const maxHeight = parseFloat(tree.maxHeight);
-    //   const matchesHeight = treeFilters.height.some(filter => {
-    //     if (filter === 'small') return maxHeight < 40;
-    //     if (filter === 'medium') return maxHeight >= 40 && maxHeight <= 60;
-    //     if (filter === 'large') return maxHeight > 60;
-    //     return false; // If filter is null or invalid
-    //   });
-    //   if (!matchesHeight) return false;
-    // }
-    // if (treeFilters.shape && treeFilters.shape !== tree.treeShape) {
-    //   return false;
-    // }
     if (
       shrubFilters.bloom.length > 0 &&
       !shrubFilters.bloom.includes(shrub.bloomType)
@@ -255,28 +236,22 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
       const matchesOther = shrubFilters.other.every(option => {
         if (option === 'californiaNative')
           return shrub.isCaliforniaNative || false;
-        // if (option === 'evergreen') return tree.isEvergreen || false;
-        // if (option === 'powerlineFriendly')
-        //   return tree.isPowerlineFriendly || false;
-        // if (option === 'lowRootDamage')
-        //   return tree.rootDamagePotential === 'low';
-        return false;
+
+        if (option === 'lowGrowing') {
+          if (
+            typeof shrub.dimension === 'string' &&
+            shrub.dimension.toLowerCase().includes('x')
+          ) {
+            const height = Number(shrub.dimension.split(/x/i)[0]);
+            return height <= 2 || false;
+          }
+        }
       });
       if (!matchesOther) return false;
     }
     return true;
   };
 
-  // const filteredCards = treeSpeciesCards.filter(
-  //   ts => {
-  //     if (ts.name.toLowerCase().includes(searchText.toLowerCase()) && isTreeSpecies) {
-  //       applyTreeFilters(ts)
-  //     }
-  //     else if (ts.name.toLowerCase().includes(searchText.toLowerCase()) && !isTreeSpecies) {
-  //       applyShrubFilters(ss)
-  //     }
-  //   }
-  // );
   const filteredCards = isTreeSpecies
     ? treeSpeciesCards.filter(
         tree =>
@@ -311,7 +286,11 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
       <Text style={styles.speciesName} numberOfLines={1}>
         {item.name}
       </Text>
-      <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
+      <Text style={styles.speciesStock}>
+        {isAuthenticated
+          ? `${item.totalCount} total`
+          : `${item.availableCount} in stock`}
+      </Text>
     </TouchableOpacity>
   );
 
@@ -320,7 +299,7 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}>
-            {isUserAdmin
+            {isAuthenticated
               ? isTreeSpecies
                 ? 'All Trees'
                 : 'All Shrubs'
@@ -346,12 +325,20 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
             onActiveFilterChange={setShrubFilters}
           />
         )}
+        <View style={styles.toggle}>
+          <ToggleSwitch
+            value={isTreeSpecies}
+            onValueChange={setIsTreeSpecies}
+            trueLabel="Trees"
+            falseLabel="Shrubs"
+          />
+        </View>
       </View>
 
       <View style={styles.divider}></View>
 
       <FlatList
-        data={filteredCards} //data={filteredTreeSpeciesCards}
+        data={filteredCards}
         keyExtractor={item => item.name}
         renderItem={renderSpeciesCard}
         numColumns={2}

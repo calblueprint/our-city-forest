@@ -8,7 +8,6 @@ type ShrubSearchBarProps = {
   searchText: string;
   onSearchTextChange: (text: string) => void;
   activeFilters: {
-    // max_height: string[];
     bloom: string[];
     sun_exposure: string[];
     water_use: string[];
@@ -17,7 +16,6 @@ type ShrubSearchBarProps = {
   };
   onActiveFilterChange: React.Dispatch<
     React.SetStateAction<{
-      // max_height: string[];
       bloom: string[];
       sun_exposure: string[];
       water_use: string[];

@@ -48,15 +48,10 @@ const LoginStackNavigator = () => {
 const HomeStackNavigator = () => {
   return (
     <HomeStack.Navigator
-      initialRouteName="Home"
+      initialRouteName="SpeciesSearch"
       screenOptions={{ headerShown: false }}
     >
-      {/* <HomeStack.Screen name="Home" component={HomeScreen} /> */}
       <HomeStack.Screen name="SpeciesSearch" component={SpeciesSearchScreen} />
-      {/* <HomeStack.Screen
-        name="ShrubSpeciesSearch"
-        component={ShrubSpeciesSearchScreen}
-      /> */}
       <HomeStack.Screen
         name="QRCodeScanner"
         component={QRCodeScanner}
@@ -96,13 +91,13 @@ const ContactStackNavigator = () => {
 const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
-      initialRouteName="SpeciesTab" //HomeTab
+      initialRouteName="HomeTab"
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: { paddingTop: 12 },
         tabBarIcon: ({ focused }) => {
-          if (route.name === 'SpeciesTab') {
+          if (route.name === 'HomeTab') {
             return focused ? (
               <HomeSelected width={30} height={30} />
             ) : (
@@ -120,7 +115,7 @@ const BottomTabNavigator = () => {
         },
       })}
     >
-      <BottomTab.Screen name="SpeciesTab" component={HomeStackNavigator} />
+      <BottomTab.Screen name="HomeTab" component={HomeStackNavigator} />
       <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
     </BottomTab.Navigator>
   );

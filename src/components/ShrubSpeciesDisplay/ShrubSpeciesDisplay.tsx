@@ -1,9 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Lightbulb } from '@/icons';
-import { Bear } from '@/icons/Bear';
-import { Shapes } from '@/icons/Shapes';
-import { WateringCan } from '@/icons/WateringCan';
 import { formatEnumKey, ShrubSpecies } from '@/types/shrub_species';
 import { styles } from './styles';
 
@@ -41,24 +38,6 @@ export const ShrubSpeciesDisplay: React.FC<ShrubSpeciesDisplayProps> = ({
             </View>
           )}
 
-          {speciesData.stem && (
-            <View style={styles.property}>
-              <Shapes />
-              <Text style={styles.propertyText}>
-                {formatEnumKey(speciesData.stem)}
-              </Text>
-            </View>
-          )}
-
-          {speciesData.water_use && (
-            <View style={styles.property}>
-              <WateringCan />
-              <Text style={styles.propertyText}>
-                {formatEnumKey(speciesData.water_use)}
-              </Text>
-            </View>
-          )}
-
           {speciesData.dormancy && (
             <View style={styles.property}>
               <Text style={styles.propertyName}>Dormancy</Text>
@@ -83,13 +62,6 @@ export const ShrubSpeciesDisplay: React.FC<ShrubSpeciesDisplayProps> = ({
               <Text style={styles.propertyText}>
                 {formatEnumKey(speciesData.flower_color)}
               </Text>
-            </View>
-          )}
-
-          {speciesData.california_native && (
-            <View style={styles.property}>
-              <Bear />
-              <Text style={styles.propertyText}>CA Native</Text>
             </View>
           )}
 

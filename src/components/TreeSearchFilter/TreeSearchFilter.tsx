@@ -50,15 +50,17 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
     activeFilters.shape,
   );
 
-  const [activeLitterFilters, setActiveLitterFilters] = useState({
-    wet: activeFilters.litter.includes('wet'),
-    dry: activeFilters.litter.includes('dry'),
-  });
+  const treeShapeOptions = ['Any', ...Object.values(TreeSpeciesShape)];
 
   const [activeWaterFilters, setActiveWaterFilters] = useState({
     low: activeFilters.water.includes('low'),
     moderate: activeFilters.water.includes('moderate'),
     high: activeFilters.water.includes('high'),
+  });
+
+  const [activeLitterFilters, setActiveLitterFilters] = useState({
+    wet: activeFilters.litter.includes('wet'),
+    dry: activeFilters.litter.includes('dry'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({
@@ -83,7 +85,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
       height: Object.keys(activeHeightFilters).filter(
         key => activeHeightFilters[key as keyof typeof activeHeightFilters],
       ) as string[],
-      shape: selectedTreeShape,
+      shape: selectedTreeShape === 'Any' ? '' : selectedTreeShape,
       litter: Object.keys(activeLitterFilters).filter(
         key => activeLitterFilters[key as keyof typeof activeLitterFilters],
       ) as string[],
@@ -202,7 +204,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
             </TouchableOpacity>
           </View>
 
-          <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
+          <ScrollView showsVerticalScrollIndicator={false}>
             {/* Height */}
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Height</Text>
@@ -229,8 +231,8 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Tree Shape</Text>
               <Dropdown
-                options={Object.values(TreeSpeciesShape)}
-                value={selectedTreeShape}
+                options={treeShapeOptions}
+                value={selectedTreeShape || 'Any'}
                 onChange={setSelectedTreeShape}
               />
             </View>

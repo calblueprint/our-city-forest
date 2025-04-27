@@ -230,7 +230,7 @@ Deno.serve(async req => {
     ) {
       // Adjust content placement to move everything more to the right
       // Leave even more whitespace on the left
-      const leftMarginPercent = 0.3; // 35% of the width as left margin
+      const leftMarginPercent = 0.35; // 35% of the width as left margin
       const contentWidth = width * 0.55; // Use 55% of the width for content
       const contentX = x + width * leftMarginPercent; // Start content at 35% from left
 

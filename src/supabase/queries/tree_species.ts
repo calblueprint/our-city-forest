@@ -24,13 +24,25 @@ export const updateTreeSpecies = async (
 };
 
 export const getAllTreeSpecies = async (): Promise<TreeSpecies[]> => {
-  const { error, data } = await supabase.from('tree_species').select();
+  const { data, error } = await supabase.from('tree_species').select();
 
   if (error) {
     throw new Error(`Error getting all tree species: ${error.message}`);
   }
 
   return data as TreeSpecies[];
+};
+
+export const getAvailableTreeSpecies = async () => {
+  const { data, error } = await supabase.rpc('get_available_tree_species');
+
+  if (error) {
+    throw new Error(
+      `Error retrieving available tree species: ${error.message}`,
+    );
+  }
+
+  return data;
 };
 
 export const getTreeSpecies = async (

@@ -26,6 +26,10 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
   },
 
+  toggle: {
+    alignSelf: 'flex-start',
+  },
+
   divider: {
     height: 1,
     width: '100%',

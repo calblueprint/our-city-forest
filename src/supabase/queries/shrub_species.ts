@@ -24,7 +24,7 @@ export const updateShrubSpecies = async (
 };
 
 export const getAllShrubSpecies = async (): Promise<ShrubSpecies[]> => {
-  const { error, data } = await supabase.from('shrub_species').select();
+  const { data, error } = await supabase.from('shrub_species').select();
 
   if (error) {
     throw new Error(`Error getting all shrub species: ${error.message}`);

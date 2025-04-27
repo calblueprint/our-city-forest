@@ -52,15 +52,15 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
 
   const treeShapeOptions = ['Any', ...Object.values(TreeSpeciesShape)];
 
-  const [activeLitterFilters, setActiveLitterFilters] = useState({
-    wet: activeFilters.litter.includes('wet'),
-    dry: activeFilters.litter.includes('dry'),
-  });
-
   const [activeWaterFilters, setActiveWaterFilters] = useState({
     low: activeFilters.water.includes('low'),
     moderate: activeFilters.water.includes('moderate'),
     high: activeFilters.water.includes('high'),
+  });
+
+  const [activeLitterFilters, setActiveLitterFilters] = useState({
+    wet: activeFilters.litter.includes('wet'),
+    dry: activeFilters.litter.includes('dry'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({

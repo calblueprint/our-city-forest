@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ImageBackground, ScrollView, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { ImageBackground } from 'expo-image';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ShrubSpeciesDisplay } from '@/components/ShrubSpeciesDisplay/ShrubSpeciesDisplay';
 import { useAuth } from '@/context/AuthContext';

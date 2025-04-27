@@ -230,7 +230,7 @@ Deno.serve(async req => {
     ) {
       // Adjust content placement to move everything more to the right
       // Leave even more whitespace on the left
-      const leftMarginPercent = 0.35; // 35% of the width as left margin
+      const leftMarginPercent = 0.3; // 35% of the width as left margin
       const contentWidth = width * 0.55; // Use 55% of the width for content
       const contentX = x + width * leftMarginPercent; // Start content at 35% from left
 
@@ -311,12 +311,11 @@ Deno.serve(async req => {
       const qrCodeSize = height * 0.97; // Increased from 0.85 to 0.97
 
       // QR code position - align to right side of content area
-      // const qrCodeX = contentEndX - qrCodeSize - 5; // Reduced margin from 10 to 5
-      const qrCodeX = textStartX + 220;
+      const qrCodeX = textStartX + 250;
       const qrCodeY = centerY - qrCodeSize / 2;
 
       // Tag ID position - closer to QR code and adjusted to make room for larger QR
-      const tagIdX = textStartX + 150;
+      const tagIdX = textStartX + 175;
 
       // Draw scientific name in italics (first line)
       if (scientificName) {

@@ -12,13 +12,11 @@ import {
 } from '@/icons';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
-import { HomeScreen } from '@/screens/Home/Home';
 import { LoginScreen } from '@/screens/Login/Login';
 import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
-import { ShrubSpeciesSearchScreen } from '@/screens/ShrubSpeciesSearch/ShrubSpeciesSearch';
 import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
 import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
-import { TreeSpeciesSearchScreen } from '@/screens/TreeSpeciesSearch/TreeSpeciesSearch';
+import { SpeciesSearchScreen } from '@/screens/SpeciesSearch/SpeciesSearch';
 import {
   BottomTabParamList,
   ContactStackParamList,
@@ -53,15 +51,15 @@ const HomeStackNavigator = () => {
       initialRouteName="Home"
       screenOptions={{ headerShown: false }}
     >
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      {/* <HomeStack.Screen name="Home" component={HomeScreen} /> */}
       <HomeStack.Screen
-        name="TreeSpeciesSearch"
-        component={TreeSpeciesSearchScreen}
+        name="SpeciesSearch"
+        component={SpeciesSearchScreen}
       />
-      <HomeStack.Screen
+      {/* <HomeStack.Screen
         name="ShrubSpeciesSearch"
         component={ShrubSpeciesSearchScreen}
-      />
+      /> */}
       <HomeStack.Screen
         name="QRCodeScanner"
         component={QRCodeScanner}
@@ -101,13 +99,13 @@ const ContactStackNavigator = () => {
 const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
-      initialRouteName="HomeTab"
+      initialRouteName="SpeciesTab" //HomeTab
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: { paddingTop: 12 },
         tabBarIcon: ({ focused }) => {
-          if (route.name === 'HomeTab') {
+          if (route.name === 'SpeciesTab') {
             return focused ? (
               <HomeSelected width={30} height={30} />
             ) : (
@@ -125,7 +123,7 @@ const BottomTabNavigator = () => {
         },
       })}
     >
-      <BottomTab.Screen name="HomeTab" component={HomeStackNavigator} />
+      <BottomTab.Screen name="SpeciesTab" component={HomeStackNavigator} />
       <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
     </BottomTab.Navigator>
   );

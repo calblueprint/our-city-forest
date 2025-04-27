@@ -77,9 +77,9 @@ type shrubFilters = {
   other: string[];
 };
 
-export const SpeciesSearchScreen: React.FC<
-  TreeSpeciesSearchScreenProps
-> = ({ navigation }) => {
+export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
+  navigation,
+}) => {
   const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>(
     [],
   );

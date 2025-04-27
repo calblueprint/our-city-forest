@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { Lightbulb } from '@/icons';
+import { Bear } from '@/icons/Bear';
+import { Shapes } from '@/icons/Shapes';
+import { WateringCan } from '@/icons/WateringCan';
 import { formatEnumKey, ShrubSpecies } from '@/types/shrub_species';
 import { styles } from './styles';
 

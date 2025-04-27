@@ -14,9 +14,9 @@ import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
 import { LoginScreen } from '@/screens/Login/Login';
 import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
+import { SpeciesSearchScreen } from '@/screens/SpeciesSearch/SpeciesSearch';
 import { TreeInfoScreen } from '@/screens/TreeInfo/TreeInfo';
 import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo';
-import { SpeciesSearchScreen } from '@/screens/SpeciesSearch/SpeciesSearch';
 import {
   BottomTabParamList,
   ContactStackParamList,
@@ -52,10 +52,7 @@ const HomeStackNavigator = () => {
       screenOptions={{ headerShown: false }}
     >
       {/* <HomeStack.Screen name="Home" component={HomeScreen} /> */}
-      <HomeStack.Screen
-        name="SpeciesSearch"
-        component={SpeciesSearchScreen}
-      />
+      <HomeStack.Screen name="SpeciesSearch" component={SpeciesSearchScreen} />
       {/* <HomeStack.Screen
         name="ShrubSpeciesSearch"
         component={ShrubSpeciesSearchScreen}

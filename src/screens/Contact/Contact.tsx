@@ -55,8 +55,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({
 );
 
 export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
-  const { login } = useAuth();
-  const isAuthenticated = true;
+  const { isAuthenticated, login } = useAuth();
 
   const openLink = async (url: string) => {
     try {

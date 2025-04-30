@@ -187,22 +187,11 @@ export const TreeSpeciesSearchScreen: React.FC<
           contentContainerStyle={styles.speciesContainer}
           columnWrapperStyle={{ gap: 16 }}
           ListEmptyComponent={
-            <View style={styles.searchErrorBody}>
-              <View style={styles.sadFaceAndText}>
-                <View style={styles.sadFace}>
-                  <SadFace />
-                </View>
-                <Text style={styles.searchError}>
-                  No tree species found matching your search.
-                </Text>
-              </View>
-                <TouchableOpacity
-                  style={styles.resetFilter}
-                  onPress={() => alert('Button Pressed!')}
-                >
-                  <Text style={styles.buttonText}>Reset Filters</Text>
-                </TouchableOpacity>
-            
+            <View style={styles.resetFilterContainer}>
+              <SadFace />
+              <Text style={styles.searchError}>
+                No tree species found matching your search.
+              </Text>
             </View>
           }
         />

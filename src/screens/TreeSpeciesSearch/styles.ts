@@ -74,48 +74,17 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  searchErrorBody:{
+
+  resetFilterContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  sadFace: {
-    flex: 1,
-    width: 24,
-    height: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  sadFaceAndText: {
-    flex: 1,
-    width: 304,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 4,
-    marginBottom: 21,
-  },
-  resetFilter: {
-    width: 335,
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 40,
-    paddingRight: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 15,
-    borderRadius: 30,
-    backgroundColor: '#F2F2F2',
+    gap: 10,
   },
 
   buttonText: {
-    color: '#446127',
+    ...typography.mediumRegular,
+    color: colors.primary,
     textAlign: 'center',
-    /* normal text med */
-    fontFamily: 'SF Pro Display',
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: 25,
   },
 });

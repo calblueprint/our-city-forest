@@ -1,8 +1,8 @@
-import * as React from "react"
-import Svg, { G, Path, SvgProps } from "react-native-svg"
+import * as React from 'react';
+import Svg, { G, Path, SvgProps } from 'react-native-svg';
 
 export const SadFace = (props: SvgProps) => (
-  <Svg fill="none" {...props}>
+  <Svg width={24} height={24} fill="none" {...props}>
     <G
       stroke="#828282"
       strokeLinecap="round"
@@ -16,5 +16,4 @@ export const SadFace = (props: SvgProps) => (
       />
     </G>
   </Svg>
-)
-
+);

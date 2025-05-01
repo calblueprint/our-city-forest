@@ -102,7 +102,7 @@ export const styles = StyleSheet.create({
   },
 
   logOutButton: {
-    paddingVertical: 15,
+    paddingVertical: 0,
     paddingHorizontal: 110,
     borderRadius: 30,
     backgroundColor: colors.gray6,

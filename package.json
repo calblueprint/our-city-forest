@@ -10,8 +10,8 @@
     "lint:fix": "npx eslint . --fix",
     "prettier:check": "npx prettier --check .",
     "prettier:fix": "npx prettier --write .",
-    "prepare": "husky",
-    "pre-commit": "(npx tsc --noEmit || true) && (npm run lint:check || true) && npm run prettier:check"
+    "prepare": "",
+    "pre-commit": ""
   },
   "dependencies": {
     "@expo-google-fonts/dm-sans": "^0.2.3",

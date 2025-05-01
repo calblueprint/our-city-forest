@@ -11,7 +11,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ShrubSearchBar } from '@/components/ShrubSearchBar/ShrubSearchBar';
 import { ToggleSwitch } from '@/components/ToggleSwitch/ToggleSwitch';
 import { useAuth } from '@/context/AuthContext';
-import { Scanner } from '@/icons';
+import { SadFace, Scanner } from '@/icons';
 import {
   getAllShrubSpecies,
   getAvailableShrubSpecies,
@@ -345,10 +345,12 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
         contentContainerStyle={styles.speciesContainer}
         columnWrapperStyle={{ gap: 16 }}
         ListEmptyComponent={
-          <Text style={styles.searchError}>
-            No {isTreeSpecies ? 'tree' : 'shrub'} species found matching your
-            search.
-          </Text>
+          <View style={styles.searchErrorContainer}>
+            <SadFace />
+            <Text style={styles.searchErrorText}>
+              No {isTreeSpecies ? 'tree' : 'shrub'} species found matching your search.
+            </Text>
+          </View>
         }
       />
     </SafeAreaView>

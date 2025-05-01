@@ -348,7 +348,8 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
           <View style={styles.searchErrorContainer}>
             <SadFace />
             <Text style={styles.searchErrorText}>
-              No {isTreeSpecies ? 'tree' : 'shrub'} species found matching your search.
+              No {isTreeSpecies ? 'tree' : 'shrub'} species found matching your
+              search.
             </Text>
           </View>
         }

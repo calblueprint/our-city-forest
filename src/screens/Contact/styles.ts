@@ -90,6 +90,17 @@ export const styles = StyleSheet.create({
     color: colors.gray3,
   },
 
+  userInfoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 12,
+  },
+
+  userInfoText: {
+    ...typography.smallRegular,
+  },
+
   logOutButton: {
     paddingVertical: 15,
     paddingHorizontal: 110,

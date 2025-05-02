@@ -7,6 +7,17 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
+  speciesCardContainer: {
+    width: '48%',
+    overflow: 'hidden',
+  },
+
+  speciesCardFullContainer: {
+    width: '100%',
+    overflow: 'hidden',
+  },
+
+
   topContainer: {
     paddingHorizontal: 24,
     paddingTop: 16,
@@ -55,11 +66,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 24,
     rowGap: 16,
-  },
-
-  speciesCard: {
-    width: '48%',
-    overflow: 'hidden',
   },
 
   speciesImage: {

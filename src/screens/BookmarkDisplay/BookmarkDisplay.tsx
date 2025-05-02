@@ -61,11 +61,11 @@ export const BookmarkDisplayScreen: React.FC<Props> = ({ route }) => {
             item={item.treeItem}
             onPress={handleCardPress}
             onBookmarkPress={() => handleBookmarkPress(item)}
+            variant='fullWidth'
           />
         )}
-        numColumns={2}
+        numColumns={1}
         contentContainerStyle={styles.speciesContainer}
-        columnWrapperStyle={{ gap: 16 }}
         ListEmptyComponent={
           <Text style={styles.emptyText}>No bookmarks in this folder yet.</Text>
         }

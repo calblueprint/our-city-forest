@@ -21,17 +21,23 @@ type TreeSpeciesCardProps = {
   item: TreeSpeciesCardItem;
   onPress: (speciesName: string) => void;
   onBookmarkPress: (item: TreeSpeciesCardItem) => void;
+  variant?: 'default' | 'fullWidth';
 };
 
 export const TreeSpeciesCard: React.FC<TreeSpeciesCardProps> = ({
   item,
   onPress,
   onBookmarkPress,
+  variant = 'default',
 }) => {
+  const cardStyle = variant === 'fullWidth' 
+  ? [styles.speciesCardContainer, styles.speciesCardFullContainer] 
+  : styles.speciesCardContainer;
+
   return (
     <TouchableOpacity
       onPress={() => onPress(item.name)}
-      style={styles.speciesCard}
+      style={cardStyle}
     >
       <View style={styles.imageContainer}>
         <Image source={{ uri: item.imageURL }} style={styles.speciesImage} />

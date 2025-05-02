@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { 
-  Modal, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  View,
+import React, { useEffect, useRef, useState } from 'react';
+import {
   Animated,
-  Dimensions
+  Dimensions,
+  Modal,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+import { AddIcon } from '@/icons';
 import { styles } from './styles';
-import { AddIcon } from '@/icons'; 
 
 type CreateFolderModalProps = {
   visible: boolean;
@@ -20,7 +20,7 @@ type CreateFolderModalProps = {
 export const CreateFolderModal: React.FC<CreateFolderModalProps> = ({
   visible,
   onClose,
-  onCreate 
+  onCreate,
 }) => {
   const [folderName, setFolderName] = useState('');
   const screenHeight = Dimensions.get('screen').height;
@@ -65,16 +65,10 @@ export const CreateFolderModal: React.FC<CreateFolderModalProps> = ({
     >
       <View style={styles.overlay}>
         <Animated.View
-          style={[
-            styles.popupBox,
-            { transform: [{ translateY }] }
-          ]}
+          style={[styles.popupBox, { transform: [{ translateY }] }]}
         >
-          <TouchableOpacity
-            onPress={handleClose}
-            style={styles.closeButton}
-          >
-            <AddIcon />  
+          <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
+            <AddIcon />
           </TouchableOpacity>
 
           <Text style={styles.popupTitle}>Create new list</Text>
@@ -92,15 +86,15 @@ export const CreateFolderModal: React.FC<CreateFolderModalProps> = ({
           <View style={styles.addFolderButtons}>
             <TouchableOpacity
               style={styles.clearButton}
-              onPress={() => setFolderName('')}  
+              onPress={() => setFolderName('')}
             >
               <Text style={styles.clearButtonText}>Clear</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[
-                styles.button, 
+                styles.button,
                 styles.createButton,
-                !folderName.trim() && styles.disabledButton
+                !folderName.trim() && styles.disabledButton,
               ]}
               onPress={handleCreate}
               disabled={!folderName.trim()}

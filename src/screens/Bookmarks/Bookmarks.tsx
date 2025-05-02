@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   FlatList,
+  Image,
   Text,
   TouchableOpacity,
   View,
-  Image,
-  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useBookmarks } from '@/context/BookmarksContext';
-import { AddIcon, Bookmark, Paintbucket} from '@/icons';
-import { BookmarksStackParamList } from '@/types/navigation';
-import { CreateFolderModal } from '@/components/CreateFolderModal/CreateFolderModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { CreateFolderModal } from '@/components/CreateFolderModal/CreateFolderModal';
+import { useBookmarks } from '@/context/BookmarksContext';
+import { AddIcon, Bookmark, Paintbucket } from '@/icons';
+import { BookmarksStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
 type BookmarksScreenProps = NativeStackScreenProps<
@@ -35,8 +35,6 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);
 
-  const defaultImage = 'https://reactnative.dev/img/tiny_logo.png';
-
   useEffect(() => {
     loadFolderImages();
   }, [folders]);
@@ -45,14 +43,19 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
     setIsLoading(true);
     try {
       const enhanced = await Promise.all(
-        folders.map(async (folder) => {
+        folders.map(async folder => {
           const storedData = await AsyncStorage.getItem(folder.name);
-          
+
           if (storedData) {
             try {
               const parsedData = JSON.parse(storedData);
-              
-              if (parsedData && typeof parsedData === 'object' && !Array.isArray(parsedData) && parsedData.folderImage) {
+
+              if (
+                parsedData &&
+                typeof parsedData === 'object' &&
+                !Array.isArray(parsedData) &&
+                parsedData.folderImage
+              ) {
                 return {
                   ...folder,
                   folderImage: parsedData.folderImage,
@@ -63,9 +66,9 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
             }
           }
           return folder;
-        })
+        }),
       );
-      
+
       setEnhancedFolders(enhanced);
     } catch (error) {
       console.error('Error loading folder images:', error);
@@ -94,14 +97,12 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
             <View style={[styles.imageContainer, styles.createImageContainer]}>
               <AddIcon />
             </View>
-            <Text style={styles.folderName}>
-              Create new list
-            </Text>
+            <Text style={styles.folderName}>Create new list</Text>
           </View>
         </TouchableOpacity>
       );
     }
-    
+
     return (
       <TouchableOpacity
         style={styles.folderCard}
@@ -115,15 +116,13 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
       >
         <View style={styles.folderItem}>
           <View style={styles.imageContainer}>
-            <Image 
-              source={{ uri: item.folderImage || defaultImage }} 
+            <Image
+              source={{ uri: item.folderImage }}
               style={styles.speciesImage}
             />
           </View>
-          <Text style={styles.folderName}>
-            {item.name}
-          </Text>
-          
+          <Text style={styles.folderName}>{item.name}</Text>
+
           {editMode && (
             <View style={styles.overlaySvg}>
               <TouchableOpacity
@@ -143,17 +142,16 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.headerText}>Bookmarked</Text>
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={toggleEditMode}
-          style={[
-            styles.editButton,
-            editMode ? styles.editButtonActive : null
-          ]}
+          style={[styles.editButton, editMode ? styles.editButtonActive : null]}
         >
-          <Text style={[
-            styles.editButtonText,
-            editMode ? styles.editButtonTextActive : null
-          ]}>
+          <Text
+            style={[
+              styles.editButtonText,
+              editMode ? styles.editButtonTextActive : null,
+            ]}
+          >
             {editMode ? 'Done' : 'Edit'}
           </Text>
         </TouchableOpacity>
@@ -178,7 +176,7 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
           columnWrapperStyle={{ justifyContent: 'space-between' }}
           ListEmptyComponent={
             <Text style={styles.emptyText}>
-              {editMode 
+              {editMode
                 ? 'No folders yet. Exit edit mode to create a folder.'
                 : 'No folders yet. Create your first folder!'}
             </Text>
@@ -193,18 +191,4 @@ export const BookmarksScreen: React.FC<BookmarksScreenProps> = ({
       />
     </SafeAreaView>
   );
-};
-
-// Add these styles to the styles.js file
-export const additionalStyles = {
-  overlaySvg: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    width: 40,
-    height: 40,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
- 
 };

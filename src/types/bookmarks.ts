@@ -1,4 +1,5 @@
 import React from 'react';
+import { TreeSpeciesCardItem } from '@/components/TreeSpeciesCard/TreeSpeciesCard';
 
 export type BookmarkContextType = {
   folders: BookmarkFolder[];
@@ -6,23 +7,20 @@ export type BookmarkContextType = {
   loadFolders: () => Promise<void>;
   saveFolders: () => Promise<void>;
   addFolder: (name: string, imageUrl?: string) => void;
-  addBookmark: (folderName: string, speciesName: string) => void;
+  addBookmark: (folderName: string, treeItem: TreeSpeciesCardItem) => void;
   removeBookmark: (folderName: string, bookmarkId: string) => void;
   isBookmarked: (speciesName: string) => boolean;
   removeFolder: (folderName: string) => void;
 };
 
 export type Bookmark = {
-  imageUrl: string | null;
   id: string;
-  speciesName: string;
+  treeItem: TreeSpeciesCardItem;
 };
 
 export type BookmarkFolder = {
-  folderImage: string;
   name: string;
   bookmarks: Bookmark[];
-  image?: string;
 };
 
 export type UserBookmarks = {

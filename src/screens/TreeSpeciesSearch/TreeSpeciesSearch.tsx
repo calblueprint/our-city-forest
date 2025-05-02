@@ -11,6 +11,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BookmarkModal } from '@/components/BoomarkModal/BookmarkModal';
 import { CreateFolderModal } from '@/components/CreateFolderModal/CreateFolderModal';
+import {
+  TreeSpeciesCard,
+  TreeSpeciesCardItem,
+} from '@/components/TreeSpeciesCard/TreeSpeciesCard';
 import { useBookmarks } from '@/context/BookmarksContext';
 import { Bookmark, Scanner } from '@/icons';
 import {
@@ -55,7 +59,9 @@ export const TreeSpeciesSearchScreen: React.FC<
   TreeSpeciesSearchScreenProps
 > = ({ navigation }) => {
   const { addFolder } = useBookmarks();
-  const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>([]);
+  const [treeSpeciesCards, setTreeSpeciesCards] = useState<treeSpeciesCard[]>(
+    [],
+  );
   const [searchText, setSearchText] = useState<string>('');
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>({
     height: [],
@@ -67,8 +73,8 @@ export const TreeSpeciesSearchScreen: React.FC<
 
   const [modalState, setModalState] = useState<ModalState>('none');
   const [isUserAdmin, setIsUserAdmin] = useState<boolean>(false);
-  const [selectedTree, setSelectedTree] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedTreeItem, setSelectedTreeItem] =
+    useState<TreeSpeciesCardItem | null>(null);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -163,16 +169,19 @@ export const TreeSpeciesSearchScreen: React.FC<
       applyFilters(ts),
   );
 
-  const handleBookmarkPress = (treeName: string, imageURL: string) => {
-    setSelectedTree(treeName);
-    setSelectedImage(imageURL);
+  const handleTreePress = (speciesName: string) => {
+    navigation.push('TreeSpeciesInfo', { speciesName });
+  };
+
+  const handleBookmarkPress = (item: TreeSpeciesCardItem) => {
+    setSelectedTreeItem(item);
     setModalState('bookmark');
   };
 
   const handleCreateFolder = () => {
     setModalState('createFolder');
   };
-  
+
   const handleCreateFolderComplete = (folderName: string) => {
     addFolder(folderName);
     setModalState('none');
@@ -181,30 +190,6 @@ export const TreeSpeciesSearchScreen: React.FC<
   const handleCloseModal = () => {
     setModalState('none');
   };
-
-  const renderSpeciesCard = ({ item }: { item: treeSpeciesCard }) => (
-    <TouchableOpacity
-      onPress={() =>
-        navigation.push('TreeSpeciesInfo', { speciesName: item.name })
-      }
-      style={styles.speciesCard}
-    >
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: item.imageURL }} style={styles.speciesImage} />
-        <View style={styles.overlaySvg}>
-          <TouchableOpacity
-            onPress={() => handleBookmarkPress(item.name, item.imageURL)}
-          >
-            <Bookmark width={30} height={30} />
-          </TouchableOpacity>
-        </View>
-      </View>
-      <Text style={styles.speciesName} numberOfLines={1}>
-        {item.name}
-      </Text>
-      <Text style={styles.speciesStock}>{item.stockCount} in stock</Text>
-    </TouchableOpacity>
-  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -227,7 +212,13 @@ export const TreeSpeciesSearchScreen: React.FC<
       <FlatList
         data={filteredTreeSpeciesCards}
         keyExtractor={item => item.name}
-        renderItem={renderSpeciesCard}
+        renderItem={({ item }) => (
+          <TreeSpeciesCard
+            item={item}
+            onPress={handleTreePress}
+            onBookmarkPress={handleBookmarkPress}
+          />
+        )}
         numColumns={2}
         contentContainerStyle={styles.speciesContainer}
         columnWrapperStyle={{ gap: 16 }}
@@ -238,12 +229,11 @@ export const TreeSpeciesSearchScreen: React.FC<
         }
       />
 
-      {modalState === 'bookmark' && selectedTree && (
+      {modalState === 'bookmark' && selectedTreeItem && (
         <BookmarkModal
           visible={true}
           onClose={handleCloseModal}
-          tree={selectedTree}
-          imageUrl={selectedImage || 'https://example.com/placeholder.jpg'}
+          treeItem={selectedTreeItem}
           onCreateFolder={handleCreateFolder}
         />
       )}

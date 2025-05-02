@@ -37,12 +37,12 @@ export const styles = StyleSheet.create({
   },
 
   editButtonActive: {
-    backgroundColor: colors.primary,  
+    backgroundColor: colors.primary,
     borderWidth: 0,
   },
 
   editButtonText: {
-    color: colors.primary, 
+    color: colors.primary,
     fontSize: 16,
     fontWeight: '600',
   },
@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: colors.primary,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
 
   folderItem: {

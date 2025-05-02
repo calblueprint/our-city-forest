@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'flex-start',
-    paddingTop: 100, 
+    paddingTop: 100,
     paddingHorizontal: 10,
   },
 
@@ -133,7 +133,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 20,
-    paddingTop: 100, 
+    paddingTop: 100,
     zIndex: 10,
   },
 
@@ -144,7 +144,7 @@ export const styles = StyleSheet.create({
 
   popupBox: {
     backgroundColor: 'white',
-    borderRadius: 20, 
+    borderRadius: 20,
     padding: 20,
     paddingHorizontal: 20,
     justifyContent: 'space-between',
@@ -164,7 +164,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     color: colors.black1,
   },
-  
+
   closeButton: {
     position: 'absolute',
     top: 10,
@@ -172,5 +172,4 @@ export const styles = StyleSheet.create({
     padding: 8,
     zIndex: 10,
   },
-  
 });

@@ -20,6 +20,13 @@ export const styles = StyleSheet.create({
     fontSize: 14,
   },
 
+  speciesContainer: {
+    justifyContent: 'space-between',
+    paddingVertical: 20,
+    paddingHorizontal: 24,
+    rowGap: 16,
+  },
+
   bookmarkItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TreeSpeciesCardItem } from '@/components/TreeSpeciesCard/TreeSpeciesCard';
 import { useAuth } from '@/context/AuthContext';
 import {
   Bookmark,
@@ -73,56 +74,38 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [folders, isAuthenticated, user]);
 
-  const addFolder = useCallback((name: string, imageUrl?: string) => {
-    const folderExists = folders.some(folder => folder.name === name);
-    
-    if (folderExists) {
-      console.log(`Folder "${name}" already exists!`);
-      return false;
-    }
-    
+  const addFolder = useCallback((name: string) => {
     const newFolder: BookmarkFolder = {
       name,
       bookmarks: [],
-      image: imageUrl,
-      folderImage: 'https://reactnative.dev/img/tiny_logo.png',
     };
-    
     setFolders(prev => [...prev, newFolder]);
-    return true;
-  }, [folders]);
+  }, []);
 
-  const addBookmark = (folderName: string, speciesName: string, imageUrl?: string) => {
+  const addBookmark = (folderName: string, treeItem: TreeSpeciesCardItem) => {
     setFolders(prevFolders =>
       prevFolders.map(folder => {
         if (folder.name === folderName) {
           const alreadyExists = folder.bookmarks.some(
-            bookmark => bookmark.id === speciesName,
+            bookmark => bookmark.id === treeItem.name,
           );
-  
+
           if (alreadyExists) {
-            console.log(`"${speciesName}" already exists in "${folderName}"`);
+            console.log(`"${treeItem.name}" already exists in "${folderName}"`);
             return folder;
           }
-  
+
           const newBookmark: Bookmark = {
-            id: speciesName,
-            speciesName,
-            imageUrl: imageUrl || 'https://reactnative.dev/img/tiny_logo.png',
+            id: treeItem.name,
+            treeItem: treeItem,
           };
-  
-          const updatedFolder = {
+
+          return {
             ...folder,
             bookmarks: [...folder.bookmarks, newBookmark],
           };
-          
-          if (!folder.image && imageUrl) {
-            updatedFolder.image = imageUrl;
-          }
-  
-          return updatedFolder;
         }
-  
+
         return folder;
       }),
     );
@@ -133,21 +116,34 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const removeBookmark = async (folderName: string, bookmarkId: string) => {
-    setFolders(prev =>
-      prev.map(folder =>
-        folder.name === folderName
-          ? {
-              ...folder,
-              bookmarks: folder.bookmarks.filter(b => b.id !== bookmarkId),
-            }
-          : folder,
-      ),
-    );
+    setFolders(prev => {
+      const updatedFolders = prev.map(folder => {
+        if (folder.name === folderName) {
+          const updatedBookmarks = folder.bookmarks.filter(
+            b => b.id !== bookmarkId,
+          );
+
+          const folderImageUrl =
+            updatedBookmarks.length > 0
+              ? updatedBookmarks[0].treeItem.imageURL
+              : 'https://example.com/default-folder.jpg';
+
+          return {
+            ...folder,
+            bookmarks: updatedBookmarks,
+            folderImageUrl: folderImageUrl,
+          };
+        }
+        return folder;
+      });
+
+      return updatedFolders;
+    });
   };
 
   const isBookmarked = (speciesName: string): boolean => {
     return folders.some(folder =>
-      folder.bookmarks.some(b => b.speciesName === speciesName),
+      folder.bookmarks.some(b => b.id === speciesName),
     );
   };
 

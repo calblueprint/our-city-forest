@@ -78,6 +78,7 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
     const newFolder: BookmarkFolder = {
       name,
       bookmarks: [],
+      folderImage: 'https://example.com/default-folder.jpg',
     };
     setFolders(prev => [...prev, newFolder]);
   }, []);
@@ -100,12 +101,31 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
             treeItem: treeItem,
           };
 
+          const updatedImageUrl = folder.bookmarks.length === 0 
+            ? treeItem.imageURL 
+            : folder.folderImage;
+
           return {
             ...folder,
             bookmarks: [...folder.bookmarks, newBookmark],
+            folderImage: updatedImageUrl,
           };
         }
 
+        return folder;
+      }),
+    );
+  };
+
+  const updateFolderImage = (folderName: string, imageUrl: string) => {
+    setFolders(prevFolders =>
+      prevFolders.map(folder => {
+        if (folder.name === folderName) {
+          return {
+            ...folder,
+            folderImage: imageUrl,
+          };
+        }
         return folder;
       }),
     );
@@ -122,21 +142,21 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
           const updatedBookmarks = folder.bookmarks.filter(
             b => b.id !== bookmarkId,
           );
-
-          const folderImageUrl =
+  
+          const folderImage =
             updatedBookmarks.length > 0
               ? updatedBookmarks[0].treeItem.imageURL
               : 'https://example.com/default-folder.jpg';
-
+  
           return {
             ...folder,
             bookmarks: updatedBookmarks,
-            folderImageUrl: folderImageUrl,
+            folderImage: folderImage, 
           };
         }
         return folder;
       });
-
+  
       return updatedFolders;
     });
   };
@@ -164,6 +184,7 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
         saveFolders,
         addFolder,
         addBookmark,
+        updateFolderImage,
         removeBookmark,
         isBookmarked,
         removeFolder,

@@ -10,6 +10,7 @@ export type BookmarkContextType = {
   addBookmark: (folderName: string, treeItem: TreeSpeciesCardItem) => void;
   removeBookmark: (folderName: string, bookmarkId: string) => void;
   isBookmarked: (speciesName: string) => boolean;
+  updateFolderImage: (folderName: string, imageUrl: string) => void;
   removeFolder: (folderName: string) => void;
 };
 
@@ -21,6 +22,7 @@ export type Bookmark = {
 export type BookmarkFolder = {
   name: string;
   bookmarks: Bookmark[];
+  folderImage?: string;
 };
 
 export type UserBookmarks = {

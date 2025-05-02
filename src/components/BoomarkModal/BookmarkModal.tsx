@@ -13,8 +13,8 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useBookmarks } from '@/context/BookmarksContext'; 
 import { TreeSpeciesCardItem } from '@/components/TreeSpeciesCard/TreeSpeciesCard';
-import { useBookmarks } from '@/context/BookmarksContext';
 import { AddIcon } from '@/icons';
 import { styles } from './styles';
 
@@ -41,11 +41,11 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
   const [localFolders, setLocalFolders] = useState<FolderData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { folders, addBookmark } = useBookmarks();
+  const { folders, addBookmark} = useBookmarks();
 
   useEffect(() => {
     if (visible) {
-      loadFolderImages();
+      loadFolders();
 
       Animated.timing(panY, {
         toValue: 0,
@@ -55,7 +55,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
     }
   }, [visible, panY]);
 
-  const loadFolderImages = async () => {
+  const loadFolders = async () => {
     setIsLoading(true);
     try {
       const allKeys = await AsyncStorage.getAllKeys();
@@ -72,19 +72,17 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
                   typeof parsedData === 'object' &&
                   !Array.isArray(parsedData)
                 ) {
-                  return {
-                    ...folder,
-                    folderImage: parsedData.folderImage,
-                  };
+                  folder.folderImage = parsedData.folderImage;
                 }
               } catch (error) {
                 console.error('Error parsing folder data:', error);
               }
             }
           }
-          return folder;
+          return folder; 
         }),
       );
+    
 
       setLocalFolders(enhancedFolders);
     } catch (error) {
@@ -93,6 +91,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
       setIsLoading(false);
     }
   };
+   
 
   const closeAnim = Animated.timing(panY, {
     toValue: screenHeight,
@@ -175,7 +174,8 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
                     <View style={styles.folderItem}>
                       <Image
                         source={{
-                          uri: item.folderImage,
+                          uri:
+                            item.folderImage, 
                         }}
                         style={styles.folderImage}
                       />

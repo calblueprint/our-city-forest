@@ -206,7 +206,6 @@ export const TreeSpeciesSearchScreen: React.FC<
         data={filteredTreeSpeciesCards}
         keyExtractor={item => item.name}
         renderItem={({ item }) => (
-          
           <TreeSpeciesCard
             item={item}
             onPress={handleTreePress}

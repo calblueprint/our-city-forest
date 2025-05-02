@@ -61,7 +61,7 @@ export const BookmarkDisplayScreen: React.FC<Props> = ({ route }) => {
             item={item.treeItem}
             onPress={handleCardPress}
             onBookmarkPress={() => handleBookmarkPress(item)}
-            variant='fullWidth'
+            variant="fullWidth"
           />
         )}
         numColumns={1}

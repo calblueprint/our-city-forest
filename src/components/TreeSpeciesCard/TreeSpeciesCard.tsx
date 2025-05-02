@@ -30,15 +30,13 @@ export const TreeSpeciesCard: React.FC<TreeSpeciesCardProps> = ({
   onBookmarkPress,
   variant = 'default',
 }) => {
-  const cardStyle = variant === 'fullWidth' 
-  ? [styles.speciesCardContainer, styles.speciesCardFullContainer] 
-  : styles.speciesCardContainer;
+  const cardStyle =
+    variant === 'fullWidth'
+      ? [styles.speciesCardContainer, styles.speciesCardFullContainer]
+      : styles.speciesCardContainer;
 
   return (
-    <TouchableOpacity
-      onPress={() => onPress(item.name)}
-      style={cardStyle}
-    >
+    <TouchableOpacity onPress={() => onPress(item.name)} style={cardStyle}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: item.imageURL }} style={styles.speciesImage} />
         <View style={styles.overlaySvg}>

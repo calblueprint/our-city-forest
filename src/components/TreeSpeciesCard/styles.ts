@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
-
   topContainer: {
     paddingHorizontal: 24,
     paddingTop: 16,

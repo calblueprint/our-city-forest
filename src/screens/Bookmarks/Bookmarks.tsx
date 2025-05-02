@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Alert,
-  FlatList,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { CreateFolderModal } from '@/components/CreateFolderModal/CreateFolderModal';
 import { useBookmarks } from '@/context/BookmarksContext';
-import { AddIcon, Bookmark, Paintbucket } from '@/icons';
+import { AddIcon } from '@/icons';
 import { BookmarksStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 

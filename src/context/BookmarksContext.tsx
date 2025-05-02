@@ -101,9 +101,10 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
             treeItem: treeItem,
           };
 
-          const updatedImageUrl = folder.bookmarks.length === 0 
-            ? treeItem.imageURL 
-            : folder.folderImage;
+          const updatedImageUrl =
+            folder.bookmarks.length === 0
+              ? treeItem.imageURL
+              : folder.folderImage;
 
           return {
             ...folder,
@@ -142,21 +143,21 @@ export const BookmarkProvider: React.FC<{ children: React.ReactNode }> = ({
           const updatedBookmarks = folder.bookmarks.filter(
             b => b.id !== bookmarkId,
           );
-  
+
           const folderImage =
             updatedBookmarks.length > 0
               ? updatedBookmarks[0].treeItem.imageURL
               : 'https://example.com/default-folder.jpg';
-  
+
           return {
             ...folder,
             bookmarks: updatedBookmarks,
-            folderImage: folderImage, 
+            folderImage: folderImage,
           };
         }
         return folder;
       });
-  
+
       return updatedFolders;
     });
   };

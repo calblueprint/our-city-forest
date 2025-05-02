@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { FlatList, SafeAreaView, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BookmarkModal } from '@/components/BoomarkModal/BookmarkModal';
@@ -16,7 +9,7 @@ import {
   TreeSpeciesCardItem,
 } from '@/components/TreeSpeciesCard/TreeSpeciesCard';
 import { useBookmarks } from '@/context/BookmarksContext';
-import { Bookmark, Scanner } from '@/icons';
+import { Scanner } from '@/icons';
 import {
   getAllTreeSpecies,
   getAvailableTreeSpecies,

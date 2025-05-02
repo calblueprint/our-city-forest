@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Alert,
   Animated,
   Dimensions,
   FlatList,
@@ -13,8 +12,8 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useBookmarks } from '@/context/BookmarksContext'; 
 import { TreeSpeciesCardItem } from '@/components/TreeSpeciesCard/TreeSpeciesCard';
+import { useBookmarks } from '@/context/BookmarksContext';
 import { AddIcon } from '@/icons';
 import { styles } from './styles';
 
@@ -41,7 +40,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
   const [localFolders, setLocalFolders] = useState<FolderData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { folders, addBookmark} = useBookmarks();
+  const { folders, addBookmark } = useBookmarks();
 
   useEffect(() => {
     if (visible) {
@@ -79,10 +78,9 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
               }
             }
           }
-          return folder; 
+          return folder;
         }),
       );
-    
 
       setLocalFolders(enhancedFolders);
     } catch (error) {
@@ -91,7 +89,6 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
       setIsLoading(false);
     }
   };
-   
 
   const closeAnim = Animated.timing(panY, {
     toValue: screenHeight,
@@ -174,8 +171,7 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
                     <View style={styles.folderItem}>
                       <Image
                         source={{
-                          uri:
-                            item.folderImage, 
+                          uri: item.folderImage,
                         }}
                         style={styles.folderImage}
                       />

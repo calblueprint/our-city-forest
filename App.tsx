@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
@@ -17,13 +17,40 @@ export const App: React.FC = () => {
     DMSans_700Bold,
   });
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
+  // const defaultFontFamily = 'DMSans_400Regular';
+  // (Text as any).defaultProps = (Text as any).defaultProps || {};
+  // (Text as any).defaultProps.style = { fontFamily: defaultFontFamily };
+
+  const [dimensions, setDimensions] = useState(Dimensions.get('window'));
+
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      setDimensions(Dimensions.get('window'));
+    };
+
+    // Set up listener
+    const subscription = Dimensions.addEventListener(
+      'change',
+      handleOrientationChange,
+    );
+
+    // Clean up
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   const defaultFontFamily = 'DMSans_400Regular';
   (Text as any).defaultProps = (Text as any).defaultProps || {};
   (Text as any).defaultProps.style = { fontFamily: defaultFontFamily };
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

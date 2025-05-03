@@ -1,19 +1,20 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 export const styles = StyleSheet.create({
   editFlex: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 24,
+    paddingBottom: scale(24),
   },
 
   editButton: {
-    borderWidth: 1,
+    borderWidth: scale(1),
     borderColor: colors.primary,
-    borderRadius: 30,
-    paddingHorizontal: 20,
+    borderRadius: scale(30),
+    paddingHorizontal: scale(20),
     flexDirection: 'column',
     justifyContent: 'center',
   },
@@ -29,33 +30,33 @@ export const styles = StyleSheet.create({
   },
 
   propertiesFlex: {
-    gap: 30,
-    paddingBottom: 40,
+    gap: scale(30),
+    paddingBottom: scale(40),
   },
 
   label: {
     ...typography.mediumBold,
     color: colors.gray2,
-    paddingBottom: 12,
+    paddingBottom: scale(12),
   },
 
   locationInputView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexGrow: 1,
-    gap: 16,
+    gap: scale(16),
   },
 
   location: {
     flexDirection: 'row',
-    gap: 12,
+    gap: scale(12),
   },
 
   bankPill: {
     backgroundColor: colors.gray4,
-    borderRadius: 48,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    borderRadius: scale(48),
+    paddingHorizontal: scale(12),
+    paddingVertical: verticalScale(6),
     alignSelf: 'flex-start',
   },
 
@@ -66,9 +67,9 @@ export const styles = StyleSheet.create({
 
   rowPill: {
     backgroundColor: colors.gray6,
-    borderRadius: 48,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    borderRadius: scale(48),
+    paddingHorizontal: scale(12),
+    paddingVertical: verticalScale(6),
     alignSelf: 'flex-start',
   },
 
@@ -81,17 +82,17 @@ export const styles = StyleSheet.create({
     ...typography.mediumRegular,
     flex: 1,
     color: colors.gray3,
-    borderWidth: 1,
-    borderRadius: 10,
+    borderWidth: scale(1),
+    borderRadius: scale(10),
     borderColor: colors.gray5,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
+    paddingHorizontal: scale(20),
+    paddingVertical: verticalScale(12),
   },
 
   iconTextView: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: scale(8),
   },
 
   displayText: {
@@ -106,30 +107,30 @@ export const styles = StyleSheet.create({
   notesHeader: {
     ...typography.heading2,
     color: colors.gray1,
-    paddingBottom: 24,
+    paddingBottom: scale(24),
   },
 
   notesTextBox: {
     ...typography.mediumRegular,
     color: colors.gray3,
-    borderWidth: 1,
-    borderRadius: 10,
+    borderWidth: scale(1),
+    borderRadius: scale(10),
     borderColor: colors.gray5,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    minHeight: 160,
+    paddingHorizontal: scale(20),
+    paddingVertical: scale(12),
+    minHeight: scale(160),
   },
 
   notes: {
-    paddingBottom: 30,
+    paddingBottom: scale(30),
   },
 
   button: {
     backgroundColor: colors.primary,
-    paddingHorizontal: 40,
-    paddingVertical: 12,
+    paddingHorizontal: scale(40),
+    paddingVertical: verticalScale(12),
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: scale(10),
   },
 
   buttonText: {

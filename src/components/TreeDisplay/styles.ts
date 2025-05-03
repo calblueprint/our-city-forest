@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    gap: 24,
+    gap: scale(24),
   },
 
   text: {
@@ -15,12 +16,12 @@ export const styles = StyleSheet.create({
 
   funFactContainer: {
     flexDirection: 'column',
-    gap: 12,
+    gap: scale(12),
   },
 
   funFactHeader: {
     flexDirection: 'row',
-    gap: 8,
+    gap: scale(8),
   },
 
   funFact: {
@@ -33,19 +34,19 @@ export const styles = StyleSheet.create({
     ...typography.smallRegular,
     color: colors.gray3,
     textAlign: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    borderRadius: 12,
+    paddingHorizontal: scale(10),
+    paddingVertical: verticalScale(12),
+    borderRadius: scale(12),
   },
 
   divider: {
-    borderBottomWidth: 1,
+    borderBottomWidth: scale(1),
     borderBottomColor: colors.gray5,
   },
 
   subContainer: {
     flexDirection: 'column',
-    gap: 20,
+    gap: scale(20),
   },
 
   header: {
@@ -55,16 +56,16 @@ export const styles = StyleSheet.create({
 
   production: {
     flexDirection: 'row',
-    columnGap: 20,
+    columnGap: scale(20),
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
 
   productionPill: {
     backgroundColor: colors.gray6,
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 6,
+    borderRadius: scale(30),
+    paddingHorizontal: scale(20),
+    paddingVertical: verticalScale(6),
   },
 
   productionQuantity: {
@@ -81,8 +82,8 @@ export const styles = StyleSheet.create({
   properties: {
     flexDirection: 'column',
     alignItems: 'stretch',
-    rowGap: 12,
-    paddingBottom: 20,
+    rowGap: scale(12),
+    paddingBottom: scale(20),
   },
 
   property: {
@@ -103,20 +104,20 @@ export const styles = StyleSheet.create({
 
   locations: {
     flexDirection: 'column',
-    gap: 12,
+    gap: scale(12),
   },
 
   locationEntry: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 8,
+    gap: scale(8),
   },
 
   bankPill: {
     backgroundColor: colors.gray4,
-    borderRadius: 48,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    borderRadius: scale(48),
+    paddingHorizontal: scale(12),
+    paddingVertical: verticalScale(6),
     alignSelf: 'flex-start',
   },
 
@@ -127,9 +128,9 @@ export const styles = StyleSheet.create({
 
   rowPill: {
     backgroundColor: colors.gray6,
-    borderRadius: 48,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    borderRadius: scale(48),
+    paddingHorizontal: scale(12),
+    paddingVertical: verticalScale(6),
     alignSelf: 'flex-start',
   },
 

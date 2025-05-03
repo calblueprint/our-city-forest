@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    gap: 24,
+    gap: scale(24),
   },
 
   text: {
@@ -15,12 +16,12 @@ export const styles = StyleSheet.create({
 
   funFactContainer: {
     flexDirection: 'column',
-    gap: 12,
+    gap: scale(12),
   },
 
   funFactHeader: {
     flexDirection: 'row',
-    gap: 8,
+    gap: scale(8),
   },
 
   funFact: {
@@ -33,19 +34,19 @@ export const styles = StyleSheet.create({
     ...typography.smallRegular,
     color: colors.gray3,
     textAlign: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 12,
+    paddingHorizontal: scale(24),
+    paddingVertical: verticalScale(12),
+    borderRadius: scale(12),
   },
 
   divider: {
-    borderBottomWidth: 1,
+    borderBottomWidth: scale(1),
     borderBottomColor: colors.gray5,
   },
 
   propertiesContainer: {
     flexDirection: 'column',
-    gap: 12,
+    gap: scale(12),
   },
 
   header: {
@@ -56,7 +57,7 @@ export const styles = StyleSheet.create({
   properties: {
     flexDirection: 'column',
     alignItems: 'stretch',
-    rowGap: 12,
+    rowGap: scale(12),
   },
 
   property: {

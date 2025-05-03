@@ -23,8 +23,16 @@ import {
 import { HomeStackParamList } from '@/types/navigation';
 import { ShrubSpecies } from '@/types/shrub_species';
 import { TreeSpecies, TreeSpeciesFoliageType } from '@/types/tree_species';
+import { isTablet } from '@/utils/device';
 import { TreeSearchBar } from '../../components/TreeSearchBar/TreeSearchBar';
-import { styles } from './styles';
+import { phoneStyles, styles, tabletStyles } from './styles';
+
+const speciesContainer = isTablet()
+  ? tabletStyles.speciesContainer
+  : phoneStyles.speciesContainer;
+const speciesCard = isTablet()
+  ? tabletStyles.speciesCard
+  : phoneStyles.speciesCard;
 
 type TreeSpeciesSearchScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -275,7 +283,7 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
           ? navigation.push('TreeSpeciesInfo', { speciesName: item.name })
           : navigation.push('ShrubSpeciesInfo', { speciesName: item.name })
       }
-      style={styles.speciesCard}
+      style={speciesCard} //used to be styles.speciesCard
     >
       <Image
         source={{
@@ -341,8 +349,8 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
         data={filteredCards}
         keyExtractor={item => item.name}
         renderItem={renderSpeciesCard}
-        numColumns={2}
-        contentContainerStyle={styles.speciesContainer}
+        numColumns={isTablet() ? 3 : 2}
+        contentContainerStyle={speciesContainer} // used to be styles.speciesContainer
         columnWrapperStyle={{ gap: 16 }}
         ListEmptyComponent={
           <Text style={styles.searchError}>

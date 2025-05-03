@@ -1,29 +1,30 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderRadius: 48,
+    borderRadius: scale(48),
     backgroundColor: colors.gray6,
     alignSelf: 'center',
     overflow: 'hidden',
-    padding: 4,
+    padding: scale(4),
   },
 
   toggle: {
     position: 'absolute',
     height: '100%',
-    borderRadius: 48,
+    borderRadius: scale(48),
     backgroundColor: colors.primary,
   },
 
   switch: {
     ...typography.smallRegular,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 48,
+    paddingHorizontal: scale(12),
+    paddingVertical: verticalScale(8),
+    borderRadius: scale(48),
     color: colors.primary,
   },
 

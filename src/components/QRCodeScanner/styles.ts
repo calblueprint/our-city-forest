@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 export const styles = StyleSheet.create({
   safeArea: {
@@ -10,8 +11,8 @@ export const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingVertical: 16,
+    paddingHorizontal: scale(24),
+    paddingVertical: verticalScale(16),
     alignItems: 'center',
   },
 
@@ -20,22 +21,22 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 80,
+    marginBottom: scale(80),
   },
 
   mainFlex: {
     flex: 1,
-    gap: 80,
+    gap: scale(80),
   },
 
   subFlex: {
     flex: 1,
-    gap: 40,
+    gap: scale(40),
   },
 
   textFlex: {
     alignItems: 'center',
-    gap: 8,
+    gap: scale(8),
   },
 
   header: {
@@ -49,30 +50,30 @@ export const styles = StyleSheet.create({
   },
 
   cameraView: {
-    width: 290,
-    height: 290,
-    borderWidth: 2,
+    width: scale(290),
+    height: verticalScale(290),
+    borderWidth: scale(2),
     borderColor: colors.secondary,
-    borderRadius: 12,
+    borderRadius: scale(12),
     overflow: 'hidden',
   },
 
   qrCodeFoundCamera: {
     borderColor: colors.tertiary,
-    borderWidth: 4,
+    borderWidth: scale(4),
   },
 
   camera: {
     flex: 1,
-    borderRadius: 12,
+    borderRadius: scale(12),
   },
 
   scanButton: {
     alignItems: 'center',
-    paddingHorizontal: 130,
-    paddingVertical: 12,
-    borderRadius: 10,
-    marginBottom: 10,
+    paddingHorizontal: scale(130),
+    paddingVertical: verticalScale(12),
+    borderRadius: scale(10),
+    marginBottom: scale(10),
   },
 
   scanButtonEnabled: {

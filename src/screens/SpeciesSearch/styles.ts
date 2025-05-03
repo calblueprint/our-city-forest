@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 export const styles = StyleSheet.create({
   container: {
@@ -71,5 +72,29 @@ export const styles = StyleSheet.create({
   searchError: {
     ...typography.mediumRegular,
     color: colors.gray2,
+  },
+});
+
+export const phoneStyles = StyleSheet.create({
+  speciesContainer: {
+    justifyContent: 'space-between',
+    paddingVertical: verticalScale(20),
+    paddingHorizontal: scale(24),
+    rowGap: verticalScale(16),
+  },
+
+  speciesCard: {
+    width: '48%',
+    overflow: 'hidden',
+  },
+});
+
+export const tabletStyles = StyleSheet.create({
+  speciesContainer: {
+    paddingHorizontal: scale(40),
+  },
+
+  speciesCard: {
+    width: '31%',
   },
 });

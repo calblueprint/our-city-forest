@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 export const styles = StyleSheet.create({
   dropdown: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderWidth: 1,
-    borderRadius: 10,
+    paddingHorizontal: scale(20),
+    paddingVertical: verticalScale(12),
+    borderWidth: scale(1),
+    borderRadius: scale(10),
     borderColor: colors.gray5,
   },
 
@@ -18,20 +19,20 @@ export const styles = StyleSheet.create({
   },
 
   dropdownContainer: {
-    borderRadius: 10,
-    borderWidth: 1,
+    borderRadius: scale(10),
+    borderWidth: scale(1),
     borderColor: colors.gray5,
   },
 
   itemContainer: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
+    paddingHorizontal: scale(20),
+    paddingVertical: verticalScale(12),
     overflow: 'hidden',
   },
 
   selectedBar: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
+    paddingHorizontal: scale(20),
+    paddingVertical: verticalScale(12),
     overflow: 'hidden',
   },
 });

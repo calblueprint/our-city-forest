@@ -1,29 +1,30 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
+import { scale, verticalScale } from '@/utils/scaling';
 
 const { height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   filterContainer: {
-    height: height * 0.9,
-    paddingHorizontal: 40,
-    paddingBottom: 20,
-    borderRadius: 48,
+    height: verticalScale(height * 0.9),
+    paddingHorizontal: scale(40),
+    paddingBottom: scale(20),
+    borderRadius: scale(48),
   },
 
   grabber: {
-    width: 128,
-    height: 6,
-    borderRadius: 4,
+    width: scale(128),
+    height: verticalScale(6),
+    borderRadius: scale(4),
     backgroundColor: colors.gray5,
     alignSelf: 'center',
-    marginVertical: 8,
+    marginVertical: verticalScale(8),
   },
 
   filterHeading: {
-    paddingTop: 40,
-    paddingBottom: 40,
+    paddingTop: scale(40),
+    paddingBottom: scale(40),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -35,17 +36,17 @@ export const styles = StyleSheet.create({
   },
 
   resetButtonActive: {
-    paddingHorizontal: 16,
-    paddingVertical: 4,
+    paddingHorizontal: scale(16),
+    paddingVertical: verticalScale(4),
     backgroundColor: colors.primary,
-    borderRadius: 30,
+    borderRadius: scale(30),
   },
 
   resetButtonInactive: {
-    paddingHorizontal: 16,
-    paddingVertical: 4,
+    paddingHorizontal: scale(16),
+    paddingVertical: verticalScale(4),
     backgroundColor: colors.gray5,
-    borderRadius: 30,
+    borderRadius: scale(30),
   },
 
   resetTextActive: {
@@ -59,8 +60,8 @@ export const styles = StyleSheet.create({
   },
 
   filterProperties: {
-    marginBottom: 24,
-    gap: 12,
+    marginBottom: scale(24),
+    gap: scale(12),
   },
 
   subheaderText: {
@@ -70,18 +71,18 @@ export const styles = StyleSheet.create({
 
   checkboxGroup: {
     flexDirection: 'column',
-    gap: 16,
+    gap: scale(16),
     borderTopColor: colors.gray5,
-    borderTopWidth: 1,
-    paddingTop: 12,
+    borderTopWidth: scale(1),
+    paddingTop: scale(12),
   },
 
   completeButton: {
     backgroundColor: colors.primary,
-    borderRadius: 10,
+    borderRadius: scale(10),
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 12,
+    paddingHorizontal: scale(24),
+    paddingVertical: verticalScale(12),
   },
 
   completeButtonText: {

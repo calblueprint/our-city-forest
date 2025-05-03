@@ -12,7 +12,7 @@ export type ShrubSpecies = {
   bloom: ShrubSpeciesBloomType;
   growth_rate: ShrubSpeciesGrowthType;
   sun_exposure: ShrubSpeciesSunExposure;
-  soil_needs: ShrubSpeciesSoilNeeds;
+  soil_needs: string;
   water_use: ShrubSpeciesWaterUse;
   total_stock: number;
   available_stock: number;
@@ -36,12 +36,7 @@ export enum ShrubSpeciesSunExposure {
   FullSun = 'full sun',
   PartialShade = 'partial shade',
   Shade = 'shade',
-}
-
-export enum ShrubSpeciesSoilNeeds {
-  WellDraining = 'well-draining',
-  Clay = 'clay',
-  CoarseGrained = 'coarse-grained',
+  FullSunPartianShade = 'full_sun_partian_shade',
 }
 
 export enum ShrubSpeciesWaterUse {
@@ -62,7 +57,16 @@ export const toTitleCase = (str: string) =>
     text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
   );
 
-export const formatEnumKey = (s?: string) => {
-  if (typeof s !== 'string') return '';
-  return s.replace(/_/g, ' ').toLowerCase();
+export const formatEnumKey = (value?: string | string[]) => {
+  if (value === undefined) return '';
+
+  // handle array
+  if (Array.isArray(value)) {
+    return value.map(item => {
+      if (typeof item !== 'string') return '';
+      return item.replace(/_/g, ' ').toLowerCase();
+    });
+  }
+  if (typeof value !== 'string') return '';
+  return value.replace(/_/g, ' ').toLowerCase();
 };

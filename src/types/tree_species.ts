@@ -22,12 +22,10 @@ export enum TreeSpeciesShape {
   Columnar = 'columnar',
   Conical = 'conical',
   Irregular = 'irregular',
-  Palm = 'palm',
   Rounded = 'rounded',
   Prostrate = 'prostrate',
   Pyramid = 'pyramid',
   Sprawling = 'sprawling',
-  SwordPalm = 'sword_palm',
   Weeping = 'weeping',
   Vase = 'vase',
 }
@@ -40,6 +38,7 @@ export enum TreeSpeciesFoliageType {
 export enum TreeSpeciesLitterType {
   Dry = 'dry',
   Wet = 'wet',
+  NoFruit = 'no_fruit',
 }
 
 export enum TreeSpeciesWaterUse {

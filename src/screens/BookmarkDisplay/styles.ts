@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/colors';
+import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
   container: {
@@ -65,9 +66,9 @@ export const styles = StyleSheet.create({
   },
 
   headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    ...typography.heading2,
     color: colors.primary,
+    textAlign: 'left',
   },
 
   divider: {

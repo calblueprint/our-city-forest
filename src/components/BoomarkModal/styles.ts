@@ -29,13 +29,12 @@ export const styles = StyleSheet.create({
     height: 38,
     borderRadius: 10,
     marginRight: 12,
-    backgroundColor: '#F0F0F0',
   },
 
   sliderIndicator: {
     width: 40,
     height: 4,
-    backgroundColor: '#ccc',
+    backgroundColor: colors.gray3,
     borderRadius: 2,
   },
 
@@ -54,9 +53,8 @@ export const styles = StyleSheet.create({
 
   folderItem: {
     paddingVertical: 12,
-    gap: 25,
     borderBottomWidth: 1,
-    borderColor: '#eee',
+    borderColor: colors.gray5,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },

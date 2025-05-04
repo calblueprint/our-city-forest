@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -6,7 +5,7 @@ import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
 import { AuthContextProvider } from '@/context/AuthContext';
-import { BookmarkProvider } from '@/context/BookmarksContext'; // <-- 👈 Import this!
+import { BookmarkProvider } from '@/context/BookmarksContext';
 import { AppNavigator } from '@/navigation/AppNavigator';
 import { colors } from '@/styles/colors';
 

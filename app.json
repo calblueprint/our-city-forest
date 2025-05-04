@@ -20,7 +20,8 @@
         {
           "launchMode": "most-recent"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "splash": {
       "image": "./assets/bp-splash.png",

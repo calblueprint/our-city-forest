@@ -60,16 +60,9 @@ export const styles = StyleSheet.create({
     paddingBottom: 16,
   },
 
-  scientificNameSpecies: {
+  scientificName: {
     ...typography.largeBold,
     color: colors.gray1,
-    wordWrap: 'true',
-  },
-
-  scientificNameTree: {
-    ...typography.largeBold,
-    color: colors.gray1,
-    width: '70%',
     wordWrap: 'true',
   },
 

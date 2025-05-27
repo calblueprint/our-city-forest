@@ -27,7 +27,9 @@ export const styles = StyleSheet.create({
   },
 
   toggle: {
-    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    width: '100%',
   },
 
   divider: {

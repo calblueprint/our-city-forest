@@ -66,8 +66,8 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
               <ToggleSwitch
                 value={isSpecies}
                 onValueChange={setIsSpecies}
-                trueLabel="This tree"
-                falseLabel="Species"
+                leftLabel="This tree"
+                rightLabel="Species"
               />
             </View>
             <View>

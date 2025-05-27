@@ -5,7 +5,6 @@ export type LoginStackParamList = {
 };
 
 export type HomeStackParamList = {
-  Home: undefined;
   TreeSpeciesSearch: undefined;
   ShrubSpeciesSearch: undefined;
   QRCodeScanner: undefined;
@@ -17,6 +16,10 @@ export type HomeStackParamList = {
   HistorySpeciesScreen: { speciesName: string };
 };
 
+export type HistoryStackParamList = {
+  History: undefined;
+};
+
 export type ContactStackParamList = {
   Contact: undefined;
   Directory: undefined;
@@ -24,6 +27,7 @@ export type ContactStackParamList = {
 
 export type BottomTabParamList = {
   HomeTab: NavigatorScreenParams<HomeStackParamList>;
+  HistoryTab: NavigatorScreenParams<HistoryStackParamList>;
   ContactTab: NavigatorScreenParams<ContactStackParamList>;
 };
 

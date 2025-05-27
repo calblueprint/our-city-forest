@@ -40,3 +40,5 @@ export { X } from './X';
 export { XButton } from './XButton';
 export { Youtube } from './Youtube';
 export { InfoCircle } from './InfoCircle';
+export { HistorySelected } from './HistorySelected';
+export { HistoryUnselected } from './HistoryUnselected';

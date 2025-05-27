@@ -12,22 +12,25 @@ export const LogOutButton: React.FC = () => {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleLogOut = async () => {
-    await logout();
-
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [
-          {
-            name: 'BottomTabs',
-            params: {
-              screen: 'HomeTab',
-              params: { screen: 'Home' },
+    try {
+      await logout();
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {
+              name: 'BottomTabs',
+              params: {
+                screen: 'HomeTab',
+                params: { screen: 'TreeSpeciesSearch' },
+              },
             },
-          },
-        ],
-      }),
-    );
+          ],
+        }),
+      );
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
 
   return (

@@ -15,7 +15,6 @@ export const linking: LinkingOptions<RootStackParamList> = {
         screens: {
           HomeTab: {
             screens: {
-              Home: 'home',
               TreeSpeciesSearch: 'tree-species',
               ShrubSpeciesSearch: 'shrub-species',
               QRCodeScanner: 'scan',

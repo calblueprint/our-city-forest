@@ -40,36 +40,32 @@ export const TreeSpeciesInfoScreen: React.FC<TreeSpeciesInfoScreenProps> = ({
   }, [speciesName]);
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <ImageBackground
-          source={{ uri: speciesData.image_url }}
-          style={styles.imageBackground}
-        >
-          <View style={styles.topNavigation}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <BackArrow />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.push('QRCodeScanner')}>
-              <ScanBarcode />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.pill}>
-            <Text style={styles.pillText}>{treeData.length} left</Text>
-          </View>
-        </ImageBackground>
-        <View style={styles.body}>
-          <View>
-            <Text style={styles.header}>{speciesData.name ?? ''}</Text>
-            <Text style={styles.scientificName}>
-              {speciesData.scientific_name ?? ''}
-            </Text>
-            <View style={styles.divider}></View>
-          </View>
-
-          <TreeSpeciesDisplay speciesData={speciesData} treeData={treeData} />
+    <ScrollView>
+      <ImageBackground
+        source={{ uri: speciesData.image_url }}
+        style={styles.imageBackground}
+      >
+        <View style={styles.topNavigation}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <BackArrow />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.push('QRCodeScanner')}>
+            <ScanBarcode />
+          </TouchableOpacity>
         </View>
-      </ScrollView>
-    </View>
+        <View style={styles.pill}>
+          <Text style={styles.pillText}>{treeData.length} in stock</Text>
+        </View>
+      </ImageBackground>
+      <View style={styles.body}>
+        <View>
+          <Text style={styles.header}>{speciesData.name ?? ''}</Text>
+          <Text style={styles.scientificName}>
+            {speciesData.scientific_name ?? ''}
+          </Text>
+        </View>
+        <TreeSpeciesDisplay speciesData={speciesData} treeData={treeData} />
+      </View>
+    </ScrollView>
   );
 };

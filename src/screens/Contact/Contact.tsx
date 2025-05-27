@@ -1,8 +1,7 @@
 import React from 'react';
-import { Image, Linking, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { LogInButton } from '@/components/LogInButton/LogInButton';
 import { LogOutButton } from '@/components/LogOutButton/LogOutButton';
 import { useAuth } from '@/context/AuthContext';
 import {
@@ -11,8 +10,9 @@ import {
   Facebook,
   Instagram,
   Location,
+  LogoSmall,
+  TikTok,
   Website,
-  X,
   Youtube,
 } from '@/icons';
 import { ContactStackParamList } from '@/types/navigation';
@@ -55,7 +55,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({
 );
 
 export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, login, userInfo } = useAuth();
 
   const openLink = async (url: string) => {
     try {
@@ -77,10 +77,9 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.imageContainer}
-        source={require('assets/ocf-logo-small.png')}
-      />
+      <View style={styles.logo}>
+        <LogoSmall />
+      </View>
 
       <Text style={styles.contactHeader}>Contact Us</Text>
 
@@ -101,8 +100,8 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
         />
 
         <SocialButton
-          icon={<X />}
-          onPress={() => openLink('https://twitter.com/OurCityForest')}
+          icon={<TikTok />}
+          onPress={() => openLink('https://www.tiktok.com/@ourcityforest')}
         />
       </View>
 
@@ -126,14 +125,16 @@ export const ContactScreen: React.FC<ContactScreenProps> = ({ navigation }) => {
       />
       <View style={styles.divider} />
 
-      <View style={styles.logOutContainer}>
+      <View style={styles.authContainer}>
         {isAuthenticated ? (
-          <LogOutButton />
-        ) : (
-          <View style={styles.adminContainer}>
-            <Text style={styles.adminText}>Are you an admin? </Text>
-            <LogInButton />
+          <View style={styles.userInfoContainer}>
+            <Text style={styles.userInfoText}>{userInfo?.email}</Text>
+            <LogOutButton />
           </View>
+        ) : (
+          <TouchableOpacity onPress={login} style={styles.logInButton}>
+            <Text style={styles.buttonText}>Log in as admin</Text>
+          </TouchableOpacity>
         )}
       </View>
     </SafeAreaView>

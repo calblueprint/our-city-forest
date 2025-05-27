@@ -26,6 +26,10 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
   },
 
+  toggle: {
+    alignSelf: 'flex-start',
+  },
+
   divider: {
     height: 1,
     width: '100%',
@@ -64,8 +68,22 @@ export const styles = StyleSheet.create({
     color: colors.gray3,
   },
 
-  searchError: {
-    ...typography.mediumRegular,
-    color: colors.gray2,
+  listContainer: {
+    rowGap: 100,
+    flex: 1,
+    alignItems: 'center',
+  },
+
+  searchErrorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
+
+  searchErrorText: {
+    ...typography.smallRegular,
+    color: colors.gray3,
+    textAlign: 'center',
   },
 });

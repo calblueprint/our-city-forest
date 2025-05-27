@@ -28,7 +28,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
   navigation,
 }) => {
   const treeId = route.params?.treeId ?? '';
-  const [isSpecies, setIsSpecies] = useState(true);
+  const [isTree, setIsTree] = useState(true);
   const [treeData, setTreeData] = useState<Tree | null>(null);
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);
 
@@ -60,12 +60,15 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
                 <XButton />
               </TouchableOpacity>
             </View>
+            <View style={styles.pill}>
+              <Text style={styles.pillText}>{allTreesData.length} total</Text>
+            </View>
           </ImageBackground>
           <View style={styles.body}>
             <View style={styles.switch}>
               <ToggleSwitch
-                value={isSpecies}
-                onValueChange={setIsSpecies}
+                value={isTree}
+                onValueChange={setIsTree}
                 leftLabel="This tree"
                 rightLabel="Species"
               />
@@ -77,7 +80,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
                   {treeData?.species?.scientific_name ?? ''}
                 </Text>
 
-                {isSpecies && (
+                {isTree && (
                   <View style={styles.idPill}>
                     <Text style={styles.idText}>
                       BR-{treeData?.bank}-{treeData?.row}
@@ -90,7 +93,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
             <View style={styles.divider}></View>
 
             {treeData ? (
-              isSpecies ? (
+              isTree ? (
                 <TreeEdit treeData={treeData} setTreeData={setTreeData} />
               ) : (
                 <TreeDisplay treeData={treeData} allTreesData={allTreesData} />

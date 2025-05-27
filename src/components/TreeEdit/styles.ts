@@ -3,14 +3,24 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
   editFlex: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 24,
+    paddingBottom: 24,
+  },
+
+  editButton: {
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 30,
+    paddingHorizontal: 20,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+
+  editText: {
+    ...typography.smallRegular,
+    color: colors.primary,
   },
 
   header: {
@@ -19,13 +29,14 @@ export const styles = StyleSheet.create({
   },
 
   propertiesFlex: {
-    gap: 24,
+    gap: 30,
+    paddingBottom: 40,
   },
 
   label: {
-    ...typography.mediumRegular,
+    ...typography.mediumBold,
     color: colors.gray2,
-    marginBottom: 12,
+    paddingBottom: 12,
   },
 
   locationInputView: {
@@ -33,6 +44,37 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexGrow: 1,
     gap: 16,
+  },
+
+  location: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+
+  bankPill: {
+    backgroundColor: colors.gray4,
+    borderRadius: 48,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignSelf: 'flex-start',
+  },
+
+  bankText: {
+    color: colors.white,
+    ...typography.mediumRegular,
+  },
+
+  rowPill: {
+    backgroundColor: colors.gray6,
+    borderRadius: 48,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignSelf: 'flex-start',
+  },
+
+  rowText: {
+    color: colors.gray2,
+    ...typography.mediumRegular,
   },
 
   textInput: {
@@ -64,7 +106,7 @@ export const styles = StyleSheet.create({
   notesHeader: {
     ...typography.heading2,
     color: colors.gray1,
-    marginBottom: 24,
+    paddingBottom: 24,
   },
 
   notesTextBox: {
@@ -76,6 +118,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
     minHeight: 160,
+  },
+
+  notes: {
+    paddingBottom: 30,
   },
 
   button: {

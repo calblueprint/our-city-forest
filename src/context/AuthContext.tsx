@@ -32,34 +32,21 @@ type AuthState = {
 
 const AuthContext = createContext<AuthState | undefined>(undefined);
 
-const getUserInfo = async (): Promise<User | null> => {
-  console.log('[AuthContext] Fetching user info...');
+async function getUserInfo(): Promise<User | null> {
   const { data, error } = await supabase.auth.getUser();
-  if (error || !data?.user) {
-    console.warn('[AuthContext] No user found or error:', error);
-    return null;
-  }
-  const { user } = data;
-  const meta = user.user_metadata ?? {};
-  const userInfo = {
-    id: user.id,
-    email: user.email ?? '',
-    name: meta.full_name ?? '',
-    picture: meta.avatar_url ?? undefined,
+  if (error || !data?.user) return null;
+  const meta = data.user.user_metadata || {};
+  return {
+    id: data.user.id,
+    email: data.user.email || '',
+    name: meta.full_name || '',
+    picture: meta.avatar_url || undefined,
   };
-  console.log('[AuthContext] User info:', userInfo);
-  return userInfo;
-};
+}
 
-const isOcfEmail = (user: User | null): boolean => {
-  const result = user?.email.endsWith('@ourcityforest.org') ?? false;
-  if (user) {
-    console.log(
-      `[AuthContext] Checking OCF email for ${user.email}: ${result}`,
-    );
-  }
-  return result;
-};
+function isOcfEmail(user: User | null): boolean {
+  return user?.email.endsWith('@ourcityforest.org') ?? false;
+}
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -69,29 +56,24 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const setHasLaunched = (value: boolean) => {
     setHasLaunchedState(value);
-    AsyncStorage.setItem('hasLaunched', value.toString());
-    console.log(`[AuthContext] Set hasLaunched to ${value}`);
+    AsyncStorage.setItem('hasLaunched', String(value));
   };
 
   const refreshUser = async () => {
-    console.log('[AuthContext] Refreshing user session...');
     const { data } = await supabase.auth.getSession();
     if (data.session) {
-      const currentUser = await getUserInfo();
-      if (isOcfEmail(currentUser)) {
-        setUser(currentUser);
+      const info = await getUserInfo();
+      if (isOcfEmail(info)) {
+        setUser(info);
         setIsAuthenticated(true);
-        console.log('[AuthContext] User authenticated:', currentUser);
       } else {
+        await supabase.auth.signOut();
         setUser(null);
         setIsAuthenticated(false);
-        await supabase.auth.signOut();
-        console.warn('[AuthContext] User not OCF email, signed out.');
       }
     } else {
       setUser(null);
       setIsAuthenticated(false);
-      console.log('[AuthContext] No session found, user set to null.');
     }
     setIsLoading(false);
   };
@@ -100,51 +82,36 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     (async () => {
       const stored = await AsyncStorage.getItem('hasLaunched');
       if (stored === 'true') setHasLaunchedState(true);
-      console.log(`[AuthContext] hasLaunched from storage: ${stored}`);
       await refreshUser();
     })();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log(`[AuthContext] Auth state change: ${event}`);
-        if (event === 'SIGNED_IN' && session) {
-          // Delay refresh to ensure the session is fully available.
-          setTimeout(() => {
-            refreshUser();
-          }, 1000);
-        } else if (event === 'SIGNED_OUT') {
-          setUser(null);
-          setIsAuthenticated(false);
-          setIsLoading(false);
-          console.log('[AuthContext] User signed out.');
-        }
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        refreshUser();
+      }
+      if (event === 'SIGNED_OUT') {
+        setUser(null);
+        setIsAuthenticated(false);
+        setIsLoading(false);
+      }
+    });
+    const subscription = data.subscription;
+
+    const appStateSub = AppState.addEventListener(
+      'change',
+      (nextState: AppStateStatus) => {
+        if (nextState === 'active') refreshUser();
       },
     );
 
-    const handleAppStateChange = async (nextAppState: AppStateStatus) => {
-      console.log(`[AuthContext] App state changed: ${nextAppState}`);
-      if (nextAppState === 'active') {
-        await refreshUser();
-      }
-    };
-
-    const subscription = AppState.addEventListener(
-      'change',
-      handleAppStateChange,
-    );
-
     return () => {
-      authListener.subscription.unsubscribe();
-      if (typeof subscription.remove === 'function') {
-        subscription.remove();
-      }
-      console.log('[AuthContext] Cleaned up listeners.');
+      subscription.unsubscribe();
+      appStateSub.remove();
     };
   }, []);
 
   const logIn = async () => {
     setIsLoading(true);
-    console.log('[AuthContext] Logging in...');
     const redirectUrl = makeRedirectUri({ scheme: 'ourcityforest' });
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -154,63 +121,56 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       },
     });
     if (error || !data?.url) {
+      console.error('Login error', error);
       setIsLoading(false);
-      console.error('[AuthContext] Login error:', error);
       return;
     }
+
     const result = await WebBrowser.openAuthSessionAsync(data.url, redirectUrl);
-    console.log('[AuthContext] WebBrowser result:', result);
-    if (result.type === 'success') {
-      const url = result.url;
-      if (url.includes('#access_token=')) {
-        const params = new URLSearchParams(url.split('#')[1]);
+
+    if (result.type === 'success' && result.url) {
+      if (result.url.includes('#access_token=')) {
+        const params = new URLSearchParams(result.url.split('#')[1]);
         await supabase.auth.setSession({
           access_token: params.get('access_token') || '',
           refresh_token: params.get('refresh_token') || '',
         });
-        console.log('[AuthContext] Set session with access token.');
       } else {
-        const code = new URL(url).searchParams.get('code');
+        const code = new URL(result.url).searchParams.get('code');
         if (code) {
           await supabase.auth.exchangeCodeForSession(code);
-          console.log('[AuthContext] Exchanged code for session.');
         }
       }
-      // Optional: you can also trigger a refresh after a delay here.
-      setTimeout(() => {
-        refreshUser();
-      }, 1000);
     } else {
+      console.warn('Login cancelled or failed.');
       setIsLoading(false);
-      console.warn('[AuthContext] Login cancelled or failed.');
     }
   };
 
   const logOut = async () => {
     setIsLoading(true);
-    console.log('[AuthContext] Logging out...');
     await supabase.auth.signOut();
-    console.log('[AuthContext] Signed out.');
-  };
-
-  const contextValue: AuthState = {
-    user,
-    isAuthenticated,
-    isLoading,
-    logIn,
-    logOut,
-    hasLaunched,
-    setHasLaunched,
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        isLoading,
+        logIn,
+        logOut,
+        hasLaunched,
+        setHasLaunched,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
+export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context)
-    throw new Error('useAuth must be used within an AuthContextProvider');
+  if (!context) throw new Error('useAuth must be within AuthContextProvider');
   return context;
-};
+}

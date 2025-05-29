@@ -3,10 +3,6 @@ import { colors } from '@/styles/colors';
 import { typography } from '@/styles/typography';
 
 export const styles = StyleSheet.create({
-  container: {
-    // paddingBottom: 750,
-  },
-
   imageBackground: {
     height: 320,
     backgroundColor: colors.gray5,

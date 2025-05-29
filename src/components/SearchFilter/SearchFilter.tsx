@@ -12,7 +12,7 @@ import { Dropdown } from '@/components/Dropdown/Dropdown';
 import { TreeSpeciesShape } from '@/types/tree_species';
 import { styles } from './styles';
 
-type TreeSearchFilterProps = {
+type SearchFilterProps = {
   isModalVisible: boolean;
   onClose: () => void;
   activeFilters: {
@@ -33,7 +33,7 @@ type TreeSearchFilterProps = {
   >;
 };
 
-export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
+export const SearchFilter: React.FC<SearchFilterProps> = ({
   isModalVisible,
   onClose,
   activeFilters,
@@ -50,18 +50,15 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
     activeFilters.shape,
   );
 
-  const treeShapeOptions = ['Any', ...Object.values(TreeSpeciesShape)];
+  const [activeLitterFilters, setActiveLitterFilters] = useState({
+    wet: activeFilters.litter.includes('wet'),
+    dry: activeFilters.litter.includes('dry'),
+  });
 
   const [activeWaterFilters, setActiveWaterFilters] = useState({
     low: activeFilters.water.includes('low'),
     moderate: activeFilters.water.includes('moderate'),
     high: activeFilters.water.includes('high'),
-  });
-
-  const [activeLitterFilters, setActiveLitterFilters] = useState({
-    wet: activeFilters.litter.includes('wet'),
-    dry: activeFilters.litter.includes('dry'),
-    none: activeFilters.litter.includes('none'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({
@@ -86,7 +83,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
       height: Object.keys(activeHeightFilters).filter(
         key => activeHeightFilters[key as keyof typeof activeHeightFilters],
       ) as string[],
-      shape: selectedTreeShape === 'Any' ? '' : selectedTreeShape,
+      shape: selectedTreeShape,
       litter: Object.keys(activeLitterFilters).filter(
         key => activeLitterFilters[key as keyof typeof activeLitterFilters],
       ) as string[],
@@ -152,7 +149,6 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
     setActiveLitterFilters({
       wet: false,
       dry: false,
-      none: false,
     });
     setActiveWaterFilters({
       low: false,
@@ -206,7 +202,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
             </TouchableOpacity>
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView horizontal={false} showsHorizontalScrollIndicator={false}>
             {/* Height */}
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Height</Text>
@@ -233,8 +229,8 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
             <View style={styles.filterProperties}>
               <Text style={styles.subheaderText}>Tree Shape</Text>
               <Dropdown
-                options={treeShapeOptions}
-                value={selectedTreeShape || 'Any'}
+                options={Object.values(TreeSpeciesShape)}
+                value={selectedTreeShape}
                 onChange={setSelectedTreeShape}
               />
             </View>
@@ -252,11 +248,6 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
                   label="Dry Fruit"
                   isChecked={activeLitterFilters.dry}
                   onChange={() => toggleLitterFilter('dry')}
-                />
-                <Checkbox
-                  label="No Fruit"
-                  isChecked={activeLitterFilters.none}
-                  onChange={() => toggleLitterFilter('none')}
                 />
               </View>
             </View>
@@ -313,7 +304,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
 
           {/* Complete Button */}
           <TouchableOpacity style={styles.completeButton} onPress={onClose}>
-            <Text style={styles.completeButtonText}>Apply</Text>
+            <Text style={styles.completeButtonText}>Complete</Text>
           </TouchableOpacity>
         </View>
       </Modal>

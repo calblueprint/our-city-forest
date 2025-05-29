@@ -12,7 +12,6 @@ export type HomeStackParamList = {
   ShrubSpeciesInfo: { speciesName: string };
   ShrubSearchFilter: undefined;
   TreeSearchFilter: undefined;
-  HistorySpeciesScreen: { speciesName: string };
 };
 
 export type HistoryStackParamList = {

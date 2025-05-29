@@ -71,6 +71,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
                 onValueChange={setIsTree}
                 leftLabel="This tree"
                 rightLabel="Species"
+                wide={false}
               />
             </View>
             <View style={styles.nameAndId}>

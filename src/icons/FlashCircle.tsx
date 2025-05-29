@@ -1,14 +1,16 @@
 import * as React from 'react';
-import Svg, { G, Path, SvgProps } from 'react-native-svg';
+import Svg, { Circle, Path, SvgProps } from 'react-native-svg';
 
 export const FlashCircle = (props: SvgProps) => (
-  <Svg width={41} height={40} fill="none" {...props}>
-    <G fill="#fff">
-      <Path
-        d="M20.331 36.667c9.205 0 16.667-7.462 16.667-16.667S29.536 3.333 20.33 3.333C11.127 3.333 3.665 10.795 3.665 20s7.462 16.667 16.666 16.667"
-        opacity={0.5}
-      />
-      <Path d="M25.798 18.833h-2.833v-6.6c0-1.533-.834-1.85-1.85-.7l-.734.834-6.2 7.05c-.85.966-.5 1.75.784 1.75h2.833v6.6c0 1.533.833 1.85 1.85.7l.733-.834 6.2-7.05c.85-.966.5-1.75-.783-1.75" />
-    </G>
+  <Svg width={34} height={34} {...props}>
+    <Circle cx={16.665} cy={16.665} r={16.665} fill="#fff" />
+    <Path
+      stroke="#171717"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit={10}
+      strokeWidth={1.5}
+      d="M11.09 18.28h3.09v7.2c0 1.68.91 2.02 2.02.76l7.57-8.6c.93-1.05.54-1.92-.87-1.92h-3.09v-7.2c0-1.68-.91-2.02-2.02-.76l-7.57 8.6c-.92 1.06-.53 1.92.87 1.92Z"
+    />
   </Svg>
 );

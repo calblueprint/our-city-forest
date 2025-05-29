@@ -34,7 +34,7 @@ export const ShrubSpeciesInfoScreen: React.FC<ShrubSpeciesInfoScreenProps> = ({
   });
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
       <ImageBackground
         source={{ uri: speciesData.image_url }}
         style={styles.imageBackground}

@@ -173,6 +173,8 @@ export const TreeEdit: React.FC<TreeEditProps> = ({
           placeholder="Write here..."
           multiline
           editable={isEditing}
+          // nestedScrollEnabled={true}
+          scrollEnabled={true}
           numberOfLines={4}
         />
       </View>

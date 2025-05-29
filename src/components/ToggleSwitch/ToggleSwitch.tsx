@@ -15,6 +15,7 @@ type ToggleSwitchProps = {
   onValueChange: (value: boolean) => void;
   trueLabel: string;
   falseLabel: string;
+  wide: boolean;
 };
 
 export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
@@ -22,6 +23,7 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   onValueChange,
   trueLabel,
   falseLabel,
+  wide,
 }) => {
   if (
     Platform.OS === 'android' &&
@@ -103,7 +105,12 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
         onLayout={event => setTrueLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(true)}
       >
-        <Text style={[styles.switch, value && styles.selectedText]}>
+        <Text
+          style={[
+            wide ? styles.switchWide : styles.switch,
+            value && styles.selectedText,
+          ]}
+        >
           {trueLabel}
         </Text>
       </TouchableOpacity>
@@ -113,7 +120,12 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
         onLayout={event => setFalseLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(false)}
       >
-        <Text style={[styles.switch, !value && styles.selectedText]}>
+        <Text
+          style={[
+            wide ? styles.switchWide : styles.switch,
+            !value && styles.selectedText,
+          ]}
+        >
           {falseLabel}
         </Text>
       </TouchableOpacity>

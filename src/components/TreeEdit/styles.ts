@@ -118,6 +118,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
     minHeight: 160,
+    maxHeight: 200,
   },
 
   notes: {

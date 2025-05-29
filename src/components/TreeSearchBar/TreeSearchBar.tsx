@@ -14,6 +14,7 @@ type TreeSearchBarProps = {
     water: string[];
     other: string[];
   };
+
   onActiveFilterChange: React.Dispatch<
     React.SetStateAction<{
       height: string[];

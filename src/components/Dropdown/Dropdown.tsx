@@ -1,8 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TextStyle, View, ViewStyle } from 'react-native';
 import { Dropdown as NativeDropdown } from 'react-native-element-dropdown';
-import { Icon } from 'react-native-elements';
-import { colors } from '@/styles/colors';
+import { ChevronDown, ChevronUp } from '@/icons';
 import { formatEnumKey } from '@/types/tree';
 import { styles } from './styles';
 
@@ -16,23 +15,41 @@ type DropdownProps<T extends string[]> = {
   options: T;
   value: string;
   onChange: (value: T[number]) => unknown;
+  style?: ViewStyle;
+  placeholderStyle?: TextStyle;
+  selectedTextStyle?: TextStyle;
+  inputSearchStyle?: TextStyle;
+  itemTextStyle?: TextStyle;
+  containerStyle?: ViewStyle;
+  itemContainerStyle?: TextStyle;
 };
 
 export const Dropdown = <T extends string[]>({
   options,
   value,
   onChange,
+  style,
+  placeholderStyle,
+  selectedTextStyle,
+  inputSearchStyle,
+  itemTextStyle,
+  containerStyle,
+  itemContainerStyle,
 }: DropdownProps<T>): React.JSX.Element => {
   return (
     <View>
       <NativeDropdown
         mode="default"
-        style={styles.dropdown}
-        placeholderStyle={styles.text}
-        selectedTextStyle={styles.text}
-        inputSearchStyle={styles.text}
-        itemTextStyle={styles.text}
-        containerStyle={styles.dropdownContainer}
+        style={[styles.dropdown, style]}
+        placeholderStyle={[styles.text, placeholderStyle]}
+        selectedTextStyle={[
+          styles.text,
+          { textAlign: 'center' },
+          selectedTextStyle,
+        ]}
+        inputSearchStyle={[styles.text, inputSearchStyle]}
+        itemTextStyle={[styles.text, itemTextStyle]}
+        containerStyle={[styles.dropdownContainer, containerStyle]}
         dropdownPosition="bottom"
         data={options.map((option: T[number], index: number) => {
           return { index, label: formatEnumKey(option), value: option };
@@ -48,6 +65,7 @@ export const Dropdown = <T extends string[]>({
               style={[
                 styles.text,
                 styles.itemContainer,
+                itemContainerStyle,
                 selected && styles.selectedBar,
                 { borderBottomLeftRadius: 0, borderTopLeftRadius: 0 },
                 item.index === 0 && {
@@ -57,27 +75,14 @@ export const Dropdown = <T extends string[]>({
                   borderBottomLeftRadius: 5,
                 },
               ]}
+              numberOfLines={2}
             >
               {item.label}
             </Text>
           );
         }}
         renderRightIcon={isVisible =>
-          isVisible ? (
-            <Icon
-              name="arrow-drop-up"
-              type="material"
-              color={colors.gray4}
-              size={24}
-            />
-          ) : (
-            <Icon
-              name="arrow-drop-down"
-              type="material"
-              color={colors.gray4}
-              size={24}
-            />
-          )
+          isVisible ? <ChevronUp /> : <ChevronDown />
         }
         onChange={(item: Option) => {
           onChange(item.value);

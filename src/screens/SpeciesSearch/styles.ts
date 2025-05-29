@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
 
   headerText: {
@@ -27,7 +26,9 @@ export const styles = StyleSheet.create({
   },
 
   toggle: {
-    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    width: '100%',
   },
 
   divider: {

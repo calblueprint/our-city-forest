@@ -12,12 +12,13 @@ export type Tree = {
   ownership_status: TreeOwnershipStatus;
   additional_notes?: string;
   qr_code_url?: string;
-  created_at: Date;
+  created_at: string;
 };
 
 export enum TreeHealthStatus {
   Healthy = 'healthy',
   Sick = 'sick',
+  Dead = 'dead',
 }
 
 export enum TreeProductionStatus {

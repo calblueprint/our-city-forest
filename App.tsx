@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { DMSans_400Regular, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
 import { DefaultTheme } from '@react-navigation/native';
@@ -8,6 +9,13 @@ import { AuthContextProvider } from '@/context/AuthContext';
 import { BookmarkProvider } from '@/context/BookmarksContext';
 import { AppNavigator } from '@/navigation/AppNavigator';
 import { colors } from '@/styles/colors';
+
+// Override console methods in production
+if (process.env.NODE_ENV === 'production') {
+  console.log = function () {};
+  console.warn = function () {};
+  console.error = function () {};
+}
 
 DefaultTheme.colors.background = colors.white;
 

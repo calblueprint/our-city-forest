@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
 
   text: {
     ...typography.mediumRegular,
-    color: colors.gray3,
+    color: colors.gray2,
     textTransform: 'capitalize',
   },
 
@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: colors.gray5,
+    overflow: 'hidden',
   },
 
   itemContainer: {

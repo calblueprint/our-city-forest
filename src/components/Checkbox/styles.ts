@@ -36,6 +36,6 @@ export const styles = StyleSheet.create({
 
   checkboxLabel: {
     ...typography.mediumRegular,
-    color: colors.gray3,
+    color: colors.gray2,
   },
 });

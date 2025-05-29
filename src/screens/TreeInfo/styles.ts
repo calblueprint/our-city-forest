@@ -47,47 +47,42 @@ export const styles = StyleSheet.create({
 
   switch: { paddingBottom: 32 },
 
-  header: {
+  nameAndId: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 16,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray5,
+    marginBottom: 32,
+  },
+
+  nameContainer: {
+    flex: 1,
+  },
+
+  commonName: {
     ...typography.heading2,
     color: colors.gray1,
-    paddingBottom: 8,
   },
 
-  idPillFlex: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    paddingBottom: 16,
-  },
-
-  scientificNameSpecies: {
+  scientificName: {
     ...typography.largeBold,
-    color: colors.gray1,
+    color: colors.gray3,
     wordWrap: 'true',
   },
 
-  scientificNameTree: {
-    ...typography.largeBold,
-    color: colors.gray1,
-    width: '70%',
-    wordWrap: 'true',
-  },
-
-  idPill: {
+  tagIdContainer: {
     backgroundColor: colors.gray5,
-    borderRadius: 30,
+    borderRadius: 24,
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
 
-  idText: {
-    ...typography.mediumRegular,
+  tagIdText: {
+    ...typography.mediumBold,
     color: colors.gray2,
-  },
-
-  divider: {
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray5,
-    marginBottom: 32,
   },
 });

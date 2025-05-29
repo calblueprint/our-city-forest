@@ -91,7 +91,6 @@ export const styles = StyleSheet.create({
   },
 
   userInfoContainer: {
-    display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     gap: 12,

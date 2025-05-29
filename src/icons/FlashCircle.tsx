@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Circle, Path, SvgProps } from 'react-native-svg';
 
-export const Flash = (props: SvgProps) => (
+export const FlashCircle = (props: SvgProps) => (
   <Svg width={34} height={34} {...props}>
     <Circle cx={16.665} cy={16.665} r={16.665} fill="#fff" />
     <Path

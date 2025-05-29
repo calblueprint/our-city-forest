@@ -121,7 +121,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       },
     });
     if (error || !data?.url) {
-      console.error('Login error', error);
+      console.error('Login error', error?.message || 'Unknown error');
       setIsLoading(false);
       return;
     }

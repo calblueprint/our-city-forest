@@ -1,6 +1,11 @@
+export { ArrowLeft } from './ArrowLeft';
 export { ArrowRight } from './ArrowRight';
 export { BackArrow } from './BackArrow';
 export { Call } from './Call';
+export { ChevronDown } from './ChevronDown';
+export { ChevronLeft } from './ChevronLeft';
+export { ChevronRight } from './ChevronRight';
+export { ChevronUp } from './ChevronUp';
 export { CallBig } from './CallBig';
 export { ContactSelected } from './ContactSelected';
 export { ContactUnselected } from './ContactUnselected';

@@ -9,30 +9,37 @@ export const styles = StyleSheet.create({
 
   headerContainer: {
     paddingHorizontal: 24,
-    paddingVertical: 16,
+    paddingTop: 16,
     gap: 12,
-    borderBottomWidth: 1,
-    borderColor: colors.gray5,
+    marginBottom: 20,
+  },
+
+  divider: {
+    height: 1,
+    width: '100%',
+    backgroundColor: colors.gray5,
   },
 
   headerText: {
     ...typography.heading2,
     color: colors.primary,
+    textAlign: 'left',
   },
 
   searchBar: {
-    height: 48,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.gray6,
-    padding: 8,
-    gap: 8,
-    borderRadius: 24,
+    borderRadius: 48,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
   },
 
   searchBarText: {
     ...typography.mediumRegular,
     color: colors.gray2,
+    flex: 1,
+    marginHorizontal: 8,
   },
 
   searchBarPlaceholder: {
@@ -47,6 +54,7 @@ export const styles = StyleSheet.create({
 
   speciesHeader: {
     gap: 8,
+    paddingBottom: 10,
   },
 
   speciesData: {
@@ -54,15 +62,17 @@ export const styles = StyleSheet.create({
     borderColor: colors.gray5,
     borderRadius: 24,
     paddingHorizontal: 24,
+    paddingVertical: 6,
+    gap: 4,
   },
 
   speciesName: {
     ...typography.heading3,
-    color: colors.gray2,
+    color: colors.gray1,
   },
 
   scientificName: {
-    ...typography.mediumBold,
+    ...typography.largeRegular,
     color: colors.gray3,
   },
 
@@ -92,13 +102,13 @@ export const styles = StyleSheet.create({
   },
 
   yearText: {
-    ...typography.heading3,
+    ...typography.largeRegular,
     color: colors.gray3,
   },
 
   dropdown: {
     backgroundColor: colors.gray6,
-    height: 48,
+    height: 44,
     width: 144,
     paddingHorizontal: 16,
     overflow: 'hidden',
@@ -118,7 +128,6 @@ export const styles = StyleSheet.create({
     gap: 8,
   },
 
-  // NEW STYLES
   modalContainer: {
     flex: 1,
   },
@@ -195,5 +204,10 @@ export const styles = StyleSheet.create({
   listItemScientificName: {
     ...typography.smallRegular,
     color: colors.gray3,
+  },
+
+  graphContainer: {
+    borderRadius: 1,
+    borderColor: colors.gray3,
   },
 });

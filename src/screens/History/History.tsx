@@ -225,6 +225,8 @@ export const HistoryScreen = () => {
         </TouchableOpacity>
       </View>
 
+      <View style={styles.divider}></View>
+
       {/* Search Modal */}
       <Modal
         visible={isModalVisible}

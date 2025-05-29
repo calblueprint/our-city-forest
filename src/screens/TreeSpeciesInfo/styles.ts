@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
 
   scientificName: {
     ...typography.largeBold,
-    color: colors.gray1,
+    color: colors.gray3,
     paddingBottom: 30,
   },
 });

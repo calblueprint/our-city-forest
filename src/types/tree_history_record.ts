@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { TreeSpecies } from './tree_species';
 
 export type TreeHistoryRecord = {
   record_id: string;
-  species_name: TreeSpecies;
+  species_name: string;
   record_date: string;
   healthy_count: number;
   diseased_count: number;

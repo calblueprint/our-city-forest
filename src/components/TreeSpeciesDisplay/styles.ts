@@ -114,7 +114,6 @@ export const styles = StyleSheet.create({
     borderRadius: 48,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    marginBottom: 40,
     alignSelf: 'flex-start',
   },
 
@@ -128,7 +127,6 @@ export const styles = StyleSheet.create({
     borderRadius: 48,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    marginBottom: 40,
     alignSelf: 'flex-start',
   },
 

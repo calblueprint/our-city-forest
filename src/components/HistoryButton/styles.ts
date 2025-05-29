@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
   },
 
   labelText: {
-    ...typography.largeBold,
+    ...typography.mediumRegular,
     color: colors.gray3,
     textAlign: 'center',
   },
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
   },
 
   valueText: {
-    ...typography.largeRegular,
+    ...typography.mediumRegular,
     textAlign: 'center',
     color: colors.gray2,
   },

@@ -12,12 +12,12 @@ export type ShrubSpecies = {
   bloom: ShrubSpeciesBloomType;
   growth_rate: ShrubSpeciesGrowthType;
   sun_exposure: ShrubSpeciesSunExposure;
-  soil_needs: ShrubSpeciesSoilNeeds;
+  soil_needs: string;
   water_use: ShrubSpeciesWaterUse;
   total_stock: number;
   available_stock: number;
   image_url?: string;
-  is_low_growing: boolean; // ADDED FOR THE SPRINT, THIS MAY NEED TO BE REMOVED
+  is_low_growing: boolean;
 };
 
 export enum ShrubSpeciesStemType {
@@ -36,12 +36,7 @@ export enum ShrubSpeciesSunExposure {
   FullSun = 'full sun',
   PartialShade = 'partial shade',
   Shade = 'shade',
-}
-
-export enum ShrubSpeciesSoilNeeds {
-  WellDraining = 'well-draining',
-  Clay = 'clay',
-  CoarseGrained = 'coarse-grained',
+  FullSunPartialShade = 'full_sun_partial_shade',
 }
 
 export enum ShrubSpeciesWaterUse {
@@ -62,7 +57,18 @@ export const toTitleCase = (str: string) =>
     text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
   );
 
-export const formatEnumKey = (s?: string) => {
-  if (typeof s !== 'string') return '';
-  return s.replace(/_/g, ' ').toLowerCase();
+export const formatEnumKey = (value?: string | string[]) => {
+  if (value === undefined) return '';
+  const format = (str: string) => str.replace(/_/g, ' ').toLowerCase();
+  if (Array.isArray(value)) {
+    const formatted = value
+      .filter((item): item is string => typeof item === 'string')
+      .map(format);
+    if (formatted.length === 0) return '';
+    formatted[0] = formatted[0].charAt(0).toUpperCase() + formatted[0].slice(1);
+    return formatted.join(', ');
+  }
+  if (typeof value !== 'string') return '';
+  const cleaned = format(value);
+  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
 };

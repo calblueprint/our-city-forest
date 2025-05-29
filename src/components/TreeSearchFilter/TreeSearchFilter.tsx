@@ -61,6 +61,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
   const [activeLitterFilters, setActiveLitterFilters] = useState({
     wet: activeFilters.litter.includes('wet'),
     dry: activeFilters.litter.includes('dry'),
+    none: activeFilters.litter.includes('none'),
   });
 
   const [activeOtherFilters, setActiveOtherFilters] = useState({
@@ -151,6 +152,7 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
     setActiveLitterFilters({
       wet: false,
       dry: false,
+      none: false,
     });
     setActiveWaterFilters({
       low: false,
@@ -250,6 +252,11 @@ export const TreeSearchFilter: React.FC<TreeSearchFilterProps> = ({
                   label="Dry Fruit"
                   isChecked={activeLitterFilters.dry}
                   onChange={() => toggleLitterFilter('dry')}
+                />
+                <Checkbox
+                  label="No Fruit"
+                  isChecked={activeLitterFilters.none}
+                  onChange={() => toggleLitterFilter('none')}
                 />
               </View>
             </View>

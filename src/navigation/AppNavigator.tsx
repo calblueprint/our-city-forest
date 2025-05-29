@@ -7,11 +7,15 @@ import { useAuth } from '@/context/AuthContext';
 import {
   ContactSelected,
   ContactUnselected,
+  HistorySelected,
+  HistoryUnselected,
   HomeSelected,
   HomeUnselected,
 } from '@/icons';
+import { linking } from '@/linking';
 import { ContactScreen } from '@/screens/Contact/Contact';
 import { DirectoryScreen } from '@/screens/Directory/Directory';
+import { HistoryScreen } from '@/screens/History/History';
 import { LoginScreen } from '@/screens/Login/Login';
 import { ShrubSpeciesInfoScreen } from '@/screens/ShrubSpeciesInfo/ShrubSpeciesInfo';
 import { SpeciesSearchScreen } from '@/screens/SpeciesSearch/SpeciesSearch';
@@ -20,6 +24,7 @@ import { TreeSpeciesInfoScreen } from '@/screens/TreeSpeciesInfo/TreeSpeciesInfo
 import {
   BottomTabParamList,
   ContactStackParamList,
+  HistoryStackParamList,
   HomeStackParamList,
   LoginStackParamList,
   RootStackParamList,
@@ -28,6 +33,7 @@ import {
 // Stack and Tab Navigators
 const LoginStack = createNativeStackNavigator<LoginStackParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
+const HistoryStack = createNativeStackNavigator<HistoryStackParamList>();
 const ContactStack = createNativeStackNavigator<ContactStackParamList>();
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -74,6 +80,18 @@ const HomeStackNavigator = () => {
   );
 };
 
+// History Stack Navigator
+const HistoryStackNavigator = () => {
+  return (
+    <HistoryStack.Navigator
+      initialRouteName="History"
+      screenOptions={{ headerShown: false }}
+    >
+      <HistoryStack.Screen name="History" component={HistoryScreen} />
+    </HistoryStack.Navigator>
+  );
+};
+
 // Contact Stack Navigator
 const ContactStackNavigator = () => {
   return (
@@ -89,6 +107,8 @@ const ContactStackNavigator = () => {
 
 // Tab Navigator
 const BottomTabNavigator = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <BottomTab.Navigator
       initialRouteName="HomeTab"
@@ -104,6 +124,13 @@ const BottomTabNavigator = () => {
               <HomeUnselected width={30} height={30} />
             );
           }
+          if (route.name === 'HistoryTab') {
+            return focused ? (
+              <HistorySelected width={30} height={30} />
+            ) : (
+              <HistoryUnselected width={30} height={30} />
+            );
+          }
           if (route.name === 'ContactTab') {
             return focused ? (
               <ContactSelected width={30} height={30} />
@@ -116,6 +143,9 @@ const BottomTabNavigator = () => {
       })}
     >
       <BottomTab.Screen name="HomeTab" component={HomeStackNavigator} />
+      {isAuthenticated && (
+        <BottomTab.Screen name="HistoryTab" component={HistoryStackNavigator} />
+      )}
       <BottomTab.Screen name="ContactTab" component={ContactStackNavigator} />
     </BottomTab.Navigator>
   );
@@ -130,7 +160,7 @@ export const AppNavigator = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <RootStack.Navigator
         initialRouteName={hasLaunched ? 'BottomTabs' : 'LoginStack'}
         screenOptions={{ headerShown: false }}

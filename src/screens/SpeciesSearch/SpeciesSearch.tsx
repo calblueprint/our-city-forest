@@ -329,8 +329,8 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
           <ToggleSwitch
             value={isTreeSpecies}
             onValueChange={setIsTreeSpecies}
-            trueLabel="Trees"
-            falseLabel="Shrubs"
+            leftLabel="Trees"
+            rightLabel="Shrubs"
             wide={true}
           />
         </View>

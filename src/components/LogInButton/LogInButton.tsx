@@ -14,7 +14,7 @@ type LogInButtonProps = Partial<
 >;
 
 export const LogInButton: React.FC<LogInButtonProps> = ({ navigation }) => {
-  const { login, isAuthenticated, setHasLaunched } = useAuth();
+  const { logIn: login, isAuthenticated, setHasLaunched } = useAuth();
 
   React.useEffect(() => {
     if (isAuthenticated && navigation) {

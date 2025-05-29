@@ -13,16 +13,16 @@ import { styles } from './styles';
 type ToggleSwitchProps = {
   value: boolean;
   onValueChange: (value: boolean) => void;
-  trueLabel: string;
-  falseLabel: string;
+  leftLabel: string;
+  rightLabel: string;
   wide: boolean;
 };
 
 export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   value,
   onValueChange,
-  trueLabel,
-  falseLabel,
+  leftLabel,
+  rightLabel,
   wide,
 }) => {
   if (
@@ -45,7 +45,10 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
     (newValue: boolean) => {
       if (!containerLayout || !trueLabelLayout || !falseLabelLayout) return;
 
-      const targetX = newValue ? trueLabelLayout.x : falseLabelLayout.x;
+      const containerPadding = 4; // From the container's padding in styles
+      const targetX = newValue
+        ? containerPadding
+        : containerLayout.width - falseLabelLayout.width - containerPadding;
 
       const targetWidth = newValue
         ? trueLabelLayout.width
@@ -94,13 +97,14 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
             {
               transform: [{ translateX: translateAnimation }],
               width: toggleWidth,
-              top: containerLayout.height / 2 - 18,
+              top: 4,
+              height: containerLayout.height - 8,
             },
           ]}
         />
       )}
 
-      {/** True Label */}
+      {/** Left Label */}
       <TouchableOpacity
         onLayout={event => setTrueLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(true)}
@@ -111,11 +115,11 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
             value && styles.selectedText,
           ]}
         >
-          {trueLabel}
+          {leftLabel}
         </Text>
       </TouchableOpacity>
 
-      {/** False Label */}
+      {/** Right Label */}
       <TouchableOpacity
         onLayout={event => setFalseLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(false)}
@@ -126,7 +130,7 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
             !value && styles.selectedText,
           ]}
         >
-          {falseLabel}
+          {rightLabel}
         </Text>
       </TouchableOpacity>
     </View>

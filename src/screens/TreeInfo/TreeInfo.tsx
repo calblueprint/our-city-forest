@@ -28,7 +28,7 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
   navigation,
 }) => {
   const treeId = route.params?.treeId ?? '';
-  const [isTree, setIsTree] = useState(false);
+  const [isTree, setIsTree] = useState(true);
   const [treeData, setTreeData] = useState<Tree | null>(null);
   const [allTreesData, setAllTreesData] = useState<Tree[]>([]);
 
@@ -69,35 +69,35 @@ export const TreeInfoScreen: React.FC<TreeInfoScreenProps> = ({
               <ToggleSwitch
                 value={isTree}
                 onValueChange={setIsTree}
-                trueLabel="This tree"
-                falseLabel="Species"
+                leftLabel="This tree"
+                rightLabel="Species"
                 wide={false}
               />
             </View>
-            <View>
-              <Text style={styles.header}>{treeData?.species?.name ?? ''}</Text>
-              <View style={styles.idPillFlex}>
+            <View style={styles.nameAndId}>
+              <View style={styles.nameContainer}>
                 <Text
-                  style={
-                    isTree
-                      ? styles.scientificNameTree
-                      : styles.scientificNameSpecies
-                  }
+                  style={styles.commonName}
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                >
+                  {treeData?.species?.name ?? ''}
+                </Text>
+                <Text
+                  style={styles.scientificName}
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
                 >
                   {treeData?.species?.scientific_name ?? ''}
                 </Text>
-
-                {isTree && (
-                  <View style={styles.idPill}>
-                    <Text style={styles.idText}>
-                      BR-{treeData?.bank}-{treeData?.row}
-                    </Text>
-                  </View>
-                )}
               </View>
-            </View>
 
-            <View style={styles.divider}></View>
+              {isTree && (
+                <View style={styles.tagIdContainer}>
+                  <Text style={styles.tagIdText}>{treeData?.tag_id}</Text>
+                </View>
+              )}
+            </View>
 
             {treeData ? (
               isTree ? (

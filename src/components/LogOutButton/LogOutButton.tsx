@@ -8,20 +8,30 @@ import { RootStackParamList } from '@/types/navigation';
 import { styles } from './styles';
 
 export const LogOutButton: React.FC = () => {
-  const { logout, setHasLaunched } = useAuth();
+  const { logOut } = useAuth();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleLogOut = async () => {
-    await logout();
-    setHasLaunched(false);
-
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'LoginStack' }],
-      }),
-    );
+    try {
+      await logOut();
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {
+              name: 'BottomTabs',
+              params: {
+                screen: 'HomeTab',
+                params: { screen: 'TreeSpeciesSearch' },
+              },
+            },
+          ],
+        }),
+      );
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
 
   return (

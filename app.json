@@ -60,6 +60,7 @@
         "projectId": "d04f2944-f495-4c9b-b330-6e13ce59c6ff"
       }
     },
-    "scheme": "our-city-forest"
+    "scheme": "ourcityforest",
+    "newArchEnabled": true
   }
 }

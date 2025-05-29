@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
   property: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
 
   propertyName: {
@@ -73,5 +73,8 @@ export const styles = StyleSheet.create({
   propertyText: {
     ...typography.mediumRegular,
     color: colors.black1,
+    flexShrink: 1,
+    flexWrap: 'wrap',
+    textAlign: 'right',
   },
 });

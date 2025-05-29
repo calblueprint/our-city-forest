@@ -38,7 +38,7 @@ export enum TreeSpeciesFoliageType {
 export enum TreeSpeciesLitterType {
   Dry = 'dry',
   Wet = 'wet',
-  NoFruit = 'no_fruit',
+  None = 'no',
 }
 
 export enum TreeSpeciesWaterUse {

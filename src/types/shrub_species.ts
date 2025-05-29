@@ -17,7 +17,7 @@ export type ShrubSpecies = {
   total_stock: number;
   available_stock: number;
   image_url?: string;
-  is_low_growing: boolean; // ADDED FOR THE SPRINT, THIS MAY NEED TO BE REMOVED
+  is_low_growing: boolean; 
 };
 
 export enum ShrubSpeciesStemType {
@@ -36,7 +36,7 @@ export enum ShrubSpeciesSunExposure {
   FullSun = 'full sun',
   PartialShade = 'partial shade',
   Shade = 'shade',
-  FullSunPartianShade = 'full_sun_partian_shade',
+  FullSunPartialShade = 'full_sun_partial_shade',
 }
 
 export enum ShrubSpeciesWaterUse {
@@ -59,14 +59,16 @@ export const toTitleCase = (str: string) =>
 
 export const formatEnumKey = (value?: string | string[]) => {
   if (value === undefined) return '';
-
-  // handle array
+  const format = (str: string) => str.replace(/_/g, ' ').toLowerCase();
   if (Array.isArray(value)) {
-    return value.map(item => {
-      if (typeof item !== 'string') return '';
-      return item.replace(/_/g, ' ').toLowerCase();
-    });
+    const formatted = value
+      .filter((item): item is string => typeof item === 'string')
+      .map(format);
+    if (formatted.length === 0) return '';
+    formatted[0] = formatted[0].charAt(0).toUpperCase() + formatted[0].slice(1);
+    return formatted.join(', ');
   }
   if (typeof value !== 'string') return '';
-  return value.replace(/_/g, ' ').toLowerCase();
+  const cleaned = format(value);
+  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
 };

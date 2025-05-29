@@ -109,7 +109,7 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
         onLayout={event => setTrueLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(true)}
       >
-<Text
+        <Text
           style={[
             wide ? styles.switchWide : styles.switch,
             value && styles.selectedText,

@@ -17,7 +17,7 @@ export type ShrubSpecies = {
   total_stock: number;
   available_stock: number;
   image_url?: string;
-  is_low_growing: boolean; 
+  is_low_growing: boolean;
 };
 
 export enum ShrubSpeciesStemType {

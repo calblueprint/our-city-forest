@@ -331,6 +331,7 @@ export const SpeciesSearchScreen: React.FC<TreeSpeciesSearchScreenProps> = ({
             onValueChange={setIsTreeSpecies}
             trueLabel="Trees"
             falseLabel="Shrubs"
+            wide={true}
           />
         </View>
       </View>

@@ -10,10 +10,12 @@ import { makeRedirectUri } from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from '@/supabase/client';
-
-WebBrowser.maybeCompleteAuthSession();
 import { User } from '@supabase/supabase-js';
 import { supabase } from '../supabase/client';
+import { User } from '@supabase/supabase-js';
+import { supabase } from '../supabase/client';
+
+WebBrowser.maybeCompleteAuthSession();
 
 type User = {
   id: string;
@@ -21,8 +23,6 @@ type User = {
   name: string;
   picture?: string;
 };
-import { User } from '@supabase/supabase-js';
-import { supabase } from '../supabase/client';
 
 type AuthState = {
   user: User | null;

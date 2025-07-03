@@ -5,7 +5,7 @@
     "owner": "ocfdev",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/bp-icon.png",
+    "icon": "./assets/ocf-icon.png",
     "userInterfaceStyle": "light",
     "plugins": [
       [

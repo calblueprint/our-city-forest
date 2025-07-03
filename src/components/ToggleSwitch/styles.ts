@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 48,
     backgroundColor: colors.gray6,
+    alignSelf: 'center',
     overflow: 'hidden',
     padding: 4,
   },

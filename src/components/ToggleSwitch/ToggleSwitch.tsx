@@ -109,12 +109,7 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
         onLayout={event => setTrueLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(true)}
       >
-        <Text
-          style={[
-            wide ? styles.switchWide : styles.switch,
-            value && styles.selectedText,
-          ]}
-        >
+        <Text style={[styles.switch, value && styles.selectedText]}>
           {leftLabel}
         </Text>
       </TouchableOpacity>
@@ -124,12 +119,7 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
         onLayout={event => setFalseLabelLayout(event.nativeEvent.layout)}
         onPress={() => handlePress(false)}
       >
-        <Text
-          style={[
-            wide ? styles.switchWide : styles.switch,
-            !value && styles.selectedText,
-          ]}
-        >
+        <Text style={[styles.switch, !value && styles.selectedText]}>
           {rightLabel}
         </Text>
       </TouchableOpacity>
